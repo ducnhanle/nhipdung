@@ -72,6 +72,17 @@ KNOWN_HALLUCINATIONS = (
     "subtitles by the amara org community",
     "thanks for watching",
 )
+# Vietnamese credits Whisper invents over silence; normalized with _normal below, like segment text.
+VIETNAMESE_HALLUCINATIONS = (
+    "Hãy subscribe cho kênh Ghiền Mì Gõ để không bỏ lỡ những video hấp dẫn",
+    "Hãy subscribe cho kênh Ghiền Mì Gõ để không bỏ lỡ những video hấp dẫn nhé",
+    "Hãy subscribe cho kênh để ủng hộ kênh của mình nhé",
+    "Hãy đăng ký kênh để ủng hộ kênh của mình nhé",
+    "Cảm ơn các bạn đã theo dõi",
+    "Cảm ơn các bạn đã xem video",
+    "Hẹn gặp lại các bạn trong những video tiếp theo",
+    "Cảm ơn các bạn đã theo dõi và hẹn gặp lại các bạn trong những video tiếp theo",
+)
 
 VIDEO_EXTS = (".mov", ".mp4", ".m4v", ".mkv", ".webm")
 
@@ -292,6 +303,9 @@ def _normal(text: str) -> str:
     t = unicodedata.normalize("NFKD", text.lower())
     t = "".join(c for c in t if not unicodedata.combining(c))
     return re.sub(r"[^\w]+", "", t)
+
+
+KNOWN_HALLUCINATIONS += tuple(" ".join(_normal(w) for w in phrase.split()) for phrase in VIETNAMESE_HALLUCINATIONS)
 
 
 def _has_letters(text: str) -> bool:

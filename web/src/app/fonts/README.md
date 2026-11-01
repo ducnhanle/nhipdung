@@ -20,6 +20,22 @@ uvx --from 'fonttools[woff]==4.60.1' pyftsubset skills/editonny/engine/assets/fo
 
 Characters outside these ranges fall back to the system font stack in the tokens.
 
+## Vietnamese pages
+
+`/vi` pages load Latin + Vietnamese subsets instead (`fontVariablesFor('vi')` in `../fonts.ts`). They fill the same `--font-*-face` variables, so the tokens are unchanged. Figtree, Caveat, and Permanent Marker draw no Vietnamese letters, so those roles use the engine's extended-coverage fonts (the same `fallback` fonts `text_render.py` switches to); Anton and Montserrat keep their design:
+
+| File | Source | Role | License |
+|---|---|---|---|
+| `plus-jakarta-sans-latin-vietnamese.woff2` | `plusjakartasans/PlusJakartaSans-Variable.ttf` | Figtree | SIL OFL 1.1 (`OFL-plus-jakarta-sans.txt`) |
+| `anton-latin-vietnamese.woff2` | `anton/Anton-Regular.ttf` | Anton | SIL OFL 1.1 (`OFL-anton.txt`) |
+| `montserrat-latin-vietnamese.woff2` | `montserrat/Montserrat-Variable.ttf` | Montserrat | SIL OFL 1.1 (`OFL-montserrat.txt`) |
+| `sriracha-latin-vietnamese.woff2` | `sriracha/Sriracha-Regular.ttf` | Caveat | SIL OFL 1.1 (`OFL-sriracha.txt`) |
+| `sedgwick-ave-display-latin-vietnamese.woff2` | `sedgwickavedisplay/SedgwickAveDisplay-Regular.ttf` | Permanent Marker | SIL OFL 1.1 (`OFL-sedgwick-ave-display.txt`) |
+| `plus-jakarta-sans-800-latin-vietnamese.ttf`, `plus-jakarta-sans-600-latin-vietnamese.ttf` | Plus Jakarta Sans at `wght=800` and `wght=600` | Open Graph Figtree | SIL OFL 1.1 |
+| `jetbrains-mono-700-latin-vietnamese.ttf` | `engine/project-template/assets/fonts/JetBrainsMono.ttf` at `wght=700` | Open Graph Mono | SIL OFL 1.1 (`OFL-jetbrains-mono.txt`) |
+
+They use the Latin ranges above plus `U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB`, with the same pyftsubset and instancer commands. None of these fonts declares a Reserved Font Name.
+
 The Open Graph renderer (Satori) reads neither WOFF2 nor variable axes, so `[locale]/opengraph-image.tsx` uses static TrueType instances with the same subset, plus the engine's static `Anton-Regular.ttf`:
 
 | File | Source | License |

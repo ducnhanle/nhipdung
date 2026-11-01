@@ -2,7 +2,7 @@ import { Aurora, Button, CreatorChip, Eyebrow, KineticText } from '@editonny/des
 import photo from '@editonny/design-system/assets/imagery/matheus-gomes.jpeg';
 import { useTranslations } from 'next-intl';
 import { NewTabLink } from '@/components/shell/NewTabLink';
-import { AUTHOR, REPOSITORY_URL } from '@/lib/links';
+import { AUTHOR, REPOSITORY_URL, UPSTREAM_URL } from '@/lib/links';
 import { Bench } from './Bench';
 import styles from './home.module.css';
 
@@ -16,7 +16,7 @@ export function Hero() {
       <div className={styles.heroAurora} aria-hidden="true"><Aurora intensity={0.55} grain palette="fire" /></div>
       <div className={styles.heroGrid}>
         <div className={styles.heroCopy}>
-          <CreatorChip name={AUTHOR.name} role={t('creatorRole')} status={t('creatorStatus')} photo={photo.src} href={REPOSITORY_URL} newTabLabel={common('newTab')} className={styles.creator} />
+          <CreatorChip name={AUTHOR.name} role={t('creatorRole')} status={t('creatorStatus')} photo={photo.src} href={UPSTREAM_URL} newTabLabel={common('newTab')} className={styles.creator} />
           <Eyebrow dot>{t('eyebrow')}</Eyebrow>
           <h1 className={styles.heroTitle} id="hero-title">
             <span>{t('line1')}</span>

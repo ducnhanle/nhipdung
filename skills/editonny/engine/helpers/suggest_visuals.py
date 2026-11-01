@@ -30,22 +30,42 @@ FUNCTION_WORDS = {"de", "do", "da", "dos", "das", "o", "a", "os", "as", "um", "u
                   "ou", "que", "pra", "para", "com", "no", "na", "em", "tambem", "mais", "nenhum", "nenhuma",
                   "isso", "so", "ai", "aqui", "tipo", "ne", "entao", "voce"}
 FUNCTION_WORDS |= {"the", "a", "an", "of", "to", "in", "on", "and", "or", "for", "with", "at", "by"}
+# Vietnamese, compared without accents like every Word.normal_value (đ keeps its stroke)
+FUNCTION_WORDS |= {vl.normal_value(w) for w in ("và", "của", "là", "thì", "mà", "những", "các", "một", "cho", "với",
+                                               "để", "ở", "trong", "trên", "khi", "nếu", "nhưng", "hoặc", "vì", "rằng",
+                                               "từ", "về", "đến", "tới", "cái", "này", "đó", "vậy", "rồi", "nhé", "nha")}
 KEYWORD_STOP = FUNCTION_WORDS | {"embaixo", "comentario", "comentarios", "mensagem", "direct", "dm", "eu", "la",
                                  "palavra", "seu", "sua", "ele", "ela", "gente", "agora", "ja", "se", "me", "te"}
 UNITS = ("students", "people", "clients", "followers", "hours", "days", "weeks", "months", "years", "alunos", "alunas", "aluno", "pessoas", "clientes", "seguidores", "dias", "horas", "minutos", "aulas",
          "modulos", "videos", "produtos", "fornecedores", "lojas", "vezes", "anos", "meses", "semanas",
          "vagas", "passos", "etapas", "cursos", "ferramentas", "bonus", "mentorias", "encontros", "lives")
 UNIT_LABEL = {"alunas": "alunas", "aluno": "aluno", "modulos": "módulos", "videos": "vídeos", "bonus": "bônus"}
-PROGRESS_WORDS = re.compile(r"\b(conclu\w*|complet\w*|pront\w*|preench\w*|vagas?|do curso|das aulas|meta|"
+# Vietnamese units, normalized like Sentence.ntext (năm is the vi_nam token) -> the label shown on screen.
+# Longer units come first so "người theo dõi" wins over "người".
+VI_UNITS = {"nguoi theo doi": "người theo dõi", "luot xem": "lượt xem", "luot thich": "lượt thích",
+            "hoc vien": "học viên", "hoc sinh": "học sinh", "khach hang": "khách hàng", "thanh vien": "thành viên",
+            "đon hang": "đơn hàng", "san pham": "sản phẩm", "khoa hoc": "khóa học", "bai hoc": "bài học",
+            "sai lam": "sai lầm", "nguoi": "người", "buoi": "buổi", "ngay": "ngày", "tuan": "tuần", "thang": "tháng",
+            "vi_nam": "năm", "gio": "giờ", "phut": "phút", "lan": "lần", "buoc": "bước", "cach": "cách", "meo": "mẹo"}
+UNITS = tuple(VI_UNITS) + UNITS
+UNIT_LABEL |= VI_UNITS
+PROGRESS_WORDS = re.compile(r"\b(hoan\s+thanh|đa\s+xong|muc\s+tieu|tien\s+đo|"
+                            r"conclu\w*|complet\w*|pront\w*|preench\w*|vagas?|do curso|das aulas|meta|"
                             r"progresso|falta\w*|lotad\w*|esgotad\w*|acabando)\b")
-PRICE_CONTEXT = re.compile(r"\b(por\s+(apenas|so)|apenas|custa\w*|investimento|valor|preco|paga\w*|sai\s+por|"
+# Vietnamese: giá chỉ / giá bán / chỉ còn / chỉ với / ưu đãi / khuyến mãi / giảm còn / học phí / trả góp / giá 199k
+PRICE_CONTEXT = re.compile(r"\b(gia\s+(?:chi|ban|goc|uu\s+đai|khuyen\s+mai|niem\s+yet)|chi\s+(?:con|voi|co)|uu\s+đai|"
+                           r"khuyen\s+mai|giam\s+(?:gia|con)|hoc\s+phi|thanh\s+toan|tra\s+gop|gia\s+(?=\d|vi_)|"
+                           r"por\s+(apenas|so)|apenas|custa\w*|investimento|valor|preco|paga\w*|sai\s+por|"
                            r"parcela\w*|\d+\s*x\s+de|a\s+vista|promocao|desconto|oferta|por\s+menos\s+de)\b")
 # money said as what someone made (not what something costs): "faturei 50 mil", "30 mil de faturamento"
-GAIN_BEFORE = re.compile(r"\b(?:fatur\w*|ganh(?:ei|ou|amos|aram|ava|avam|ando|e|ar)|lucr\w*|fiz|fez|fizemos|fizeram|"
+GAIN_BEFORE = re.compile(r"\b(?:kiem\s+(?:đuoc|ve)|thu\s+(?:ve|nhap)|loi\s+nhuan|doanh\s+(?:thu|so)|ban\s+đuoc|nhan\s+(?:đuoc|ve)|"
+                         r"fatur\w*|ganh(?:ei|ou|amos|aram|ava|avam|ando|e|ar)|lucr\w*|fiz|fez|fizemos|fizeram|"
                          r"fazendo|tirei|tirou|tiramos|tiro|tirando|caiu|cairam|recebi|recebeu|recebemos|vendi|vendeu|"
                          r"vendemos|renda|salario|comiss\w*|saldo)\b")
-GAIN_AFTER = re.compile(r"\s*(?:de|em|no|na)?\s*(?:faturamento|lucro|renda|comiss\w*|vendas|salario)\b")
-PERIOD_AFTER = re.compile(r"\s*(?:/\s*|por\s+|ao\s+|no\s+|na\s+|em\s+(?:um|uma)\s+)(?:mes|dia|semana|ano|hora)\b")
+GAIN_AFTER = re.compile(r"\s*(?:(?:de|em|no|na)?\s*(?:faturamento|lucro|renda|comiss\w*|vendas|salario)|"
+                        r"(?:doanh\s+(?:thu|so)|loi\s+nhuan|thu\s+nhap))\b")
+PERIOD_AFTER = re.compile(r"\s*(?:(?:/\s*|por\s+|ao\s+|no\s+|na\s+|em\s+(?:um|uma)\s+)(?:mes|dia|semana|ano|hora)|"
+                          r"(?:/\s*|moi\s+|vi_mot\s+)(?:thang|ngay|tuan|vi_nam|gio))\b")
 
 
 @dataclass
@@ -292,14 +312,15 @@ def find_price(sents: list[Sentence]) -> list[Candidate]:
         for a, b in zip(monies, monies[1:]):
             between = s.ntext[a.end:b.start]
             before = s.ntext[max(0, a.start - 4):a.start]
-            if re.search(r"\bde\s*$", before) and re.fullmatch(r"\s+(?:por|para|pra)(?:\s+(?:apenas|so))?\s+", between):
+            if (re.search(r"\bde\s*$", before) and re.fullmatch(r"\s+(?:por|para|pra)(?:\s+(?:apenas|so))?\s+", between)
+                    or re.search(r"\btu\s*$", before) and re.fullmatch(r"\s+(?:xuong\s+|giam\s+)?(?:chi\s+)?con\s+", between)):
                 used_old = (a, b)
                 break
         if used_old:
             old_m, new_m = used_old
         else:
             new_m, old_m = next((m for m in monies if not m.bare), monies[0]), None
-            if new_m.bare and not re.search(r"\b(?:por\s+(?:apenas|so)|apenas|custa\w*)\s+$",
+            if new_m.bare and not re.search(r"\b(?:por\s+(?:apenas|so)|apenas|custa\w*|chi(?:\s+(?:con|voi|co))?|gia(?:\s+chi)?)\s+$",
                                             s.ntext[max(0, new_m.start - 16):new_m.start]):
                 continue
         price, prefix = price_value(s.ntext[new_m.start:new_m.end])
@@ -307,7 +328,7 @@ def find_price(sents: list[Sentence]) -> list[Candidate]:
             continue
         w_new = s.words_in(new_m.start, new_m.end)
         params: dict = {"price": round(price, 2), "prefix": prefix,
-                        "label": "only" if re.search(r"\b(apenas|so)\b", s.ntext[:new_m.start]) else ""}
+                        "label": "only" if re.search(r"\b(apenas|so|chi)\b", s.ntext[:new_m.start]) else ""}
         first = w_new[0].start
         if old_m is not None:
             old, _ = price_value(s.ntext[old_m.start:old_m.end])
@@ -499,8 +520,8 @@ def find_steps(sents: list[Sentence]) -> list[Candidate]:
     return out
 
 
-PERCENT_RE = re.compile(f'(?<![\\w,.])({vl.DIGITS_RE}|{vl.WORDNUM_RE})\\s*(?:%|por\\s*cento\\b)')
-COUNT_RE = re.compile(f"(?<![\\w,.$])(?:mais\\s+de\\s+)?({vl.DIGITS_RE}|{vl.WORDNUM_RE})(?:\\s+({vl.MULT_RE}))?\\s+(?:de\\s+)?({'|'.join(UNITS)})\\b((?:\\s+(?!e\\b|que\\b|com\\b|pra\\b|para\\b)\\w+){{0,3}})")
+PERCENT_RE = re.compile(f'(?<![\\w,.])({vl.DIGITS_RE}|{vl.WORDNUM_RE})\\s*(?:%|por\\s*cento\\b|phan\\s+vi_tram\\b)')
+COUNT_RE = re.compile(f"(?<![\\w,.$])(?:(?:mais\\s+de|hon|tren)\\s+)?({vl.DIGITS_RE}|{vl.WORDNUM_RE})(?:\\s+({vl.MULT_RE}))?\\s+(?:de\\s+)?({'|'.join(UNITS)})\\b((?:\\s+(?!e\\b|que\\b|com\\b|pra\\b|para\\b)\\w+){{0,3}})")
 
 
 def find_numbers(sents: list[Sentence]) -> list[Candidate]:
@@ -561,7 +582,7 @@ def find_numbers(sents: list[Sentence]) -> list[Candidate]:
             params = {"value": value, "suffix": unit}
             if label:
                 params["label"] = label
-            if re.match(r"mais\s+de", m.group(0)):
+            if re.match(r"mais\s+de|hon\b|tren\b", m.group(0)):
                 params["prefix"] = "+"
             cand = Candidate("counter", ws[0].start, ws[-1].end, params, original_span(s, m.start(), m.end()))
         out.append(cand)

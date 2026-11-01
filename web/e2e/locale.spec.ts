@@ -5,7 +5,7 @@ import en from '../messages/en-US.json' with { type: 'json' };
 test.skip(({ isMobile }) => isMobile, 'header-only behavior');
 
 // The browser derives Accept-Language from the context locale, as a real visitor's browser does.
-for (const [locale, prefix] of [['pt-BR', '/pt-br'], ['pt', '/pt-br'], ['pt-PT', '/pt-br'], ['es-419', '/es'], ['es-MX', '/es'], ['fr-FR', '/en'], ['en-GB', '/en']] as const) {
+for (const [locale, prefix] of [['pt-BR', '/pt-br'], ['pt', '/pt-br'], ['pt-PT', '/pt-br'], ['es-419', '/es'], ['es-MX', '/es'], ['vi-VN', '/vi'], ['vi', '/vi'], ['fr-FR', '/en'], ['en-GB', '/en']] as const) {
   test(`a browser in ${locale} lands on ${prefix}`, async ({ browser }) => {
     const context = await browser.newContext({ locale });
     const page = await context.newPage();
@@ -38,7 +38,7 @@ test('the NEXT_LOCALE cookie wins over Accept-Language', async ({ browser, baseU
 });
 
 test('localized pathnames render with the right lang attribute', async ({ page }) => {
-  for (const [path, lang] of [['/pt-br/criar', 'pt-BR'], ['/es/crear', 'es'], ['/en/create', 'en-US'], ['/pt-br/catalogo', 'pt-BR'], ['/es/ejemplos', 'es'], ['/en/install', 'en-US']] as const) {
+  for (const [path, lang] of [['/pt-br/criar', 'pt-BR'], ['/es/crear', 'es'], ['/en/create', 'en-US'], ['/pt-br/catalogo', 'pt-BR'], ['/es/ejemplos', 'es'], ['/en/install', 'en-US'], ['/vi/tao-yeu-cau', 'vi'], ['/vi/danh-muc', 'vi'], ['/vi/vi-du', 'vi'], ['/vi/cai-dat', 'vi']] as const) {
     const response = await page.goto(path);
     expect(response?.status(), path).toBe(200);
     await expect(page.locator('html')).toHaveAttribute('lang', lang);
@@ -55,7 +55,7 @@ test('unknown paths return 404 without a server error', async ({ request }) => {
 test('every locale page advertises all alternates and x-default', async ({ page }) => {
   await page.goto('/pt-br/catalogo');
   const alternates = await page.locator('link[rel="alternate"][hreflang]').evaluateAll(links => links.map(link => [link.getAttribute('hreflang'), new URL(link.getAttribute('href') ?? '').pathname]));
-  expect(alternates).toEqual(expect.arrayContaining([['en-US', '/en/catalog'], ['pt-BR', '/pt-br/catalogo'], ['es', '/es/catalogo'], ['x-default', '/catalog']]));
+  expect(alternates).toEqual(expect.arrayContaining([['en-US', '/en/catalog'], ['pt-BR', '/pt-br/catalogo'], ['es', '/es/catalogo'], ['vi', '/vi/danh-muc'], ['x-default', '/catalog']]));
 });
 
 test('pages send the browser only the interface text their interactive parts use', async ({ request }) => {
@@ -67,6 +67,19 @@ test('pages send the browser only the interface text their interactive parts use
   expect(install).not.toContain(en.Home.bench.marked);
 });
 
+test('Vietnamese pages load fonts that draw Vietnamese letters', async ({ page }) => {
+  await page.goto('/vi');
+  await page.evaluate(() => document.fonts.ready);
+  const families = await page.evaluate(() => [...document.fonts].filter(face => face.status === 'loaded').map(face => face.family));
+  expect(families.length).toBeGreaterThan(0);
+  // Every loaded face must come from the Vietnamese subsets: a Latin-only file would leave ạ, ệ, ữ to the system font.
+  const sources = await page.evaluate(() => [...document.styleSheets].flatMap(sheet => { try { return [...sheet.cssRules]; } catch { return []; } })
+    .filter(rule => rule instanceof CSSFontFaceRule).map(rule => (rule as CSSFontFaceRule).style.getPropertyValue('src')));
+  const used = await page.evaluate(() => [...document.fonts].filter(face => face.status === 'loaded').map(face => face.family.replace(/['"]/g, '')));
+  expect(used.every(family => !/figtree|caveat|permanent/i.test(family))).toBe(true);
+  expect(sources.some(src => /vietnamese/.test(src))).toBe(true);
+});
+
 test('the design-system route is not localized', async ({ page }) => {
   const response = await page.goto('/design-system');
   expect(response?.status()).toBe(200);
@@ -74,7 +87,7 @@ test('the design-system route is not localized', async ({ page }) => {
 });
 
 test('each locale serves its Open Graph image', async ({ page, request }) => {
-  for (const path of ['/en', '/pt-br/criar', '/es/catalogo']) {
+  for (const path of ['/en', '/pt-br/criar', '/es/catalogo', '/vi/danh-muc']) {
     await page.goto(path);
     const image = new URL(await page.locator('meta[property="og:image"]').getAttribute('content') ?? '');
     const response = await request.get(image.pathname + image.search);

@@ -373,7 +373,7 @@ Lucide line icons with a 2 px round stroke, inheriting `currentColor`. The bundl
 
 ## Content
 
-Commands, code, and source text are English (see `AGENTS.md`); the guide's interface and requests are also localized for Brazilian Portuguese and Spanish, following the same voice. Speak to the reader as "you"; the product says "we" only when it takes on work, and the AI is "your AI" or "the agent". Use sentence case for titles and buttons, mono uppercase eyebrows with an index ("HOW IT WORKS / 01"), verb-first actions (Create, Copy request, Use in my request, Approve, Mark start), and "For example," in placeholders. House vocabulary: request, cut, sample, finish, hook, call to action, scene, mark, section, raw footage. State limits honestly: "The guide does not access or upload files."
+Commands, code, and source text are English (see `AGENTS.md`); the guide's interface and requests are also localized for Brazilian Portuguese, Spanish, and Vietnamese, following the same voice. Vietnamese pages swap the font files behind the same tokens: Figtree, Caveat, and Permanent Marker lack Vietnamese letters, so Plus Jakarta Sans, Sriracha, and Sedgwick Ave Display fill those roles there. Speak to the reader as "you"; the product says "we" only when it takes on work, and the AI is "your AI" or "the agent". Use sentence case for titles and buttons, mono uppercase eyebrows with an index ("HOW IT WORKS / 01"), verb-first actions (Create, Copy request, Use in my request, Approve, Mark start), and "For example," in placeholders. House vocabulary: request, cut, sample, finish, hook, call to action, scene, mark, section, raw footage. State limits honestly: "The guide does not access or upload files."
 
 ## Implementation
 

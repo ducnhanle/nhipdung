@@ -13,8 +13,8 @@
 <p align="center">Skill de edição de vídeo grátis e open source para <strong>Claude Code</strong> e <strong>Codex</strong>. Corte pausas e erros, coloque legendas, trate o áudio, reenquadre e transforme trechos da fala em cenas de motion pedindo em linguagem natural. Transcrição e render rodam no seu computador.</p>
 
 <p align="center">
-  <a href="https://github.com/soumatheusgomes/editonny/stargazers"><img src="https://img.shields.io/github/stars/soumatheusgomes/editonny?style=flat&amp;label=Stars&amp;color=ff4f12&amp;labelColor=17171b" alt="Estrelas no GitHub" /></a>
-  <a href="https://github.com/soumatheusgomes/editonny/actions/workflows/verify.yml"><img src="https://github.com/soumatheusgomes/editonny/actions/workflows/verify.yml/badge.svg?branch=main" alt="Verificação do GitHub Actions" /></a>
+  <a href="https://github.com/ducnhanle/editonny/stargazers"><img src="https://img.shields.io/github/stars/ducnhanle/editonny?style=flat&amp;label=Stars&amp;color=ff4f12&amp;labelColor=17171b" alt="Estrelas no GitHub" /></a>
+  <a href="https://github.com/ducnhanle/editonny/actions/workflows/verify.yml"><img src="https://github.com/ducnhanle/editonny/actions/workflows/verify.yml/badge.svg?branch=main" alt="Verificação do GitHub Actions" /></a>
   <a href="LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-d4ff3a?labelColor=17171b" alt="Licença MIT para o código próprio" /></a>
   <img src="https://img.shields.io/badge/Claude%20Code-skill-ff4f12?labelColor=17171b" alt="Funciona como skill do Claude Code" />
   <img src="https://img.shields.io/badge/Codex-skill-ff4f12?labelColor=17171b" alt="Funciona como skill do Codex" />
@@ -31,7 +31,7 @@
 Você não baixa nada à mão. Abra o **Claude Code** ou o **Codex** em qualquer pasta e cole este pedido. O mesmo pedido instala o editonny na primeira vez e atualiza depois: o agente clona a skill do GitHub, segue o procedimento de setup, verifica tudo e pergunta antes de qualquer coisa fora do pedido.
 
 ```text
-Instale ou atualize a skill editonny para Codex e Claude Code a partir de https://github.com/soumatheusgomes/editonny. Clone a versão mais recente em uma pasta temporária; eu não vou baixar nada manualmente. Leia skills/editonny/SKILL.md e siga seu procedimento de setup completo. Se o editonny já estiver instalado, compare as versões, resuma o que muda e atualize pelo método de instalação atual: o instalador do repositório para a instalação compartilhada (ele preserva minhas configurações e guarda backup da cópia anterior) ou o atualizador do host para um plugin gerenciado. Prepare ferramentas locais compatíveis, engine com dependências fixadas, renderizador e navegador nas versões fixadas, modelo padrão de transcrição, OCR local para conferir legendas e mídia incluída antes da primeira edição. Verifique com diagnósticos e uma amostra sintética, informe pendências, remova o clone temporário e me avise quando reiniciar o agente. Peça autorização antes de serviços pagos ou envio das minhas mídias.
+Instale ou atualize a skill editonny para Codex e Claude Code a partir de https://github.com/ducnhanle/editonny. Clone a versão mais recente em uma pasta temporária; eu não vou baixar nada manualmente. Leia skills/editonny/SKILL.md e siga seu procedimento de setup completo. Se o editonny já estiver instalado, compare as versões, resuma o que muda e atualize pelo método de instalação atual: o instalador do repositório para a instalação compartilhada (ele preserva minhas configurações e guarda backup da cópia anterior) ou o atualizador do host para um plugin gerenciado. Prepare ferramentas locais compatíveis, engine com dependências fixadas, renderizador e navegador nas versões fixadas, modelo padrão de transcrição, OCR local para conferir legendas e mídia incluída antes da primeira edição. Verifique com diagnósticos e uma amostra sintética, informe pendências, remova o clone temporário e me avise quando reiniciar o agente. Peça autorização antes de serviços pagos ou envio das minhas mídias.
 ```
 
 <p align="center"><img src="docs/assets/readme/pt-BR/install.svg" alt="Um terminal de agente recebe o pedido de instalação e informa a clonagem do repositório, a leitura do setup, a instalação nos dois agentes, a preparação de engine, renderizador, modelo e OCR e os diagnósticos aprovados." width="100%" /></p>
@@ -53,7 +53,7 @@ O agente prepara o que faltar e informa downloads pendentes ou verificações qu
 <summary><strong>Prefere o terminal?</strong></summary>
 
 ```sh
-git clone https://github.com/soumatheusgomes/editonny.git
+git clone https://github.com/ducnhanle/editonny.git
 cd editonny
 python3 install.py --target both
 python3 ~/.local/share/editonny/scripts/editonny.py doctor
@@ -121,7 +121,7 @@ As cenas vêm do catálogo incluído, com **145** cenas de motion e **79** clipe
 
 ## Abrir o guia
 
-O guia é o site do editonny: monta pedidos de edição, mostra as 145 cenas de motion e os 54 pedidos de exemplo e explica a instalação em português, inglês ou espanhol (escolhido pelo idioma do navegador; sua escolha e seu briefing ficam salvos nesse navegador). Ele nunca recebe nem envia vídeos.
+O guia é o site do editonny: monta pedidos de edição, mostra as 145 cenas de motion e os 54 pedidos de exemplo e explica a instalação em português, inglês, espanhol ou vietnamita (escolhido pelo idioma do navegador; sua escolha e seu briefing ficam salvos nesse navegador). Ele nunca recebe nem envia vídeos.
 
 Para rodar localmente a partir deste repositório (Node.js 22.13+ ou 24+):
 
@@ -192,14 +192,14 @@ Gera o ZIP do plugin, com SHA-256, em `dist/`. Ele contém a documentação téc
 
 Se o editonny ajudar no seu próximo vídeo, deixe uma estrela no projeto. Acompanhe a evolução, relate um problema ou sugira uma cena.
 
-<a href="https://www.star-history.com/?repos=soumatheusgomes%2Feditonny&amp;type=date">
+<a href="https://www.star-history.com/?repos=ducnhanle%2Feditonny&amp;type=date">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=soumatheusgomes/editonny&amp;type=date&amp;theme=dark" />
-    <img src="https://api.star-history.com/chart?repos=soumatheusgomes/editonny&amp;type=date" alt="Histórico de estrelas de soumatheusgomes/editonny" width="1000" loading="lazy" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ducnhanle/editonny&amp;type=date&amp;theme=dark" />
+    <img src="https://api.star-history.com/chart?repos=ducnhanle/editonny&amp;type=date" alt="Histórico de estrelas de ducnhanle/editonny" width="1000" loading="lazy" />
   </picture>
 </a>
 
-[Dar uma estrela](https://github.com/soumatheusgomes/editonny/stargazers) · [Relatar um problema](https://github.com/soumatheusgomes/editonny/issues) · [Abrir histórico de estrelas](https://www.star-history.com/?repos=soumatheusgomes%2Feditonny&type=date)
+[Dar uma estrela](https://github.com/ducnhanle/editonny/stargazers) · [Relatar um problema](https://github.com/ducnhanle/editonny/issues) · [Abrir histórico de estrelas](https://www.star-history.com/?repos=ducnhanle%2Feditonny&type=date)
 
 O histórico de estrelas ao vivo vem do [Star History](https://www.star-history.com/blog/how-to-use-github-star-history/) e depende desse serviço. O selo acima mostra a contagem real de estrelas no GitHub.
 
@@ -210,6 +210,7 @@ Criado e mantido por **Matheus Gomes**.
 - Instagram: [@matheusgomes](https://instagram.com/matheusgomes)
 - E-mail: [eu@matheusgom.es](mailto:eu@matheusgom.es)
 - GitHub: [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny)
+- Este fork: [ducnhanle/editonny](https://github.com/ducnhanle/editonny), que adiciona suporte ao vietnamita e instala e atualiza a partir do próprio repositório
 
 ## Licença e recursos
 

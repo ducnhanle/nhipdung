@@ -3,12 +3,13 @@ import { LanguageSelect, LANGUAGES } from '@editonny/design-system';
 import br from '@editonny/design-system/assets/flags/br.svg';
 import es from '@editonny/design-system/assets/flags/es.svg';
 import us from '@editonny/design-system/assets/flags/us.svg';
+import vn from '@editonny/design-system/assets/flags/vn.svg';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter as useNextRouter } from 'next/navigation';
 import { getPathname, usePathname, useRouter } from '@/i18n/navigation';
 import { routing, type AppLocale } from '@/i18n/routing';
 
-const FLAGS: Record<string, string> = { us: us.src, br: br.src, es: es.src };
+const FLAGS: Record<string, string> = { us: us.src, br: br.src, es: es.src, vn: vn.src };
 const OPTIONS = LANGUAGES.map(language => ({ ...language, flagUrl: FLAGS[language.flag ?? ''] }));
 
 /** Language picker: switches to the same page in another locale, keeps the query and home section, and stores the choice in a cookie. */

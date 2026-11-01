@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { getPathname } from '@/i18n/navigation';
 import { routing, type AppLocale, type AppPathname } from '@/i18n/routing';
-import { AUTHOR, REPOSITORY_URL } from './links';
+import { AUTHOR, REPOSITORY_URL, UPSTREAM_URL } from './links';
 
-export { AUTHOR, REPOSITORY_URL };
+export { AUTHOR, REPOSITORY_URL, UPSTREAM_URL };
 
 const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 /** Canonical origin: NEXT_PUBLIC_SITE_URL, else the Vercel production domain, else local development. */
@@ -21,7 +21,7 @@ export const BRAND = {
 
 export type PageKey = 'home' | 'create' | 'catalog' | 'examples' | 'install';
 export const PAGE_PATHS: Record<PageKey, AppPathname> = { home: '/', create: '/create', catalog: '/catalog', examples: '/examples', install: '/install' };
-export const OG_LOCALES: Record<AppLocale, string> = { 'en-US': 'en_US', 'pt-BR': 'pt_BR', es: 'es_ES' };
+export const OG_LOCALES: Record<AppLocale, string> = { 'en-US': 'en_US', 'pt-BR': 'pt_BR', es: 'es_ES', vi: 'vi_VN' };
 
 /** Localized path of a page, with the locale prefix (for example `/pt-br/criar`). */
 export const localizedPath = (locale: AppLocale, page: PageKey) => getPathname({ locale, href: PAGE_PATHS[page] });

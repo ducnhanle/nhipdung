@@ -125,7 +125,7 @@ def plan_item(template_id: str, params: dict | None = None, *, fps: int = 30,
     # only an item's own "color" changes them
     own_palette = theme_value in E.PAPER or theme_value in ("pop", "neon")
     base_accent = E.DEFAULT_ACCENT if own_palette and resolved.get("color") in (None, "") else accent
-    theme = E.make_theme(_accent_for(resolved, base_accent), theme_value)
+    theme = E.text_fonts(E.make_theme(_accent_for(resolved, base_accent), theme_value), E.param_texts(resolved))
     box = E.Box(x=x, y=y, w=w, h=h, scale=min(canvas) / E.REF, canvas=canvas, fps=fps, frames=frames,
                 theme=theme, bleed=tpl.bleed)
     item = VisualItem(template=tpl, params=resolved, box=box, frames=frames, region=[x, y, w, h],

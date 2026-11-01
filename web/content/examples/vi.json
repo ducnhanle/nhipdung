@@ -1,0 +1,542 @@
+{
+  "first-video": {
+    "title": "Video đầu tiên của tôi",
+    "summary": "Biến video gốc thành một video rõ ràng, trọn vẹn.",
+    "when": "Bạn đã có video thô nhưng chưa chọn phong cách.",
+    "goal": "Hãy dựng video gốc của tôi thành một video có phần mở đầu, phần triển khai và phần kết luận. Chọn những lần quay trọn vẹn, rõ ràng nhất và giữ nguyên ý nghĩa. Gợi ý một đoạn mở đầu ngắn dựa trên lời nói thực tế và chỉ dùng hình ảnh hỗ trợ khi có sẵn",
+    "tips": [
+      "Mô tả người xem và thời lượng mong muốn.",
+      "Nếu có lời kêu gọi hành động ở cuối, hãy nói rõ người xem cần làm gì."
+    ]
+  },
+  "environment-test": {
+    "title": "Kiểm tra thiết lập bằng một đoạn video ngắn",
+    "summary": "Kiểm tra các công cụ trước khi bắt đầu một dự án dài.",
+    "when": "Bạn vừa cài đặt editonny hoặc vừa đổi máy tính.",
+    "goal": "Hãy kiểm tra môi trường editonny và dùng một video ngắn của tôi để thử các khâu cắt, phụ đề, âm thanh và một cảnh đơn giản trong danh mục. Cho tôi biết phần nào đã hoạt động và phần nào cần chuẩn bị thêm. Chỉ riêng việc nhận ra yêu cầu này chưa đủ để xác nhận cài đặt đã thành công",
+    "tips": [
+      "Dùng một tệp không chứa nội dung cá nhân nhạy cảm.",
+      "Bài thử nên tạo ra một tệp MP4 phát được."
+    ]
+  },
+  "ad": {
+    "title": "Quảng cáo với một thông điệp rõ ràng",
+    "summary": "Câu mở đầu (hook), phần demo và lời kêu gọi hành động bám sát video gốc của bạn.",
+    "when": "Bạn muốn giới thiệu một ưu đãi trong một video ngắn.",
+    "goal": "Hãy dựng một video quảng cáo dài 20–40 giây gồm câu mở đầu (hook) dựa trên lời nói, phần nêu vấn đề, phần demo và lời kêu gọi ở cuối dẫn người xem đến nơi tôi chỉ định. Dùng phụ đề dễ đọc, chuyển động tiết chế và chỉ dùng bằng chứng hình ảnh từ các tệp thật được cung cấp. Đánh dấu các khẳng định chưa có căn cứ để tôi xem lại; đừng hứa hẹn quảng cáo sẽ được nền tảng duyệt hay mang lại kết quả kinh doanh",
+    "tips": [
+      "Nêu rõ sản phẩm, đối tượng khán giả và nơi họ được dẫn đến khi nhấp vào.",
+      "Cung cấp đúng ưu đãi và hình ảnh demo đã được phép sử dụng."
+    ]
+  },
+  "reels": {
+    "title": "Một ý tưởng trọn vẹn cho Reels",
+    "summary": "Nội dung hữu ích, nhịp tự nhiên, không chào bán gượng ép.",
+    "when": "Bạn muốn biến một đoạn giải thích bằng lời thành nội dung mạng xã hội.",
+    "goal": "Hãy dựng một video Reels truyền tải trọn vẹn một ý tưởng và mở đầu bằng điểm thú vị nhất trong lời nói thực tế. Giữ lại phần kết luận, chỉ thay đổi khung hình khi điều đó giúp ích cho nhịp, nhấn mạnh một vài cụm từ quan trọng và không thêm lời kêu gọi mua hàng",
+    "tips": [
+      "Nêu rõ chủ đề chính và thời lượng.",
+      "Nhạc nền là tùy chọn; giọng nói phải luôn dễ nghe, dễ hiểu."
+    ]
+  },
+  "vsl": {
+    "title": "Video bán hàng có hình ảnh hữu ích",
+    "summary": "Sắp xếp phần trình bày và minh họa các ý chính.",
+    "when": "Video gốc của bạn giới thiệu một sản phẩm hoặc dịch vụ cho trang bán hàng.",
+    "goal": "Hãy sắp xếp video bán hàng theo trình tự câu mở đầu (hook), vấn đề, giải thích, demo, ưu đãi và lời kêu gọi hành động, nhưng chỉ dùng những phần thực sự có trong video gốc. Giữ người nói làm mạch chính, kèm phụ đề tinh tế. Dùng các cảnh ngắn cho danh sách, con số và phần demo khi chúng giúp người xem hiểu rõ hơn, rồi quay lại camera. Trình bày kế hoạch theo từng phần và tuân thủ thời lượng tôi đặt ra",
+    "tips": [
+      "Nêu rõ thời lượng mong muốn và chi tiết ưu đãi hiện tại.",
+      "Cung cấp bằng chứng thật; hình minh họa để giải thích không phải là bằng chứng."
+    ]
+  },
+  "lesson": {
+    "title": "Bài giảng với phần mở đầu rõ ràng",
+    "summary": "Phần giới thiệu ngắn gọn, sau đó là nội dung học trọng tâm.",
+    "when": "Bạn đã quay một bài giảng dài có những đoạn giải thích lặp lại hoặc chỗ nói hụt.",
+    "goal": "Hãy dựng bài giảng với một đoạn mở đầu ngắn giới thiệu điều người học sẽ đạt được. Tập trung tiêu đề và các điểm nhấn hình ảnh vào phần giới thiệu. Giữ các phần làm mẫu ở nhịp mà người học theo kịp, giữ nguyên âm thanh của các đoạn quay màn hình và ví dụ, đồng thời giữ trọn các phần giải thích và những khoảng lặng có chủ đích để thực hành",
+    "tips": [
+      "Chỉ ra những phần cần được giữ trọn vẹn.",
+      "Nhắc đến các bài tập hoặc khoảng lặng dành cho việc thực hành."
+    ]
+  },
+  "interview": {
+    "title": "Phỏng vấn có đủ ngữ cảnh",
+    "summary": "Câu trả lời trọn vẹn, kèm những câu hỏi và phản ứng cần thiết.",
+    "when": "Bạn muốn sắp xếp một cuộc trò chuyện, buổi phỏng vấn hoặc lời chứng thực.",
+    "goal": "Hãy chọn những câu trả lời có ý nghĩa trong ngữ cảnh và giữ lại các câu hỏi cần thiết để hiểu chúng. Không làm thay đổi quan điểm mà người nói đã bày tỏ. Nếu camera hoặc âm thanh được ghi riêng, hãy kiểm tra độ đồng bộ trước khi chuyển góc quay. Chỉ giới thiệu người tham gia bằng tên và vai trò do tôi cung cấp",
+    "tips": [
+      "Liệt kê các chủ đề bắt buộc phải có.",
+      "Một đoạn cắt riêng lẻ không được làm đảo ngược ý của câu trả lời."
+    ]
+  },
+  "select-takes": {
+    "title": "Chọn giữa nhiều lần quay",
+    "summary": "So sánh các lần quay và ghép thành lời nói liền mạch.",
+    "when": "Cùng một kịch bản đã được quay hơn một lần.",
+    "goal": "Hãy so sánh các lần quay và chọn từng câu dựa trên độ rõ ràng, độ trọn vẹn và sự liền mạch về hình ảnh lẫn âm thanh. Đừng mặc định lần quay cuối là tốt nhất. Ghép thành một chuỗi tự nhiên và cho biết tệp nguồn cùng khoảng thời gian của từng đoạn. Đánh dấu những khác biệt về nội dung có ảnh hưởng đến ý nghĩa để tôi quyết định",
+    "tips": [
+      "Gom các bản quay của cùng một kịch bản lại với nhau.",
+      "Cho biết lần quay nào bạn đã chọn sẵn."
+    ]
+  },
+  "explain": {
+    "title": "Giải thích bằng sơ đồ",
+    "summary": "Biến một quy trình thành các bước trực quan đồng bộ với lời nói.",
+    "when": "Lời nói mô tả các mối quan hệ, lựa chọn hoặc một trình tự khó hình dung.",
+    "goal": "Hãy tìm một đoạn giải thích sẽ rõ ràng hơn nhờ sơ đồ và hiện dần từng phần của sơ đồ khi chúng được nhắc đến. Phát triển dần trên cùng một sơ đồ bằng mũi tên, trạng thái và nhãn ngắn thay vì mở một thẻ mới cho mỗi từ. Giữ nguyên lời dẫn và phân biệt rõ phần minh họa với dữ liệu đo được",
+    "tips": [
+      "Mô tả quy trình hoặc mối quan hệ cần làm rõ.",
+      "Chỉ ra đâu là giá trị đo được và đâu là yếu tố chỉ mang tính minh họa."
+    ]
+  },
+  "introduce": {
+    "title": "Giới thiệu một ý tưởng hoặc dịch vụ",
+    "summary": "Bối cảnh, đề xuất và các bước tiếp theo trong một mạch kể đơn giản.",
+    "when": "Bạn cần giải thích công việc của mình hoặc giới thiệu một dự án.",
+    "goal": "Hãy sắp xếp phần trình bày thành bối cảnh, đề xuất, cách vận hành và các bước tiếp theo, dựa trên lời nói hiện có. Dùng tiêu đề ngắn để dẫn dắt người xem và dùng hình ảnh được cung cấp để minh họa phần giải thích. Đừng bịa ra lợi ích, khách hàng hay kết quả; hãy chỉ ra những tư liệu còn thiếu",
+    "tips": [
+      "Mô tả đối tượng người xem mà bạn hướng đến.",
+      "Cung cấp tên chính xác và bộ nhận diện thương hiệu sẵn có."
+    ]
+  },
+  "demonstrate": {
+    "title": "Cho thấy sự khác biệt qua bằng chứng thật",
+    "summary": "So sánh trước và sau, cho thấy điều gì thực sự đã thay đổi.",
+    "when": "Bạn có tư liệu thật về hai giai đoạn của một quá trình hoặc kết quả.",
+    "goal": "Hãy dựng một phần so sánh trước và sau, chỉ dùng những tệp thật mà tôi chỉ định. Làm rõ thứ tự, bối cảnh và sự thay đổi bằng khung hình tương đồng và đủ thời gian để quan sát. Giữ nguyên những khác biệt có liên quan về ánh sáng, tỷ lệ hoặc điều kiện, và đánh dấu bất cứ điều gì cản trở một phép so sánh công bằng. Đừng trình bày hình ảnh do AI tạo như bằng chứng hoặc khẳng định những kết quả mà tư liệu không chứng minh được",
+    "tips": [
+      "Chỉ rõ tệp trước, tệp sau, ngày tháng và các điều kiện liên quan.",
+      "Nếu thiếu một giai đoạn, hãy trình bày phần tư liệu sẵn có mà không bịa ra phép so sánh."
+    ]
+  },
+  "screen-camera": {
+    "title": "Hướng dẫn thao tác bằng màn hình và camera",
+    "summary": "Chỉ rõ chỗ cần nhìn, nhấp hoặc gõ mà không làm đứt mạch các bước.",
+    "when": "Bạn đã quay một video hướng dẫn dùng phần mềm hoặc sản phẩm.",
+    "goal": "Hãy cho thấy toàn cảnh màn hình trước, sau đó phóng to vào thao tác thực tế, mỗi lần chỉ một điểm làm nổi bật và một tên bước. Giữ đủ thời gian để người xem theo kịp phần gõ chữ và phản hồi của giao diện. Đặt khung camera tránh che các nút điều khiển và ẩn thông tin cá nhân trong video gốc. Kiểm tra những đoạn có chuyển động",
+    "tips": [
+      "Bản quay màn hình sắc nét giúp phóng to hiệu quả.",
+      "Chỉ ra những dữ liệu cần được ẩn."
+    ]
+  },
+  "split-screen": {
+    "title": "Hình ở trên, người nói ở dưới",
+    "summary": "Kết hợp phần giải thích với hình ảnh hoặc ảnh chụp màn hình được cung cấp.",
+    "when": "Bạn nói về một sản phẩm, trang web hoặc hình ảnh trong lúc trình bày.",
+    "goal": "Khi lời nói nhắc đến một hình ảnh được cung cấp, hãy chia đôi màn hình với hình ở trên và người nói ở dưới. Ghép từng tệp với đúng câu nói, giữ nguyên tỷ lệ và giữ cho chữ lẫn khuôn mặt đều rõ ràng. Quay lại người nói ở chế độ toàn màn hình khi hình ảnh không còn giúp ích",
+    "tips": [
+      "Ghép mỗi hình ảnh với đúng chủ đề của nó.",
+      "Đừng phóng to ảnh chụp màn hình đến mức chữ không còn đọc được."
+    ]
+  },
+  "evidence-card": {
+    "title": "Dành chỗ trên màn hình cho bằng chứng thật",
+    "summary": "Làm nổi bật một tệp thật trong khi phần giải thích vẫn tiếp tục.",
+    "when": "Một ảnh chụp màn hình, video hoặc sản phẩm cần được nhìn thấy rõ.",
+    "goal": "Khi lời nói nhắc đến bằng chứng được cung cấp, hãy làm nổi bật tệp đó với nhãn ghi đúng nguồn và một khung nhỏ hiển thị người nói nếu còn chỗ. Đảm bảo dễ đọc và quay lại camera sau đó. Đừng thay bằng chứng còn thiếu bằng bản mô phỏng hoặc trình bày một kết quả minh họa như thể là thật",
+    "tips": [
+      "Cung cấp tệp bằng chứng gốc kèm thông tin nhận diện.",
+      "Ẩn các thông tin cá nhân chưa được phép hiển thị."
+    ]
+  },
+  "background-cutout": {
+    "title": "Đặt người nói lên trên hình ảnh",
+    "summary": "Thử tách nền trước khi thay toàn bộ phông nền.",
+    "when": "Bạn muốn xuất hiện phía trước các hình ảnh hỗ trợ.",
+    "goal": "Hãy thử tách nền người nói trong một đoạn ngắn và đặt lên các hình ảnh được cung cấp, giữ rõ khuôn mặt, tóc và bàn tay. Kiểm tra các đường viền khi chuyển động trước khi mở rộng sang đoạn dài hơn. Nếu video gốc không cho phép tách nền ổn định, hãy cho tôi thấy hạn chế đó và đề xuất đặt người nói trong khung hoặc chia đôi màn hình",
+    "tips": [
+      "Phông nền đơn giản và ánh sáng tốt sẽ giúp ích.",
+      "Chọn một đoạn mẫu có chuyển động, không chỉ một khung hình tĩnh."
+    ]
+  },
+  "paper-notes": {
+    "title": "Phong cách giấy và văn phòng phẩm",
+    "summary": "Ghi chú, nhãn dán và danh sách mang chất liệu giấy.",
+    "when": "Bạn muốn một phong cách hình ảnh nhẹ nhàng cho câu chuyện hoặc phần giải thích.",
+    "goal": "Hãy dùng bố cục kiểu giấy với nhãn dán, ghi chú và nét bút dạ quang trong một bảng màu hạn chế. Cho danh sách hiện ra theo lời nói và cập nhật ngay trên tờ giấy đó khi một mục thay đổi trạng thái. Giữ chữ dễ đọc và người nói luôn hiện rõ. Dùng ảnh được cung cấp khi câu chuyện cần đến",
+    "tips": [
+      "Chọn một màu nhấn.",
+      "Chỉ gạch bỏ hoặc đánh dấu hoàn thành những mục đã được lời nói xác nhận."
+    ]
+  },
+  "answer-question": {
+    "title": "Trả lời một câu hỏi",
+    "summary": "Mở đầu bằng câu hỏi và dành đủ chỗ cho câu trả lời.",
+    "when": "Video trả lời một câu hỏi thường gặp hoặc một bình luận có thật.",
+    "goal": "Hãy hiển thị câu hỏi trong một thẻ mở đầu ngắn, sau đó giữ người nói ở chế độ toàn màn hình và chỉ làm nổi bật những cụm từ giúp tổ chức câu trả lời. Dùng câu hỏi được cung cấp hoặc gợi ý một câu dựa trên lời nói. Đừng bịa ra tác giả, ảnh hay bình luận nhận được",
+    "tips": [
+      "Cung cấp bình luận thật nếu bạn muốn hiển thị nó.",
+      "Một câu hỏi chung có thể hiển thị mà không cần danh tính người dùng."
+    ]
+  },
+  "bold-phrases": {
+    "title": "Nhấn mạnh cụm từ chính bằng chữ lớn",
+    "summary": "Một vài cụm từ được chọn kỹ tạo nên phân cấp thị giác.",
+    "when": "Một đoạn nói ngắn có những từ hoặc cụm từ đáng được làm nổi bật.",
+    "goal": "Hãy chọn một vài cụm từ truyền tải được ý chính và hiển thị lần lượt từng cụm bằng chữ lớn, khớp với lời nói, không che khuôn mặt và nằm trong vùng an toàn. Dành đủ thời gian để đọc trọn cụm từ, giữ nguyên các từ phủ định và ẩn từng điểm nhấn trước khi hiện điểm nhấn tiếp theo. Tránh lặp cùng một nội dung ở cả chữ lớn lẫn chữ nhỏ, nhưng vẫn đảm bảo lời nói được thể hiện đầy đủ bằng chữ để hỗ trợ khả năng tiếp cận",
+    "tips": [
+      "Mỗi cụm từ phải vừa khung hình mà không che khuôn mặt.",
+      "Dùng ít điểm nhấn hơn khi thời gian đọc bị hạn chế."
+    ]
+  },
+  "fullscreen-explainer": {
+    "title": "Giải thích một đoạn ở chế độ toàn màn hình",
+    "summary": "Tạm thay hình camera bằng một cảnh giải thích lời nói.",
+    "when": "Một đoạn sẽ dễ hiểu hơn nhờ hình vẽ và chuyển động.",
+    "goal": "Trong khoảng thời gian tôi chỉ định, hãy thay hình ảnh từ camera bằng một cảnh giải thích toàn màn hình nhưng vẫn giữ giọng nói gốc. Chọn một cảnh phù hợp trong danh mục hoặc điều chỉnh một bố cục có sẵn. Đồng bộ từng thay đổi với ý tương ứng và quay lại camera sau phần giải thích",
+    "tips": [
+      "Nêu rõ điểm bắt đầu, điểm kết thúc và điều người xem cần hiểu.",
+      "Một đối tượng thay đổi trạng thái thường dễ hiểu hơn nhiều màn hình khác nhau."
+    ]
+  },
+  "data-card": {
+    "title": "Thẻ hiển thị dữ liệu thật",
+    "summary": "Hiển thị thông tin mà không đưa người nói ra khỏi màn hình.",
+    "when": "Lời nói nhắc đến một con số, thời hạn hoặc phép so sánh có thể kiểm chứng.",
+    "goal": "Hãy hiển thị một thẻ nhỏ gọn khi dữ liệu được nhắc đến, dùng đúng giá trị, đơn vị và nhãn được cung cấp. Đặt thẻ ở vùng trống, tránh khuôn mặt, bàn tay và phụ đề. Cho thẻ xuất hiện nhẹ nhàng và giữ đủ lâu để đọc. Hỏi tôi để xác nhận thay vì tự điền những thông tin còn thiếu",
+    "tips": [
+      "Ghi kèm đơn vị, khoảng thời gian và nguồn dữ liệu.",
+      "Bộ đếm có hiệu ứng động không có nghĩa là hệ thống đã đo lường số liệu đó."
+    ]
+  },
+  "typed-request": {
+    "title": "Hiển thị một yêu cầu đang được gõ",
+    "summary": "Minh họa một câu lệnh đang được gõ và gửi đi.",
+    "when": "Bạn giải thích điều bạn đã yêu cầu một công cụ hoặc AI thực hiện.",
+    "goal": "Hãy minh họa yêu cầu được nhắc đến trong lời nói bằng một thanh nhập chữ tự điền nội dung và gửi đi vào thời điểm được chỉ định. Chỉ hiển thị kết quả có tư liệu ghi nhận, hoặc ghi rõ màn hình đó chỉ mang tính minh họa. Đừng trình bày hoạt ảnh này như bản quay của một lần chạy thật",
+    "tips": [
+      "Cung cấp nội dung yêu cầu và kết quả chính xác.",
+      "Dùng một giao diện chung khi không có bản quay màn hình thật."
+    ]
+  },
+  "gauge": {
+    "title": "Đồng hồ đo mức độ hoặc tiến độ",
+    "summary": "Thang đo trực quan cho một giá trị hoặc đánh giá định tính.",
+    "when": "Lời nói mô tả chi phí, rủi ro, mức độ hoặc tiến độ.",
+    "goal": "Hãy chọn một đồng hồ đo hoặc thanh đo thể hiện khái niệm được nhắc đến trong lời nói. Chỉ dùng thang đo, đơn vị và giá trị được cung cấp, đồng thời đồng bộ chuyển động với lời nói. Với các đánh giá định tính, hãy dùng nhãn như thấp, trung bình và cao thay vì bịa ra độ chính xác bằng con số",
+    "tips": [
+      "Xác định thang đo dùng để đo điều gì.",
+      "Thanh đầy không được ngụ ý rằng một quy trình chưa xong đã hoàn tất."
+    ]
+  },
+  "search-comment": {
+    "title": "Tìm kiếm và lời mời bình luận",
+    "summary": "Một lượt tìm kiếm minh họa dẫn vào chủ đề và hành động ở cuối video.",
+    "when": "Câu chuyện bắt đầu bằng một câu hỏi và kết thúc bằng lời mời người xem phản hồi.",
+    "goal": "Hãy minh họa từ khóa tìm kiếm được nhắc đến trong lời nói và hiện ra một kết quả với tiêu đề và đoạn tóm tắt được cung cấp. Làm rõ rằng đây chỉ là minh họa và đừng bịa ra thứ hạng tìm kiếm. Nếu có lời mời ở cuối, hãy dùng một ô bình luận chung với đúng từ mà tôi yêu cầu",
+    "tips": [
+      "Cung cấp từ khóa, kết quả và từ để người xem phản hồi.",
+      "Đừng trình bày một người bình luận hư cấu như lời chứng thực."
+    ]
+  },
+  "step-list": {
+    "title": "Danh sách hoặc các bước tuần tự",
+    "summary": "Hiện từng mục khi mục đó được giải thích.",
+    "when": "Lời nói liệt kê các nhiệm vụ, giai đoạn hoặc tiêu chí.",
+    "goal": "Hãy tạo một danh sách hoặc trình tự từ các mục được nói đến và hiện từng mục đúng thời điểm tương ứng. Làm nổi bật mục hiện tại và chỉ đánh dấu hoàn thành khi đã được xác nhận. Giữ ngữ cảnh và không để danh sách chồng lên phụ đề",
+    "tips": [
+      "Cung cấp cách viết chính xác của từng mục.",
+      "Chia danh sách dài thành các nhóm dễ đọc."
+    ]
+  },
+  "profession-panel": {
+    "title": "Giải thích lĩnh vực của bạn bằng một bảng trực quan",
+    "summary": "Dùng một cảnh trong danh mục để phần giải thích trở nên cụ thể.",
+    "when": "Bạn giải thích một dịch vụ, quy trình hoặc khái niệm trong lĩnh vực của mình.",
+    "goal": "Hãy tìm trong danh mục của editonny một cảnh phù hợp với lĩnh vực của tôi và nội dung giải thích thực tế. Trình bày lựa chọn kèm phần chữ đã được điều chỉnh, giữ người nói hiển thị khi cần và chỉ dùng thông tin được cung cấp. Nếu không có cảnh chuyên biệt, hãy đề xuất một sơ đồ đơn giản phục vụ cùng mục đích",
+    "tips": [
+      "Nêu rõ nghề nghiệp, chủ đề và đối tượng người xem.",
+      "Thay toàn bộ tên và số liệu mẫu trong cảnh."
+    ]
+  },
+  "hand-tracked-object": {
+    "title": "Cho vật thể bám theo bàn tay",
+    "summary": "Một hình ảnh được cung cấp bám theo cử chỉ tay trong một đoạn ngắn.",
+    "when": "Bạn chỉ tay hoặc giới thiệu thứ gì đó với lòng bàn tay hiện rõ trong khung hình.",
+    "goal": "Hãy dùng các công cụ có sẵn để thử cho một hình ảnh hoặc logo được cung cấp bám theo tay tôi trong khoảng thời gian được chỉ định. Kiểm tra vị trí, kích thước và độ liền mạch trong suốt cử chỉ. Nếu bàn tay ra khỏi khung hình hoặc việc bám theo chuyển động bị lỗi, hãy kết thúc hiệu ứng một cách tự nhiên hoặc đề xuất một thẻ cố định. Đánh giá bản thử trước khi mở rộng",
+    "tips": [
+      "Cung cấp ảnh có nền trong suốt khi có thể.",
+      "Đưa phần chuyển động khó nhất vào đoạn mẫu."
+    ]
+  },
+  "layered-depth": {
+    "title": "Chữ phía sau, vật thể phía trước",
+    "summary": "Tạo chiều sâu bằng các lớp và phần tách nền đã được thử.",
+    "when": "Một từ hoặc vật thể cần được nhấn mạnh xung quanh người nói.",
+    "goal": "Hãy thử một bố cục với chữ nằm sau người nói và một yếu tố tiền cảnh được cung cấp, giữ khuôn mặt không bị che. Dùng chuyển động nhẹ giữa các lớp và quay lại góc camera bình thường sau điểm nhấn. Kiểm tra viền tách nền khi chuyển động và mô tả kết quả là bố cục nhiều lớp chứ không phải 3D thực sự",
+    "tips": [
+      "Chọn một khoảnh khắc để nhấn mạnh.",
+      "Khi tách nền không ổn định, dùng khung có thể giữ được sự rõ ràng."
+    ]
+  },
+  "spatial-explanation": {
+    "title": "Giải thích quan hệ không gian bằng 3D",
+    "summary": "Dùng hình khối khi chiều sâu và vị trí giúp người xem hiểu rõ hơn.",
+    "when": "Phần giải thích liên quan đến các lớp, cách lắp ghép, đường đi hoặc bộ phận.",
+    "goal": "Hãy đánh giá một cảnh 3D có sẵn của editonny cho mối quan hệ không gian được nhắc đến trong lời nói. Dùng hình khối đơn giản, nhãn dễ đọc và chuyển động làm lộ ra những gì góc nhìn phẳng sẽ che khuất. Bắt đầu bằng một bản thử ngắn cho chuyển động chính và kiểm tra khả năng hỗ trợ render. Nếu không khả thi, hãy đề xuất một sơ đồ 2D",
+    "tips": [
+      "Giải thích mối quan hệ nào cần thể hiện chiều sâu.",
+      "Tỷ lệ chỉ mang tính minh họa trừ khi bạn cung cấp số đo."
+    ]
+  },
+  "editing-process": {
+    "title": "Cho thấy quá trình dựng video",
+    "summary": "Trình bày các công đoạn dựng thật với dữ liệu dự án có thể kiểm chứng.",
+    "when": "Bạn muốn giải thích một video đã được dựng như thế nào.",
+    "goal": "Hãy cho thấy các công đoạn dựng thực tế bằng những chỉ báo nhỏ khớp với lời nói: chép lời, chọn lần quay, cắt và hoàn thiện. Chỉ dùng số lượng và thời lượng khi chúng được đo trong chính dự án này. Ghi rõ chuỗi này là phần trình bày quy trình, tránh ngụ ý rằng một video đã dựng từ trước đang được xử lý trực tiếp",
+    "tips": [
+      "Nêu rõ những công đoạn bạn muốn cho xem.",
+      "Đừng bịa ra thời gian tiết kiệm được hay số lần cắt."
+    ]
+  },
+  "reference": {
+    "title": "Phân tích và vận dụng một video tham khảo",
+    "summary": "Nghiên cứu nhịp, chữ và bố cục mà không sao chép nội dung.",
+    "when": "Bạn có một video với cách hoàn thiện hợp với dự án của mình.",
+    "goal": "Hãy phân tích tệp tham khảo của tôi và tóm tắt nhịp cắt, khung hình, phụ đề, màu sắc, hoạt ảnh và âm thanh của nó. Tách riêng phần quan sát với phần gợi ý. Vận dụng những nguyên tắc đó vào tư liệu của tôi mà vẫn giữ nguyên lời nói và hình ảnh của tôi, rồi cho tôi xem một đoạn mẫu trước khi áp dụng phong cách cho phần còn lại",
+    "tips": [
+      "Cung cấp tệp tham khảo hoặc một đường link truy cập được.",
+      "Giải thích điều bạn thích; không cần lặp lại mọi hiệu ứng."
+    ]
+  },
+  "visual-identity": {
+    "title": "Chọn màu sắc và cách hoàn thiện",
+    "summary": "Một bộ màu sắc, phụ đề và tiêu đề đồng nhất.",
+    "when": "Bạn muốn xác định hoặc thay đổi phong cách của video.",
+    "goal": "Hãy gợi ý một phong cách hình ảnh nhất quán, dùng màu sắc và bộ nhận diện thương hiệu của tôi. Phối hợp phụ đề, tiêu đề, thẻ và nền với độ tương phản dễ đọc. Nếu tôi chưa có lựa chọn riêng, hãy đưa ra hai hướng đơn giản, chẳng hạn nền tối kèm màu nhấn hoặc nền giấy sáng màu, rồi áp dụng hướng được chọn vào một đoạn mẫu",
+    "tips": [
+      "Cung cấp màu chủ đạo hoặc tài liệu tham khảo về thương hiệu.",
+      "Mô tả phong cách bạn muốn mà không cần biết tên các phong cách."
+    ]
+  },
+  "polish": {
+    "title": "Trau chuốt một bản dựng có sẵn",
+    "summary": "Cải thiện độ dễ đọc, nhịp và âm thanh trong khuôn khổ mạch nội dung đã duyệt.",
+    "when": "Bản cắt đã ổn và cần hoàn thiện thêm.",
+    "goal": "Hãy xem lại bản dựng hiện tại và sửa các lỗi hoàn thiện: từ bị cắt cụt, khoảng lặng ngoài ý muốn, phụ đề khó đọc, yếu tố che khuôn mặt, yếu tố xuất hiện sai thời điểm và mất cân bằng giữa giọng nói và nhạc nền. Giữ nguyên cấu trúc đã duyệt và báo lại những điều chỉnh đã thực hiện",
+    "tips": [
+      "Cung cấp tệp dự án có thể chỉnh sửa nếu có.",
+      "Chỉ ra những quyết định đã được duyệt."
+    ]
+  },
+  "adjust-interval": {
+    "title": "Chỉ thay đổi một đoạn",
+    "summary": "Chỉnh sửa cục bộ, giữ nguyên mọi phần còn lại.",
+    "when": "Gần như mọi thứ đã xong và chỉ còn một chi tiết cần thay đổi.",
+    "goal": "Hãy chỉ áp dụng thay đổi tôi mô tả trong khoảng thời gian được chỉ định của bản dựng hiện tại và giữ nguyên mọi phần khác. Xác định rõ các mốc thời gian tính theo video hoàn chỉnh hay video thô, kiểm tra cả hai điểm nối ở đầu và cuối đoạn, rồi lưu thành một phiên bản mới",
+    "tips": [
+      "Nêu rõ điểm bắt đầu, điểm kết thúc và thay đổi bạn muốn.",
+      "Ví dụ: thay hình ảnh hỗ trợ từ 00:12 đến 00:18."
+    ]
+  },
+  "pacing": {
+    "title": "Điều chỉnh khoảng lặng và nhịp",
+    "summary": "Giúp lời nói trôi chảy mà vẫn giữ được chủ ý.",
+    "when": "Video bị lê thê hoặc các điểm cắt có cảm giác quá gấp.",
+    "goal": "Hãy rà soát nhịp video nhưng vẫn giữ những chỗ lấy hơi có chủ đích, các điểm nhấn và đủ thời gian để hiểu các phần demo. Khôi phục phần biên của những điểm cắt quá sát từ tệp gốc. Đừng áp một ngưỡng im lặng chung cho mọi câu hay tăng tốc giọng nói trừ khi tôi yêu cầu",
+    "tips": [
+      "Cho biết bạn muốn kết quả dứt khoát hơn hay chậm rãi hơn.",
+      "Chỉ ra một đoạn có nhịp đã ổn."
+    ]
+  },
+  "shorten": {
+    "title": "Rút gọn theo thời lượng mục tiêu",
+    "summary": "Bỏ phần thừa mà vẫn giữ trọn ý.",
+    "when": "Video dài hơn thời lượng cho phép.",
+    "goal": "Hãy rút ngắn video về đúng thời lượng mục tiêu của tôi, cắt các ý lặp lại và các đoạn lạc đề trước tiên. Giữ lại bối cảnh, kết luận và lời kêu gọi hành động nếu có. Liệt kê những phần đề xuất cắt bỏ. Nếu giới hạn thời lượng làm ảnh hưởng đến ý nghĩa, hãy giải thích sự xung đột đó thay vì cắt cụt từ hoặc tự động tăng tốc lời nói",
+    "tips": [
+      "Nêu rõ giới hạn tính bằng giây.",
+      "Chỉ ra những thông tin không thể bỏ."
+    ]
+  },
+  "replace-hook": {
+    "title": "Thay dòng chữ mở đầu",
+    "summary": "Cập nhật câu mở đầu (hook) ngay trong bản dựng đã duyệt.",
+    "when": "Bạn muốn thử một câu khác trên màn hình.",
+    "goal": "Hãy chỉ thay dòng chữ mở đầu bằng đúng câu tôi đưa ra. Điều chỉnh cách xuống dòng, cỡ chữ và thời gian hiển thị để đọc mà không thay đổi phần thân video. Kiểm tra để chắc chắn chữ mới vẫn đúng với lời nói và nội dung, rồi lưu thành phiên bản mới",
+    "tips": [
+      "Viết đúng nguyên văn nội dung chữ.",
+      "Cung cấp một lần quay phù hợp nếu bạn cũng muốn thay cả lời nói."
+    ]
+  },
+  "visual-pacing": {
+    "title": "Thêm chuyển động hình ảnh có chủ đích",
+    "summary": "Thay đổi khung hình ở những chỗ lời nói cần nhấn mạnh.",
+    "when": "Video trông tĩnh dù phần giải thích đã rõ ràng.",
+    "goal": "Hãy tìm những đoạn cần nhấn mạnh và thêm hiệu ứng phóng to nhẹ hoặc thay đổi bố cục tại những điểm đó. Giữ nguyên định hướng không gian và thời gian đọc. Ưu tiên biến tấu các yếu tố sẵn có và tránh chèn hiệu ứng gây phân tâm theo một tần suất cố định",
+    "tips": [
+      "Chỉ ra một đoạn có cảm giác tĩnh.",
+      "Chuyển động nên giúp người xem theo kịp ý tưởng."
+    ]
+  },
+  "reduce-clutter": {
+    "title": "Làm gọn màn hình bị rối",
+    "summary": "Mỗi lúc một ý chính, có đủ khoảng trống để đọc.",
+    "when": "Phụ đề, thẻ và hình ảnh tranh nhau thu hút sự chú ý.",
+    "goal": "Hãy rà soát những đoạn bị rối mắt và bỏ bớt hoặc sắp xếp lại các yếu tố không giúp người xem hiểu. Mỗi lúc chỉ hiển thị một ý chính, tránh chữ bị lặp và giữ lại phụ đề cần thiết cho khả năng tiếp cận. Giảm bớt các chuyển động và âm thanh tranh nhau mà không thay đổi thông điệp",
+    "tips": [
+      "Chỉ ra những yếu tố bắt buộc phải giữ.",
+      "Đổi vị trí có thể xử lý chỗ chồng lấn mà không phải bỏ nội dung."
+    ]
+  },
+  "clear-face": {
+    "title": "Không để chữ che khuôn mặt",
+    "summary": "Đặt lại vị trí phụ đề và cảnh theo suốt chuyển động.",
+    "when": "Một yếu tố đang che mắt, miệng, bàn tay hoặc thông tin quan trọng.",
+    "goal": "Hãy rà soát vị trí khuôn mặt và các nội dung quan trọng trong suốt video, rồi di chuyển phụ đề, tiêu đề và cảnh đang bị chồng lấn. Kiểm tra phần đầu, giữa, cuối và các lần đổi khung hình, đồng thời giữ chữ nằm trong vùng an toàn của định dạng đầu ra",
+    "tips": [
+      "Chỉ ra một mốc thời gian xảy ra chồng lấn.",
+      "Giải pháp phải hiệu quả khi có chuyển động, không chỉ ở một khung hình."
+    ]
+  },
+  "correct-captions": {
+    "title": "Sửa từ ngữ trong phụ đề",
+    "summary": "Viết đúng tên riêng, con số và thuật ngữ kỹ thuật.",
+    "when": "Khâu chép lời đã nghe nhầm một từ.",
+    "goal": "Hãy áp dụng các chỗ thay thế phụ đề của tôi và rà soát tên riêng, thương hiệu, con số và thuật ngữ kỹ thuật. Nghe lại trước khi sửa những từ còn mơ hồ. Giữ nguyên bản cắt và thời gian đã duyệt, điều chỉnh cách xuống dòng khi cần",
+    "tips": [
+      "Cung cấp từ bị sai và từ đúng để thay thế.",
+      "Một bảng thuật ngữ ngắn giúp tránh lặp lại lỗi."
+    ]
+  },
+  "animate-moment": {
+    "title": "Tạo hiệu ứng động cho một từ hoặc khoảnh khắc",
+    "summary": "Một điểm nhấn hình ảnh đặt chính xác ở đoạn được chọn.",
+    "when": "Bạn biết cần đặt danh sách, mũi tên, thông báo hoặc con dấu ở đâu.",
+    "goal": "Hãy áp dụng một cảnh phù hợp trong danh mục tại từ và thời điểm tôi chỉ định, chẳng hạn danh sách, con số, thông báo, con dấu hoặc nét vẽ làm nổi bật. Dùng phần chữ được cung cấp, đồng bộ chuyển động với lời nói và giữ nguyên phần còn lại của bản dựng. Đừng biến một hình minh họa thành bằng chứng cho một sự kiện không hề xảy ra",
+    "tips": [
+      "Nêu rõ thời điểm, từ và yếu tố bạn muốn thêm.",
+      "Mũi tên và vòng tròn phải chỉ vào thứ thực sự xuất hiện trong video."
+    ]
+  },
+  "change-format": {
+    "title": "Chuyển sang định dạng khác",
+    "summary": "Đổi khung hình cho người, chữ và cảnh để phù hợp với nơi đăng mới.",
+    "when": "Cùng một bản dựng cần một tỷ lệ màn hình khác.",
+    "goal": "Hãy tạo một phiên bản mới theo định dạng đã chọn, giữ nguyên bản cắt và sắp xếp lại vị trí khuôn mặt, phụ đề, hình ảnh và cảnh. Đừng kéo giãn hình hoặc cắt mất chữ quan trọng. Dùng lề hoặc khung khi vùng cắt không chứa hết nội dung, và cho tôi xem những đoạn khó chuyển đổi nhất",
+    "tips": [
+      "Chọn định dạng đích trong biểu mẫu.",
+      "Giữ lại cả phiên bản gốc."
+    ]
+  },
+  "voice-effect": {
+    "title": "Hiệu ứng giọng nói trong một đoạn",
+    "summary": "Thay đổi chất giọng trong chốc lát để nhấn mạnh một chủ ý.",
+    "when": "Một câu nói cần hiệu ứng radio, loa phóng thanh, robot hoặc một kiểu xử lý khác có sẵn.",
+    "goal": "Trong khoảng thời gian tôi chỉ định, hãy xem các hiệu ứng giọng nói có sẵn của editonny và thử hiệu ứng phù hợp với ý định của tôi. Giữ nguyên lời nói, độ đồng bộ và giọng gốc ở ngoài khoảng đó, với phần chuyển tiếp mượt mà ở hai đầu. Cho tôi nghe thử một đoạn mẫu để kiểm tra độ rõ lời và cường độ; đừng hứa sẽ bắt chước một người cụ thể hay tái tạo y hệt một công cụ khác",
+    "tips": [
+      "Nêu rõ điểm bắt đầu, điểm kết thúc và sắc thái bạn muốn.",
+      "Nếu bản cắt thay đổi sau này, hãy làm lại hiệu ứng từ âm thanh đã cập nhật."
+    ]
+  },
+  "generated-media": {
+    "title": "Tư liệu do AI tạo cho một cảnh",
+    "summary": "Đánh giá một phép biến đổi và thử lồng ghép vào video.",
+    "when": "Ý tưởng cần biến đổi một vật thể, thay phông nền hoặc thêm một yếu tố.",
+    "goal": "Hãy xem các công thức (recipe) có sẵn của editonny và đánh giá phép biến đổi hình ảnh tôi muốn bằng những công cụ thực sự có trong môi trường này. Trước khi thực hiện, hãy xác định tư liệu cần có, các hạn chế, việc gửi tư liệu cho bên thứ ba và chi phí. Không gửi tư liệu đi hoặc tiêu credit khi chưa có sự cho phép cụ thể của tôi. Giữ nguyên bản gốc và thử trên một đoạn ngắn trước khi lồng kết quả vào video, đảm bảo liền mạch và giữ nguyên giọng nói. Ghi rõ kết quả là hiệu ứng hoặc hình minh họa, không phải bằng chứng thật",
+    "tips": [
+      "Mô tả điều gì thay đổi, ở đâu và nó nên xuất hiện trong video như thế nào.",
+      "Nếu thiếu công cụ cần thiết, hãy đề xuất dùng tư liệu được cung cấp hoặc một bố cục đơn giản hơn dựng ngay trên máy."
+    ]
+  },
+  "sound-effects": {
+    "title": "Âm thanh đúng thời điểm",
+    "summary": "Nhấn mạnh các lần xuất hiện và chuyển động mà không làm người nghe mệt tai.",
+    "when": "Các hoạt ảnh không có tiếng hoặc có quá nhiều hiệu ứng.",
+    "goal": "Hãy rà soát các hiệu ứng âm thanh và chỉ giữ lại những hiệu ứng giúp nhấn mạnh chuyển động hoặc thay đổi quan trọng. Căn đỉnh âm của từng hiệu ứng khớp với chuyển động tương ứng và giữ âm lượng thấp hơn lời nói. Nếu tôi yêu cầu có âm thanh cho mọi hoạt ảnh, hãy giữ hiệu ứng thật nhẹ và loại bỏ những chỗ chồng tiếng gây rối",
+    "tips": [
+      "Cho biết bạn muốn âm thanh nhẹ nhàng hay nổi bật hơn.",
+      "Dùng các hiệu ứng có sẵn với quyền sử dụng phù hợp."
+    ]
+  },
+  "music": {
+    "title": "Giữ nhạc nền nhỏ hơn giọng nói",
+    "summary": "Nhạc nền hỗ trợ với âm lượng ổn định.",
+    "when": "Bạn muốn thêm nhạc nền hoặc chỉnh âm lượng nhạc.",
+    "goal": "Hãy dùng nhạc được cung cấp hoặc nhạc có sẵn đã được cấp phép, và chọn đoạn nhạc hợp với không khí. Giữ giọng nói luôn nổi rõ, giảm nhạc khi có lời nói và tránh để nhạc vào hoặc dừng đột ngột. Kiểm tra bản mix cuối cùng và không thêm nhạc khi quyền sử dụng chưa rõ ràng",
+    "tips": [
+      "Cung cấp nhạc và xác nhận bạn có quyền sử dụng.",
+      "Cho biết nhạc đang quá to, gần như không nghe thấy hay chưa được chọn."
+    ]
+  },
+  "clean-audio": {
+    "title": "Giảm tiếng ồn nền",
+    "summary": "Thử làm sạch âm thanh mà vẫn giữ được giọng nói.",
+    "when": "Tiếng quạt, xe cộ hoặc tiếng ồn khác làm ảnh hưởng đến lời nói.",
+    "goal": "Hãy đánh giá âm thanh và chuẩn bị một đoạn so sánh ngắn trước và sau khi giảm tiếng ồn ở mức vừa phải. Giữ lời nói tự nhiên, rõ lời và tránh tạo ra tạp âm nghe như tiếng kim loại. Cho tôi biết những gì không thể khôi phục, đặc biệt là méo tiếng hoặc tiếng vang mạnh, và đánh giá đoạn mẫu trước khi xử lý toàn bộ",
+    "tips": [
+      "Dùng bản âm thanh gốc tốt nhất mà bạn có.",
+      "Đưa cả đoạn có lời nói và đoạn im lặng vào phần so sánh."
+    ]
+  },
+  "finish-sample": {
+    "title": "Mở rộng đoạn mẫu đã duyệt",
+    "summary": "Áp dụng đoạn mẫu một cách nhất quán cho phần còn lại của video.",
+    "when": "Bạn đã duyệt bản cắt và phần hoàn thiện của đoạn mẫu.",
+    "goal": "Hãy dùng đoạn mẫu đã duyệt mà tôi chỉ ra để hoàn thiện phần còn lại của video. Giữ phụ đề, màu sắc, bố cục và âm thanh nhất quán, chỉ điều chỉnh những gì từng đoạn thực sự cần. Ghi lại phong cách vào dự án và kiểm tra toàn bộ bản xuất trước khi bàn giao",
+    "tips": [
+      "Chỉ rõ phiên bản đoạn mẫu đã được duyệt.",
+      "Yêu cầu đánh dấu những đoạn cần cách xử lý khác."
+    ]
+  },
+  "reuse-style": {
+    "title": "Dùng lại phong cách cho video khác",
+    "summary": "Mang ngôn ngữ hình ảnh đã duyệt sang nội dung mới.",
+    "when": "Bạn muốn sự nhất quán trong cả một loạt video.",
+    "goal": "Hãy đọc phong cách đã lưu từ dự án đã duyệt mà tôi chỉ ra và dùng nó làm nền tảng cho bản dựng này. Giữ nguyên màu sắc, kiểu chữ, phụ đề và cách xử lý âm thanh, đồng thời điều chỉnh nhịp và các cảnh cho phù hợp với nội dung mới. Đừng sao chép chữ, dữ liệu hay bằng chứng cũ khi chưa kiểm tra xem chúng còn phù hợp hay không",
+    "tips": [
+      "Cung cấp thư mục dự án đã được duyệt.",
+      "Nếu chỉ có tệp MP4, hãy dùng nó làm tham khảo và giải thích các giới hạn."
+    ]
+  },
+  "hook-versions": {
+    "title": "Nhiều đoạn mở đầu, một video chính",
+    "summary": "So sánh các câu mở đầu (hook) mà vẫn giữ phần thân nhất quán.",
+    "when": "Bạn đã quay nhiều đoạn mở đầu khác nhau cho cùng một video.",
+    "goal": "Hãy tạo một phiên bản cho mỗi câu mở đầu (hook) được cung cấp, dùng chung phần thân, phần kết và phần hoàn thiện đã duyệt. Kiểm tra độ liền mạch tại điểm nối của từng đoạn mở đầu, chỉ chỉnh phần chuyển cảnh cần thiết và xuất thành các tệp riêng có tên rõ ràng. Cho tôi xem trước một phiên bản hoàn chỉnh để tham chiếu và đừng chọn ra phiên bản thắng cuộc khi chưa có dữ liệu thử nghiệm",
+    "tips": [
+      "Chỉ rõ thư mục chứa các câu mở đầu (hook) và phần thân cần giữ.",
+      "Phân biệt việc thay lời nói với việc chỉ đổi tiêu đề."
+    ]
+  },
+  "resume": {
+    "title": "Tiếp tục từ chỗ bạn đã dừng",
+    "summary": "Khôi phục các quyết định và xác định bước tiếp theo.",
+    "when": "Cuộc trò chuyện bị ngắt hoặc dự án đang tạm dừng.",
+    "goal": "Hãy đọc trạng thái dự án và các quyết định đã được ghi lại, đồng thời kiểm tra các tệp hiện có trước khi tiếp tục. Tóm tắt những gì đã được duyệt, những gì còn lại và bước tiếp theo. Giữ lại các phiên bản trước và chỉ hỏi tôi về những tệp còn thiếu hoặc những quyết định không thể khôi phục",
+    "tips": [
+      "Cung cấp thư mục dự án cùng với video đã xuất.",
+      "Cho biết phiên bản cuối cùng bạn đã xem."
+    ]
+  },
+  "mobile-review": {
+    "title": "Xem lại video trên điện thoại",
+    "summary": "Cập nhật ngắn gọn và đoạn mẫu phù hợp với màn hình nhỏ.",
+    "when": "Bạn đang dùng điện thoại và có quyền truy cập vào một môi trường có thể chỉnh sửa tệp của bạn.",
+    "goal": "Tôi đang theo dõi trên điện thoại. Hãy kiểm tra xem môi trường này có truy cập được tệp đính kèm hoặc thư mục đã chỉ định, cùng các công cụ của editonny hay không. Nếu không, hãy giải thích những gì còn thiếu mà không hứa hẹn việc chỉnh sửa trên trình duyệt trong trang hướng dẫn. Giữ các cập nhật thật ngắn, cho tôi xem bản cắt trước khi hoàn thiện và gửi một đoạn mẫu tôi có thể xem lại ngay tại đây. Giải thích cách truy cập và lưu tệp MP4 hoàn chỉnh trong môi trường này",
+    "tips": [
+      "Trang hướng dẫn giúp soạn yêu cầu; trang này không nhận hay chỉnh sửa video gốc.",
+      "Ưu tiên tệp gốc thay vì bản đã bị ứng dụng nhắn tin nén lại."
+    ]
+  },
+  "mobile-style": {
+    "title": "Chọn phong cách qua đoạn mẫu",
+    "summary": "So sánh chữ, màu sắc và chuyển động mà không cần xem hết danh mục.",
+    "when": "Bạn đã có bản cắt được duyệt và muốn chọn cách hoàn thiện trên điện thoại.",
+    "goal": "Dựa trên bản cắt đã duyệt mà tôi chỉ ra, hãy đưa ra hai lựa chọn hoàn thiện đơn giản dưới dạng khung hình hoặc đoạn mẫu: phụ đề tinh tế và kiểu làm nổi bật từ đang được nói. Dùng câu mở đầu (hook) và màu sắc của tôi, hoặc gợi ý phần chữ sát với lời nói. Ghi rõ các khung hình tĩnh là bản xem trước và cho tôi xem chuyển động trong video trước khi tôi chọn phương án cuối cùng",
+    "tips": [
+      "Cung cấp màu sắc, nội dung câu mở đầu (hook) và mức độ hiệu ứng động bạn muốn.",
+      "Kiểm tra độ dễ đọc ở đúng kích thước hiển thị thực tế trên điện thoại."
+    ]
+  },
+  "final-review": {
+    "title": "Kiểm tra trước khi đăng",
+    "summary": "Rà soát kỹ thuật và nội dung, ghi rõ vấn đề theo mốc thời gian.",
+    "when": "Video đã được xuất và bạn muốn kiểm tra thành phẩm.",
+    "goal": "Hãy rà soát tệp MP4 hoàn chỉnh về khả năng phát, thời lượng, giọng nói, nhạc nền, độ đồng bộ, từ bị cắt cụt, phụ đề, tên riêng, con số, khung hình và dữ liệu cá nhân lộ ra trên hình. Báo cáo các vấn đề kèm mốc thời gian và cách sửa đề xuất, bao gồm cả những lời hứa hẹn hoặc bằng chứng chưa có căn cứ. Nếu tôi yêu cầu phân tích chính sách nền tảng, hãy tham khảo quy định hiện hành và nêu rõ mức độ chưa chắc chắn về việc được duyệt. Đừng đăng tải tệp này",
+    "tips": [
+      "Nêu rõ nơi đăng và định dạng mong muốn.",
+      "Việc rà soát không đảm bảo lượt tiếp cận, hiệu quả hay việc quảng cáo được duyệt."
+    ]
+  }
+}

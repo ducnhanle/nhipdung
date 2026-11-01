@@ -8,7 +8,8 @@ import es from '../../../messages/es.json';
 import pt from '../../../messages/pt-BR.json';
 
 const root = new URL('../../../../', import.meta.url);
-const READMES: Record<AppLocale, [string, typeof en]> = { 'en-US': ['README.md', en], 'pt-BR': ['README.pt-BR.md', pt], es: ['README.es.md', es] };
+// README translations are explicit exceptions (AGENTS.md); the Vietnamese guide has no README translation.
+const READMES: Partial<Record<AppLocale, [string, typeof en]>> = { 'en-US': ['README.md', en], 'pt-BR': ['README.pt-BR.md', pt], es: ['README.es.md', es] };
 
 describe.each(Object.entries(READMES))('%s README', (locale, [file, messages]) => {
   const readme = readFileSync(new URL(file, root), 'utf8');

@@ -43,8 +43,21 @@ Fonts under assets/fonts retain complete license files beside each font. They ar
 | Figtree | `assets/fonts/figtree/Figtree-Variable.ttf` | Copyright 2022 The Figtree Project Authors | SIL Open Font License 1.1 | `assets/fonts/figtree/OFL.txt` |
 | Caveat | `assets/fonts/caveat/Caveat-Variable.ttf` | Copyright 2014 The Caveat Project Authors | SIL Open Font License 1.1 | `assets/fonts/caveat/OFL.txt` |
 | Permanent Marker | `assets/fonts/permanentmarker/PermanentMarker-Regular.ttf` | Copyright (c) 2010 Font Diner, Inc. | Apache License 2.0 | `assets/fonts/permanentmarker/LICENSE.txt` |
+| Plus Jakarta Sans | `assets/fonts/plusjakartasans/PlusJakartaSans-Variable.ttf` | Copyright 2020 The Plus Jakarta Sans Project Authors (Tokotype) | SIL Open Font License 1.1 | `assets/fonts/plusjakartasans/OFL.txt` |
+| Sriracha | `assets/fonts/sriracha/Sriracha-Regular.ttf` | Copyright (c) 2015 Cadson Demak; Copyright (c) 2014 Pablo Impallari | SIL Open Font License 1.1 | `assets/fonts/sriracha/OFL.txt` |
+| Sedgwick Ave Display | `assets/fonts/sedgwickavedisplay/SedgwickAveDisplay-Regular.ttf` | Copyright 2017 The Sedgwick Ave Project Authors (Pedro Vergani, Kevin Burke) | SIL Open Font License 1.1 | `assets/fonts/sedgwickavedisplay/OFL.txt` |
 
-SIL Open Font License fonts can be embedded and distributed with software but cannot be sold by themselves. Permanent Marker is a Font Diner, Inc. trademark. The project template also includes Montserrat, Caveat, and JetBrains Mono under SIL OFL 1.1, with their full notices under project-template/assets/fonts. JetBrains Mono is copyright 2020 The JetBrains Mono Project Authors.
+SIL Open Font License fonts can be embedded and distributed with software but cannot be sold by themselves.
+
+### Vietnamese coverage (fork addition, 2026-11-01)
+
+Figtree, Caveat, Permanent Marker, the scene subsets of Inter, and Sora do not draw Vietnamese letters. The fork adds fonts that do, without changing how other languages look:
+
+- `fonts.json` names Plus Jakarta Sans (for Figtree's `text_bold`/`text_semibold`), Sedgwick Ave Display (for `marker`), and Sriracha (for `hand`) as `fallback` fonts. `text_render.py` and the motion templates switch a whole caption track, hook, card, or item to the fallback only when its text has letters the original font cannot draw.
+- `visuals/assets/visuals/fonts/inter-var-vietnamese.woff2` is Google Fonts' unmodified Inter 4.001 Vietnamese subset (`fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7SUc.woff2`, the same build as the bundled latin subsets, identical vertical metrics and advances). Scenes declare it with Google's Vietnamese unicode-range.
+- `visuals/assets/visuals/fonts/plusjakartasans-vietnamese.woff2` and `project-template/assets/fonts/Sriracha-vietnamese.ttf` are subsets (pyftsubset, fonttools 4.60.1) holding only the Vietnamese code points Sora and Caveat lack; scenes and the template declare them as same-family `unicode-range` companions with the original weight descriptors.
+- Sources: `raw.githubusercontent.com/google/fonts/main/ofl/{plusjakartasans,sriracha,sedgwickavedisplay}` downloaded on 2026-11-01 (upstream commits recorded by Google Fonts: Plus Jakarta Sans `18d1cd2`, Sriracha `6c6cf92`, Sedgwick Ave `3b269a9`). SHA-256: PlusJakartaSans-Variable.ttf `89b3fb38…8bc8`, Sriracha-Regular.ttf `c3128c30…3669`, SedgwickAveDisplay-Regular.ttf `3b9c295a…9a38`, inter-var-vietnamese.woff2 `5c66f9e0…f2`.
+- None of these declares a Reserved Font Name. The scene folder now also carries the OFL texts of Inter (`OFL-Inter.txt`), Sora (`OFL-Sora.txt`), Playfair Display (`OFL-PlayfairDisplay.txt`, Reserved Font Name "Playfair Display"; the bundled files are unmodified), and Plus Jakarta Sans, which were previously shipped without their license files. Permanent Marker is a Font Diner, Inc. trademark. The project template also includes Montserrat, Caveat, and JetBrains Mono under SIL OFL 1.1, with their full notices under project-template/assets/fonts. JetBrains Mono is copyright 2020 The JetBrains Mono Project Authors.
 
 ## Bundled models
 

@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { ImageResponse } from 'next/og';
 import { routing, type AppLocale } from '@/i18n/routing';
-import { AUTHOR, BRAND } from '@/lib/site';
+import { AUTHOR, BRAND, UPSTREAM_URL } from '@/lib/site';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
@@ -17,10 +17,15 @@ export function generateStaticParams() {
 // Synchronous reads keep the route prerendered (async file access would defer it to request time). Literal URLs keep
 // only these files in the deployment trace. Satori reads static TrueType only, hence the instanced subsets.
 const asset = (path: string) => readFileSync(new URL(path, import.meta.url));
-const fonts = () => [
-  { name: 'Figtree', data: asset('../fonts/figtree-800-latin.ttf'), weight: 800 as const, style: 'normal' as const },
-  { name: 'Figtree', data: asset('../fonts/figtree-600-latin.ttf'), weight: 600 as const, style: 'normal' as const },
-  { name: 'Mono', data: asset('../fonts/jetbrains-mono-700-latin.ttf'), weight: 700 as const, style: 'normal' as const },
+// Vietnamese cards draw the Figtree role with Plus Jakarta Sans and a Mono subset that has Vietnamese letters.
+const fonts = (locale: AppLocale) => [
+  ...(locale === 'vi'
+    ? [{ name: 'Figtree', data: asset('../fonts/plus-jakarta-sans-800-latin-vietnamese.ttf'), weight: 800 as const, style: 'normal' as const },
+      { name: 'Figtree', data: asset('../fonts/plus-jakarta-sans-600-latin-vietnamese.ttf'), weight: 600 as const, style: 'normal' as const },
+      { name: 'Mono', data: asset('../fonts/jetbrains-mono-700-latin-vietnamese.ttf'), weight: 700 as const, style: 'normal' as const }]
+    : [{ name: 'Figtree', data: asset('../fonts/figtree-800-latin.ttf'), weight: 800 as const, style: 'normal' as const },
+      { name: 'Figtree', data: asset('../fonts/figtree-600-latin.ttf'), weight: 600 as const, style: 'normal' as const },
+      { name: 'Mono', data: asset('../fonts/jetbrains-mono-700-latin.ttf'), weight: 700 as const, style: 'normal' as const }]),
   { name: 'Anton', data: asset('../../../../skills/editonny/engine/assets/fonts/anton/Anton-Regular.ttf'), weight: 400 as const, style: 'normal' as const },
 ];
 const photo = () => `data:image/jpeg;base64,${asset('../../../../design-system/assets/imagery/matheus-gomes.jpeg').toString('base64')}`;
@@ -75,7 +80,7 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ loc
           <img src={photo()} width={64} height={64} alt="" style={{ borderRadius: 999, ...border(3, BRAND.orange500) }} />
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <span style={{ fontSize: 24, fontWeight: 800 }}>{AUTHOR.name}</span>
-            <span style={{ fontSize: 18, fontWeight: 600, color: BRAND.fog400 }}>{`${t('hero.creatorRole')} · github.com/soumatheusgomes/editonny`}</span>
+            <span style={{ fontSize: 18, fontWeight: 600, color: BRAND.fog400 }}>{`${t('hero.creatorRole')} · ${UPSTREAM_URL.replace('https://', '')}`}</span>
           </div>
         </div>
       </div>
@@ -116,6 +121,6 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ loc
         <div style={{ position: 'absolute', top: -14, left: 154, width: 3, height: 102, background: BRAND.volt400 }} />
       </div>
     </div>,
-    { ...size, fonts: fonts() },
+    { ...size, fonts: fonts(locale) },
   );
 }

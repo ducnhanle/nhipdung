@@ -753,6 +753,33 @@ def _manifest() -> dict:
     return _FONT_MANIFEST
 
 
+def param_texts(params) -> list[str]:
+    """Every string inside an item's parameters (titles, labels, list items...): the text it may draw."""
+    if isinstance(params, str):
+        return [params]
+    if isinstance(params, dict):
+        return [t for v in params.values() for t in param_texts(v)]
+    if isinstance(params, (list, tuple)):
+        return [t for v in params for t in param_texts(v)]
+    return []
+
+
+def text_fonts(theme: "Theme", texts) -> "Theme":
+    """`theme` with each font key it draws swapped for that font's extended-coverage fallback when `texts` need
+    letters the font lacks (Vietnamese labels in Figtree or Caveat, for example), so the item keeps one
+    typeface on every frame instead of losing letters."""
+    import text_render as tr  # noqa: PLC0415
+    fmap = dict(theme.fonts)
+    swapped = False
+    for key in font_keys():
+        drawn = fmap.get(key, key)
+        wide = tr.font_for_texts(drawn, texts)
+        if wide != drawn:
+            fmap[key] = wide
+            swapped = True
+    return replace(theme, fonts=tuple(fmap.items())) if swapped else theme
+
+
 @contextmanager
 def theme_fonts(theme: "Theme"):
     """While drawing or measuring an item, font keys resolve through its theme (papelaria swaps them)."""

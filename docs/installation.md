@@ -57,7 +57,7 @@ uv sync --locked --directory ~/.local/share/editonny/engine
 
 For a development checkout, use `skills/editonny/engine` and `python3 editonny.py doctor`. Developer setup belongs in [setup](setup.md); reproducible checks and observed limits in [validation](validation.md).
 
-Every skill invocation, including resumed jobs, runs a read-only local preflight and checks the official GitHub repository for updates. Check capabilities and caches needed by the requested operation; basic doctor alone does not prove model/browser readiness. No render, download, repair, or installation update happens automatically as part of that preflight. A working local installation remains usable if the update check is unavailable or the user declines an update.
+Every skill invocation, including resumed jobs, runs a read-only local preflight and checks this fork's GitHub repository ([ducnhanle/editonny](https://github.com/ducnhanle/editonny)) for updates; upstream releases are never offered as updates because they would replace the fork's changes. Check capabilities and caches needed by the requested operation; basic doctor alone does not prove model/browser readiness. No render, download, repair, or installation update happens automatically as part of that preflight. A working local installation remains usable if the update check is unavailable or the user declines an update.
 
 ## Bundled media
 
@@ -75,7 +75,7 @@ Recovery validates the sources before copying, preserves originals, refuses dest
 
 ## Update and unregister
 
-The agent checks the official repository on every invocation and reports the installed version, available stable release (or clearly identified unreleased revision), source and check status. Installed archives may have no `.git`; version/provenance uncertainty is reported honestly. An unavailable GitHub check does not mean “up to date.” When a newer version exists, the agent explains it and asks whether to update before changing the installation. Dependency versions follow that package's compatibility contracts and locks, rather than independent upgrades to every upstream latest release.
+The agent checks this fork's repository on every invocation and reports the installed version, available stable release (or clearly identified unreleased revision), source and check status. Installed archives may have no `.git`; version/provenance uncertainty is reported honestly. An unavailable GitHub check does not mean “up to date.” When a newer version exists, the agent explains it and asks whether to update before changing the installation. Dependency versions follow that package's compatibility contracts and locks, rather than independent upgrades to every upstream latest release.
 
 After acceptance, run the installer from the new separate checkout. It compares source and installed content, refuses foreign destinations, preserves `.env` and `engine/.env`, and backs up the previous copy under `~/.local/share/editonny-backups/`. Reinstallation also repairs missing or modified package resources while retaining the previous installation in backup. Managed plugins use their host's supported updater instead of editing plugin caches directly. Repeat the complete setup/readiness checks after updating.
 

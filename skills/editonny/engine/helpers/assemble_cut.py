@@ -40,7 +40,10 @@ NEAR_EQUAL = 0.9       # a block of MIN_LONGE+ words found this complete anywher
 SHORT = 3               # a block this short is a false start when all its words open the next block
 VOICE_WITHOUT_WORD_S = 0.25   # a block without transcribed words this long ...
 VOICE_PEAK_DB = 20.0         # ... and this loud over the floor is a word Whisper misplaced, not a breath
-HESITATION = {"é", "e", "ah", "ahn", "hã", "hum", "hm", "uhm", "eh", "éé", "tá", "né", "então", "aí"}
+# Words a filler-only block consists of (Portuguese, English, Vietnamese). Compared after normal_value, like the
+# block tokens, so accented entries match too.
+HESITATION_WORDS = ("é", "e", "ah", "ahn", "hã", "hum", "hm", "uhm", "um", "eh", "éé", "tá", "né", "então", "aí",
+                    "ờ", "ơ", "ừ", "ừm", "ờm", "à", "ừa", "hử", "thì", "kiểu")
 GAIN_DB = 4.0          # ranges this far from the voice reference get their gain_db (verify uses 4 too)
 FORMATS_VALUE = {"vertical": (1080, 1920), "horizontal": (1920, 1080), "square": (1080, 1080)}
 
@@ -49,6 +52,9 @@ def normal_value(word: str) -> str:
     w = unicodedata.normalize("NFD", word.lower())
     w = "".join(c for c in w if unicodedata.category(c) != "Mn")
     return re.sub(r"[^\w]", "", w)
+
+
+HESITATION = {normal_value(w) for w in HESITATION_WORDS}
 
 
 def blocks_of(db: np.ndarray, floor: float, pause_value: float) -> list[tuple[float, float]]:

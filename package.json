@@ -53,12 +53,12 @@
     "email": "eu@matheusgom.es",
     "url": "https://instagram.com/matheusgomes"
   },
-  "homepage": "https://github.com/soumatheusgomes/editonny#readme",
+  "homepage": "https://github.com/ducnhanle/editonny#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/soumatheusgomes/editonny.git"
+    "url": "https://github.com/ducnhanle/editonny.git"
   },
   "bugs": {
-    "url": "https://github.com/soumatheusgomes/editonny/issues"
+    "url": "https://github.com/ducnhanle/editonny/issues"
   }
 }

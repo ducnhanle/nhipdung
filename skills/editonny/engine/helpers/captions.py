@@ -312,13 +312,15 @@ def build_cues(words: list[dict], style_id: str, max_words: int, canvas: tuple[i
     info = tr.caption_style_info(style_id)
     lines = max(1, int(info["lines"]))
     limit = tr.caption_width_limit(style_id, canvas)
+    # one typeface for the whole track: the style's own, or its extended-coverage fallback (Vietnamese)
+    font = tr.caption_font(style_id, [w["text"] for w in words])
     # multi-line styles fill up to `lines` lines; keep a margin so the balanced split fits
     width_budget = limit if lines == 1 else limit * lines * 0.88
 
     def fits(group: list[dict]) -> bool:
         if len(group) <= 1 or info["one_word"]:
             return True
-        width = tr.measure_caption_width([w["text"] for w in group], style_id, canvas)
+        width = tr.measure_caption_width([w["text"] for w in group], style_id, canvas, font=font)
         if width <= width_budget * WIDTH_TOLERANCE:
             return True
         # a lone function word reads badly: keep it with the next word and let the renderer shrink
@@ -414,7 +416,7 @@ def build_cues(words: list[dict], style_id: str, max_words: int, canvas: tuple[i
             we = min(max(we, ws + MIN_WORD), end)
             timed.append({"text": w["text"], "start": round(ws, 3), "end": round(we, 3)})
             floor = we
-        disp = tr.display_words([w["text"] for w in group], style_id)
+        disp = tr.display_words([w["text"] for w in group], style_id, font)
         out.append({
             "start": round(start, 3),
             "end": round(end, 3),

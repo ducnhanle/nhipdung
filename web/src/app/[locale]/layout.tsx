@@ -9,7 +9,7 @@ import { SiteShell } from '@/components/shell/SiteShell';
 import { ClientMessages, SHELL_MESSAGES } from '@/i18n/ClientMessages';
 import { routing } from '@/i18n/routing';
 import { BRAND, SITE_URL } from '@/lib/site';
-import { fontVariables } from '../fonts';
+import { fontVariablesFor } from '../fonts';
 import './globals.css';
 
 export const metadata: Metadata = { metadataBase: SITE_URL };
@@ -24,7 +24,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<'/[
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   return (
-    <html lang={locale} data-theme="dark" className={fontVariables} suppressHydrationWarning>
+    <html lang={locale} data-theme="dark" className={fontVariablesFor(locale)} suppressHydrationWarning>
       <head><ThemeScript /></head>
       <body>
         <ClientMessages groups={SHELL_MESSAGES}>

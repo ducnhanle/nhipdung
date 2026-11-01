@@ -15,6 +15,7 @@ describe('confirmed image-preserving intake', () => {
     ['en-US', 'Do not add music, sound effects, or background ambience unless I explicitly request them.'],
     ['pt-BR', 'Não adicione música, efeitos sonoros ou ambiência de fundo, salvo se eu pedir explicitamente.'],
     ['es', 'No agregues música, efectos de sonido ni ambiente de fondo salvo que lo pida explícitamente.'],
+    ['vi', 'Không thêm nhạc, hiệu ứng âm thanh hay âm thanh nền trừ khi tôi yêu cầu rõ ràng.'],
   ] as const)('%s requires explicit permission for additional audio in default and visual requests', (locale, policy) => {
     expect(createPrompt({}, locale)).toContain(policy);
     expect(createPrompt(FULL, locale, SCENE)).toContain(policy);
@@ -33,6 +34,7 @@ describe('confirmed image-preserving intake', () => {
     ['en-US', 'wait for my confirmation', 'Preserve the original image appearance'],
     ['pt-BR', 'aguarde minha confirmação', 'Preserve a aparência original'],
     ['es', 'espera mi confirmación', 'Conserva la apariencia original'],
+    ['vi', 'chờ tôi xác nhận', 'Giữ nguyên diện mạo hình ảnh gốc'],
   ] as const)('%s confirms every job and forbids hidden color treatment', (locale, confirm, image) => {
     const request = createPrompt(FULL, locale, SCENE);
     expect(request).toContain(confirm);
@@ -60,7 +62,7 @@ describe('createPrompt in English', () => {
 });
 
 describe('createPrompt in every locale', () => {
-  it.each(['en-US', 'pt-BR', 'es'] as const)('%s starts with the agent entry and keeps user data verbatim', locale => {
+  it.each(['en-US', 'pt-BR', 'es', 'vi'] as const)('%s starts with the agent entry and keeps user data verbatim', locale => {
     const goal = 'Explique a preparação do café — '.repeat(60).trim();
     const prompt = createPrompt({ agent: 'claude', folder: '  /Videos/Málaga/東京  ', goal }, locale);
     expect(prompt.startsWith('/editonny\n')).toBe(true);
@@ -69,7 +71,7 @@ describe('createPrompt in every locale', () => {
     expect(createPrompt({}, locale).startsWith('$editonny\n')).toBe(true);
   });
 
-  it.each(['en-US', 'pt-BR', 'es'] as const)('%s states the cleanup policy exactly once', locale => {
+  it.each(['en-US', 'pt-BR', 'es', 'vi'] as const)('%s states the cleanup policy exactly once', locale => {
     const prompt = createPrompt(FULL, locale, SCENE);
     const cleanup = createPrompt({}, locale).split('\n\n')[2]!;
     expect(prompt.split(cleanup).length - 1).toBe(1);
@@ -79,7 +81,7 @@ describe('createPrompt in every locale', () => {
     expect(createPrompt({}, 'en-US')).toContain(CLEANUP);
   });
 
-  it.each(['en-US', 'pt-BR', 'es'] as const)('%s drops the scene reference when visuals are off', locale => {
+  it.each(['en-US', 'pt-BR', 'es', 'vi'] as const)('%s drops the scene reference when visuals are off', locale => {
     const withScene = createPrompt({ effects: 'subtle' }, locale, SCENE);
     const withoutVisuals = createPrompt({ effects: 'none' }, locale, SCENE);
     expect(withScene).toContain('revenue-growth');
@@ -89,6 +91,8 @@ describe('createPrompt in every locale', () => {
   it('localizes the template outside the user data', () => {
     expect(createPrompt({}, 'pt-BR')).not.toContain('Edit the videos in');
     expect(createPrompt({}, 'es')).not.toContain('Edit the videos in');
+    expect(createPrompt({}, 'vi')).not.toContain('Edit the videos in');
+    expect(createPrompt({}, 'vi')).toContain('Dựng các video trong: [nhập thư mục video]');
     expect(createPrompt({ format: 'portrait' }, 'pt-BR')).toContain('4:5');
   });
 });

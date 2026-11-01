@@ -5,7 +5,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { getPathname, Link } from '@/i18n/navigation';
 import type { AppLocale } from '@/i18n/routing';
-import { AUTHOR, REPOSITORY_URL } from '@/lib/site';
+import { AUTHOR, REPOSITORY_URL, UPSTREAM_URL } from '@/lib/site';
 import styles from './shell.module.css';
 
 export async function Footer({ locale }: { locale: AppLocale }) {
@@ -17,7 +17,7 @@ export async function Footer({ locale }: { locale: AppLocale }) {
         <div className={styles.footerBrand}>
           <Wordmark size={22} />
           <p>{t('Footer.tagline')}</p>
-          <a href={REPOSITORY_URL} className={styles.footerCreator} target="_blank" rel="noopener noreferrer">
+          <a href={UPSTREAM_URL} className={styles.footerCreator} target="_blank" rel="noopener noreferrer">
             <Image src={photo} alt="" width={32} height={32} className={styles.footerPhoto} />
             <span>{t('Footer.madeBy')} <strong>{AUTHOR.name}</strong> · <span className={styles.footerOpen}>{t('Home.hero.metaOpen')}</span></span>
             {newTab}

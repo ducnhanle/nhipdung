@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 // Audit the settled page: reduced motion shows every Reveal section immediately and stops looping animations.
 test.use({ reducedMotion: 'reduce' });
 
-const PAGES = ['/en', '/en/create', '/en/catalog', '/en/examples', '/en/install', '/pt-br', '/pt-br/criar', '/pt-br/catalogo', '/pt-br/exemplos', '/pt-br/instalacao', '/es', '/es/crear', '/es/catalogo', '/es/ejemplos', '/es/instalacion'];
+const PAGES = ['/en', '/en/create', '/en/catalog', '/en/examples', '/en/install', '/pt-br', '/pt-br/criar', '/pt-br/catalogo', '/pt-br/exemplos', '/pt-br/instalacao', '/es', '/es/crear', '/es/catalogo', '/es/ejemplos', '/es/instalacion', '/vi', '/vi/tao-yeu-cau', '/vi/danh-muc', '/vi/vi-du', '/vi/cai-dat'];
 
 for (const theme of ['dark', 'light'] as const) {
   for (const path of PAGES) {

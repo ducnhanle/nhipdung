@@ -1,0 +1,564 @@
+{
+  "Metadata": {
+    "siteName": "editonny",
+    "tagline": "Bạn có câu chuyện. Chúng tôi lo phần nhịp điệu.",
+    "ogAlt": "editonny: Bạn yêu cầu. Video thêm nhịp nhàng. Skill dựng video miễn phí, mã nguồn mở cho Claude Code và Codex.",
+    "home": {
+      "title": "editonny — dựng video bằng AI trong Claude Code và Codex",
+      "description": "Skill dựng video miễn phí, mã nguồn mở cho Claude Code và Codex. Cắt khoảng lặng, thêm phụ đề, chỉnh âm thanh, đổi khung hình và tạo cảnh chuyển động chỉ bằng cách yêu cầu."
+    },
+    "create": {
+      "title": "Tạo yêu cầu — editonny",
+      "description": "Điền một bản mô tả ngắn và mang yêu cầu dựng video soạn sẵn sang Claude Code hoặc Codex. Không tệp nào rời khỏi máy tính của bạn."
+    },
+    "catalog": {
+      "title": "Danh mục cảnh chuyển động — editonny",
+      "description": "Khám phá 145 cảnh chuyển động giúp giải thích, làm nổi bật và tạo nhịp, rồi thêm một cảnh vào yêu cầu dựng video của bạn."
+    },
+    "examples": {
+      "title": "Ví dụ và yêu cầu — editonny",
+      "description": "Tìm một yêu cầu dựng video soạn sẵn cho mục tiêu của bạn và điều chỉnh theo video gốc."
+    },
+    "install": {
+      "title": "Cài đặt — editonny",
+      "description": "Cài đặt skill editonny cho Codex và Claude Code, rồi kiểm tra môi trường trước lần dựng đầu tiên."
+    }
+  },
+  "Nav": {
+    "label": "Chính",
+    "home": "Trang chủ",
+    "create": "Tạo yêu cầu",
+    "catalog": "Danh mục",
+    "examples": "Ví dụ",
+    "install": "Cài đặt",
+    "demo": "Demo",
+    "features": "Tính năng",
+    "lab": "Thử nghiệm",
+    "library": "Thư viện",
+    "guide": "Hướng dẫn",
+    "openSource": "Mã nguồn mở",
+    "pages": "Trang",
+    "getSkill": "Lấy skill"
+  },
+  "Header": {
+    "homeLabel": "trang chủ",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "menuTitle": "Menu"
+  },
+  "Footer": {
+    "tagline": "Bạn có câu chuyện. Chúng tôi lo phần nhịp điệu.",
+    "label": "Chân trang",
+    "madeBy": "Tạo bởi",
+    "requests": "Yêu cầu",
+    "scenes": "Cảnh chuyển động",
+    "install": "Hướng dẫn cài đặt",
+    "requirements": "Yêu cầu hệ thống và chi phí",
+    "note": "Các bản demo trên trang này chỉ mang tính minh họa. editonny là mã nguồn mở và chạy trên máy tính của bạn, cùng với agent AI bạn đang dùng.",
+    "credits": "Tạo bởi {name}.",
+    "license": "Mã nguồn mở theo giấy phép MIT."
+  },
+  "Language": {
+    "label": "Ngôn ngữ",
+    "search": "Tìm ngôn ngữ…",
+    "empty": "Không tìm thấy ngôn ngữ"
+  },
+  "Theme": {
+    "toDark": "Chuyển sang giao diện tối",
+    "toLight": "Chuyển sang giao diện sáng"
+  },
+  "Common": {
+    "skip": "Chuyển đến nội dung",
+    "newTab": "(mở trong thẻ mới)",
+    "creatorName": "Matheus Gomes"
+  },
+  "NotFound": {
+    "title": "Trang này không có ở đây.",
+    "body": "Liên kết có thể đã cũ hoặc bị gõ sai. Hãy bắt đầu lại từ trang chủ.",
+    "home": "Về trang chủ"
+  },
+  "Home": {
+    "hero": {
+      "creatorRole": "Người tạo ra editonny",
+      "creatorStatus": "Miễn phí 100% mãi mãi · mã nguồn mở",
+      "eyebrow": "Skill dựng video qua trò chuyện",
+      "line1": "Bạn yêu cầu.",
+      "line2": "Video thêm",
+      "words": "nhịp nhàng.|gọn gàng.|phụ đề.|sống động.",
+      "leadA": "Mô tả bản dựng bạn muốn bằng ngôn ngữ đời thường — ",
+      "leadHighlight": "cắt khoảng lặng, thêm phụ đề, chỉnh âm thanh, đổi khung hình, tạo cảnh chuyển động",
+      "leadB": " — và agent AI sẽ thực hiện ngay trên máy tính của bạn.",
+      "explore": "Khám phá tính năng",
+      "metaFree": "Miễn phí 100%",
+      "metaOpen": "Mã nguồn mở",
+      "metaAgents": "Codex và Claude Code"
+    },
+    "bench": {
+      "title": "BÀN DỰNG / DỰ-ÁN-DEMO",
+      "badge": "Demo minh họa",
+      "request": "YÊU CẦU CỦA BẠN",
+      "req1": "Cắt các khoảng lặng",
+      "req2": ", ",
+      "req3": "thêm phụ đề",
+      "req4": " và ",
+      "req5": "làm nổi bật ba bước này bằng chuyển động",
+      "req6": ".",
+      "check1": "Đã xóa khoảng lặng và chỗ nói vấp",
+      "check2": "Phụ đề khớp với lời nói",
+      "check3": "Đã áp dụng cảnh “Ba bước xếp chồng”",
+      "check4": "Đoạn mẫu sẵn sàng để bạn duyệt",
+      "chapterRaw": "Thô",
+      "chapterPauses": "01 Khoảng lặng",
+      "chapterCaptions": "02 Phụ đề",
+      "chapterMotion": "03 Chuyển động",
+      "chapterResult": "04 Kết quả",
+      "chapters": "Các bước demo",
+      "replay": "Phát lại",
+      "replayLabel": "Phát lại toàn bộ trình tự",
+      "marked": "3 khoảng lặng · 1 lỗi",
+      "badgeRaw": "THÔ",
+      "badgeEditing": "ĐANG DỰNG",
+      "badgeFinal": "HOÀN TẤT",
+      "caption": "để dựng một video bạn chỉ cần ba bước",
+      "method": "PHƯƠNG PHÁP 3 BƯỚC",
+      "step1": "Quay",
+      "step2": "Cắt",
+      "step3": "Đăng",
+      "sampleReady": "Đoạn mẫu chờ duyệt",
+      "trackVideo": "VIDEO",
+      "trackVoice": "GIỌNG",
+      "trackCaption": "PHỤ ĐỀ",
+      "trackMotion": "ĐỒ HỌA",
+      "motionChip": "✦ Ba bước xếp chồng",
+      "note": "Hoạt ảnh giao diện để minh họa quy trình. Tốc độ của nó không phản ánh thời gian xử lý thực tế."
+    },
+    "marquee": "Cắt khoảng lặng|Phụ đề|Âm thanh|Đổi khung hình|Chuyển động|{scenes} cảnh|{requests} yêu cầu",
+    "anatomy": {
+      "eyebrow": "Giải phẫu một bản dựng",
+      "titleA": "Mỗi yêu cầu là ",
+      "highlight": "một lớp.",
+      "lead": "Tách bản dựng ra để xem từng phần của yêu cầu làm gì. Ghép lại, chúng trở thành video.",
+      "plate1Title": "Video thô",
+      "plate2Title": "Cắt",
+      "plate3Title": "Phụ đề",
+      "plate4Title": "Chuyển động",
+      "plate1Text": "Tư liệu đúng như lúc ghi hình: các lần quay, tiếng thở, khoảng lặng và chỗ lặp lại.",
+      "plate2Text": "Điểm đánh dấu xác định phần cần bỏ. Các đoạn xích lại gần nhau và nhịp điệu hiện ra.",
+      "plate3Text": "Chữ chạy theo lời nói từng từ một, làm nổi bật điều quan trọng.",
+      "plate4Text": "Một đoạn lời nói trở thành cảnh: danh sách, so sánh, con số hoặc sơ đồ.",
+      "tagRaw": "01 · THÔ",
+      "tagCut": "02 · CẮT",
+      "tagCaption": "03 · PHỤ ĐỀ",
+      "captionA": "BẠN CẦN ",
+      "captionB": "BA",
+      "captionC": " BƯỚC",
+      "assemble": "Ghép bản dựng",
+      "separate": "Tách các lớp"
+    },
+    "features": {
+      "eyebrow": "Hai dịch vụ, một quy trình",
+      "titleA": "Ít thao tác hơn. ",
+      "highlight": "Chỉ đạo nhiều hơn.",
+      "lead": "Bạn nói điều mình muốn truyền tải. Editor lo phần cắt và hoàn thiện; Motion biến các đoạn lời nói của bạn thành cảnh.",
+      "editorTag": "DỊCH VỤ / EDITOR",
+      "editorTitle": "Câu chuyện, cắt dựng và hoàn thiện.",
+      "editorLink": "Xem các yêu cầu dựng video",
+      "motionTag": "DỊCH VỤ / MOTION",
+      "motionTitle": "Lời nói hóa thành cảnh.",
+      "motionLink": "Khám phá cả {scenes} cảnh",
+      "editor": {
+        "cuts": {
+          "title": "Cắt khoảng lặng và chỗ nói vấp",
+          "text": "Bỏ những chỗ ngập ngừng và lặp lại mà không cắt lẹm vào lời."
+        },
+        "story": {
+          "title": "Kể chuyện",
+          "text": "Chọn những lần quay rõ ràng nhất và sắp xếp thành phần mở đầu, phần giữa và phần kết."
+        },
+        "captions": {
+          "title": "Phụ đề",
+          "text": "Khớp với lời nói, làm nổi bật những từ quan trọng."
+        },
+        "audio": {
+          "title": "Chỉnh âm thanh",
+          "text": "Âm lượng, giọng nói và nhạc nền được cân bằng để nghe rõ trên điện thoại."
+        },
+        "reframe": {
+          "title": "Đổi khung hình",
+          "text": "Dọc, ngang, vuông hay feed — chủ thể luôn nằm trong khung hình."
+        }
+      },
+      "motion": {
+        "lists": {
+          "title": "Danh sách chuyển động",
+          "text": "Các bước hiện lên đúng nhịp lời nói của bạn."
+        },
+        "comparisons": {
+          "title": "So sánh",
+          "text": "Trước và sau, cái này hay cái kia, đặt cạnh nhau."
+        },
+        "numbers": {
+          "title": "Con số",
+          "text": "Số liệu và kết quả bạn nhắc đến được làm nổi bật."
+        },
+        "diagrams": {
+          "title": "Sơ đồ",
+          "text": "Ý tưởng trừu tượng trở thành hình ảnh dễ theo dõi."
+        },
+        "catalog": {
+          "title": "{scenes} cảnh trong danh mục",
+          "text": "Chuyển cảnh, dấu chỉ, thẻ minh chứng, tiêu đề và nhiều hơn nữa."
+        }
+      }
+    },
+    "lab": {
+      "eyebrow": "Thử nghiệm",
+      "titleA": "Đầu vào, yêu cầu, ",
+      "highlight": "kết quả.",
+      "lead": "Thử các nút điều khiển và xem từng yêu cầu hoạt động. Dùng chính những câu này cho Reels, quảng cáo và bài giảng của bạn.",
+      "tabCut": "Thô × đã dựng",
+      "tabCaptions": "Phụ đề",
+      "tabMotion": "Chuyển động",
+      "tabFormat": "Khung hình",
+      "tabsLabel": "Thử nghiệm",
+      "schematic": "SƠ ĐỒ MINH HỌA",
+      "tokens": "Vậy…|ngừng 1,2 giây|để dựng một video|bạn cần|ờ,|ba bước.|ngừng 0,8 giây|Đầu tiên, quay.|Rồi cắt…|Rồi cắt.|Cuối cùng, đăng.",
+      "cutRaw": "Thô",
+      "cutEdited": "Đã dựng",
+      "cutInfoRaw": "Đã đánh dấu 2 khoảng lặng · 2 chỗ nói vấp",
+      "cutInfoEdited": "Đã xóa 2 khoảng lặng và 2 chỗ nói vấp",
+      "captionsLabel": "Phụ đề",
+      "fontImpact": "Impact",
+      "fontClean": "Tối giản",
+      "fontHand": "Viết tay",
+      "fontMarker": "Bút dạ",
+      "captionSample": "từng chữ đúng lúc và nhấn mạnh điều quan trọng",
+      "before": "TRƯỚC",
+      "after": "SAU",
+      "question": "Câu hỏi ai cũng hỏi?",
+      "answer": "CÂU TRẢ LỜI, ĐI THẲNG VÀO VẤN ĐỀ.",
+      "input": "ĐẦU VÀO",
+      "request": "YÊU CẦU",
+      "output": "KẾT QUẢ",
+      "copy": "Sao chép yêu cầu",
+      "copied": "Đã sao chép yêu cầu ✓",
+      "catalogScene": "Cảnh trong danh mục:",
+      "footnote": "Sơ đồ minh họa. Bố cục thực tế do agent render từ video gốc của bạn.",
+      "cta": "Tất cả đều miễn phí và mã nguồn mở.",
+      "cut": {
+        "input": "Một đoạn nói có những khoảng lặng dài, một chỗ ngập ngừng và một câu bị lặp lại.",
+        "request": "Hãy cắt các khoảng lặng và chỗ nói vấp mà không cắt lẹm vào từ, giữ lại những khoảng lặng biểu cảm.",
+        "output": "Lời nói liền mạch, có nhịp điệu. Từ ngữ và ý nghĩa được giữ nguyên như khi nói."
+      },
+      "captions": {
+        "input": "Cùng đoạn đó, đã cắt xong, chưa có chữ trên màn hình.",
+        "request": "Hãy thêm phụ đề dễ đọc, làm nổi bật từ đang được nói.",
+        "output": "Phụ đề khớp từng từ. Bạn tự chọn kiểu chữ trang trí."
+      },
+      "format": {
+        "input": "Một video quay dọc, chủ thể ở giữa khung hình.",
+        "request": "Hãy chuyển video sang tỷ lệ {format}, giữ khuôn mặt và chủ thể trong khung hình.",
+        "output": "Đổi khung hình mà vẫn giữ chủ thể. AI kiểm tra khung hình ở định dạng đã chọn."
+      },
+      "motionOutput": "Khoảnh khắc đó trở thành một cảnh toàn màn hình với chính lời bạn nói. Phụ đề tạm ẩn trong lúc cảnh chạy.",
+      "picks": {
+        "steps": {
+          "label": "Ba bước",
+          "request": "Khi tôi liệt kê phương pháp, hãy biến ba bước đó thành một bố cục chuyển động.",
+          "input": "Một đoạn trong đó người nói tóm tắt một phương pháp ba bước."
+        },
+        "beforeAfter": {
+          "label": "Trước và sau",
+          "request": "Ở đoạn so sánh, hãy cho thấy trước đây thế nào và kết quả ra sao, kèm hai con số tôi nhắc đến.",
+          "input": "Một đoạn trong đó người nói so sánh trước đây và kết quả sau đó."
+        },
+        "number": {
+          "label": "Nổi bật con số",
+          "request": "Khi tôi nhắc đến doanh thu, hãy làm nổi bật số tiền bằng một cảnh con số.",
+          "input": "Một đoạn trong đó người nói nhắc đến doanh thu hoặc kết quả bằng tiền."
+        },
+        "question": {
+          "label": "Hỏi và đáp",
+          "request": "Khi tôi trả lời câu hỏi của khán giả, hãy hiện câu hỏi và câu trả lời trên màn hình.",
+          "input": "Một đoạn trong đó người nói trả lời một câu hỏi thường gặp của khán giả."
+        }
+      }
+    },
+    "how": {
+      "eyebrow": "Cách hoạt động",
+      "titleA": "Trang web hướng dẫn. ",
+      "highlight": "Máy tính của bạn dựng video.",
+      "lead": "editonny là một skill cài trên máy tính của bạn. Trang này không nhận hay chỉnh sửa video — đây là nơi tham khảo để khám phá tính năng, tìm hiểu quy trình và soạn yêu cầu.",
+      "step1Title": "Sao chép yêu cầu cài đặt",
+      "step2Title": "Dán vào agent của bạn",
+      "step3Title": "Trò chuyện với agent",
+      "step1Text": "Yêu cầu này dẫn agent của bạn đến kho mã mở, miễn phí trên GitHub. Không cần tự tải gì về.",
+      "step2Text": "Trong Claude Code hoặc Codex. Agent sẽ clone, cài đặt và kiểm tra mọi thứ, rồi nhắc bạn khởi động lại.",
+      "step3Text": "Gọi $editonny hoặc /editonny, chỉ đến thư mục video và đưa ra yêu cầu. Bạn duyệt một đoạn mẫu trước khi có video hoàn chỉnh.",
+      "needTitle": "Bạn sẽ cần",
+      "needAgent": "Agent AI tương thích",
+      "needAgentValue": "Codex hoặc Claude Code",
+      "needPythonValue": "3.9 trở lên",
+      "needUvValue": "trình quản lý Python",
+      "needFfmpeg": "FFmpeg và ffprobe",
+      "needFfmpegValue": "trong terminal",
+      "needNode": "Node.js và npx",
+      "needNodeValue": "22.13+ hoặc 24+",
+      "needNote": "Trình cài đặt sẽ thiết lập các thành phần phụ thuộc của engine. Các công cụ hệ thống phải có sẵn trong terminal.",
+      "costTitle": "Chi phí bên thứ ba",
+      "cost1Title": "editonny",
+      "cost2Title": "Agent AI của bạn",
+      "cost3Title": "Chép lời và render",
+      "cost1Text": "hoàn toàn miễn phí và là mã nguồn mở. Không thuê bao, không gói trả phí.",
+      "cost2Text": "có thể cần gói thuê bao riêng, mua tách biệt.",
+      "cost3Text": "đều chạy trên máy của bạn. Không video nào được gửi qua trang này."
+    },
+    "library": {
+      "eyebrow": "Thư viện mở",
+      "titleA": "Một ý tưởng. ",
+      "highlight": "Muôn hình vạn trạng.",
+      "lead": "{requests} yêu cầu soạn sẵn và {scenes} cảnh chuyển động. Thoải mái khám phá.",
+      "tabPrompts": "Yêu cầu",
+      "tabScenes": "Cảnh chuyển động",
+      "tabsLabel": "Thư viện mở",
+      "search": "Tìm trong thư viện",
+      "placeholderPrompts": "Thử: bài giảng, âm thanh, quảng cáo, phụ đề…",
+      "placeholderScenes": "Thử: so sánh, tiêu đề, các bước, mũi tên…",
+      "agent": "AGENT",
+      "allObjectives": "Tất cả mục tiêu",
+      "allFamilies": "Tất cả nhóm",
+      "filters": "Bộ lọc",
+      "promptsCount": "{count, plural, one {# yêu cầu} other {# yêu cầu}}",
+      "scenesCount": "{count, plural, one {# cảnh} other {# cảnh}}",
+      "resultsFor": "khớp với “{query}”",
+      "action": "Xem và sao chép",
+      "thumbsNote": "Ảnh thu nhỏ là sơ đồ minh họa, không phải bản render của cảnh.",
+      "emptyA": "Không tìm thấy kết quả cho",
+      "emptyB": "Hãy thử từ khóa khác hoặc xóa bộ lọc.",
+      "more": "Xem thêm ({count})",
+      "professions": "Nghề nghiệp",
+      "catalogLink": "Mở toàn bộ danh mục",
+      "examplesLink": "Mở toàn bộ thư viện yêu cầu"
+    },
+    "guide": {
+      "eyebrow": "Hướng dẫn cài đặt",
+      "titleA": "Từ con số 0 đến ",
+      "highlight": "yêu cầu đầu tiên.",
+      "step1Title": "Mở agent của bạn",
+      "step2Title": "Dán yêu cầu cài đặt",
+      "step3Title": "Khởi động lại agent",
+      "step4Title": "Gửi yêu cầu đầu tiên",
+      "step1Text": "Mở Claude Code hoặc Codex ở bất kỳ thư mục nào. Không cần tải về hay giải nén gì cả.",
+      "step2Text": "Agent tự lấy skill từ GitHub, cài đặt hoặc cập nhật cho toàn máy, chuẩn bị môi trường và xác minh trong cả Claude Code lẫn Codex. Tự động từ đầu đến cuối.",
+      "step3Text": "Đóng rồi mở lại để agent nhận ra skill. Muốn cập nhật, bạn chỉ cần dán lại đúng yêu cầu này.",
+      "step4Text": "Mở cuộc trò chuyện mới và gọi /editonny trong Claude Code hoặc $editonny trong Codex. Chỉ đến thư mục video và yêu cầu một đoạn mẫu.",
+      "restart": "Sau khi cài đặt, hãy đóng rồi mở lại agent để nó nhận ra skill.",
+      "askKicker": "YÊU CẦU CÀI ĐẶT VÀ CẬP NHẬT",
+      "askLead": "Dùng được cho cả lần cài đầu tiên lẫn khi cập nhật. Dán vào Claude Code hoặc Codex; liên kết bên trong sẽ dẫn agent đến kho mã:",
+      "copyInstall": "Sao chép yêu cầu cài đặt",
+      "installNote": "Không cần gõ lệnh trong terminal. Nếu cần gì, agent sẽ hỏi bạn trước.",
+      "installCopied": "Đã sao chép yêu cầu cài đặt ✓",
+      "firstVideo": "Dùng “{title}”",
+      "terminal": "Thích dùng terminal hơn? Xem các lệnh cài đặt",
+      "faqFreeTitle": "Có thật sự miễn phí không? Phần nào chạy trên máy?",
+      "faqFreeBody": "Có. editonny miễn phí 100% và là mã nguồn mở, không có gói trả phí. Trang này chỉ soạn yêu cầu và xem danh mục; nó không tải lên hay chỉnh sửa gì trong trình duyệt. Việc chép lời và render đều chạy trên máy của bạn; agent AI của bạn tuân theo điều khoản của nhà cung cấp và có thể cần gói thuê bao riêng.",
+      "faqCatalogTitle": "Danh mục có dùng được với mọi định dạng không?",
+      "faqCatalogBody": "Các cảnh hiển thị ở định dạng gốc, thường là dọc. AI sẽ điều chỉnh và kiểm tra khung hình khi video của bạn có tỷ lệ khác. Tham chiếu hình ảnh không đảm bảo bản render giống hệt nếu chưa được duyệt lại."
+    },
+    "offer": {
+      "eyebrow": "Thử tính xem",
+      "titleA": "Một người dựng video tốn ",
+      "highlight": "R$ 42 nghìn/năm.",
+      "titleB": " Còn editonny không tốn một xu. Mãi mãi.",
+      "lead": "Một cuộc đấu không cân sức. Lại còn miễn phí.",
+      "raceTitle": "TRONG MỘT NGÀY LÀM VIỆC",
+      "editorName": "Người dựng thuê",
+      "editorCost": "R$ 3.500–10.000/tháng",
+      "editonnyName": "editonny",
+      "editonnyCost": "R$ 0 · mã nguồn mở",
+      "editing": "đang dựng…",
+      "delivered": "đã giao 1",
+      "videoWord": "video",
+      "videosWord": "video",
+      "barLabel": "1 video mỗi ~5 phút",
+      "result": "số video của một người dựng, trong cùng một ngày. Miễn phí.",
+      "raceReplay": "Phát lại",
+      "raceSkip": "Xem kết quả",
+      "tag": "MÃ NGUỒN MỞ",
+      "oldPrice": "R$ 3.500",
+      "price": "R$ 0",
+      "promo": "MỘT THÁNG THUÊ NGƯỜI DỰNG*",
+      "forever": "MÃI MÃI.",
+      "title": "Miễn phí. Mã nguồn mở. Mãi mãi.",
+      "repo": "Lấy skill trên GitHub",
+      "guide": "Xem hướng dẫn cài đặt",
+      "included1": "Skill editonny: Editor + Motion",
+      "included2": "{scenes} cảnh chuyển động",
+      "included3": "Trình cài đặt và công cụ chẩn đoán",
+      "included4": "Bản xem trước trên máy để duyệt",
+      "included5": "{requests} yêu cầu soạn sẵn",
+      "creatorNote": "Mã nguồn mở, không thuê bao, không chiêu trò. Cứ dùng, tìm hiểu và đóng góp.",
+      "promoNote": "*Đúng vậy, chúng tôi đã gạch giá một tháng thuê người dựng. editonny không tốn đồng nào.",
+      "procrast": "Mỗi tháng thiếu editonny là tốn R$ 3.500 tiền dựng video. Mà editonny lại miễn phí.",
+      "footnote": "So sánh mang tính minh họa: người dựng làm 1 video mỗi ngày làm việc; editonny trung bình 5 phút mỗi video, tùy độ dài và video gốc. Agent AI của bạn có thể có gói thuê bao riêng."
+    },
+    "bar": {
+      "label": "Demo",
+      "resources": "Tính năng"
+    }
+  },
+  "Create": {
+    "eyebrow": "Chỉ đạo sáng tạo / Tạo yêu cầu",
+    "titleA": "Từ ý tưởng của bạn",
+    "titleB": "đến",
+    "highlight": "bản dựng đầu tiên.",
+    "lead": "Điền bản mô tả và mang yêu cầu đến AI của bạn. Không có tệp nào được gửi đi từ đây.",
+    "story": "Câu chuyện",
+    "goalLabel": "Bạn muốn tạo gì?",
+    "goalPlaceholder": "Ví dụ: một video hướng dẫn pha cà phê dài 45 giây, với các bước rõ ràng.",
+    "folderLabel": "Thư mục video trên máy tính của bạn",
+    "folderPlaceholder": "Ví dụ: /Users/you/Videos/coffee",
+    "folderHelp": "Dán đường dẫn thư mục. Trang hướng dẫn không truy cập hay tải lên các tệp.",
+    "telling": "Cách kể chuyện",
+    "format": "Định dạng",
+    "pace": "Nhịp",
+    "captions": "Phụ đề",
+    "effects": "Cảnh đồ họa và hiệu ứng",
+    "tool": "Công cụ của bạn",
+    "outputEyebrow": "Yêu cầu của bạn, sẵn sàng mang đi",
+    "outputLabel": "Yêu cầu dựng video đã tạo",
+    "copy": "Sao chép yêu cầu",
+    "hint": "Mở agent trong thư mục dự án và dán yêu cầu vào.",
+    "reset": "Làm lại từ đầu",
+    "saved": "Bản mô tả của bạn chỉ được lưu trong trình duyệt này.",
+    "sceneLabel": "Cảnh: {name}",
+    "removeScene": "Bỏ cảnh {name}",
+    "copied": "Đã sao chép yêu cầu. Mở agent trong thư mục và dán vào.",
+    "copyFallback": "Không thể sao chép tại đây. Văn bản đã được chọn: nhấn Ctrl+C hoặc ⌘C.",
+    "cleared": "Đã xóa bản mô tả.",
+    "exampleApplied": "Đã áp dụng “{title}”. Hãy điều chỉnh yêu cầu cho phù hợp với video gốc của bạn.",
+    "sceneAdded": "Đã thêm cảnh vào yêu cầu của bạn."
+  },
+  "Options": {
+    "formats": {
+      "vertical": "Dọc",
+      "horizontal": "Ngang",
+      "square": "Vuông",
+      "portrait": "Feed dọc",
+      "source": "Giữ nguyên khung hình gốc"
+    },
+    "paces": {
+      "natural": "Tự nhiên, trôi chảy",
+      "dynamic": "Nhanh, nhiều năng lượng",
+      "calm": "Chậm rãi, sâu lắng"
+    },
+    "captions": {
+      "readable": "Rõ ràng, có nhấn mạnh",
+      "subtle": "Kín đáo, không chuyển động",
+      "none": "Không phụ đề"
+    },
+    "effects": {
+      "subtle": "Tinh tế · chỉ khi có ích",
+      "educational": "Giáo dục · ý tưởng trực quan",
+      "expressive": "Biểu cảm · nhiều chuyển động hơn",
+      "none": "Chỉ dựng · không thêm đồ họa"
+    }
+  },
+  "Library": {
+    "category": "Thể loại",
+    "all": "Tất cả",
+    "copy": "Sao chép yêu cầu",
+    "close": "Đóng",
+    "when": "Khi nào nên dùng",
+    "copied": "Đã sao chép yêu cầu. Hãy dán vào agent của bạn.",
+    "copyFallback": "Không thể sao chép tại đây. Văn bản đã được chọn: nhấn Ctrl+C hoặc ⌘C.",
+    "preview": "Xem trước yêu cầu"
+  },
+  "Catalog": {
+    "eyebrow": "Thư viện hình ảnh / Motion",
+    "titleA": "Một ý tưởng.",
+    "highlight": "Muôn hình vạn trạng.",
+    "lead": "Những cảnh giúp giải thích, làm nổi bật và tạo nhịp. Di chuột lên hoặc chọn một thẻ để xem cảnh chuyển động.",
+    "search": "Tìm cảnh",
+    "searchPlaceholder": "Thử: so sánh, tiêu đề, các bước…",
+    "count": "{count, plural, one {# cảnh} other {# cảnh}}",
+    "empty": "Không tìm thấy cảnh nào. Hãy thử từ khác hoặc chọn tất cả thể loại.",
+    "note": "Bản xem trước chỉ là sơ đồ. Bố cục thực tế do agent render.",
+    "duration": "Thời lượng tham khảo",
+    "durationValue": "{seconds} giây",
+    "format": "Định dạng gốc",
+    "layout": "Bố cục",
+    "captions": "Phụ đề khi chạy cảnh",
+    "hidden": "Ẩn",
+    "kept": "Giữ nguyên",
+    "unknown": "Chưa xác định",
+    "use": "Dùng trong yêu cầu của tôi",
+    "layouts": {
+      "overlay": "Phủ lên video",
+      "fullscreen": "Toàn màn hình",
+      "frame": "Trong khung"
+    },
+    "motif": {
+      "before": "TRƯỚC",
+      "after": "SAU",
+      "cta": "Chạm vào đây",
+      "cheer": "QUÁ ĐỈNH!",
+      "zoom": "ZOOM",
+      "chat1": "Dựng đoạn này sao đây?",
+      "chat2": "Mình cắt khoảng lặng và thêm phụ đề nhé.",
+      "chat3": "Tuyệt vời!",
+      "hint": "▶ XEM TRƯỚC"
+    }
+  },
+  "Examples": {
+    "eyebrow": "Thư viện yêu cầu / Ví dụ",
+    "titleA": "Mong muốn của bạn.",
+    "highlight": "Một khởi đầu tốt.",
+    "lead": "Từ video thô đến thành phẩm. Tìm một ví dụ và điều chỉnh yêu cầu theo câu chuyện của bạn.",
+    "search": "Tìm ví dụ",
+    "searchPlaceholder": "Thử: bài giảng, âm thanh, phụ đề…",
+    "count": "{count, plural, one {# yêu cầu} other {# yêu cầu}}",
+    "empty": "Không tìm thấy yêu cầu nào. Hãy thử từ khác hoặc chọn tất cả thể loại.",
+    "action": "Xem yêu cầu và mẹo",
+    "tips": "Mẹo",
+    "customize": "Tùy chỉnh yêu cầu"
+  },
+  "Install": {
+    "eyebrow": "Chuẩn bị studio của bạn / Cài đặt",
+    "titleA": "Một skill.",
+    "highlight": "Theo cách sáng tạo của bạn.",
+    "lead": "Dựng video và cảnh đồ họa, gói gọn trong một. Một skill dùng được cho cả Codex lẫn Claude Code, chạy trên máy tính của bạn.",
+    "step1Title": "Mở thư mục dự án",
+    "step1Text": "Tải kho mã về và mở terminal trong thư mục chứa install.py. Nhờ AI của bạn đọc skills/editonny/SKILL.md và tài liệu thiết lập đi kèm để nắm các yêu cầu hiện tại của gói.",
+    "step2Title": "Đăng ký skill",
+    "step2Text": "Trình cài đặt dùng chung một gói cho cả hai agent. Nếu chỉ dùng một agent, hãy thay both bằng codex hoặc claude. Sau đó khởi động lại agent để nó nhận ra skill.",
+    "step3Title": "Kiểm tra trước khi dựng",
+    "step3Text": "Thiết lập đầy đủ sẽ chuẩn bị các công cụ cục bộ, trình render, trình duyệt, mô hình chép lời mặc định, OCR cục bộ để kiểm tra phụ đề và tệp media đi kèm. Hãy xác minh bằng công cụ chẩn đoán và một đoạn mẫu tổng hợp; báo lại mọi mục còn dang dở trước khi dựng.",
+    "step4Title": "Gửi yêu cầu đầu tiên",
+    "step4Text": "Dùng $editonny trong Codex hoặc /editonny trong Claude Code. Hãy yêu cầu một đoạn mẫu trước khi làm toàn bộ dự án.",
+    "cta": "Soạn yêu cầu của tôi",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép",
+    "commandCopied": "Đã sao chép lệnh.",
+    "askKicker": "MUỐN NHỜ AI LÀM GIÚP?",
+    "askTitle": "Việc cài đặt cũng bắt đầu bằng một yêu cầu.",
+    "askRequest": "Hãy cài đặt hoặc cập nhật skill editonny cho Codex và Claude Code từ https://github.com/ducnhanle/editonny. Clone phiên bản mới nhất vào một thư mục tạm; tôi sẽ không tự tải gì về. Đọc skills/editonny/SKILL.md và làm theo toàn bộ quy trình thiết lập trong đó. Nếu editonny đã được cài, hãy so sánh các phiên bản, tóm tắt những gì thay đổi và cập nhật theo đúng phương thức cài đặt hiện tại: trình cài đặt của kho mã cho bản cài đặt dùng chung (trình này giữ nguyên các cài đặt của tôi và sao lưu bản trước đó) hoặc trình cập nhật của host cho plugin được quản lý. Trước lần dựng đầu tiên, hãy chuẩn bị các công cụ cục bộ tương thích, engine đã khóa phiên bản, trình render và trình duyệt đã ghim phiên bản, mô hình chép lời mặc định, OCR cục bộ để kiểm tra phụ đề và tệp media đi kèm. Xác minh bằng công cụ chẩn đoán và một đoạn mẫu tổng hợp, báo lại mọi mục còn dang dở, xóa bản clone tạm và cho tôi biết khi nào cần khởi động lại agent của tôi. Hãy hỏi tôi trước khi dùng dịch vụ trả phí hoặc gửi các tệp media của tôi đi.",
+    "askCopy": "Sao chép yêu cầu cài đặt",
+    "askCopied": "Đã sao chép yêu cầu cài đặt.",
+    "copyFallback": "Không thể sao chép tại đây. Văn bản đã được chọn: nhấn Ctrl+C hoặc ⌘C.",
+    "faq1Title": "Skill toàn cục hay plugin?",
+    "faq1Body": "Trình cài đặt đăng ký một bản sao tại ~/.local/share/editonny, kèm liên kết tại ~/.agents/skills/editonny cho Codex và ~/.claude/skills/editonny cho Claude Code. Hãy chọn một phương thức cài đặt duy nhất.",
+    "faq2Title": "Chỉ dùng một agent",
+    "faq2Body": "Chạy python3 install.py --target codex hoặc python3 install.py --target claude, rồi bắt đầu cuộc trò chuyện mới. Việc đăng ký chỉ diễn ra trên máy: nó không đồng bộ công cụ hay tệp với các phiên trên đám mây hoặc điện thoại của bạn.",
+    "faq3Title": "Cập nhật an toàn",
+    "faq3Body": "Skill kiểm tra GitHub mỗi lần dùng và hỏi trước khi áp dụng bản cập nhật. Sau khi bạn đồng ý, hãy chạy trình cài đặt từ bản checkout mới và lặp lại toàn bộ các bước kiểm tra thiết lập. Phiên bản trước được chuyển vào ~/.local/share/editonny-backups/ và các tệp .env của bản cài đặt được giữ nguyên. Plugin được quản lý dùng trình cập nhật của host. Nếu không kiểm tra được bản cập nhật, bản cài đặt cục bộ đang hoạt động vẫn dùng bình thường. Hãy giữ video gốc và dự án bên ngoài thư mục skill, và kiểm tra bản cập nhật trước khi xóa bất kỳ bản sao lưu nào.",
+    "faq4Title": "Gỡ đăng ký khỏi agent",
+    "faq4Body": "Chạy python3 install.py --target both --uninstall. Thêm --dry-run để xem trước các vị trí đích. Chỉ các liên kết của agent bị gỡ; gói dùng chung, cài đặt, bản sao lưu, video và dự án vẫn được giữ lại.",
+    "faq5Title": "Tải dưới dạng plugin Claude Code",
+    "faq5Body": "Chạy claude --plugin-dir \"/path/to/editonny\" để tải bản checkout này cho một phiên, rồi gọi /editonny:editonny. Skill độc lập dùng /editonny; tránh tải cả hai cùng lúc. Bạn vẫn cần các công cụ video và môi trường Python.",
+    "faq6Title": "Phần nào chạy trên máy? Phần nào tốn tiền?",
+    "faq6Body": "Trang hướng dẫn này giúp soạn yêu cầu và xem các ví dụ, cảnh. Nó không tải lên hay chỉnh sửa video gốc trong trình duyệt. Agent của bạn có thể cần gói thuê bao. Các công cụ tạo nội dung bên ngoài (tùy chọn) có thể tính phí; yêu cầu mặc định sẽ xin phép bạn trước khi dùng chúng hoặc gửi media đi.",
+    "faq7Title": "Duyệt đoạn mẫu đầu tiên thế nào?",
+    "faq7Body": "Nghe xem có từ nào bị cắt lẹm không, kiểm tra độ chính xác của phụ đề và xem khung hình có giữ được chủ thể không. Hãy yêu cầu chỉnh sửa trước khi hoàn thiện mọi thứ."
+  }
+}

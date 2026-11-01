@@ -3,8 +3,12 @@
   "sans_black": {"file": "montserrat/Montserrat-Variable.ttf", "variation": 900, "family": "Montserrat", "license": "montserrat/OFL.txt"},
   "sans_extrabold": {"file": "montserrat/Montserrat-Variable.ttf", "variation": 800, "family": "Montserrat", "license": "montserrat/OFL.txt"},
   "sans_bold": {"file": "montserrat/Montserrat-Variable.ttf", "variation": 700, "family": "Montserrat", "license": "montserrat/OFL.txt"},
-  "text_bold": {"file": "figtree/Figtree-Variable.ttf", "variation": 700, "family": "Figtree", "license": "figtree/OFL.txt"},
-  "text_semibold": {"file": "figtree/Figtree-Variable.ttf", "variation": 600, "family": "Figtree", "license": "figtree/OFL.txt"},
-  "marker": {"file": "permanentmarker/PermanentMarker-Regular.ttf", "variation": null, "family": "Permanent Marker", "license": "permanentmarker/LICENSE.txt"},
-  "hand": {"file": "caveat/Caveat-Variable.ttf", "variation": 700, "family": "Caveat", "license": "caveat/OFL.txt"}
+  "text_bold": {"file": "figtree/Figtree-Variable.ttf", "variation": 700, "family": "Figtree", "license": "figtree/OFL.txt", "fallback": "text_bold_extended"},
+  "text_semibold": {"file": "figtree/Figtree-Variable.ttf", "variation": 600, "family": "Figtree", "license": "figtree/OFL.txt", "fallback": "text_semibold_extended"},
+  "marker": {"file": "permanentmarker/PermanentMarker-Regular.ttf", "variation": null, "family": "Permanent Marker", "license": "permanentmarker/LICENSE.txt", "fallback": "marker_extended"},
+  "hand": {"file": "caveat/Caveat-Variable.ttf", "variation": 700, "family": "Caveat", "license": "caveat/OFL.txt", "fallback": "hand_extended"},
+  "text_bold_extended": {"file": "plusjakartasans/PlusJakartaSans-Variable.ttf", "variation": 700, "family": "Plus Jakarta Sans", "license": "plusjakartasans/OFL.txt"},
+  "text_semibold_extended": {"file": "plusjakartasans/PlusJakartaSans-Variable.ttf", "variation": 600, "family": "Plus Jakarta Sans", "license": "plusjakartasans/OFL.txt"},
+  "marker_extended": {"file": "sedgwickavedisplay/SedgwickAveDisplay-Regular.ttf", "variation": null, "family": "Sedgwick Ave Display", "license": "sedgwickavedisplay/OFL.txt"},
+  "hand_extended": {"file": "sriracha/Sriracha-Regular.ttf", "variation": null, "family": "Sriracha", "license": "sriracha/OFL.txt"}
 }

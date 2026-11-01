@@ -361,13 +361,27 @@ def font_path(key: str) -> Path:
     return path
 
 
-def load_font(key: str, size: int):
-    """PIL ImageFont for a bundled font key, applying the variable-font weight if declared."""
+_FONT_MANIFEST: dict | None = None
+
+
+def font_manifest() -> dict:
+    """assets/fonts/fonts.json, read once: key -> {"file", "variation", "family", "license"} plus an optional
+    "fallback" key naming the extended-coverage font (Vietnamese, for example) text_render switches to."""
+    global _FONT_MANIFEST
+    if _FONT_MANIFEST is None:
+        _FONT_MANIFEST = load_json(FONTS_DIR / "fonts.json", default={}) or {}
+    return _FONT_MANIFEST
+
+
+def load_font(key: str, size: int, basic: bool = False):
+    """PIL ImageFont for a bundled font key, applying the variable-font weight if declared. `basic` turns text
+    shaping off, so a letter the font has no glyph of its own for shows .notdef instead of being rebuilt."""
     from PIL import ImageFont
 
     manifest = load_json(FONTS_DIR / "fonts.json", default={}) or {}
     entry = manifest.get(key) or {}
-    font = ImageFont.truetype(str(font_path(key)), size=size)
+    layout = {"layout_engine": ImageFont.Layout.BASIC} if basic else {}
+    font = ImageFont.truetype(str(font_path(key)), size=size, **layout)
     variation = entry.get("variation")
     if variation is not None:
         try:

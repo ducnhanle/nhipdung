@@ -13,13 +13,13 @@ import threading
 import time
 import unicodedata
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFilter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import SAFE_ZONE_VERTICAL, hex_to_rgb, load_font, load_style_catalog  # noqa: E402
+from common import SAFE_ZONE_VERTICAL, font_manifest, hex_to_rgb, load_font, load_style_catalog  # noqa: E402
 
 REF_W, REF_H = 1080, 1920
 SIDE_MARGIN = 90
@@ -71,6 +71,10 @@ WEAK_WORDS = {
     "numa", "tipo", "cada", "esse", "essa", "este", "esta", "isso", "the",
 }
 WEAK_WORDS |= {"the", "a", "an", "of", "to", "in", "on", "and", "or", "for", "with", "at", "by"}
+# Vietnamese conjunctions, prepositions, classifiers, and tense or degree markers that lean on the next word.
+WEAK_WORDS |= {"và", "của", "là", "thì", "mà", "những", "các", "một", "mỗi", "cho", "với", "để", "ở", "trong", "trên",
+               "khi", "nếu", "nhưng", "hoặc", "vì", "rằng", "từ", "về", "đến", "tới", "cái", "chiếc", "đã", "đang",
+               "sẽ", "rất", "cũng"}
 
 
 
@@ -337,6 +341,53 @@ def sanitize_text(text: str, font_key: str) -> tuple[str, list[str]]:
     return clean.strip("\n"), removed
 
 
+def _font_fallback(font_key: str) -> str | None:
+    """The extended-coverage font fonts.json names as `font_key`'s "fallback", if any."""
+    manifest = font_manifest()
+    fallback = (manifest.get(font_key) or {}).get("fallback")
+    return fallback if fallback in manifest else None
+
+
+def _letters(texts) -> set[str]:
+    """Letters and combining marks of `texts`, as drawn (NFC) and upper-cased: they decide the typeface."""
+    out: set[str] = set()
+    for text in texts:
+        s = unicodedata.normalize("NFC", str(text or ""))
+        out.update(ch for ch in s + s.upper() if unicodedata.category(ch)[0] in "LM")
+    return out
+
+
+_OWN_GLYPHS: dict[tuple[str, str], bool] = {}
+_OWN_FONTS: dict[str, object] = {}
+_OWN_LOCK = threading.Lock()
+
+
+def _has_own_glyph(font_key: str, ch: str) -> bool:
+    """True when the font has a glyph of its own for `ch`, measured without text shaping. A shaper rebuilds a
+    missing letter from a base and marks, and can drop one: Figtree draws ễ as ẽ, losing the circumflex."""
+    key = (font_key, ch)
+    v = _OWN_GLYPHS.get(key)
+    if v is None:
+        with _OWN_LOCK:
+            f = _OWN_FONTS.get(font_key) or _OWN_FONTS.setdefault(font_key, load_font(font_key, 48, basic=True))
+            nd, m = f.getmask(_NOTDEF), f.getmask(ch)
+            v = not (m.size == nd.size and bytes(m) == bytes(nd) and abs(f.getlength(ch) - f.getlength(_NOTDEF)) < 0.01)
+        _OWN_GLYPHS[key] = v
+    return v
+
+
+def font_for_texts(font_key: str, texts) -> str:
+    """`font_key`, or its fonts.json "fallback" when `texts` contain letters this font has no glyph of its own for
+    and the fallback has (Vietnamese in Figtree, Caveat or Permanent Marker). One decision covers every text
+    given, so a caption track, a hook or a card keeps a single typeface instead of losing or misdrawing letters.
+    Symbols keep their look-alikes and emoji are still removed by sanitize_text."""
+    fallback = _font_fallback(font_key)
+    if not fallback:
+        return font_key
+    missing = [ch for ch in _letters(texts) if not _has_own_glyph(font_key, ch)]
+    return fallback if any(_has_own_glyph(fallback, ch) for ch in missing) else font_key
+
+
 # ---------------------------------------------------------------- *accent* markup
 
 def _markup_chars(text: str) -> tuple[list[tuple[str, bool]], bool, list[str]]:
@@ -509,11 +560,18 @@ def caption_style_ids() -> list[str]:
     return list(CAPTION_STYLES)
 
 
-def _caption_spec(style_id: str) -> CaptionStyle:
+def _caption_spec(style_id: str, font: str | None = None) -> CaptionStyle:
     spec = CAPTION_STYLES.get(style_id)
     if spec is None:
         raise ValueError(f"caption style '{style_id}' does not exist. Options: {', '.join(CAPTION_STYLES)}")
-    return spec
+    return replace(spec, font=font) if font and font != spec.font else spec
+
+
+def caption_font(style_id: str, texts) -> str:
+    """Font key a caption track of `style_id` draws `texts` with: the style's own font, or its extended-coverage
+    fallback when the texts need it (see font_for_texts). Pass it as `font=` to display_words and
+    measure_caption_width so grouping, measuring and rendering use one typeface."""
+    return font_for_texts(_caption_spec(style_id).font, texts)
 
 
 def caption_style_info(style_id: str) -> dict:
@@ -522,9 +580,10 @@ def caption_style_info(style_id: str) -> dict:
             "upper": s.upper, "one_word": s.one_word, "keep_punct": s.keep_punct}
 
 
-def display_words(words: list[str], style_id: str) -> list[str]:
-    """Words as a style shows them (casing + punctuation cleanup). Empty words are dropped."""
-    s = _caption_spec(style_id)
+def display_words(words: list[str], style_id: str, font: str | None = None) -> list[str]:
+    """Words as a style shows them (casing + punctuation cleanup). Empty words are dropped. `font` is the
+    track's font from caption_font (default: the style's own)."""
+    s = _caption_spec(style_id, font)
     out = []
     for w in words:
         t = _display_word(w, s)
@@ -561,11 +620,12 @@ def caption_width_limit(style_id: str, canvas=(REF_W, REF_H)) -> float:
 
 
 def measure_caption_width(words: list[str], style_id: str, canvas=(REF_W, REF_H),
-                          font_scale: float = 1.0, already_display: bool = False) -> float:
-    """Single-line width in px of `words` at the style's base size (before any shrink-to-fit)."""
-    spec = _caption_spec(style_id)
+                          font_scale: float = 1.0, already_display: bool = False, font: str | None = None) -> float:
+    """Single-line width in px of `words` at the style's base size (before any shrink-to-fit). `font` is the
+    track's font from caption_font (default: the style's own)."""
+    spec = _caption_spec(style_id, font)
     geo = _Geo(*canvas)
-    disp = words if already_display else display_words(words, style_id)
+    disp = words if already_display else display_words(words, style_id, font)
     size = spec.size * geo.k * font_scale
     return _line_width(_font(spec.font, size), disp, size, spec)
 
@@ -1114,11 +1174,11 @@ def render_caption_track(cues: dict, style_id: str, accent: str, out_dir: str,
     content hash, so re-running with the same input reuses the files; their boxes are kept in
     `bboxes.json` next to them). Default center: layout_defaults(canvas)["caption"].
     """
-    spec = _caption_spec(style_id)
+    cue_list = cues.get("cues", []) if isinstance(cues, dict) else list(cues)
+    spec = _caption_spec(style_id, caption_font(style_id, _cue_texts(cue_list)))
     geo = _Geo(int(canvas[0]), int(canvas[1]))
     out = Path(out_dir).resolve()
     out.mkdir(parents=True, exist_ok=True)
-    cue_list = cues.get("cues", []) if isinstance(cues, dict) else list(cues)
     boundaries = sorted(float(b) for b in (cues.get("cut_boundaries") or [])) if isinstance(cues, dict) else []
     default_cy = layout_defaults((geo.w, geo.h))["caption"]
     hex_accent = accent or DEFAULT_ACCENT
@@ -1138,7 +1198,7 @@ def render_caption_track(cues: dict, style_id: str, accent: str, out_dir: str,
     jobs: dict[str, tuple] = {}
     entries = []
     for f0, f1, words, active, variant, anim, cy in merged:
-        key_src = repr((_SRC_HASH, style_id, hex_accent.upper(), geo.w, geo.h, round(font_scale, 4),
+        key_src = repr((_SRC_HASH, style_id, spec.font, hex_accent.upper(), geo.w, geo.h, round(font_scale, 4),
                         words, active, variant, anim, round(cy, 1)))
         name = "cap_" + hashlib.sha1(key_src.encode("utf-8")).hexdigest()[:16] + ".png"
         path = out / name
@@ -1188,8 +1248,20 @@ def ink_bbox(img: Image.Image) -> tuple[int, int, int, int] | None:
     return img.getchannel("A").point(INK_LUT).getbbox()
 
 
-_REACH_ABOVE = set("ÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÑbdfhklt")
-_REACH_BELOW = set("ÇQJgjpqyç,;")
+def _marked(ccc: int, minimum: int = 1) -> set[str]:
+    """Latin letters carrying at least `minimum` combining marks of class `ccc` (230 above, 220 below)."""
+    return {ch for ch in map(chr, range(0x00C0, 0x1F00))
+            if sum(1 for m in unicodedata.normalize("NFD", ch)[1:] if unicodedata.combining(m) == ccc) >= minimum}
+
+
+_REACH_ABOVE = set("ÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÑbdfhklt") | _marked(230)
+_REACH_BELOW = set("ÇQJgjpqyç,;") | _marked(220)
+# Stacked marks (Vietnamese ẤẦẨẪẮẰẲẴẾỀỂỄỐỒỔỖ...) reach higher than one accent, so they get their own sample.
+_REACH_STACKED = _marked(230, 2)
+
+
+def _cue_texts(cue_list: list[dict]) -> list[str]:
+    return [w["text"] for cue in cue_list for w in _cue_words(cue)]
 
 
 def caption_extent(cues: dict | list, style_id: str, canvas=(1080, 1920), font_scale: float = 1.0,
@@ -1200,22 +1272,22 @@ def caption_extent(cues: dict | list, style_id: str, canvas=(1080, 1920), font_s
     with a cedilla or descender), times the biggest entrance scale and slide of the style, so a
     track can be placed before it is rendered. Empty cues: a sample phrase with accents.
     """
-    spec = _caption_spec(style_id)
-    geo = _Geo(int(canvas[0]), int(canvas[1]))
     cue_list = cues.get("cues", []) if isinstance(cues, dict) else list(cues or [])
+    spec = _caption_spec(style_id, caption_font(style_id, _cue_texts(cue_list)))
+    geo = _Geo(int(canvas[0]), int(canvas[1]))
     groups: list[list[str]] = []
     for cue in cue_list:
-        words = display_words([w["text"] for w in _cue_words(cue)], style_id)
+        words = display_words([w["text"] for w in _cue_words(cue)], style_id, spec.font)
         groups += [[w] for w in words] if spec.one_word else ([words] if words else [])
     if not groups:
-        groups = [display_words(["ÉÇ", "SÓ"], style_id)]
+        groups = [display_words(["ÉÇ", "SÓ"], style_id, spec.font)]
     picks: dict[tuple, list[str]] = {}
     widest, best = groups[0], -1.0
     for g in groups:
         chars = set("".join(g))
-        sig = (bool(chars & _REACH_ABOVE), bool(chars & _REACH_BELOW))
+        sig = (bool(chars & _REACH_ABOVE), bool(chars & _REACH_BELOW), bool(chars & _REACH_STACKED))
         picks.setdefault(sig, g)
-        width = measure_caption_width(g, style_id, canvas, font_scale, already_display=True)
+        width = measure_caption_width(g, style_id, canvas, font_scale, already_display=True, font=spec.font)
         if width > best:
             best, widest = width, g
     picks[("widest",)] = widest
@@ -1353,11 +1425,11 @@ def text_issues(kind: str, text: str, style_id: str | None = None) -> list[str]:
     if kind == "hook":
         if style_id not in HOOK_STYLES:
             raise ValueError(f"hook style '{style_id}' does not exist. Options: {', '.join(HOOK_STYLES)}")
-        font_key = HOOK_STYLES[style_id]["font"]
+        font_key = _hook_style(style_id, text)["font"]
     elif kind == "caption":
-        font_key = _caption_spec(str(style_id)).font
+        font_key = caption_font(str(style_id), [text])
     else:
-        font_key = _TEXT_FONTS[kind]
+        font_key = font_for_texts(_TEXT_FONTS[kind], [text])
     issues = []
     if kind == "hook":
         chars, _, problems = _markup_chars(text)
@@ -1387,6 +1459,13 @@ HOOK_STYLES: dict[str, dict] = {
 
 def hook_style_ids() -> list[str]:
     return list(HOOK_STYLES)
+
+
+def _hook_style(style_id: str, text: str) -> dict:
+    """The hook style with the font that draws `text` (its own, or the extended-coverage fallback)."""
+    st = HOOK_STYLES[style_id]
+    font = font_for_texts(st["font"], [text])
+    return st if font == st["font"] else dict(st, font=font)
 
 
 def _hook_lines(toks: list[_Tok], font_key: str, content_w: float, max_size: float, min_size: float,
@@ -1470,8 +1549,8 @@ def _tok_width(f, toks) -> float:
     return sum(f.getlength(t.text) for t in toks) + f.getlength(" ") * (len(toks) - 1)
 
 
-def _hook_manchete(toks, marked, accent, geo, max_width):
-    st = HOOK_STYLES["headline"]
+def _hook_manchete(toks, marked, accent, geo, max_width, st=None):
+    st = st or HOOK_STYLES["headline"]
     k = geo.k
     side = st["side"]
     lines, size = _hook_lines(toks, st["font"], max_width, st["max"] * k, st["min"] * k, side)
@@ -1497,8 +1576,8 @@ def _hook_manchete(toks, marked, accent, geo, max_width):
     return out, pad + block_w / 2.0, pad + block_h / 2.0, block_h / 2.0 + stroke + size * 0.3
 
 
-def _hook_banner(toks, marked, accent, geo, max_width):
-    st = HOOK_STYLES["banner"]
+def _hook_banner(toks, marked, accent, geo, max_width, st=None):
+    st = st or HOOK_STYLES["banner"]
     k = geo.k
     side = st["side"]
     lines, size = _hook_lines(toks, st["font"], max_width, st["max"] * k, st["min"] * k, side)
@@ -1540,8 +1619,8 @@ def _hook_banner(toks, marked, accent, geo, max_width):
     return rot, rax + dx, ray + dy, half
 
 
-def _hook_balao(toks, marked, accent, geo, max_width):
-    st = HOOK_STYLES["bubble"]
+def _hook_balao(toks, marked, accent, geo, max_width, st=None):
+    st = st or HOOK_STYLES["bubble"]
     k = geo.k
     side = st["side"]
     lines, size = _hook_lines(toks, st["font"], max_width, st["max"] * k, st["min"] * k, side)
@@ -1587,8 +1666,8 @@ def _hook_balao(toks, marked, accent, geo, max_width):
     return layer, x0 + card_w / 2.0, y0 + card_h / 2.0, card_h / 2.0 + tail
 
 
-def _hook_marker(toks, marked, accent, geo, max_width):
-    st = HOOK_STYLES["marker"]
+def _hook_marker(toks, marked, accent, geo, max_width, st=None):
+    st = st or HOOK_STYLES["marker"]
     k = geo.k
     side = st["side"]
     lines, size = _hook_lines(toks, st["font"], max_width, st["max"] * k, st["min"] * k, side)
@@ -1628,8 +1707,8 @@ def _hook_marker(toks, marked, accent, geo, max_width):
     return rot, rax + dx, ray + dy, block_h / 2.0 + abs(math.sin(math.radians(angle))) * block_w / 2.0
 
 
-def _hook_vidro(toks, marked, accent, geo, max_width):
-    st = HOOK_STYLES["glass"]
+def _hook_vidro(toks, marked, accent, geo, max_width, st=None):
+    st = st or HOOK_STYLES["glass"]
     k = geo.k
     side = st["side"]
     lines, size = _hook_lines(toks, st["font"], max_width, st["max"] * k, st["min"] * k, side)
@@ -1678,7 +1757,7 @@ def hook_fit(text: str, style_id: str, canvas=(1080, 1920), max_width: int = 900
     """
     if style_id not in HOOK_STYLES:
         raise ValueError(f"hook style '{style_id}' does not exist. Options: {', '.join(HOOK_STYLES)}")
-    st = HOOK_STYLES[style_id]
+    st = _hook_style(style_id, text)
     geo = _Geo(int(canvas[0]), int(canvas[1]))
     width = min(float(max_width), geo.w - 2 * SIDE_MARGIN * geo.sx)
     toks, _ = _parse_marked(text, st["upper"], st["font"])
@@ -1696,10 +1775,11 @@ def render_hook(text: str, style_id: str, accent: str, canvas=(1080, 1920), cent
         raise ValueError(f"hook style '{style_id}' does not exist. Options: {', '.join(HOOK_STYLES)}")
     geo = _Geo(int(canvas[0]), int(canvas[1]))
     max_width = min(float(max_width), geo.w - 2 * SIDE_MARGIN * geo.sx)
-    toks, marked = _parse_marked(text, HOOK_STYLES[style_id]["upper"], HOOK_STYLES[style_id]["font"])
+    st = _hook_style(style_id, text)
+    toks, marked = _parse_marked(text, st["upper"], st["font"])
     if not toks:
         return Image.new("RGBA", (geo.w, geo.h), (0, 0, 0, 0))
-    layer, ax, ay, half = _HOOK_DRAWERS[style_id](toks, marked, accent or DEFAULT_ACCENT, geo, max_width)
+    layer, ax, ay, half = _HOOK_DRAWERS[style_id](toks, marked, accent or DEFAULT_ACCENT, geo, max_width, st)
     return _place((geo.w, geo.h), _Block(layer, ax, ay, half), geo.cx, float(center_y), {}, geo)
 
 
@@ -1715,21 +1795,23 @@ def render_cta(text: str, sub: str | None, accent: str, canvas=(1080, 1920),
     k = geo.k
     acc = _rgba(accent or DEFAULT_ACCENT)
     on = _on_color(acc)
-    label, _ = sanitize_text(strip_markup(str(text or "").strip())[0].upper(), _TEXT_FONTS["cta"])
+    label_font = font_for_texts(_TEXT_FONTS["cta"], [text])
+    sub_font = font_for_texts(_TEXT_FONTS["cta_sub"], [sub or ""])
+    label, _ = sanitize_text(strip_markup(str(text or "").strip())[0].upper(), label_font)
     label = " ".join(label.split())
     if sub is not None:
-        sub = " ".join(sanitize_text(strip_markup(str(sub))[0], _TEXT_FONTS["cta_sub"])[0].split())
+        sub = " ".join(sanitize_text(strip_markup(str(sub))[0], sub_font)[0].split())
     max_w = min(860 * geo.sx, geo.w - 2 * SIDE_MARGIN * geo.sx)
     size = 66 * k
     for _ in range(6):
-        f = _font("sans_black", size)
+        f = _font(label_font, size)
         h = size * 2.05
         icon = h * 0.64
         w = f.getlength(label) + size * 1.1 + icon + size * 0.5
         if w <= max_w or size <= 30 * k:
             break
         size = math.floor(size * max_w / w * 0.99)
-    f = _font("sans_black", size)
+    f = _font(label_font, size)
     cap = _cap_height(f)
     h = size * 2.05
     icon = h * 0.64
@@ -1764,11 +1846,11 @@ def render_cta(text: str, sub: str | None, accent: str, canvas=(1080, 1920),
         s_size = 42 * k
         s_text = str(sub).strip()
         for _ in range(4):
-            sf = _font("text_bold", s_size)
+            sf = _font(sub_font, s_size)
             if sf.getlength(s_text) <= max_w or s_size <= 24 * k:
                 break
             s_size = math.floor(s_size * max_w / sf.getlength(s_text) * 0.99)
-        sf = _font("text_bold", s_size)
+        sf = _font(sub_font, s_size)
         s_cap = _cap_height(sf)
         stroke = max(1, int(round(s_size * 0.06)))
         sw = sf.getlength(s_text)
@@ -1790,7 +1872,8 @@ def render_disclaimer(text: str, canvas=(1080, 1920), center_y: float | None = N
     Default center y: layout_defaults(canvas)["disclaimer"] (1548 on 1080x1920)."""
     geo = _Geo(int(canvas[0]), int(canvas[1]))
     k = geo.k
-    msg = " ".join(sanitize_text(strip_markup(str(text or ""))[0], _TEXT_FONTS["disclaimer"])[0].split())
+    font_key = font_for_texts(_TEXT_FONTS["disclaimer"], [text])
+    msg = " ".join(sanitize_text(strip_markup(str(text or ""))[0], font_key)[0].split())
     if center_y is None:
         center_y = layout_defaults((geo.w, geo.h))["disclaimer"]
     img = Image.new("RGBA", (geo.w, geo.h), (0, 0, 0, 0))
@@ -1801,7 +1884,7 @@ def render_disclaimer(text: str, canvas=(1080, 1920), center_y: float | None = N
     padx, pady = size * 0.7, size * 0.36
     words = msg.split()
     for _ in range(6):
-        f = _font("text_semibold", size)
+        f = _font(font_key, size)
         one_w = f.getlength(msg)
         if one_w + 2 * padx <= max_w:
             lines = [words]
@@ -1812,7 +1895,7 @@ def render_disclaimer(text: str, canvas=(1080, 1920), center_y: float | None = N
             break
         size = math.floor(size * (max_w - 2 * padx) / widest * 0.99)
         padx, pady = size * 0.7, size * 0.36
-    f = _font("text_semibold", size)
+    f = _font(font_key, size)
     asc, desc = f.getmetrics()
     pitch = size * 1.25
     widths = [f.getlength(" ".join(ln)) for ln in lines]
@@ -1844,19 +1927,20 @@ def cover_image(img: Image.Image, size: tuple[int, int]) -> Image.Image:
 
 def sample_caption_words(text: str, style_id: str) -> tuple[list[str], int]:
     """Words shown in a caption sample and which one is active."""
-    spec = _caption_spec(style_id)
-    words = display_words(str(text).split(), style_id)
+    font = caption_font(style_id, [text])
+    spec = _caption_spec(style_id, font)
+    words = display_words(str(text).split(), style_id, font)
     if not words:
-        words = display_words('Take a look at this'.split(), style_id)
+        words = display_words('Take a look at this'.split(), style_id, font)
     limit = _Geo(REF_W, REF_H).caption_max_w
     chosen: list[str] = []
     for w in words:
         if len(chosen) >= spec.max_words:
             break
         trial = chosen + [w]
-        if chosen and spec.lines == 1 and measure_caption_width(trial, style_id, already_display=True) > limit:
+        if chosen and spec.lines == 1 and measure_caption_width(trial, style_id, already_display=True, font=font) > limit:
             break
-        if chosen and spec.lines >= 2 and measure_caption_width(trial, style_id, already_display=True) > limit * spec.lines * 0.92:
+        if chosen and spec.lines >= 2 and measure_caption_width(trial, style_id, already_display=True, font=font) > limit * spec.lines * 0.92:
             break
         chosen.append(w)
     active = -1 if not spec.animated else (0 if spec.one_word else min(1, len(chosen) - 1))
@@ -1866,7 +1950,7 @@ def sample_caption_words(text: str, style_id: str) -> tuple[list[str], int]:
 def render_caption_image(words: list[str], style_id: str, accent: str, canvas=(1080, 1920),
                          active: int = 0, center_y: float | None = None, font_scale: float = 1.0) -> Image.Image:
     """One steady caption state (display words already cased) on a transparent canvas."""
-    spec = _caption_spec(style_id)
+    spec = _caption_spec(style_id, caption_font(style_id, words))
     geo = _Geo(int(canvas[0]), int(canvas[1]))
     cy = layout_defaults((geo.w, geo.h))["caption"] if center_y is None else center_y
     variant = {"angle": -2.6} if spec.draw == "tape" else {}
@@ -1993,8 +2077,9 @@ def main(argv: list[str] | None = None) -> int:
             if fit["too_long"]:
                 print(f"notice: the hook is long and required small lettering ({fit['size']}px, ideal from {fit['min_size']}px). Shorten the text.")
         elif args.cmd == "caption":
-            spec = _caption_spec(args.style)
-            words = display_words(args.text.split(), args.style)
+            font = caption_font(args.style, [args.text])
+            spec = _caption_spec(args.style, font)
+            words = display_words(args.text.split(), args.style, font)
             active = -1 if not spec.animated else max(-1, min(args.active, len(words) - 1))
             _save_with_bg(render_caption_image(words, args.style, args.accent, canvas, active=active), args.output, args.bg)
         elif args.cmd == "cta":

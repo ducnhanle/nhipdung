@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { REPOSITORY_URL } from '../src/lib/links';
 
 test('installation steps show literal commands that copy', async ({ page, context }) => {
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
@@ -16,7 +17,7 @@ test('the installation request copies in the visitor language', async ({ page, c
   await page.goto('/es/instalacion');
   await page.getByRole('button', { name: 'Copiar pedido de instalación' }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Pedido de instalación copiado.' })).toBeVisible();
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(/^Instala o actualiza la skill editonny para Codex y Claude Code desde https:\/\/github\.com\/soumatheusgomes\/editonny\. /);
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(new RegExp(`^Instala o actualiza la skill editonny para Codex y Claude Code desde ${REPOSITORY_URL.replace(/[.]/g, '\\.')}\\. `));
 });
 
 test('the FAQ opens one answer at a time', async ({ page }) => {
