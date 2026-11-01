@@ -74,6 +74,8 @@ const TYPE = {
     regular: metrics('web/src/app/fonts/figtree-600-latin.ttf'),
     em: { caveat: 0.42, marker: 0.58 },
     leading: 1,
+    capsLeading: 1,
+    room: { above: 0, below: 0 },
   },
   vietnamese: {
     fonts: {
@@ -86,23 +88,41 @@ const TYPE = {
     bold: metrics('web/src/app/fonts/plus-jakarta-sans-800-latin-vietnamese.ttf'),
     regular: metrics('web/src/app/fonts/plus-jakarta-sans-600-latin-vietnamese.ttf'),
     em: { caveat: 0.48, marker: 0.45 },
-    // Marks above and below Vietnamese letters (ạ over the next line's i) collide at the hero's tight leading.
+    // Marks above and below Vietnamese letters (ạ over the next line's i) collide at the tight display leadings.
     leading: 1.1,
+    // Capitals stack two marks (Ẳ is 1.21 em tall in Anton): at 1.1 its hook sat under the previous line's U.
+    capsLeading: 1.18,
+    // Stacked marks reach 0.87 em above the baseline and dots below 0.24 em under it in Plus Jakarta Sans 800, past
+    // the highlight boxes drawn for Latin text (0.84-0.86 em up, 0.20 em down), where ink text on the dark card vanishes.
+    room: { above: 0.08, below: 0.07 },
   },
 };
 let type = TYPE.latin;
 
 /** Runs `draw` with the faces and metrics of `locale`; the generator draws one banner at a time. */
 export function typeset(locale, draw) {
+  const previous = type;
   type = locale === 'vi' ? TYPE.vietnamese : TYPE.latin;
-  try { return draw(); } finally { type = TYPE.latin; }
+  try { return draw(); } finally { type = previous; }
 }
 
 /** Average advance per character, in ems, of the face drawing a caption role ('caveat' or 'marker'). */
 export const advanceEm = role => type.em[role];
 
-/** A tight display line step, in ems, widened where the script's marks need the room. */
-export const lineStep = em => em * type.leading;
+/** A tight display line step (in ems or pixels), widened where the script's marks need the room. */
+export const lineStep = step => step * type.leading;
+
+/** The same for uppercase display lines, where the script stacks marks on capitals. */
+export const capsStep = step => step * type.capsLeading;
+
+/**
+ * Highlight box behind text on `baseline`: `top` and `height` are the ems that fit Latin text, grown where the
+ * script's marks reach further, so ink text never spills onto the dark card.
+ */
+export const highlightBox = (baseline, size, top, height) => ({
+  y: baseline - size * (top + type.room.above),
+  height: size * (height + type.room.above + type.room.below),
+});
 
 const anton = metrics('skills/nhipdung/engine/assets/fonts/anton/Anton-Regular.ttf');
 /** Text width in pixels. Weights below 700 use the 600 instance, a slight overestimate for regular text. */
@@ -191,12 +211,13 @@ export function heading({ x, y, index, eyebrow, titleA, highlight, size = 64, wi
   const inline = !a || wa + 22 + wh + 28 <= width;
   const base = y + 48 + size * 0.86;
   const hx = inline && a ? x + wa + 22 : x;
-  const hy = inline ? base : base + size * 1.1;
+  const hy = inline ? base : base + size * lineStep(1.1);
+  const box = highlightBox(hy, size, 0.86, 1.06);
   const parts = [];
   if (index) parts.push(`<rect x="${x}" y="${y}" width="28" height="20" rx="5" class="or"/><text x="${x + 14}" y="${y + 14.5}" text-anchor="middle" class="mono ink" font-size="11" style="letter-spacing:0">${index}</text>`);
   parts.push(`<text x="${x + (index ? 40 : 0)}" y="${y + 15}" class="mono dim" font-size="12">${esc(eyebrow.toUpperCase())}</text>`);
   if (a) parts.push(`<text x="${x}" y="${base}" font-size="${size}" font-weight="800" letter-spacing="${tracking}em">${esc(a)}</text>`);
-  parts.push(`<rect x="${hx - 10}" y="${hy - size * 0.86}" width="${wh + 22}" height="${size * 1.06}" rx="${size * 0.14}" fill="${tone}" class="hl"/>`);
+  parts.push(`<rect x="${hx - 10}" y="${box.y}" width="${wh + 22}" height="${box.height}" rx="${size * 0.14}" fill="${tone}" class="hl"/>`);
   parts.push(`<text x="${hx + 1}" y="${hy}" font-size="${size}" font-weight="800" letter-spacing="${tracking}em" class="ink">${esc(highlight)}</text>`);
   return { markup: parts.join('\n'), bottom: hy + size * 0.3 };
 }

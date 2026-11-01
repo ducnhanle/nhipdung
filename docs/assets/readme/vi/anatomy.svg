@@ -35,25 +35,25 @@ text{font-family:Figtree,system-ui,sans-serif;fill:#fafafa}
 <rect x="680" y="70" width="28" height="20" rx="5" class="or"/><text x="694" y="84.5" text-anchor="middle" class="mono ink" font-size="11" style="letter-spacing:0">01</text>
 <text x="720" y="85" class="mono dim" font-size="12">GIẢI PHẪU MỘT BẢN DỰNG</text>
 <text x="680" y="166.16" font-size="56" font-weight="800" letter-spacing="-0.05em">Mỗi yêu cầu là</text>
-<rect x="670" y="179.6" width="236.08800000000002" height="59.36" rx="7.840000000000001" fill="#ff4f12" class="hl"/>
-<text x="681" y="227.76" font-size="56" font-weight="800" letter-spacing="-0.05em" class="ink">một lớp.</text><text x="680" y="284.56" font-size="17" font-weight="500" class="dim">Tách bản dựng ra để xem từng phần của yêu cầu làm gì. Ghép lại,</text>
-<text x="680" y="310.06" font-size="17" font-weight="500" class="dim">chúng trở thành video.</text><line x1="680" x2="1216" y1="354.06" y2="354.06" stroke="#212126"/>
-<text x="680" y="406.06" class="k num" font-size="40" style="animation-delay:0s">01</text>
-<text x="744" y="388.06" font-size="19" font-weight="700">Video thô</text>
-<text x="744" y="414.06" font-size="14" font-weight="500" class="dim">Tư liệu đúng như lúc ghi hình: các lần quay, tiếng thở, khoảng lặng và</text>
-<text x="744" y="435.06" font-size="14" font-weight="500" class="dim">chỗ lặp lại.</text>
-<line x1="680" x2="1216" y1="446.06" y2="446.06" stroke="#212126"/>
-<text x="680" y="498.06" class="k num" font-size="40" style="animation-delay:2s">02</text>
-<text x="744" y="480.06" font-size="19" font-weight="700">Cắt</text>
-<text x="744" y="506.06" font-size="14" font-weight="500" class="dim">Điểm đánh dấu xác định phần cần bỏ. Các đoạn xích lại gần nhau và</text>
-<text x="744" y="527.06" font-size="14" font-weight="500" class="dim">nhịp điệu hiện ra.</text>
-<line x1="680" x2="1216" y1="538.06" y2="538.06" stroke="#212126"/>
-<text x="680" y="590.06" class="k num" font-size="40" style="animation-delay:4s">03</text>
-<text x="744" y="572.06" font-size="19" font-weight="700">Phụ đề</text>
-<text x="744" y="598.06" font-size="14" font-weight="500" class="dim">Chữ chạy theo lời nói từng từ một, làm nổi bật điều quan trọng.</text>
-<line x1="680" x2="1216" y1="630.06" y2="630.06" stroke="#212126"/>
-<text x="680" y="682.06" class="k num" font-size="40" style="animation-delay:6s">04</text>
-<text x="744" y="664.06" font-size="19" font-weight="700">Chuyển động</text>
-<text x="744" y="690.06" font-size="14" font-weight="500" class="dim">Một đoạn lời nói trở thành cảnh: danh sách, so sánh, con số hoặc sơ</text>
-<text x="744" y="711.06" font-size="14" font-weight="500" class="dim">đồ.</text>
+<rect x="670" y="181.28000000000003" width="236.08800000000002" height="67.76" rx="7.840000000000001" fill="#ff4f12" class="hl"/>
+<text x="681" y="233.92000000000002" font-size="56" font-weight="800" letter-spacing="-0.05em" class="ink">một lớp.</text><text x="680" y="290.72" font-size="17" font-weight="500" class="dim">Tách bản dựng ra để xem từng phần của yêu cầu làm gì. Ghép lại,</text>
+<text x="680" y="316.22" font-size="17" font-weight="500" class="dim">chúng trở thành video.</text><line x1="680" x2="1216" y1="360.22" y2="360.22" stroke="#212126"/>
+<text x="680" y="412.22" class="k num" font-size="40" style="animation-delay:0s">01</text>
+<text x="744" y="394.22" font-size="19" font-weight="700">Video thô</text>
+<text x="744" y="420.22" font-size="14" font-weight="500" class="dim">Tư liệu đúng như lúc ghi hình: các lần quay, tiếng thở, khoảng lặng và</text>
+<text x="744" y="441.22" font-size="14" font-weight="500" class="dim">chỗ lặp lại.</text>
+<line x1="680" x2="1216" y1="452.22" y2="452.22" stroke="#212126"/>
+<text x="680" y="504.22" class="k num" font-size="40" style="animation-delay:2s">02</text>
+<text x="744" y="486.22" font-size="19" font-weight="700">Cắt</text>
+<text x="744" y="512.22" font-size="14" font-weight="500" class="dim">Điểm đánh dấu xác định phần cần bỏ. Các đoạn xích lại gần nhau và</text>
+<text x="744" y="533.22" font-size="14" font-weight="500" class="dim">nhịp điệu hiện ra.</text>
+<line x1="680" x2="1216" y1="544.22" y2="544.22" stroke="#212126"/>
+<text x="680" y="596.22" class="k num" font-size="40" style="animation-delay:4s">03</text>
+<text x="744" y="578.22" font-size="19" font-weight="700">Phụ đề</text>
+<text x="744" y="604.22" font-size="14" font-weight="500" class="dim">Chữ chạy theo lời nói từng từ một, làm nổi bật điều quan trọng.</text>
+<line x1="680" x2="1216" y1="636.22" y2="636.22" stroke="#212126"/>
+<text x="680" y="688.22" class="k num" font-size="40" style="animation-delay:6s">04</text>
+<text x="744" y="670.22" font-size="19" font-weight="700">Chuyển động</text>
+<text x="744" y="696.22" font-size="14" font-weight="500" class="dim">Một đoạn lời nói trở thành cảnh: danh sách, so sánh, con số hoặc sơ</text>
+<text x="744" y="717.22" font-size="14" font-weight="500" class="dim">đồ.</text>
 </svg>

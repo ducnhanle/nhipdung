@@ -3,7 +3,7 @@
 <a id="top"></a>
 
 <p align="center">
-  <a href="#cai-dat"><img src="docs/assets/readme/vi/hero.svg" alt="nhipdung: Bạn yêu cầu. Video thêm nhịp nhàng. Một bàn dựng hoạt hình cắt khoảng lặng, thêm phụ đề và áp dụng một cảnh chuyển động ba bước trong khi đầu phát chạy qua các track video, giọng nói, phụ đề và đồ họa." width="100%" /></a>
+  <a href="#cai-dat"><img src="docs/assets/readme/vi/hero.svg" alt="nhipdung: Bạn yêu cầu. Video thêm nhịp nhàng. Một bàn dựng dạng hoạt ảnh cắt khoảng lặng, thêm phụ đề và áp dụng một cảnh chuyển động ba bước trong khi đầu phát chạy qua các track video, giọng nói, phụ đề và đồ họa." width="100%" /></a>
 </p>
 
 <h1 align="center">nhipdung</h1>
@@ -86,8 +86,8 @@ Verify an 8–15 second sample before finishing the export.
 
 1. Chọn một mục tiêu trong trang hướng dẫn, chỉ định thư mục video gốc và sao chép yêu cầu (bằng ngôn ngữ của trang hướng dẫn) sang agent.
 2. Skill kiểm tra các tệp nguồn đã chọn, đề xuất mọi thiết lập dựng và **chờ bạn xác nhận**, kể cả khi yêu cầu đã rất chi tiết. Mặc định giữ nguyên hình ảnh, kích thước khung và FPS gốc; bộ lọc màu và chuyển đổi màu không bao giờ được tự động áp dụng.
-3. Sau khi bạn đồng ý, mọi thứ nằm trong **Downloads/nhipdung/ngày-tiêu-đề/**: video hoàn chỉnh ở **exports/**, tệp dựng ở **project/**. Hãy duyệt một đoạn mẫu **8–15 giây**; chọn để chính bạn duyệt nếu muốn agent chờ cả ở bước sau này.
-4. Một quy trình render được hỗ trợ sẽ xuất các tệp MP4/phụ đề có tên riêng, kèm manifest xác minh tương ứng. Quy trình màu hoặc thời gian không được hỗ trợ sẽ bị chặn kèm giải thích rõ ràng; khi chạy từ xa, agent phải xác định một nơi lưu mà bạn truy cập được.
+3. Sau khi bạn đồng ý, mọi thứ nằm trong **Downloads/nhipdung/ngày-tiêu-đề/**: video hoàn chỉnh ở **exports/**, tệp dựng ở **project/**. Hãy duyệt một đoạn mẫu **8–15 giây**; chọn tự duyệt nếu muốn agent chờ bạn cả ở bước này.
+4. Một quy trình render được hỗ trợ sẽ xuất các tệp MP4/phụ đề có tên không trùng lặp, kèm manifest xác minh tương ứng. Quy trình màu hoặc thời gian không được hỗ trợ sẽ bị chặn kèm giải thích rõ ràng; khi chạy từ xa, agent phải xác định một nơi lưu mà bạn truy cập được.
 
 Dọn dẹp tiêu chuẩn loại bỏ các khoảng lặng không cần thiết, tiếng thở nghe rõ, chỗ nói vấp, chỗ nói hụt và những chỗ lặp lại thừa, đồng thời giữ trọn từng từ, nhịp nói tự nhiên, các khoảng lặng có chủ đích và ý nghĩa. Các bản sửa có phạm vi hẹp chỉ thay đổi trong phạm vi được yêu cầu. Video gốc được giữ nguyên, và lời nói có thể giữ nguyên ngôn ngữ gốc.
 
@@ -138,11 +138,11 @@ Lệnh này khởi động máy chủ phát triển ở `http://localhost:4173` 
 
 | Đường dẫn | Vai trò |
 |---|---|
-| `skills/nhipdung/` | Skill di động duy nhất và CLI |
+| `skills/nhipdung/` | Skill duy nhất dùng chung cho mọi agent, kèm CLI |
 | `skills/nhipdung/engine/` | Xử lý cục bộ, bản xem trước và mẫu dự án tiếng Anh |
 | `skills/nhipdung/visuals/` | Cảnh, danh mục, media đi kèm và công thức |
 | `web/` | Trang hướng dẫn công khai: ứng dụng Next.js với trình soạn yêu cầu, danh mục, ví dụ và hướng dẫn cài đặt bằng bốn ngôn ngữ |
-| `DESIGN.md` | Quy chuẩn thiết kế và nguồn gốc của các design token |
+| `DESIGN.md` | Quy chuẩn thiết kế và nguồn chuẩn cho các design token |
 | `design-system/` | Thư viện component React, token, mẫu bản xem trước, showcase và HTML tham chiếu |
 | `docs/` | Tài liệu chuẩn (tiếng Anh) về kiến trúc, cài đặt, tích hợp và kiểm chứng |
 | `scripts/`, `tests/` | Đóng gói, hình minh họa README, kiểm tra render và kiểm thử hồi quy |
@@ -207,7 +207,7 @@ Lịch sử sao trực tiếp do [Star History](https://www.star-history.com/blo
 
 ## Tác giả và liên hệ
 
-Bản fork này do **ducnhanle** duy trì. Bản fork bổ sung hỗ trợ tiếng Việt, đồng thời được cài đặt và cập nhật từ chính kho mã của mình.
+Bản fork này do **ducnhanle** duy trì, bổ sung hỗ trợ tiếng Việt và được cài đặt, cập nhật từ chính kho mã của mình.
 
 - GitHub: [ducnhanle](https://github.com/ducnhanle) · [ducnhanle/nhipdung](https://github.com/ducnhanle/nhipdung)
 - Lỗi của bản fork này: [issues](https://github.com/ducnhanle/nhipdung/issues)

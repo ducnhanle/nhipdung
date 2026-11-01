@@ -25,17 +25,32 @@ Bạn yêu cầu tạo README tiếng Việt. Đã làm:
   - Dòng chọn ngôn ngữ ở cả 4 README đều có thêm "Tiếng Việt".
   - Gói plugin giờ kèm theo tệp này.
 - **11 banner động tiếng Việt** trong `docs/assets/readme/vi/`, tạo bằng `npm run readme:art` từ chữ của trang `/vi`.
-  - Banner nhúng đúng các font của trang `/vi`: Plus Jakarta Sans, Anton, Montserrat, Sriracha, Sedgwick Ave Display. Font Latin cũ (Figtree) thiếu 97 chữ tiếng Việt.
-  - Độ rộng chữ được đo bằng chính Plus Jakarta Sans, nên chữ không tràn khung.
+  - Banner nhúng đúng các font của trang `/vi`: Plus Jakarta Sans, Anton, Montserrat, Sriracha, Sedgwick Ave Display. Font Latin cũ (Figtree) thiếu 93 chữ cái tiếng Việt.
+  - Độ rộng chữ được đo bằng chính Plus Jakarta Sans, nên chữ được ngắt dòng và co cỡ theo đúng font.
   - Ô phụ đề viết tay dùng hệ số rộng của Sriracha. Nếu giữ hệ số của Caveat, chữ sẽ tràn ô.
   - Tiêu đề lớn ở banner đầu giãn dòng thêm 10%: ở bản đầu, dấu nặng của "Bạn" chạm vào chữ "i" của "Video".
-- **Sửa thêm một lỗi có sẵn ở cả 4 ngôn ngữ:** dòng chữ xanh dưới tên tác giả trong banner đầu tràn ra ngoài viền khung (khoảng 7 px ở bản tiếng Anh, 11 px ở bản tiếng Việt). Banner đầu của 3 ngôn ngữ kia chỉ đổi đúng độ rộng khung này.
+- **Sửa thêm một lỗi có sẵn ở cả 4 ngôn ngữ:** dòng chữ xanh dưới tên tác giả trong banner đầu tràn ra ngoài viền khung (khoảng 8 px ở bản tiếng Anh, 11 px ở bản tiếng Việt). Banner đầu của 3 ngôn ngữ kia chỉ đổi đúng độ rộng khung này.
 - Sửa câu "3 ngôn ngữ" thành "4 ngôn ngữ" trong README tiếng Bồ Đào Nha và Tây Ban Nha.
 
 Kiểm chứng:
 - `npm run check` đạt: 113 test Python, 22 test Node, 339 test Vitest.
 - Có test mới kiểm tra banner tiếng Việt nhúng font có đủ chữ tiếng Việt. Khi cố tình cho banner tiếng Việt dùng font Latin, test này báo lỗi.
 - Đã xem cả 11 banner trong Chromium, ở trạng thái cuối và khi nằm trong thẻ `<img>`. Khi bật chính sách bảo mật (CSP) giống raw.githubusercontent.com, ảnh hiển thị giống hệt từng điểm ảnh.
+
+Vòng rà soát độc lập (agent Claude Code, model Opus, chỉ đọc):
+- Tìm ra 1 lỗi quan trọng và 7 lỗi nhỏ. Tôi đã tái hiện và sửa hết.
+- **Lỗi quan trọng:** dấu tiếng Việt bị cắt ở mép các khung màu. Ví dụ: dấu nặng của "nhịp" và dấu hỏi của "Chỉ".
+  - Mực đen nằm ngoài khung màu bị chìm vào nền tối.
+  - Khung giờ cao hơn: 0,92 em phía trên dòng chữ, 0,27 em phía dưới.
+- **Các lỗi nhỏ đã sửa:**
+  - Tiêu đề thẻ Editor tiếng Việt tràn khung, nay được co cỡ vừa thẻ.
+  - Dòng trả lời chữ in hoa bị dính: móc của "Ẳ" nằm ngay dưới chữ "U", đọc thành "CÂỤ". Dòng chữ in hoa tiếng Việt nay giãn 18%.
+  - Terminal minh họa thiếu font Liberation Mono, nên trên Linux dấu bị lệch sang bên.
+  - Test font chỉ kiểm tra 3 trong 5 font, nay kiểm tra đủ 5.
+  - Hàm chọn font khi bị gọi lồng nhau thì đặt lại font Latin thay vì khôi phục font cũ.
+  - Một số câu trong tài liệu chưa đúng.
+  - Vài từ trong README tiếng Việt chưa tự nhiên, ví dụ "skill di động" và "nguồn gốc".
+- Banner tiếng Anh, Bồ Đào Nha và Tây Ban Nha chỉ đổi ở banner đầu (độ rộng khung tác giả) và banner cài đặt (danh sách font của terminal).
 
 Giới hạn:
 - Chưa xem trực tiếp trên GitHub, Safari, Firefox.

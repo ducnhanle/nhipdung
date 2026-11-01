@@ -5,7 +5,7 @@ text{font-family:Figtree,system-ui,sans-serif;fill:#fafafa}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;font-weight:600;letter-spacing:.16em}
 .k{font-family:Anton,Impact,sans-serif}
 .dim{fill:#a1a1aa}.faint{fill:#8b8b94}.ink{fill:#050506}.or{fill:#ff4f12}.vo{fill:#d4ff3a}
-.code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#e4e4e7}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;fill:#e4e4e7}
 @keyframes type{0%{transform:translateX(0)}2.1%,96%{transform:translateX(var(--w))}100%{transform:translateX(0)}}.type{transform:translateX(var(--w));animation:type 14s steps(24) infinite backwards}
 @keyframes say{0%{opacity:0;transform:translateY(8px)}3%,96%{opacity:1;transform:none}100%{opacity:0}}.say{animation:say 14s cubic-bezier(.2,.7,.2,1) infinite backwards}
 @keyframes blink{50%{opacity:0}}.caret{animation:blink 1s steps(1) infinite}

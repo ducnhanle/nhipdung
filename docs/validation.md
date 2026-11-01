@@ -343,9 +343,16 @@ Checks after the rename:
 - Latin + Vietnamese subsets of Plus Jakarta Sans, Anton, Montserrat, Sriracha, and Sedgwick Ave Display, declared under the Figtree, Anton, Montserrat, Caveat, and Permanent Marker roles.
 - Text in the Figtree role is measured with the static Plus Jakarta Sans instances.
 - The hand and marker caption tiles are sized from the faces' measured advances on the Vietnamese caption sample: Sriracha 0.474 em (0.48 used; Caveat's 0.42 would overflow the tile) and Sedgwick Ave Display 0.442 em (0.45 used).
-- The hero headline's line steps are 10% wider. In the first render the dot below "Bạn" touched the "i" of "Video" on the next line.
+- Tight display line steps are 10% wider, and uppercase ones 18% wider. In the first render the dot below "Bạn" touched the "i" of "Video" on the next line. At 10%, the hook of the Anton "Ẳ" still sat under the "U" of the line above and read as "CÂỤ".
+- Highlight boxes reach 0.92 em above and 0.27 em below the baseline, instead of 0.84–0.86 and 0.20 em. Stacked marks reach 0.87 em and dots below 0.24 em in Plus Jakarta Sans 800, and ink text outside a box vanishes on the dark card.
+- Titles of the Editor and Motion cards are fitted to the card width. The Vietnamese Editor title measured 524.5 px against 492 px at 32 px; it is drawn at 30 px. The other locales' titles fit at 32 px.
 
-The hero's creator chip in every locale now sizes its monospace status line with the `.mono` tracking. Before, the status overflowed the pill's rounded end by about 7 px in English and 11 px in Vietnamese. The English, Portuguese, and Spanish hero banners changed only in that rect's width; their other 30 banners are byte-identical.
+Two fixes apply to every locale:
+
+- The hero's creator chip now sizes its monospace status line with the `.mono` tracking. Before, the status overflowed the pill's rounded end by about 8 px in English and 11 px in Vietnamese.
+- The install terminal's text uses the shared monospace stack, which includes Liberation Mono. Without it, Chromium on Linux drew the Vietnamese request in DejaVu Sans Mono, which lacks 15 precomposed letters such as ề and ố, so their marks sat beside the base letter.
+
+In the English, Portuguese, and Spanish banners, only the chip's rect width and the terminal's font list changed. Their other 27 banners are byte-identical to the previous generator's output.
 
 Checks:
 
@@ -354,7 +361,7 @@ Checks:
   - A new Node test asserts that each locale's banners embed faces that draw its letters. A mutation that drew Vietnamese banners with the Latin faces failed it.
   - The leftover-text check now ignores base64 payloads. "NaN" occurs by chance inside the Plus Jakarta Sans subset; a `NaN` placed in the markup is still caught.
 - `tests/test_package.py` failed before `README.vi.md` joined the plugin scope and passes after.
-- With fontTools 4.60.1, the Vietnamese faces cover every character of `web/messages/vi.json` and its uppercase except ⌘ ▶ ✓ ✦, which the banners do not draw. The Latin Figtree subset lacks 97 of those characters.
+- With fontTools 4.60.1, the Vietnamese faces cover every character of `web/messages/vi.json` and its uppercase except ⌘ ▶ ✓ ✦. Of these, the banners draw only ✦, in the hero's motion chip; it falls back to a system font in every locale. The Latin Figtree subset lacks 97 of those characters: 93 Vietnamese letters and the 4 symbols.
 - In Chromium (Playwright), the 11 Vietnamese banners were inspected in their resting state and inside `<img>`.
   - Served with raw.githubusercontent.com's CSP (`default-src 'none'; style-src 'unsafe-inline'; sandbox`), they rendered pixel-identical to the unrestricted render.
   - Removing their `@font-face` rules changed the pixels, so the embedded faces draw the text.
@@ -362,10 +369,28 @@ Checks:
 Limits:
 
 - GitHub's live rendering, Safari, and Firefox were not checked.
-- Monospace text uses the viewer's system font, as in the other locales. This container's Liberation Mono draws some stacked Vietnamese marks beside the circumflex.
+- Monospace text uses the viewer's system font, as in the other locales. A system without any listed monospace font that has precomposed Vietnamese letters can still place marks beside the letters.
 - Plus Jakarta Sans leaves a wider gap before a period than Figtree, as on the guide's `/vi` pages.
 - The guide's own `/vi` hero headline (`line-height: 0.92`) shows the collision the banner fixed: at 1440 px in Chromium the dot below "Bạn" touches the "i" of "Video". The guide was not changed in this step.
 - The translation was written and reviewed by agents, not by a professional translator.
+
+Independent review: a read-only Claude Code review (Opus) of commit `0c5930f` found 1 Important and 7 Minor issues. All were reproduced and fixed in the next commit:
+
+- **Important:** Vietnamese marks were clipped at the edges of highlight boxes.
+- **Minor:**
+  - The Vietnamese Editor card title overflowed.
+  - Two Vietnamese answer lines touched.
+  - The terminal font list lacked Liberation Mono.
+  - The face test checked only three of the five roles.
+  - `typeset` reset instead of restoring when nested, and the banner registry did not select a locale's faces by itself.
+  - Some doc statements were stale.
+  - Some README wording was unnatural.
+
+After the fixes:
+
+- The face test covers all five roles; swapping in the Latin Anton face makes it fail.
+- `BANNERS[name](text, locale)` selects the locale's faces on its own.
+- The 11 Vietnamese banners were inspected again in their resting state: the box, title, answer, caption, and terminal areas at 1× and 3×, and every heading box.
 
 ## Original author's Instagram link removed (2026-11-01)
 

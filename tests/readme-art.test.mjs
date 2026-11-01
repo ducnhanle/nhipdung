@@ -38,8 +38,9 @@ test('banners render each locale\'s guide text', () => {
 
 test('banners embed faces that draw their locale\'s letters', () => {
   const face = file => readFileSync(new URL(`web/src/app/fonts/${file}.woff2`, root)).toString('base64');
-  const latin = ['figtree-latin', 'caveat-latin', 'permanent-marker-latin'].map(face);
-  const vietnamese = ['plus-jakarta-sans-latin-vietnamese', 'sriracha-latin-vietnamese', 'sedgwick-ave-display-latin-vietnamese'].map(face);
+  // Faces in role order: Figtree, Anton, Montserrat, Caveat, Permanent Marker.
+  const latin = ['figtree-latin', 'anton-latin', 'montserrat-latin', 'caveat-latin', 'permanent-marker-latin'].map(face);
+  const vietnamese = ['plus-jakarta-sans-latin-vietnamese', 'anton-latin-vietnamese', 'montserrat-latin-vietnamese', 'sriracha-latin-vietnamese', 'sedgwick-ave-display-latin-vietnamese'].map(face);
   for (const { path, content } of banners) {
     const [own, other] = path.startsWith(`${OUT}/vi/`) ? [vietnamese, latin] : [latin, vietnamese];
     assert.ok(content.includes(own[0]), path);

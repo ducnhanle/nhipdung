@@ -29,7 +29,7 @@ The `quality/max-lines` rule and self-check derive from the MIT-licensed [Vibe C
 
 Read `AGENTS.md`, the relevant canonical docs, and current source. Use an ignored local plan under `docs/superpowers/` for temporary progress, with source/date/invalidation recorded for durable knowledge. On resumption, check Git, files, running processes, and fresh checks before trusting a handoff.
 
-Work directly in the requested checkout and preserve unrelated local changes. New English contracts do not support previous experimental project formats. First-party code is MIT licensed; third-party terms remain separate. English is primary; the Portuguese and Spanish READMEs are explicit documentation translations.
+Work directly in the requested checkout and preserve unrelated local changes. New English contracts do not support previous experimental project formats. First-party code is MIT licensed; third-party terms remain separate. English is primary; the Portuguese, Spanish, and Vietnamese READMEs are explicit documentation translations.
 
 Use installed Ponytail, Caveman, Superpowers, RTK, Context7, agent-browser (preview checks and ad-hoc inspection), Playwright (guide checks), and web-design-guidelines where relevant. They are development tools rather than package dependencies. Do not duplicate existing hooks or introduce new Git hooks. LLM work runs in the developer's own native agent session, Claude Code or Codex, with that agent's subscription authentication and explicit model selection for delegation. No external LLM proxy, API key, or silent provider/model substitution is permitted. The local graph pipeline below keeps its native Codex (`gpt-6-astra`, ChatGPT authentication) provenance requirement, which `scripts/graph_runtime.py` enforces.
 

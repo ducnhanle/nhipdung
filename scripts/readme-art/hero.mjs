@@ -1,5 +1,5 @@
 // README hero: the guide's headline with its rotating keyword beside an animated replica of the self-editing workbench.
-import { C, CREATOR, esc, fit, icon, lineStep, measure, svg, wrap } from './lib.mjs';
+import { C, CREATOR, esc, fit, highlightBox, icon, lineStep, measure, svg, wrap } from './lib.mjs';
 
 const LOOP = 12; // seconds; stages: raw, pauses, captions, motion, result
 const B = [0, 16, 38, 58, 79]; // stage starts in % of the loop
@@ -30,9 +30,10 @@ function headline(t, x, top, width) {
   const size = fit(lines, width - 30, { weight: 800, tracking: -0.05 }, 96);
   const ls = -0.05 * size;
   const y1 = top + size * 0.86, y2 = y1 + size * lineStep(0.98), y3 = y2 + size * lineStep(1.06);
+  const box = highlightBox(y3, size, 0.84, 1.04);
   const rotating = words.map((word, i) => {
     const w = measure(word, { size, spacing: ls });
-    return `<g class="word word${i}" style="animation-delay:${i * 2.4}s${i ? ';opacity:0' : ''}"><rect x="${x - 4}" y="${y3 - size * 0.84}" width="${w + 26}" height="${size * 1.04}" rx="${size * 0.13}" class="or"/><text x="${x + 9}" y="${y3}" font-size="${size}" font-weight="800" letter-spacing="${ls}" class="ink">${esc(word)}</text></g>`;
+    return `<g class="word word${i}" style="animation-delay:${i * 2.4}s${i ? ';opacity:0' : ''}"><rect x="${x - 4}" y="${box.y}" width="${w + 26}" height="${box.height}" rx="${size * 0.13}" class="or"/><text x="${x + 9}" y="${y3}" font-size="${size}" font-weight="800" letter-spacing="${ls}" class="ink">${esc(word)}</text></g>`;
   }).join('');
   return { bottom: y3 + size * 0.24, markup: `<text x="${x}" y="${y1}" font-size="${size}" font-weight="800" letter-spacing="${ls}">${esc(t.hero.line1)}</text>
 <text x="${x}" y="${y2}" font-size="${size}" font-weight="800" letter-spacing="${ls}">${esc(t.hero.line2)}</text>${rotating}` };

@@ -3,16 +3,16 @@
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { BANNERS } from './banners.mjs';
-import { messages, ROOT, typeset } from './lib.mjs';
+import { messages, ROOT } from './lib.mjs';
 
 export const LOCALES = ['en-US', 'pt-BR', 'es', 'vi'];
 export const OUT = 'docs/assets/readme';
 
-/** Every banner as { path, content }, rendered from the guide's interface text with the locale's faces. */
+/** Every banner as { path, content }, rendered from the guide's interface text. */
 export function render() {
   return LOCALES.flatMap(locale => {
     const text = messages(locale);
-    return Object.entries(BANNERS).map(([name, draw]) => ({ path: `${OUT}/${locale}/${name}.svg`, content: typeset(locale, () => draw(text, locale)) }));
+    return Object.entries(BANNERS).map(([name, draw]) => ({ path: `${OUT}/${locale}/${name}.svg`, content: draw(text, locale) }));
   });
 }
 
