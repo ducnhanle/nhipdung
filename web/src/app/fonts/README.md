@@ -49,4 +49,4 @@ uvx --from 'fonttools[woff]==4.60.1' pyftsubset /tmp/instance.ttf --unicodes='<s
   --layout-features='*' --output-file=web/src/app/fonts/<name>-<weight>-latin.ttf
 ```
 
-The README art generator (`scripts/readme-art/`) embeds the WOFF2 subsets above in its SVGs and measures text with the static Figtree instances.
+The README art generator (`scripts/readme-art/`) embeds the Latin WOFF2 subsets above in its SVGs and measures text with the static Figtree instances; its Vietnamese banners embed the Latin + Vietnamese subsets and measure with the static Plus Jakarta Sans instances.

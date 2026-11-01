@@ -2,6 +2,33 @@
 
 Fork: [ducnhanle/nhipdung](https://github.com/ducnhanle/nhipdung) (trước đây là `ducnhanle/editonny`), tách từ [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny) (tác giả gốc: Matheus Gomes, giấy phép MIT). Tệp này là ngoại lệ ngôn ngữ đã ghi trong `AGENTS.md`. Bằng chứng kiểm chứng chuẩn (tiếng Anh) nằm ở `docs/validation.md`, mục "Vietnamese support and fork source (2026-11-01)".
 
+## 2026-11-01 · README tiếng Việt
+
+Bạn yêu cầu tạo README tiếng Việt. Đã làm:
+
+- **`README.vi.md`**: bản dịch đầy đủ của `README.md`.
+  - Yêu cầu cài đặt chép nguyên văn từ trang `/vi`; test bắt buộc hai chỗ phải khớp nhau.
+  - Dòng chọn ngôn ngữ ở cả 4 README đều có thêm "Tiếng Việt".
+  - Gói plugin giờ kèm theo tệp này.
+- **11 banner động tiếng Việt** trong `docs/assets/readme/vi/`, tạo bằng `npm run readme:art` từ chữ của trang `/vi`.
+  - Banner nhúng đúng các font của trang `/vi`: Plus Jakarta Sans, Anton, Montserrat, Sriracha, Sedgwick Ave Display. Font Latin cũ (Figtree) thiếu 97 chữ tiếng Việt.
+  - Độ rộng chữ được đo bằng chính Plus Jakarta Sans, nên chữ không tràn khung.
+  - Ô phụ đề viết tay dùng hệ số rộng của Sriracha. Nếu giữ hệ số của Caveat, chữ sẽ tràn ô.
+  - Tiêu đề lớn ở banner đầu giãn dòng thêm 10%: ở bản đầu, dấu nặng của "Bạn" chạm vào chữ "i" của "Video".
+- **Sửa thêm một lỗi có sẵn ở cả 4 ngôn ngữ:** dòng chữ xanh dưới tên tác giả trong banner đầu tràn ra ngoài viền khung (khoảng 7 px ở bản tiếng Anh, 11 px ở bản tiếng Việt). Banner đầu của 3 ngôn ngữ kia chỉ đổi đúng độ rộng khung này.
+- Sửa câu "3 ngôn ngữ" thành "4 ngôn ngữ" trong README tiếng Bồ Đào Nha và Tây Ban Nha.
+
+Kiểm chứng:
+- `npm run check` đạt: 113 test Python, 22 test Node, 339 test Vitest.
+- Có test mới kiểm tra banner tiếng Việt nhúng font có đủ chữ tiếng Việt. Khi cố tình cho banner tiếng Việt dùng font Latin, test này báo lỗi.
+- Đã xem cả 11 banner trong Chromium, ở trạng thái cuối và khi nằm trong thẻ `<img>`. Khi bật chính sách bảo mật (CSP) giống raw.githubusercontent.com, ảnh hiển thị giống hệt từng điểm ảnh.
+
+Giới hạn:
+- Chưa xem trực tiếp trên GitHub, Safari, Firefox.
+- Chữ đơn cách (monospace) dùng font của máy người xem.
+- Tiêu đề lớn trên trang `/vi` của guide cũng bị dấu nặng của "Bạn" chạm chữ "i" ở dòng dưới (giãn dòng 0.92). Bước này chưa sửa guide.
+- Bản dịch chưa được người dịch chuyên nghiệp duyệt.
+
 ## 2026-11-01 · Repo GitHub đổi tên thành ducnhanle/nhipdung
 
 Bạn đã đổi tên repo trên GitHub. Tôi đã kiểm tra: repo hiện là `ducnhanle/nhipdung`, công khai.
@@ -175,7 +202,7 @@ Còn để lại (đã ghi trong `docs/validation.md`):
 ### Chưa làm và lý do
 
 - **Đổi tên/nhận diện thương hiệu khi phát hành công khai:** cần bạn quyết định tên mới, ảnh và thông tin tác giả của fork. Hiện vẫn giữ tên "editonny" và ghi công tác giả gốc, điều này hợp lệ theo MIT.
-- **README tiếng Việt và banner tiếng Việt:** README dịch là ngoại lệ tùy chọn. Banner nhúng font Latin nên cần làm riêng.
+- **README tiếng Việt và banner tiếng Việt:** README dịch là ngoại lệ tùy chọn. Banner nhúng font Latin nên cần làm riêng. *(Đã làm sau đó, xem mục "README tiếng Việt" ở đầu tệp.)*
 - **Xuất timeline cho phần mềm dựng, phụ đề dịch, hỗ trợ Windows:** là tính năng lớn. Phụ đề dịch đụng tới cơ chế xác nhận và băm cài đặt; Windows không kiểm thử được trong container Linux. Nên làm thành từng đợt riêng.
 - **Cảnh riêng cho lĩnh vực của bạn:** cần biết lĩnh vực và nội dung bạn muốn.
 - **Các bộ gợi ý hình ảnh khác** (các bước, checklist, gạch bỏ, kêu gọi bình luận, bước ngoặt, ưu đãi, nhấn mạnh) vẫn dựa trên câu tiếng Bồ Đào Nha/Anh.

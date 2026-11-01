@@ -1,5 +1,5 @@
 // README banners that replay the guide's lab, caption styles, framing, motion scenes, and the install request.
-import { C, esc, fill, heading, icon, measure, paragraph, svg, wrap } from './lib.mjs';
+import { advanceEm, C, esc, fill, heading, icon, measure, paragraph, svg, wrap } from './lib.mjs';
 
 const KINDS = ['word', 'pause', 'word', 'word', 'mistake', 'word', 'pause', 'word', 'mistake', 'word', 'word']; // as in LabStages.tsx
 
@@ -89,8 +89,8 @@ export function captions(t) {
     // `em` approximates the average advance per character, in ems, for faces without bundled TrueType metrics.
     { label: l.fontImpact, family: 'Anton,Impact,sans-serif', weight: 400, size: 31, upper: true, accent: C['sun-400'], em: 0.48 },
     { label: l.fontClean, family: 'Montserrat,sans-serif', weight: 900, size: 22, upper: true, accent: C['volt-400'], em: 0.72 },
-    { label: l.fontHand, family: 'Caveat,cursive', weight: 700, size: 38, upper: false, accent: C['sun-400'], em: 0.42 },
-    { label: l.fontMarker, family: "'Permanent Marker',cursive", weight: 400, size: 25, upper: false, accent: C['volt-400'], em: 0.58 },
+    { label: l.fontHand, family: 'Caveat,cursive', weight: 700, size: 38, upper: false, accent: C['sun-400'], em: advanceEm('caveat') },
+    { label: l.fontMarker, family: "'Permanent Marker',cursive", weight: 400, size: 25, upper: false, accent: C['volt-400'], em: advanceEm('marker') },
   ].map(style => ({ ...style, size: Math.min(style.size, Math.floor((tw - 32) / (longest * style.em))) }));
   const tiles = styles.map((style, i) => {
     const x = 64 + i * (tw + gap), cx = x + tw / 2;
@@ -177,6 +177,7 @@ const AGENT = {
   'en-US': ['Cloning github.com/ducnhanle/nhipdung into a temporary folder', 'Reading skills/nhipdung/SKILL.md and its complete setup procedure', 'Installing for Codex and Claude Code; your settings are preserved', 'Engine, renderer, transcription model, and local OCR ready', 'Diagnostics and synthetic sample passed. Restart your agent.'],
   'pt-BR': ['Clonando github.com/ducnhanle/nhipdung em uma pasta temporária', 'Lendo skills/nhipdung/SKILL.md e o procedimento de setup completo', 'Instalando para Codex e Claude Code; suas configurações ficam preservadas', 'Engine, renderizador, modelo de transcrição e OCR local prontos', 'Diagnósticos e amostra sintética aprovados. Reinicie o agente.'],
   es: ['Clonando github.com/ducnhanle/nhipdung en una carpeta temporal', 'Leyendo skills/nhipdung/SKILL.md y su preparación completa', 'Instalando para Codex y Claude Code; tu configuración se conserva', 'Motor, renderizador, modelo de transcripción y OCR local listos', 'Diagnósticos y muestra sintética aprobados. Reinicia el agente.'],
+  vi: ['Đang clone github.com/ducnhanle/nhipdung vào một thư mục tạm', 'Đang đọc skills/nhipdung/SKILL.md và toàn bộ quy trình thiết lập', 'Đang cài cho Codex và Claude Code; các cài đặt của bạn được giữ nguyên', 'Engine, trình render, mô hình chép lời và OCR cục bộ đã sẵn sàng', 'Chẩn đoán và đoạn mẫu tổng hợp đều đạt. Hãy khởi động lại agent.'],
 };
 
 /** Agent terminal receiving the canonical install request, then reporting each setup step. */

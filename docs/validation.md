@@ -334,6 +334,39 @@ Checks after the rename:
 - A temporary-home installation registered `~/.claude/skills/nhipdung` and `~/.agents/skills/nhipdung`, linked to `~/.local/share/nhipdung`, with `name: nhipdung` in SKILL.md.
 - The synthetic render smoke and the Vietnamese render, with GSAP preloaded as described above, passed with HyperFrames 0.8.179.
 
+## Vietnamese README (2026-11-01)
+
+`README.vi.md` translates `README.md`. It carries the guide's Vietnamese `Install.askRequest` verbatim, and the language line of every README links it. The plugin archive now includes it.
+
+`scripts/readme-art/` renders the eleven banners for `vi` with the faces of the guide's `/vi` pages:
+
+- Latin + Vietnamese subsets of Plus Jakarta Sans, Anton, Montserrat, Sriracha, and Sedgwick Ave Display, declared under the Figtree, Anton, Montserrat, Caveat, and Permanent Marker roles.
+- Text in the Figtree role is measured with the static Plus Jakarta Sans instances.
+- The hand and marker caption tiles are sized from the faces' measured advances on the Vietnamese caption sample: Sriracha 0.474 em (0.48 used; Caveat's 0.42 would overflow the tile) and Sedgwick Ave Display 0.442 em (0.45 used).
+- The hero headline's line steps are 10% wider. In the first render the dot below "Bạn" touched the "i" of "Video" on the next line.
+
+The hero's creator chip in every locale now sizes its monospace status line with the `.mono` tracking. Before, the status overflowed the pill's rounded end by about 7 px in English and 11 px in Vietnamese. The English, Portuguese, and Spanish hero banners changed only in that rect's width; their other 30 banners are byte-identical.
+
+Checks:
+
+- `npm run check` passed: 113 Python, 22 Node, and 339 Vitest tests, plus lint, typechecks, and 49 icons.
+  - The README contract test now covers `vi`.
+  - A new Node test asserts that each locale's banners embed faces that draw its letters. A mutation that drew Vietnamese banners with the Latin faces failed it.
+  - The leftover-text check now ignores base64 payloads. "NaN" occurs by chance inside the Plus Jakarta Sans subset; a `NaN` placed in the markup is still caught.
+- `tests/test_package.py` failed before `README.vi.md` joined the plugin scope and passes after.
+- With fontTools 4.60.1, the Vietnamese faces cover every character of `web/messages/vi.json` and its uppercase except ⌘ ▶ ✓ ✦, which the banners do not draw. The Latin Figtree subset lacks 97 of those characters.
+- In Chromium (Playwright), the 11 Vietnamese banners were inspected in their resting state and inside `<img>`.
+  - Served with raw.githubusercontent.com's CSP (`default-src 'none'; style-src 'unsafe-inline'; sandbox`), they rendered pixel-identical to the unrestricted render.
+  - Removing their `@font-face` rules changed the pixels, so the embedded faces draw the text.
+
+Limits:
+
+- GitHub's live rendering, Safari, and Firefox were not checked.
+- Monospace text uses the viewer's system font, as in the other locales. This container's Liberation Mono draws some stacked Vietnamese marks beside the circumflex.
+- Plus Jakarta Sans leaves a wider gap before a period than Figtree, as on the guide's `/vi` pages.
+- The guide's own `/vi` hero headline (`line-height: 0.92`) shows the collision the banner fixed: at 1440 px in Chromium the dot below "Bạn" touches the "i" of "Video". The guide was not changed in this step.
+- The translation was written and reviewed by agents, not by a professional translator.
+
 ## Reproduce and invalidate
 
 ```sh

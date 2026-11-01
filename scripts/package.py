@@ -34,7 +34,7 @@ def build(root, output, kind):
         raise ValueError('VERSION must use major.minor.patch format')
     if kind == 'plugin':
         base = root
-        paths = [root / p for p in ('install.py', 'nhipdung.py', 'README.md', 'README.pt-BR.md', 'README.es.md', 'LICENSE.md')]
+        paths = [root / p for p in ('install.py', 'nhipdung.py', 'README.md', 'README.pt-BR.md', 'README.es.md', 'README.vi.md', 'LICENSE.md')]
         paths += [root / name for name in ('PRODUCT.md', 'DESIGN.md') if (root / name).exists()]
         for folder in ('skills', '.codex-plugin', '.claude-plugin', '.agents/plugins', 'docs/assets/readme'):
             reject_symlinks(root / folder, root)

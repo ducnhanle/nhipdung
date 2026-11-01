@@ -1,4 +1,4 @@
-[English](README.md) · [Português](README.pt-BR.md) · **Español**
+[English](README.md) · [Português](README.pt-BR.md) · **Español** · [Tiếng Việt](README.vi.md)
 
 <a id="top"></a>
 
@@ -141,7 +141,7 @@ Esto inicia el servidor de desarrollo en `http://localhost:4173` y abre el naveg
 | `skills/nhipdung/` | Skill única y CLI |
 | `skills/nhipdung/engine/` | Procesamiento local, preview y plantilla de proyecto |
 | `skills/nhipdung/visuals/` | Escenas, catálogo, recursos incluidos y recetas |
-| `web/` | Guía pública: app Next.js con generador de pedidos, catálogo, ejemplos e instalación en tres idiomas |
+| `web/` | Guía pública: app Next.js con generador de pedidos, catálogo, ejemplos e instalación en cuatro idiomas |
 | `DESIGN.md` | Contrato visual y fuente de verdad de los tokens de diseño |
 | `design-system/` | Biblioteca de componentes React, tokens, plantillas del preview, showcase y HTML de referencia |
 | `docs/` | Referencias técnicas canónicas en inglés |

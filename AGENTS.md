@@ -23,7 +23,7 @@ Open-source local video editing through conversation. nhipdung ("Nhịp Dựng")
 
 ## Language and contracts
 
-First-party names, code, comments, commands, schema, paths, prompts, descriptions, and defaults use English. The guide's interface text and generated requests are localized for `en-US`, `pt-BR`, `es`, and `vi` through `web/messages/`, `web/content/`, and the request phrases; English is the source and every locale must stay complete (tests enforce it). `README.md` is primary; `README.pt-BR.md` and `README.es.md` are the explicit translation exceptions, and `docs/fork-log.vi.md` is the fork owner's Vietnamese change log. Preserve upstream names, licenses, speech lexicons, and user-supplied text as data. Do not force English transcription or translate recorded speech without a request.
+First-party names, code, comments, commands, schema, paths, prompts, descriptions, and defaults use English. The guide's interface text and generated requests are localized for `en-US`, `pt-BR`, `es`, and `vi` through `web/messages/`, `web/content/`, and the request phrases; English is the source and every locale must stay complete (tests enforce it). `README.md` is primary; `README.pt-BR.md`, `README.es.md`, and `README.vi.md` are the explicit translation exceptions, and `docs/fork-log.vi.md` is the fork owner's Vietnamese change log. Preserve upstream names, licenses, speech lexicons, and user-supplied text as data. Do not force English transcription or translate recorded speech without a request.
 
 New projects use `project.json` and English contracts. Do not add compatibility readers or aliases for previous experimental formats. Use descriptive identifiers without inherited product-edition labels.
 

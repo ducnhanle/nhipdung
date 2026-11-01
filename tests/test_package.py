@@ -88,7 +88,7 @@ class PackageTests(unittest.TestCase):
                          'skills/nhipdung/old-prompts.pdf', 'skills/nhipdung/clip.MP4',
                          'skills/nhipdung/visuals/clip.webm', 'skills/nhipdung/visuals/still.png',
                          '.codex-plugin/plugin.json', '.claude-plugin/plugin.json',
-                         'install.py', 'nhipdung.py', 'README.md', 'README.pt-BR.md', 'README.es.md', 'LICENSE.md',
+                         'install.py', 'nhipdung.py', 'README.md', 'README.pt-BR.md', 'README.es.md', 'README.vi.md', 'LICENSE.md',
                          'PRODUCT.md', 'DESIGN.md', 'design-system/README.md', 'docs/architecture.md', 'docs/design.md', 'docs/setup.md',
                          'docs/installation.md', 'docs/archive/private.pdf',
                          'docs/assets/readme/hero.svg', 'docs/assets/readme/captions.gif',
@@ -104,6 +104,7 @@ class PackageTests(unittest.TestCase):
                 self.assertTrue(all(not p.startswith('design-system/') for p in archive.namelist()))
                 self.assertIn('README.pt-BR.md', archive.namelist())
                 self.assertIn('README.es.md', archive.namelist())
+                self.assertIn('README.vi.md', archive.namelist())
                 self.assertIn('PRODUCT.md', archive.namelist())
                 self.assertIn('docs/architecture.md', archive.namelist())
                 self.assertIn('docs/assets/readme/hero.svg', archive.namelist())

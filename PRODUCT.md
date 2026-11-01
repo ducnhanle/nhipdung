@@ -12,7 +12,7 @@ nhipdung (Vietnamese "Nhịp Dựng", the rhythm of the edit) is a fork of [edit
 6. Source appearance, geometry and timing are preserved by default. Color treatment, HDR/SDR conversion, crop, noise removal, music and extra visuals need explicit accepted choices; unsupported preservation routes block without silent downgrade.
 7. Local work is organized under Downloads/nhipdung: each job keeps finished videos in `exports/` and independent revisions in `project/`. Final files, requested subtitles and matching delivery manifests are published without overwriting previous exports. Remote execution requires a real accessible destination, not a claim that a remote Downloads is the user's computer.
 
-English covers commands, schema, paths, prompts, and source content. The guide's interface and generated requests are localized for Brazilian Portuguese, Spanish, and Vietnamese, and the Portuguese and Spanish README translations are provided separately. Vietnamese speech is supported by the engine's lexicons, number reading, and fonts that draw every Vietnamese letter. Recordings and user-supplied text can remain in their original language. Speech lexicons are language data, not alternative product interfaces.
+English covers commands, schema, paths, prompts, and source content. The guide's interface and generated requests are localized for Brazilian Portuguese, Spanish, and Vietnamese, and the Portuguese, Spanish, and Vietnamese README translations are provided separately. Vietnamese speech is supported by the engine's lexicons, number reading, and fonts that draw every Vietnamese letter. Recordings and user-supplied text can remain in their original language. Speech lexicons are language data, not alternative product interfaces.
 
 ## Boundaries
 

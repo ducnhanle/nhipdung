@@ -21,14 +21,6 @@ export const COUNTS = {
 export const fill = text => text.replace(/\{(\w+)\}/g, (_, name) => String(COUNTS[name] ?? `{${name}}`));
 
 const face = (family, file, weight) => `@font-face{font-family:'${family}';src:url(data:font/woff2;base64,${read(`web/src/app/fonts/${file}`).toString('base64')}) format('woff2');font-weight:${weight}}`;
-/** Latin WOFF2 subsets served by the guide, embedded so GitHub renders the brand faces inside <img>. */
-export const FONTS = {
-  figtree: face('Figtree', 'figtree-latin.woff2', '300 900'),
-  anton: face('Anton', 'anton-latin.woff2', '400'),
-  montserrat: face('Montserrat', 'montserrat-latin.woff2', '100 900'),
-  caveat: face('Caveat', 'caveat-latin.woff2', '400 700'),
-  marker: face('Permanent Marker', 'permanent-marker-latin.woff2', '400'),
-};
 export const MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace";
 
 /** Advance-width reader for a static TrueType font (cmap format 4 + hmtx); kerning is ignored. */
@@ -62,14 +54,62 @@ function metrics(path) {
   return (text, size, spacing = 0) => [...text].reduce((sum, char) => sum + advance(glyph(char.codePointAt(0))) / unitsPerEm * size + spacing, 0) - (text ? spacing : 0);
 }
 
-const figtree800 = metrics('web/src/app/fonts/figtree-800-latin.ttf');
-const figtree600 = metrics('web/src/app/fonts/figtree-600-latin.ttf');
+/**
+ * Faces per font role as the guide loads them (web/src/app/fonts.ts): WOFF2 subsets embedded so GitHub renders the
+ * brand faces inside <img>, static instances that measure the Figtree role, and the average advance per character, in
+ * ems, of the caption faces without bundled static metrics. Vietnamese banners fill the same roles with Latin +
+ * Vietnamese subsets: Figtree, Caveat, and Permanent Marker draw no Vietnamese letters, so Plus Jakarta Sans,
+ * Sriracha, and Sedgwick Ave Display stand in under the role names, like the guide's --font-*-face variables.
+ */
+const TYPE = {
+  latin: {
+    fonts: {
+      figtree: face('Figtree', 'figtree-latin.woff2', '300 900'),
+      anton: face('Anton', 'anton-latin.woff2', '400'),
+      montserrat: face('Montserrat', 'montserrat-latin.woff2', '100 900'),
+      caveat: face('Caveat', 'caveat-latin.woff2', '400 700'),
+      marker: face('Permanent Marker', 'permanent-marker-latin.woff2', '400'),
+    },
+    bold: metrics('web/src/app/fonts/figtree-800-latin.ttf'),
+    regular: metrics('web/src/app/fonts/figtree-600-latin.ttf'),
+    em: { caveat: 0.42, marker: 0.58 },
+    leading: 1,
+  },
+  vietnamese: {
+    fonts: {
+      figtree: face('Figtree', 'plus-jakarta-sans-latin-vietnamese.woff2', '200 800'),
+      anton: face('Anton', 'anton-latin-vietnamese.woff2', '400'),
+      montserrat: face('Montserrat', 'montserrat-latin-vietnamese.woff2', '100 900'),
+      caveat: face('Caveat', 'sriracha-latin-vietnamese.woff2', '400'),
+      marker: face('Permanent Marker', 'sedgwick-ave-display-latin-vietnamese.woff2', '400'),
+    },
+    bold: metrics('web/src/app/fonts/plus-jakarta-sans-800-latin-vietnamese.ttf'),
+    regular: metrics('web/src/app/fonts/plus-jakarta-sans-600-latin-vietnamese.ttf'),
+    em: { caveat: 0.48, marker: 0.45 },
+    // Marks above and below Vietnamese letters (ạ over the next line's i) collide at the hero's tight leading.
+    leading: 1.1,
+  },
+};
+let type = TYPE.latin;
+
+/** Runs `draw` with the faces and metrics of `locale`; the generator draws one banner at a time. */
+export function typeset(locale, draw) {
+  type = locale === 'vi' ? TYPE.vietnamese : TYPE.latin;
+  try { return draw(); } finally { type = TYPE.latin; }
+}
+
+/** Average advance per character, in ems, of the face drawing a caption role ('caveat' or 'marker'). */
+export const advanceEm = role => type.em[role];
+
+/** A tight display line step, in ems, widened where the script's marks need the room. */
+export const lineStep = em => em * type.leading;
+
 const anton = metrics('skills/nhipdung/engine/assets/fonts/anton/Anton-Regular.ttf');
 /** Text width in pixels. Weights below 700 use the 600 instance, a slight overestimate for regular text. */
 export const measure = (text, { size, weight = 800, spacing = 0, family = 'Figtree' }) => {
   if (family === 'Anton') return anton(text, size, spacing);
   if (family === 'mono') return [...text].length * (size * 0.6 + spacing);
-  return (weight >= 700 ? figtree800 : figtree600)(text, size, spacing);
+  return (weight >= 700 ? type.bold : type.regular)(text, size, spacing);
 };
 
 /** Largest size (step 0.5) at which every line fits `width`. */
@@ -122,7 +162,7 @@ export const CREATOR = `data:image/jpeg;base64,${read('docs/assets/readme/creato
 export function svg({ width, height, title, description, fonts = ['figtree'], css = '', body }) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="t d">
 <title id="t">${esc(title)}</title><desc id="d">${esc(description)}</desc>
-<style>${fonts.map(name => FONTS[name]).join('')}
+<style>${fonts.map(name => type.fonts[name]).join('')}
 text{font-family:Figtree,system-ui,sans-serif;fill:${C['fog-50']}}
 .mono{font-family:${MONO};font-weight:600;letter-spacing:.16em}
 .k{font-family:Anton,Impact,sans-serif}

@@ -1,5 +1,5 @@
 // README hero: the guide's headline with its rotating keyword beside an animated replica of the self-editing workbench.
-import { C, CREATOR, esc, fit, icon, measure, svg, wrap } from './lib.mjs';
+import { C, CREATOR, esc, fit, icon, lineStep, measure, svg, wrap } from './lib.mjs';
 
 const LOOP = 12; // seconds; stages: raw, pauses, captions, motion, result
 const B = [0, 16, 38, 58, 79]; // stage starts in % of the loop
@@ -29,7 +29,7 @@ function headline(t, x, top, width) {
   const lines = [t.hero.line1, t.hero.line2, ...words];
   const size = fit(lines, width - 30, { weight: 800, tracking: -0.05 }, 96);
   const ls = -0.05 * size;
-  const y1 = top + size * 0.86, y2 = y1 + size * 0.98, y3 = y2 + size * 1.06;
+  const y1 = top + size * 0.86, y2 = y1 + size * lineStep(0.98), y3 = y2 + size * lineStep(1.06);
   const rotating = words.map((word, i) => {
     const w = measure(word, { size, spacing: ls });
     return `<g class="word word${i}" style="animation-delay:${i * 2.4}s${i ? ';opacity:0' : ''}"><rect x="${x - 4}" y="${y3 - size * 0.84}" width="${w + 26}" height="${size * 1.04}" rx="${size * 0.13}" class="or"/><text x="${x + 9}" y="${y3}" font-size="${size}" font-weight="800" letter-spacing="${ls}" class="ink">${esc(word)}</text></g>`;
@@ -41,7 +41,8 @@ function headline(t, x, top, width) {
 function copyColumn(t, nav, x) {
   const parts = [];
   const name = 'Matheus Gomes';
-  const chipW = Math.max(measure(name, { size: 15 }) + measure(t.hero.creatorRole, { size: 13, weight: 500 }) + 10, t.hero.creatorStatus.length * 7.2 + 16) + 76;
+  // The status line is monospace at 10.5px with the .mono class's .16em tracking.
+  const chipW = Math.max(measure(name, { size: 15 }) + measure(t.hero.creatorRole, { size: 13, weight: 500 }) + 10, measure(t.hero.creatorStatus, { family: 'mono', size: 10.5, spacing: 10.5 * 0.16 }) + 16) + 76;
   parts.push(`<clipPath id="me"><circle cx="${x + 32}" cy="86" r="20"/></clipPath>
 <rect x="${x}" y="56" width="${chipW}" height="60" rx="30" fill="${C['ink-900']}" stroke="${C['ink-700']}"/>
 <circle cx="${x + 32}" cy="86" r="23" fill="none" stroke="${C['orange-500']}" stroke-width="2"/>
