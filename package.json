@@ -49,10 +49,16 @@
   },
   "license": "MIT",
   "author": {
-    "name": "Matheus Gomes",
-    "email": "eu@matheusgom.es",
-    "url": "https://instagram.com/matheusgomes"
+    "name": "ducnhanle",
+    "url": "https://github.com/ducnhanle"
   },
+  "contributors": [
+    {
+      "name": "Matheus Gomes",
+      "email": "eu@matheusgom.es",
+      "url": "https://instagram.com/matheusgomes"
+    }
+  ],
   "homepage": "https://github.com/ducnhanle/editonny#readme",
   "repository": {
     "type": "git",

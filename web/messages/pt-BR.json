@@ -56,6 +56,7 @@
     "requirements": "Requisitos e custos",
     "note": "As demonstrações desta página são ilustrativas. O Editonny é open source e roda no seu computador, com seu agente de IA.",
     "credits": "Criado por {name}.",
+    "maintainer": "Este fork com vietnamita é mantido por {name}.",
     "license": "Código aberto sob a licença MIT."
   },
   "Language": {

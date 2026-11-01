@@ -5,7 +5,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { getPathname, Link } from '@/i18n/navigation';
 import type { AppLocale } from '@/i18n/routing';
-import { AUTHOR, REPOSITORY_URL, UPSTREAM_URL } from '@/lib/site';
+import { AUTHOR, MAINTAINER, REPOSITORY_URL, UPSTREAM_URL } from '@/lib/site';
 import styles from './shell.module.css';
 
 export async function Footer({ locale }: { locale: AppLocale }) {
@@ -30,10 +30,9 @@ export async function Footer({ locale }: { locale: AppLocale }) {
           <Link href="/install">{t('Footer.install')}</Link>
           <NextLink href={`${getPathname({ locale, href: '/' })}#how-it-works`} prefetch={false}>{t('Footer.requirements')}</NextLink>
           <a href={REPOSITORY_URL} target="_blank" rel="noopener noreferrer"><Icon name="github" size={16} />GitHub{newTab}</a>
-          <a href={AUTHOR.instagram} rel="author noopener noreferrer" target="_blank">Instagram{newTab}</a>
-          <a href={`mailto:${AUTHOR.email}`}>{AUTHOR.email}</a>
+          <a href={MAINTAINER.github} rel="author noopener noreferrer" target="_blank">@{MAINTAINER.name}{newTab}</a>
         </nav>
-        <p className={styles.footerNote}>{t('Footer.note')} {t('Footer.credits', { name: AUTHOR.name })} {t('Footer.license')}</p>
+        <p className={styles.footerNote}>{t('Footer.note')} {t('Footer.credits', { name: AUTHOR.name })} {t('Footer.maintainer', { name: MAINTAINER.name })} {t('Footer.license')}</p>
       </div>
     </footer>
   );

@@ -2,6 +2,24 @@
 
 Fork: [ducnhanle/editonny](https://github.com/ducnhanle/editonny), tách từ [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny) (tác giả gốc: Matheus Gomes, giấy phép MIT). Tệp này là ngoại lệ ngôn ngữ đã ghi trong `AGENTS.md`. Bằng chứng kiểm chứng chuẩn (tiếng Anh) nằm ở `docs/validation.md`, mục "Vietnamese support and fork source (2026-11-01)".
 
+## 2026-11-01 · Thông tin tác giả của fork
+
+Người duy trì fork: **ducnhanle** ([GitHub](https://github.com/ducnhanle)). Tài khoản GitHub không công khai tên hiển thị hay email, nên fork chỉ ghi tên tài khoản và trang GitHub; không đưa email lên repo công khai.
+
+| Nơi | Thay đổi |
+|---|---|
+| `LICENSE.md`, `skills/editonny/LICENSE.md` | Giữ dòng bản quyền của Matheus Gomes (bắt buộc theo MIT), thêm dòng bản quyền cho phần sửa đổi của fork |
+| `package.json` | `author` là ducnhanle; Matheus Gomes chuyển sang `contributors` |
+| `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/plugin.json` | Tác giả/chủ plugin là ducnhanle |
+| README (3 ngôn ngữ), `SKILL.md`, README của engine và visuals | Ghi người duy trì fork, link repo/issues và nhật ký; vẫn ghi công tác giả gốc |
+| Trang hướng dẫn | Chân trang: thay Instagram và email của tác giả gốc bằng `@ducnhanle`, thêm câu "Bản fork tiếng Việt này do ducnhanle duy trì" (4 ngôn ngữ). Metadata và JSON-LD ghi ducnhanle là người duy trì/xuất bản, Matheus Gomes vẫn là tác giả |
+
+Giữ nguyên có chủ đích: chip "Người tạo ra editonny" với ảnh của Matheus Gomes trên trang chủ và thẻ chia sẻ. Đây là ghi công cho người tạo ra sản phẩm. Muốn thay bằng ảnh của bạn thì cần một tấm ảnh bạn đồng ý đưa lên repo.
+
+**Đổi tên (chờ bạn chọn):**
+- Ứng viên: **Nhịp Dựng** (`nhipdung`, chưa có repo GitHub nào trùng tên, khớp khẩu hiệu "video có nhịp"), Dựng Gọn (`dunggon`), Hậu Kỳ (`hauky`), Nhanh Gọn (`nhanhgon`), hoặc giữ `editonny-vi`.
+- Đổi tên thật sự sẽ đụng tới lệnh `/editonny`, thư mục cài đặt và đường dẫn skill, nên làm riêng sau khi bạn chọn.
+
 ## 2026-11-01 · Hỗ trợ tiếng Việt và chuyển nguồn cài đặt sang fork
 
 Nhánh: `ccr-1c161f3d-uzze72`. Thực hiện bằng Claude Code theo yêu cầu "làm/sửa những gì bạn đề xuất và ghi log lại".

@@ -56,6 +56,7 @@
     "requirements": "Yêu cầu hệ thống và chi phí",
     "note": "Các bản demo trên trang này chỉ mang tính minh họa. editonny là mã nguồn mở và chạy trên máy tính của bạn, cùng với agent AI bạn đang dùng.",
     "credits": "Tạo bởi {name}.",
+    "maintainer": "Bản fork tiếng Việt này do {name} duy trì.",
     "license": "Mã nguồn mở theo giấy phép MIT."
   },
   "Language": {

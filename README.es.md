@@ -205,12 +205,17 @@ El historial de estrellas en vivo lo proporciona [Star History](https://www.star
 
 ## Autor y contacto
 
-Creado y mantenido por **Matheus Gomes**.
+Este fork lo mantiene **ducnhanle**. Añade soporte para vietnamita e instala y actualiza desde su propio repositorio.
+
+- GitHub: [ducnhanle](https://github.com/ducnhanle) · [ducnhanle/editonny](https://github.com/ducnhanle/editonny)
+- Problemas con este fork: [issues](https://github.com/ducnhanle/editonny/issues)
+- Registro de cambios (en vietnamita): [docs/fork-log.vi.md](docs/fork-log.vi.md)
+
+editonny fue creado por **Matheus Gomes**:
 
 - Instagram: [@matheusgomes](https://instagram.com/matheusgomes)
 - Correo: [eu@matheusgom.es](mailto:eu@matheusgom.es)
 - GitHub: [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny)
-- Este fork: [ducnhanle/editonny](https://github.com/ducnhanle/editonny), que añade soporte para vietnamita e instala y actualiza desde su propio repositorio
 
 ## Licencia y recursos
 

@@ -56,6 +56,7 @@
     "requirements": "Requirements and costs",
     "note": "Demos on this page are illustrative. Editonny is open source and runs on your computer, with your AI agent.",
     "credits": "Created by {name}.",
+    "maintainer": "This Vietnamese fork is maintained by {name}.",
     "license": "Open source under the MIT license."
   },
   "Language": {

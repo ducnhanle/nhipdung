@@ -205,12 +205,17 @@ Live star history is provided by [Star History](https://www.star-history.com/blo
 
 ## Author and contact
 
-Created and maintained by **Matheus Gomes**.
+This fork is maintained by **ducnhanle**. It adds Vietnamese support and installs and updates from its own repository.
+
+- GitHub: [ducnhanle](https://github.com/ducnhanle) · [ducnhanle/editonny](https://github.com/ducnhanle/editonny)
+- Problems with this fork: [issues](https://github.com/ducnhanle/editonny/issues)
+- Change log (Vietnamese): [docs/fork-log.vi.md](docs/fork-log.vi.md)
+
+editonny was created by **Matheus Gomes**:
 
 - Instagram: [@matheusgomes](https://instagram.com/matheusgomes)
 - Email: [eu@matheusgom.es](mailto:eu@matheusgom.es)
 - GitHub: [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny)
-- This fork: [ducnhanle/editonny](https://github.com/ducnhanle/editonny), which adds Vietnamese support and installs and updates from its own repository
 
 ## License and resources
 
