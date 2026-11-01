@@ -367,6 +367,18 @@ Limits:
 - The guide's own `/vi` hero headline (`line-height: 0.92`) shows the collision the banner fixed: at 1440 px in Chromium the dot below "Bạn" touches the "i" of "Video". The guide was not changed in this step.
 - The translation was written and reviewed by agents, not by a professional translator.
 
+## Original author's Instagram link removed (2026-11-01)
+
+At the fork owner's request, `instagram.com/matheusgomes` was removed from the four READMEs, the credit lines in `SKILL.md` and the engine and visuals READMEs, `package.json`, and the guide's author metadata and JSON-LD. The guide metadata, the JSON-LD, and the `package.json` contributor now link the author's GitHub profile (`github.com/soumatheusgomes`). Matheus Gomes's name, email, and upstream repository links, and the `LICENSE.md` copyright notice, are unchanged.
+
+Checks:
+
+- `npm run check` passed: 113 Python, 22 Node, and 339 Vitest tests, plus lint, typechecks, and icons.
+- `npm run build` passed. The built `/en-US` and `/vi` pages contain no Instagram link, and their JSON-LD author URL is the GitHub profile.
+- The browser suite passed 206 tests with 30 skips, including `library.spec.ts:112`.
+
+The GitHub repository's About website (still the Instagram URL), its description, and the "forked from" label are repository settings outside the code.
+
 ## Reproduce and invalidate
 
 ```sh

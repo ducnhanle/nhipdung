@@ -2,6 +2,20 @@
 
 Fork: [ducnhanle/nhipdung](https://github.com/ducnhanle/nhipdung) (trước đây là `ducnhanle/editonny`), tách từ [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny) (tác giả gốc: Matheus Gomes, giấy phép MIT). Tệp này là ngoại lệ ngôn ngữ đã ghi trong `AGENTS.md`. Bằng chứng kiểm chứng chuẩn (tiếng Anh) nằm ở `docs/validation.md`, mục "Vietnamese support and fork source (2026-11-01)".
 
+## 2026-11-01 · Bỏ link Instagram của tác giả gốc
+
+Bạn yêu cầu bỏ link Instagram và dòng "forked from". Đã bỏ link Instagram (`instagram.com/matheusgomes`) khỏi:
+- mục tác giả trong cả 4 README;
+- dòng ghi công trong `SKILL.md` và README của engine và visuals;
+- `package.json`: trường `url` của tác giả gốc giờ là `github.com/soumatheusgomes`;
+- metadata và dữ liệu có cấu trúc (JSON-LD) của trang hướng dẫn: link tác giả gốc giờ cũng trỏ về GitHub.
+
+Vẫn giữ tên, email và link GitHub của Matheus Gomes. Thông báo bản quyền trong `LICENSE.md` cũng giữ nguyên, vì giấy phép MIT bắt buộc như vậy.
+
+Không sửa được bằng mã nguồn (phải làm trong cài đặt GitHub):
+- Ô **Website** trong mục About của repo vẫn là `https://instagram.com/matheusgomes`; ô **Description** vẫn ghi "Created by Matheus Gomes.". Hai ô này được chép từ repo gốc khi fork.
+- Dòng **"forked from soumatheusgomes/editonny"**: chỉ GitHub mới tách được repo khỏi mạng fork.
+
 ## 2026-11-01 · README tiếng Việt
 
 Bạn yêu cầu tạo README tiếng Việt. Đã làm:

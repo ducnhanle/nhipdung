@@ -115,4 +115,4 @@ External generation, media upload, and paid credits require explicit authorizati
 
 ## Author and contact
 
-This Vietnamese fork is maintained by **ducnhanle** ([GitHub](https://github.com/ducnhanle) · [repository](https://github.com/ducnhanle/nhipdung) · [issues](https://github.com/ducnhanle/nhipdung/issues)). nhipdung is based on **editonny**, created by **Matheus Gomes**: [Instagram: @matheusgomes](https://instagram.com/matheusgomes) · [Email: eu@matheusgom.es](mailto:eu@matheusgom.es) · [GitHub](https://github.com/soumatheusgomes/editonny).
+This Vietnamese fork is maintained by **ducnhanle** ([GitHub](https://github.com/ducnhanle) · [repository](https://github.com/ducnhanle/nhipdung) · [issues](https://github.com/ducnhanle/nhipdung/issues)). nhipdung is based on **editonny**, created by **Matheus Gomes**: [Email: eu@matheusgom.es](mailto:eu@matheusgom.es) · [GitHub](https://github.com/soumatheusgomes/editonny).

@@ -215,7 +215,6 @@ Este fork lo mantiene **ducnhanle**. Añade soporte para vietnamita e instala y 
 
 nhipdung se basa en **editonny**, creado por **Matheus Gomes**:
 
-- Instagram: [@matheusgomes](https://instagram.com/matheusgomes)
 - Correo: [eu@matheusgom.es](mailto:eu@matheusgom.es)
 - GitHub: [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny)
 

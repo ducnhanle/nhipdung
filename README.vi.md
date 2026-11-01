@@ -215,7 +215,6 @@ Bản fork này do **ducnhanle** duy trì. Bản fork bổ sung hỗ trợ tiế
 
 nhipdung dựa trên **editonny**, do **Matheus Gomes** tạo ra:
 
-- Instagram: [@matheusgomes](https://instagram.com/matheusgomes)
 - Email: [eu@matheusgom.es](mailto:eu@matheusgom.es)
 - GitHub: [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny)
 

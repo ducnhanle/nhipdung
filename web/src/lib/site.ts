@@ -39,7 +39,7 @@ export async function pageMetadata(locale: AppLocale, page: PageKey): Promise<Me
     title,
     description,
     applicationName: t('siteName'),
-    authors: [{ name: MAINTAINER.name, url: MAINTAINER.github }, { name: AUTHOR.name, url: AUTHOR.instagram }],
+    authors: [{ name: MAINTAINER.name, url: MAINTAINER.github }, { name: AUTHOR.name, url: AUTHOR.github }],
     alternates: {
       canonical: url,
       languages: { ...Object.fromEntries(routing.locales.map(code => [code, localizedPath(code, page)])), 'x-default': PAGE_PATHS[page] },
@@ -58,7 +58,7 @@ export async function homeJsonLd(locale: AppLocale) {
   const t = await getTranslations({ locale, namespace: 'Metadata' });
   const absolute = (path: string) => new URL(path, SITE_URL).href;
   const url = absolute(localizedPath(locale, 'home'));
-  const author = { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.instagram };
+  const author = { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.github };
   const maintainer = { '@type': 'Person', name: MAINTAINER.name, url: MAINTAINER.github };
   const graph = {
     '@context': 'https://schema.org',
