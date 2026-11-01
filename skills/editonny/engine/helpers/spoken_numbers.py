@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import bisect
 import re
 import unicodedata
 from dataclasses import dataclass
@@ -31,24 +32,48 @@ VIETNAMESE = {
     "rưỡi": ("vi_ruoi", "half", 0.5), "nửa": ("vi_nua", "halfof", 0.5),
     "đồng": ("vi_dong", "currency", None), "đô": ("vi_do", "currency", None),
 }
-_VI_WORD = re.compile("(?<!\\w)(" + "|".join(sorted({form for w in VIETNAMESE for form in (w, unicodedata.normalize("NFD", w))},
-                                                     key=len, reverse=True)) + ")(?!\\w)", re.IGNORECASE)
+# đồng and đô are money only on their own: đồng hồ (clock), đồng ý (agree), đồng bào (compatriots), đô thị (city)...
+_NOT_MONEY_AFTER = {
+    "đồng": "bào|bằng|bộ|chí|cỏ|cảm|dạng|đội|hành|hồ|hương|loại|lòng|minh|môn|nát|nghiệp|nhất|phục|quê|ruộng|sự|tâm|"
+            "thời|thuận|tình|xu|ý",
+    "đô": "thị|thành|vật|đốc|hộ|hội|con",
+}
+_VI_WORD = re.compile("(?<!\\w)(" + "|".join(
+    w + (rf"(?!\s+(?:{_NOT_MONEY_AFTER[w]})(?!\w))" if w in _NOT_MONEY_AFTER else "")
+    for w in sorted(VIETNAMESE, key=len, reverse=True)) + ")(?!\\w)", re.IGNORECASE)
+
+
+def _nfc(text: str) -> tuple[str, list[int]]:
+    """NFC text and, per character, where its cluster starts in `text`: decomposed and composed input read alike."""
+    out: list[str] = []
+    index: list[int] = []
+    i = 0
+    while i < len(text):
+        j = i + 1
+        while j < len(text) and unicodedata.combining(text[j]):
+            j += 1
+        piece = unicodedata.normalize("NFC", text[i:j])
+        out.append(piece)
+        index.extend([i] * len(piece))
+        i = j
+    return "".join(out), index
 
 
 def normalize(text: str) -> tuple[str, list[int]]:
     """Lowercase + strip accents. Returns (normalized, index map norm_pos -> original_pos)."""
     out: list[str] = []
     index: list[int] = []
-    numerals = {m.start(): m for m in _VI_WORD.finditer(text)}
+    composed, origin = _nfc(text)
+    numerals = {m.start(): m for m in _VI_WORD.finditer(composed)}
     skip_to = 0
-    for i, ch in enumerate(text):
+    for i, ch in enumerate(composed):
         if i < skip_to:
             continue
         numeral = numerals.get(i)
         if numeral is not None:
-            token = VIETNAMESE[unicodedata.normalize("NFC", numeral.group(0)).lower()][0]
+            token = VIETNAMESE[numeral.group(0).lower()][0]
             out.extend(token)
-            index.extend(min(i + k, numeral.end() - 1) for k in range(len(token)))
+            index.extend(origin[min(i + k, numeral.end() - 1)] for k in range(len(token)))
             skip_to = numeral.end()
             continue
         mapped = _PUNCT_MAP.get(ch)
@@ -58,12 +83,27 @@ def normalize(text: str) -> tuple[str, list[int]]:
                 continue
             for c in piece.lower():
                 out.append(c)
-                index.append(i)
+                index.append(origin[i])
     return "".join(out), index
 
 
 def normal_value(text: str) -> str:
     return normalize(text)[0]
+
+
+def normalize_words(words: list[str]) -> list[str]:
+    """normal_value of each word, read in its sentence: "đô thị" (city) is not "đô" (dollar) followed by a word."""
+    starts, pos = [], 0
+    for word in words:
+        starts.append(pos)
+        pos += len(word) + 1
+    out = [""] * len(words)
+    text, index = normalize(" ".join(words))
+    for ch, i in zip(text, index):
+        k = bisect.bisect_right(starts, i) - 1
+        if 0 <= k < len(words) and i < starts[k] + len(words[k]):
+            out[k] += ch
+    return out
 
 
 # ------------------------------------------------------------------ numbers & money
@@ -109,6 +149,7 @@ WORD_NUMBERS.update({"un": 1, "una": 1, "medio": .5, "media": .5,
 VI_DIGITS = {t: v for t, k, v in VIETNAMESE.values() if k == "digit"}
 VI_TAILS = {t: v for t, k, v in VIETNAMESE.values() if k == "tail"}
 VI_SCALES = {t: v for t, k, v in VIETNAMESE.values() if k == "scale"} | {"tr": 1_000_000}
+ALL_MULTIPLIERS = MULTIPLIERS | VI_SCALES   # every scale MULT_RE can match
 # Units after "mười" or "X mươi": năm stays out ("mười năm" is ten years; fifteen is "mười lăm").
 VI_AFTER_TEN = {t: v for t, v in (VI_DIGITS | VI_TAILS).items() if t not in ("vi_khong", "vi_nam", "vi_tu", "vi_mot_tail")}
 VI_AFTER_TENS = {t: v for t, v in (VI_DIGITS | VI_TAILS).items() if t not in ("vi_khong", "vi_nam")}
@@ -225,6 +266,8 @@ def parse_vietnamese(words: list[str]) -> float | None:
                 total, i = total + (VI_DIGITS | VI_TAILS)[words[i]] * scale / 10, i + 1
             elif i == n - 1 and re.fullmatch(r"[1-9]", words[i]):
                 total, i = total + int(words[i]) * scale / 10, i + 1
+            elif i == n - 2 and words[i] in ("vi_linh", "vi_le") and words[i + 1] in VI_DIGITS:
+                total, i = total + VI_DIGITS[words[i + 1]], i + 2   # hai nghìn lẻ năm: 2005
             continue
         if last is not None and last <= group:
             return None
@@ -315,10 +358,16 @@ def find_money(ntext: str) -> list[Money]:
             continue  # "10 mil seguidores" is a count ("1 milhão ano passado" is still money)
         if bare and re.fullmatch(r"\d+\s*(?:mi|bi)", s):  # "5 mi" is too ambiguous alone
             continue
+        if bare and re.fullmatch(r"\dk", s):  # "4k" is a resolution or a run, not money
+            continue
         if re.search(r"\bvi_dong$", s) and not re.search(rf"\d{{4}}|\d\.\d{{3}}|\b(?:{'|'.join(VI_SCALES)}|k)\b", s):
             continue  # "hai đồng hồ", "không đồng ý": đồng is money with thousands, not alone
         if any(w.startswith("vi_") for w in s.split()) and parse_money(s) is None:
-            continue  # Vietnamese words that do not form one number
+            # "tháng mười 15 triệu": keep the longest tail that forms one number
+            tails = [m2 for m2 in re.finditer(r"(?<=\s)\S", s) if parse_money(s[m2.start():]) is not None]
+            if not tails:
+                continue  # Vietnamese words that do not form one number
+            start, s = start + tails[0].start(), s[tails[0].start():]
         if s in ("milao", "miloes") and re.search(r"\b(?:em|de|para|pra|pro|a|ao|da|do|na|no|via|ate)\s+$",
                                                   ntext[max(0, start - 8):start]):
             continue  # "fui pra Milão": the city, not the slang

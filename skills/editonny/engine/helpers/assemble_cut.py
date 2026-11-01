@@ -40,9 +40,9 @@ NEAR_EQUAL = 0.9       # a block of MIN_LONGE+ words found this complete anywher
 SHORT = 3               # a block this short is a false start when all its words open the next block
 VOICE_WITHOUT_WORD_S = 0.25   # a block without transcribed words this long ...
 VOICE_PEAK_DB = 20.0         # ... and this loud over the floor is a word Whisper misplaced, not a breath
-# Words a filler-only block consists of (Portuguese, English, Vietnamese). Compared after normal_value, like the
-# block tokens, so accented entries match too.
-HESITATION_WORDS = ("é", "e", "ah", "ahn", "hã", "hum", "hm", "uhm", "um", "eh", "éé", "tá", "né", "então", "aí",
+# Words a filler-only block consists of (Portuguese, English, Vietnamese), compared as said: accents tell a filler
+# from a word ("hã" is a filler, "há" is "there is"; Vietnamese "ừm" is not Portuguese "um", one).
+HESITATION_WORDS = ("é", "e", "ah", "ahn", "hã", "hum", "hm", "uhm", "eh", "éé", "tá", "né", "então", "aí",
                     "ờ", "ơ", "ừ", "ừm", "ờm", "à", "ừa", "hử", "thì", "kiểu")
 GAIN_DB = 4.0          # ranges this far from the voice reference get their gain_db (verify uses 4 too)
 FORMATS_VALUE = {"vertical": (1080, 1920), "horizontal": (1920, 1080), "square": (1080, 1080)}
@@ -54,7 +54,12 @@ def normal_value(word: str) -> str:
     return re.sub(r"[^\w]", "", w)
 
 
-HESITATION = {normal_value(w) for w in HESITATION_WORDS}
+def spoken_value(word: str) -> str:
+    """The word as said: lower case, composed accents kept, punctuation removed."""
+    return re.sub(r"[^\w]", "", unicodedata.normalize("NFC", word.lower()))
+
+
+HESITATION = {spoken_value(w) for w in HESITATION_WORDS}
 
 
 def blocks_of(db: np.ndarray, floor: float, pause_value: float) -> list[tuple[float, float]]:
@@ -195,7 +200,7 @@ def main() -> int:
                 continue
             bl["keep"], bl["why"] = False, 'no speech: breath or noise'
             continue
-        if all(t in HESITATION for t in bl["toks"]):
+        if all(spoken_value(str(w.get("text", ""))) in HESITATION for w in bl["words"]):
             bl["keep"], bl["why"] = False, f'''hesitation only ("{bl['text']}")'''
             continue
         for j in range(i + 1, min(len(allb), i + 1 + FAR_BLOCKS)):

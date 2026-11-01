@@ -46,7 +46,7 @@ Cách sửa:
   - Sora: các chữ thiếu lấy từ Plus Jakarta Sans.
   - Caveat: các chữ thiếu lấy từ Sriracha.
 - **Lưu ý kỹ thuật đã kiểm chứng:** Chrome chỉ ghép các `@font-face` có `unicode-range` khi khai báo độ đậm giống hệt nhau. Font phụ luôn dùng đúng `font-weight` của font chính.
-- `widths.json` (bảng độ rộng chữ của template): thêm 412 mục cho chữ tiếng Việt, đo bằng đúng font trình duyệt sẽ vẽ. Các mục cũ giữ nguyên.
+- `widths.json` (bảng độ rộng chữ của template): thêm 412 mục cho chữ tiếng Việt, đo bằng đúng font trình duyệt sẽ vẽ (không qua bộ dựng chữ). Các mục cũ giữ nguyên.
 - Bổ sung giấy phép OFL cho Inter, Sora, Playfair Display và các font mới; ghi nguồn và SHA-256 trong `THIRD_PARTY_NOTICES.md`. Repo gốc thiếu giấy phép của Inter, Sora và Playfair Display.
 
 ### 4. Từ vựng tiếng Việt trong engine
@@ -83,8 +83,8 @@ Cách sửa:
 |---|---|
 | `npm run check` | Đạt: 113 test Python, 21 Node, 337 Vitest, lint, typecheck, 49 icon |
 | `npm run build` | Đạt |
-| `npm run test:engine` | Đạt 120 test (1 bỏ qua có sẵn), trong đó 20 test tiếng Việt mới |
-| Test trình duyệt (Playwright) | 205 đạt, 30 bỏ qua, 1 lỗi. Lỗi `library.spec.ts:112` trên điện thoại cũng hỏng 6/6 lần trên bản gốc chưa sửa trong cùng môi trường, nên không do thay đổi này |
+| `npm run test:engine` | Đạt 131 test (1 bỏ qua có sẵn), trong đó 31 test tiếng Việt mới |
+| Test trình duyệt (Playwright) | Lần chạy cuối: 206 đạt, 30 bỏ qua. Ở một lần chạy trước, `library.spec.ts:112` trên điện thoại bị lỗi; test này cũng hỏng 6/6 lần trên bản gốc chưa sửa trong cùng môi trường, nên đó là lỗi do môi trường, không do thay đổi này |
 | Trang `/vi` | Đạt kiểm tra a11y (axe), không tràn ngang, không lỗi console, sáng/tối, desktop/điện thoại |
 | Render thật HyperFrames 0.8.179 | Đạt (smoke chuẩn và bản tiếng Việt). Phải nạp GSAP 3.14.2 từ npm vì container chặn cdn.jsdelivr.net |
 
@@ -93,6 +93,28 @@ Cách sửa:
 - Nhãn viết tay "Tuyệt vời ông mặt trời"
 - Cảnh doanh thu với "DOANH THU HÀNG THÁNG", "trong 30 ngày, mỗi ngày một video", "+37 đơn hôm nay"
 - Hook "ĐỪNG BỎ LỠ BÍ QUYẾT NÀY", CTA "ĐẶT HÀNG NGAY" và chú thích
+
+### Vòng rà soát độc lập (sau commit đầu)
+
+Một agent rà soát chỉ đọc (Claude Code) đã kiểm tra toàn bộ thay đổi bằng dữ liệu thật. Mọi lỗi đều đã tái hiện, sửa và có test hồi quy:
+
+| Lỗi | Cách sửa |
+|---|---|
+| **Nghiêm trọng:** bộ gợi ý crash với "2 triệu người theo dõi" (số + đơn vị tiếng Việt) | Dùng chung bảng hệ số `ALL_MULTIPLIERS` |
+| Phụ đề tiếng Bồ Đào Nha bị tính thấp hơn tới 35 px (ảnh hưởng chỗ đặt phụ đề) | Chỉ thêm chữ hoa có dấu; 125/125 trường hợp khớp bản gốc |
+| "2 đô thị" bị hiểu là $2, "đồng bào" là tiền; "giỏ", "làn", "Ba Lan" bị hiểu là "giờ", "lần" | Đơn vị phải đúng chính tả có dấu; loại trừ từ ghép của đồng/đô; chuẩn hóa cả câu thay vì từng từ |
+| Văn bản dấu tách rời (NFD) khiến "bà" bị đọc thành "ba" (số 3) | Chuẩn hóa về NFC trước khi nhận số, vẫn giữ bản đồ vị trí |
+| Ký hiệu ₫ biến mất trên thẻ giá | Ký hiệu tiền tệ cũng quyết định font; ₫ dự phòng thành đ |
+| 36 độ rộng chữ của Caveat đo sai | Đo không qua bộ dựng chữ |
+| "Comenta ROI" (tiếng Bồ Đào Nha) mất gợi ý | Bỏ các từ chức năng tiếng Việt trùng với tiếng Bồ Đào Nha sau khi bỏ dấu |
+| "Um" (một) và "há" (có) tiếng Bồ Đào Nha bị cắt như từ đệm | So từ đệm đúng như được nói (giữ dấu) |
+| "4k" (độ phân giải) bị hiểu là 4000 | Bỏ qua "Nk" khi chỉ có một chữ số |
+| Chia câu phụ đề và render có thể dùng hai font khác nhau | `captions.json` lưu font đã dùng khi chia câu |
+
+Còn để lại (đã ghi trong `docs/validation.md`):
+- Trang `/vi` vẫn tải trước font Latin Figtree; Next.js tải trước font theo layout nên không tách riêng được cho từng ngôn ngữ.
+- Chữ Sriracha bổ sung cho Caveat không được làm đậm giả.
+- Chưa đọc được một số cách nói rất khẩu ngữ như "hai lăm nghìn", "1tr2", "chục triệu".
 
 ### Chưa làm và lý do
 

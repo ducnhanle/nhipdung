@@ -26,7 +26,9 @@ def characters():
     return cs + list(EXTRAS) + [chr(c) for a, b in VIETNAMESE for c in range(a, b + 1)]
 
 def draws(f, c):
-    """Whether the font has a glyph for c (its mask and advance differ from .notdef)."""
+    """Whether the font has a glyph of its own for c (its mask and advance differ from .notdef). `f` must use the
+    BASIC layout: shaping would rebuild a missing letter from a base and marks, while Chromium draws every code
+    point of the companion's unicode-range with the companion."""
     nd, m = f.getmask(NOTDEF), f.getmask(c)
     return not (m.size == nd.size and bytes(m) == bytes(nd) and abs(f.getlength(c) - f.getlength(NOTDEF)) < 0.01)
 
@@ -56,7 +58,9 @@ def main():
                 f.set_variation_by_axes([max(axes[0]['minimum'], min(axes[0]['maximum'], weight))])
             companion = COMPANIONS.get(name)
             companion = ImageFont.truetype(os.path.join(FONTS, companion), EM) if companion and os.path.exists(os.path.join(FONTS, companion)) else None
-            by_weight[str(weight)] = {c: round((f if draws(f, c) or companion is None or not draws(companion, c) else companion).getlength(c))
+            own = ImageFont.truetype(path, EM, layout_engine=ImageFont.Layout.BASIC)
+            basic = ImageFont.truetype(os.path.join(FONTS, COMPANIONS[name]), EM, layout_engine=ImageFont.Layout.BASIC) if companion else None
+            by_weight[str(weight)] = {c: round((f if draws(own, c) or companion is None or not draws(basic, c) else companion).getlength(c))
                                       for c in characters()}
         exit['fonts'][name] = {'file': f'assets/fonts/{file}', 'weights': by_weight}
     destination = os.path.join(FONTS, 'widths.json')

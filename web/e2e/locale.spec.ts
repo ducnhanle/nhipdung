@@ -67,17 +67,26 @@ test('pages send the browser only the interface text their interactive parts use
   expect(install).not.toContain(en.Home.bench.marked);
 });
 
-test('Vietnamese pages load fonts that draw Vietnamese letters', async ({ page }) => {
+test('Vietnamese pages draw every font role from Vietnamese subsets', async ({ page }) => {
   await page.goto('/vi');
   await page.evaluate(() => document.fonts.ready);
-  const families = await page.evaluate(() => [...document.fonts].filter(face => face.status === 'loaded').map(face => face.family));
-  expect(families.length).toBeGreaterThan(0);
-  // Every loaded face must come from the Vietnamese subsets: a Latin-only file would leave ạ, ệ, ữ to the system font.
-  const sources = await page.evaluate(() => [...document.styleSheets].flatMap(sheet => { try { return [...sheet.cssRules]; } catch { return []; } })
-    .filter(rule => rule instanceof CSSFontFaceRule).map(rule => (rule as CSSFontFaceRule).style.getPropertyValue('src')));
-  const used = await page.evaluate(() => [...document.fonts].filter(face => face.status === 'loaded').map(face => face.family.replace(/['"]/g, '')));
-  expect(used.every(family => !/figtree|caveat|permanent/i.test(family))).toBe(true);
-  expect(sources.some(src => /vietnamese/.test(src))).toBe(true);
+  // Each --font-*-face variable names the family the tokens use; its @font-face files must be the Vietnamese subsets,
+  // otherwise ạ, ệ, ữ fall back to the system font.
+  const roles = await page.evaluate(() => {
+    const rules = [...document.styleSheets].flatMap(sheet => { try { return [...sheet.cssRules]; } catch { return []; } })
+      .filter(rule => rule instanceof CSSFontFaceRule) as CSSFontFaceRule[];
+    const style = getComputedStyle(document.documentElement);
+    return ['--font-figtree-face', '--font-anton-face', '--font-montserrat-face', '--font-caveat-face', '--font-marker-face'].map(name => {
+      const family = style.getPropertyValue(name).split(',')[0]!.trim().replace(/['"]/g, '');
+      const sources = rules.filter(rule => rule.style.getPropertyValue('font-family').replace(/['"]/g, '').trim() === family)
+        .map(rule => rule.style.getPropertyValue('src'));
+      return { name, family, sources };
+    });
+  });
+  for (const { name, family, sources } of roles) {
+    expect(sources.length, `${name} (${family})`).toBeGreaterThan(0);
+    for (const src of sources) expect(src, `${name} (${family})`).toMatch(/vietnamese/);
+  }
 });
 
 test('the design-system route is not localized', async ({ page }) => {

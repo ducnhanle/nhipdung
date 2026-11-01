@@ -530,6 +530,7 @@ def main(argv: list[str] | None = None) -> int:
         canvas = (int(timeline["width"]), int(timeline["height"]))
 
     cues = build_cues(words, style_id, max_words, canvas, segs, pause=args.pause)
+    font = tr.caption_font(style_id, [w["text"] for w in words])   # the typeface build_cues measured with
     screen_value = None
     if (args.screen_value or "").lower() not in ("no", "off"):
         screen_path = Path(args.screen_value).expanduser().resolve() if args.screen_value else edit_dir / "screen_text.json"
@@ -543,6 +544,7 @@ def main(argv: list[str] | None = None) -> int:
     out = {
         "source": str((timeline or {}).get("video") or "cut.mp4"),
         "style": style_id,
+        "font": font,
         "max_words": max_words,
         "canvas": list(canvas),
         "words_from": words_from,

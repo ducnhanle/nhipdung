@@ -293,7 +293,7 @@ _NOTDEF = ""          # private use code point: no bundled font has it, so it
 _SYMBOL_FALLBACKS = {
     "→": ("›", ">"), "←": ("‹", "<"), "➜": ("›", ">"), "№": ("Nº", "No"), "…": ("...",),
     "“": ('"',), "”": ('"',), "„": ('"',), "‘": ("'",), "’": ("'",), "—": ("-",), "–": ("-",),
-    "•": ("·", "-"), "×": ("x",),
+    "•": ("·", "-"), "×": ("x",), "₫": ("đ",),
 }
 
 
@@ -349,11 +349,12 @@ def _font_fallback(font_key: str) -> str | None:
 
 
 def _letters(texts) -> set[str]:
-    """Letters and combining marks of `texts`, as drawn (NFC) and upper-cased: they decide the typeface."""
+    """Letters, combining marks, and currency signs of `texts`, as drawn (NFC) and upper-cased: they decide the
+    typeface (Figtree has no ₫)."""
     out: set[str] = set()
     for text in texts:
         s = unicodedata.normalize("NFC", str(text or ""))
-        out.update(ch for ch in s + s.upper() if unicodedata.category(ch)[0] in "LM")
+        out.update(ch for ch in s + s.upper() if unicodedata.category(ch)[0] in "LM" or unicodedata.category(ch) == "Sc")
     return out
 
 
@@ -1175,7 +1176,7 @@ def render_caption_track(cues: dict, style_id: str, accent: str, out_dir: str,
     `bboxes.json` next to them). Default center: layout_defaults(canvas)["caption"].
     """
     cue_list = cues.get("cues", []) if isinstance(cues, dict) else list(cues)
-    spec = _caption_spec(style_id, caption_font(style_id, _cue_texts(cue_list)))
+    spec = _caption_spec(style_id, _track_font(cues, style_id, cue_list))
     geo = _Geo(int(canvas[0]), int(canvas[1]))
     out = Path(out_dir).resolve()
     out.mkdir(parents=True, exist_ok=True)
@@ -1254,7 +1255,8 @@ def _marked(ccc: int, minimum: int = 1) -> set[str]:
             if sum(1 for m in unicodedata.normalize("NFD", ch)[1:] if unicodedata.combining(m) == ccc) >= minimum}
 
 
-_REACH_ABOVE = set("ÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÑbdfhklt") | _marked(230)
+# Capitals with marks above (Vietnamese ẤỆỞ… too); lower-case accents stay below the ascenders of bdfhklt.
+_REACH_ABOVE = set("ÁÀÂÃÄÉÈÊËÍÌÎÏÓÒÔÕÖÚÙÛÜÑbdfhklt") | {ch for ch in _marked(230) if ch.isupper()}
 _REACH_BELOW = set("ÇQJgjpqyç,;") | _marked(220)
 # Stacked marks (Vietnamese ẤẦẨẪẮẰẲẴẾỀỂỄỐỒỔỖ...) reach higher than one accent, so they get their own sample.
 _REACH_STACKED = _marked(230, 2)
@@ -1262,6 +1264,16 @@ _REACH_STACKED = _marked(230, 2)
 
 def _cue_texts(cue_list: list[dict]) -> list[str]:
     return [w["text"] for cue in cue_list for w in _cue_words(cue)]
+
+
+def _track_font(cues, style_id: str, cue_list: list[dict]) -> str:
+    """The font a caption track is drawn with: the one captions.py grouped it with (stored in captions.json for this
+    style), else the choice for its cue words. Only the style's own font or its fallback is accepted."""
+    own = _caption_spec(style_id).font
+    stored = cues.get("font") if isinstance(cues, dict) and cues.get("style") == style_id else None
+    if stored and stored in (own, _font_fallback(own)):
+        return stored
+    return caption_font(style_id, _cue_texts(cue_list))
 
 
 def caption_extent(cues: dict | list, style_id: str, canvas=(1080, 1920), font_scale: float = 1.0,
@@ -1273,7 +1285,7 @@ def caption_extent(cues: dict | list, style_id: str, canvas=(1080, 1920), font_s
     track can be placed before it is rendered. Empty cues: a sample phrase with accents.
     """
     cue_list = cues.get("cues", []) if isinstance(cues, dict) else list(cues or [])
-    spec = _caption_spec(style_id, caption_font(style_id, _cue_texts(cue_list)))
+    spec = _caption_spec(style_id, _track_font(cues, style_id, cue_list))
     geo = _Geo(int(canvas[0]), int(canvas[1]))
     groups: list[list[str]] = []
     for cue in cue_list:

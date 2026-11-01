@@ -6,6 +6,7 @@ import argparse
 import json
 import re
 import sys
+import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -30,10 +31,10 @@ FUNCTION_WORDS = {"de", "do", "da", "dos", "das", "o", "a", "os", "as", "um", "u
                   "ou", "que", "pra", "para", "com", "no", "na", "em", "tambem", "mais", "nenhum", "nenhuma",
                   "isso", "so", "ai", "aqui", "tipo", "ne", "entao", "voce"}
 FUNCTION_WORDS |= {"the", "a", "an", "of", "to", "in", "on", "and", "or", "for", "with", "at", "by"}
-# Vietnamese, compared without accents like every Word.normal_value (đ keeps its stroke)
-FUNCTION_WORDS |= {vl.normal_value(w) for w in ("và", "của", "là", "thì", "mà", "những", "các", "một", "cho", "với",
-                                               "để", "ở", "trong", "trên", "khi", "nếu", "nhưng", "hoặc", "vì", "rằng",
-                                               "từ", "về", "đến", "tới", "cái", "này", "đó", "vậy", "rồi", "nhé", "nha")}
+# Vietnamese, compared without accents like every Word.normal_value (đ keeps its stroke). Words whose stripped form
+# is also Portuguese (là/la, về/ve, vì/vi, từ/tu, rồi/roi, cái/cai...) stay out so Portuguese detection is unchanged.
+FUNCTION_WORDS |= {vl.normal_value(w) for w in ("của", "các", "những", "nhưng", "một", "cho", "với", "để", "trong",
+                                               "trên", "khi", "nếu", "hoặc", "đến", "này", "đó", "vậy", "nhé")}
 KEYWORD_STOP = FUNCTION_WORDS | {"embaixo", "comentario", "comentarios", "mensagem", "direct", "dm", "eu", "la",
                                  "palavra", "seu", "sua", "ele", "ela", "gente", "agora", "ja", "se", "me", "te"}
 UNITS = ("students", "people", "clients", "followers", "hours", "days", "weeks", "months", "years", "alunos", "alunas", "aluno", "pessoas", "clientes", "seguidores", "dias", "horas", "minutos", "aulas",
@@ -85,8 +86,7 @@ class Sentence:
 
     def __post_init__(self) -> None:
         parts, pos = [], 0
-        for w in self.words:
-            t = vl.normal_value(w.text)
+        for w, t in zip(self.words, vl.normalize_words([w.text for w in self.words])):
             parts.append(t)
             self.spans.append((pos, pos + len(t)))
             pos += len(t) + 1
@@ -539,7 +539,7 @@ def find_numbers(sents: list[Sentence]) -> list[Candidate]:
             if value is None:
                 continue
             if m.group(2):
-                value *= vl.MULTIPLIERS[m.group(2)]
+                value *= vl.ALL_MULTIPLIERS[m.group(2)]
             if value < 2 or value > 1e9:
                 continue
             found.append(("count", m, value))
@@ -574,6 +574,9 @@ def find_numbers(sents: list[Sentence]) -> list[Candidate]:
                 cand = Candidate("counter", ws[0].start, ws[-1].end, {"value": value, "suffix": "%"},
                                  original_span(s, m.start(), m.end()))
         else:
+            said = unicodedata.normalize("NFC", original_span(s, m.start(3), m.end(3))).lower().strip(" ,.;:!?")
+            if m.group(3) in VI_UNITS and said != VI_UNITS[m.group(3)]:
+                continue      # a Vietnamese unit must be said as itself: giỏ is not giờ, làn and Ba Lan are not lần
             if m.group(3) == "anos" and re.search(r"\b(meus|minha\s+idade|aos|tinha|tenho|com)\s*$",
                                                   s.ntext[:m.start()].rstrip()):
                 continue      # "antes dos meus 24 anos", "aos 19 anos": an age, not a result

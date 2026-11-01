@@ -97,11 +97,11 @@ class MotionItemTests(unittest.TestCase):
 
 
 class LexiconTests(unittest.TestCase):
-    def test_filler_only_blocks_match_after_normalization(self):
+    def test_filler_only_blocks_match_as_said(self):
         for word in ('ờ', 'ừm', 'à', 'ơ', 'thì', 'kiểu', 'Ờ,', 'então', 'né', 'tá', 'aí', 'hã'):
-            self.assertIn(assemble_cut.normal_value(word), assemble_cut.HESITATION, word)
-        for word in ('không', 'được', 'vâng', 'dạ', 'bạn', 'triệu', 'vendas'):
-            self.assertNotIn(assemble_cut.normal_value(word), assemble_cut.HESITATION, word)
+            self.assertIn(assemble_cut.spoken_value(word), assemble_cut.HESITATION, word)
+        for word in ('không', 'được', 'vâng', 'dạ', 'bạn', 'triệu', 'vendas', 'o', 'a', 'um', 'há'):
+            self.assertNotIn(assemble_cut.spoken_value(word), assemble_cut.HESITATION, word)
 
     def test_vietnamese_subtitle_credit_is_dropped_only_over_silence(self):
         phrase = 'Hãy subscribe cho kênh Ghiền Mì Gõ để không bỏ lỡ những video hấp dẫn'.split()
@@ -116,7 +116,7 @@ class LexiconTests(unittest.TestCase):
             self.assertTrue(tr.is_weak_word(word), word)
         for word in ('bạn', 'video', 'Việt'):
             self.assertFalse(tr.is_weak_word(word), word)
-        self.assertTrue({vl.normal_value(w) for w in ('và', 'của', 'để', 'đó')} <= sv.FUNCTION_WORDS)
+        self.assertTrue({vl.normal_value(w) for w in ('của', 'những', 'để', 'đó')} <= sv.FUNCTION_WORDS)
 
 
 class VietnameseNumberTests(unittest.TestCase):
@@ -180,6 +180,81 @@ class VietnameseSuggestionTests(unittest.TestCase):
     def test_no_suggestion_from_lookalike_words(self):
         sentence = self.sentence('Mua hai đồng hồ và không đồng ý với giá cũ')
         self.assertEqual(sv.find_price([sentence]) + sv.find_numbers([sentence]), [])
+
+
+class ReviewRegressionTests(unittest.TestCase):
+    """Defects found by the independent review of the first Vietnamese change."""
+
+    @staticmethod
+    def sentence(text):
+        return sv.Sentence([sv.Word(text=w, normal_value=vl.normal_value(w), start=i * 0.4, end=i * 0.4 + 0.35)
+                            for i, w in enumerate(text.split())])
+
+    def counters(self, text):
+        return [(c.params.get('value'), c.params.get('suffix'), c.params.get('prefix')) for c in sv.find_numbers([self.sentence(text)])]
+
+    def test_digits_with_a_vietnamese_scale_and_unit_do_not_crash(self):
+        self.assertEqual(self.counters('Kênh của mình có 2 triệu người theo dõi rồi'), [(2_000_000, 'người theo dõi', None)])
+        self.assertEqual(self.counters('Hơn 500 nghìn học viên'), [(500_000, 'học viên', '+')])
+        self.assertEqual(self.counters('3 tr lượt xem'), [(3_000_000, 'lượt xem', None)])
+
+    def test_compounds_and_toneless_lookalikes_are_not_money_or_units(self):
+        for text in ('Việt Nam có 2 đô thị đặc biệt', 'hơn 1 triệu đồng bào cả nước', 'Mẹ mua ba giỏ trái cây',
+                     'Đường này có hai làn xe', 'đi du lịch Ba Lan về'):
+            with self.subTest(text=text):
+                self.assertEqual(self.counters(text) + [c.params for c in sv.find_price([self.sentence(text)])], [])
+        self.assertEqual(self.counters('Tôi đã thử 3 lần rồi'), [(3, 'lần', None)])
+
+    def test_decomposed_and_partly_composed_input_reads_like_composed(self):
+        import unicodedata
+        self.assertEqual(vl.normal_value(unicodedata.normalize('NFD', 'bà bạn bán từ đồ')), 'ba ban ban tu đo')
+        self.assertEqual(vl.parse_number('hai trie\u0302\u0323u'), 2_000_000)
+        price = sv.find_price([self.sentence(unicodedata.normalize('NFD', 'Từ 500 nghìn giảm còn 199 nghìn'))])
+        self.assertEqual((price[0].params['price'], price[0].params['old_price']), (199_000, 500_000))
+
+    def test_money_after_a_word_that_is_not_part_of_it(self):
+        text = vl.normal_value('Lương tháng mười 15 triệu')
+        self.assertEqual([(text[m.start:m.end], m.value) for m in vl.find_money(text)], [('15 vi_trieu', 15_000_000)])
+        self.assertEqual(vl.parse_number('hai nghìn lẻ năm'), 2005)
+
+    def test_attached_k_after_one_digit_is_not_money(self):
+        for text in ('fiz um video em 4k ontem', 'recebi uma tv 4K de presente'):
+            self.assertEqual(vl.find_money(vl.normal_value(text)), [], text)
+        self.assertEqual([m.value for m in vl.find_money('500k')], [500_000])
+
+    def test_portuguese_detection_is_unchanged(self):
+        self.assertEqual([c.params['keyword'] for c in sv.find_comment([self.sentence('Comenta ROI aqui embaixo que eu te mando')])], ['ROI'])
+        for word in ('ve', 'vi', 'tu', 'la', 'roi', 'cai', 'va'):
+            self.assertNotIn(word, sv.FUNCTION_WORDS - {'tu'} if word == 'tu' else sv.FUNCTION_WORDS, word)
+
+    def test_portuguese_um_and_ha_are_words_not_fillers(self):
+        for word in ('Um', 'um.', 'há', 'Há'):
+            self.assertNotIn(assemble_cut.spoken_value(word), assemble_cut.HESITATION, word)
+        for word in ('hã', 'ừm', 'Ờ,', 'então'):
+            self.assertIn(assemble_cut.spoken_value(word), assemble_cut.HESITATION, word)
+
+    def test_lower_case_accents_do_not_change_the_caption_reach_signature(self):
+        self.assertEqual({ch for ch in tr._REACH_ABOVE if ch.islower()}, set('bdfhklt'))
+
+    def test_dong_sign_switches_to_a_font_that_draws_it(self):
+        self.assertEqual(tr.font_for_texts('text_bold', ['₫ 500.000']), 'text_bold_extended')
+        self.assertEqual(tr.sanitize_text('₫ 500', 'text_bold'), ('đ 500', []))
+
+    def test_rendering_keeps_the_font_captions_were_grouped_with(self):
+        cues = {'style': 'clean_caption', 'font': 'text_bold_extended',
+                'cues': [{'start': 0.0, 'end': 1.0, 'text': 'video', 'words': [{'text': 'video', 'start': 0.0, 'end': 0.9}]}]}
+        self.assertEqual(tr._track_font(cues, 'clean_caption', cues['cues']), 'text_bold_extended')
+        self.assertEqual(tr._track_font(dict(cues, font='marker'), 'clean_caption', cues['cues']), 'text_bold')
+        self.assertEqual(tr._track_font(dict(cues, style='impact'), 'clean_caption', cues['cues']), 'text_bold')
+
+    def test_template_widths_measure_companion_letters_in_the_companion(self):
+        import json
+        from PIL import ImageFont
+        root = HELPERS.parents[1] / 'engine/project-template/assets/fonts'
+        widths = json.loads((root / 'widths.json').read_text(encoding='utf-8'))['fonts']['Caveat']['weights']['700']
+        companion = ImageFont.truetype(str(root / 'Sriracha-vietnamese.ttf'), 1000)
+        for ch in 'Ạạấếốỵ':
+            self.assertEqual(widths[ch], round(companion.getlength(ch)), ch)
 
 
 if __name__ == '__main__':
