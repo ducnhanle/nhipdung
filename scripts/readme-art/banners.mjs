@@ -1,6 +1,6 @@
 // Registry of README banners (name -> (messages, locale) => SVG) and the section banners built from guide text.
 import { hero } from './hero.mjs';
-import { C, COUNTS, esc, fill, fit, heading, icon, measure, paragraph, svg } from './lib.mjs';
+import { C, COUNTS, esc, fill, fit, heading, icon, measure, paragraph, svg, typeset } from './lib.mjs';
 import { captions, framing, install, lab, motion } from './scenes.mjs';
 
 const STAR = 'M0-11C2-2 2-2 11 0C2 2 2 2 0 11C-2 2-2 2-11 0C-2-2-2-2 0-11Z';
@@ -93,7 +93,7 @@ function features(t) {
     return `<rect x="${x}" y="${top}" width="572" height="580" rx="30" fill="${dark ? C['ink-850'] : C['orange-500']}" stroke="${dark ? C['ink-700'] : C['orange-600']}"/>
 <text x="${x + 532}" y="${top + 86}" text-anchor="end" class="k" font-size="66" fill="none" stroke="${dark ? C['ink-600'] : C['orange-700']}" stroke-width="1.5" style="fill:none">${mark}</text>
 <text x="${x + 40}" y="${top + 58}" class="mono" font-size="12" style="fill:${tone}">${esc(tag)}</text>
-<text x="${x + 40}" y="${top + 104}" font-size="32" font-weight="800" letter-spacing="-0.04em"${dark ? '' : ' class="ink"'}>${esc(title)}</text>${rows}
+<text x="${x + 40}" y="${top + 104}" font-size="${fit([title], 492, { tracking: -0.04 }, 32)}" font-weight="800" letter-spacing="-0.04em"${dark ? '' : ' class="ink"'}>${esc(title)}</text>${rows}
 <text x="${x + 40}" y="${top + 540}" font-size="15" font-weight="800" style="fill:${tone}">${esc(fill(link))} ↗</text>`;
   };
   const editor = [['cuts', 'scissors'], ['story', 'clapperboard'], ['captions', 'type'], ['audio', 'volume-2'], ['reframe', 'crop']].map(([key, name]) => [name, f.editor[key]]);
@@ -131,7 +131,7 @@ ${steps}`,
 }
 
 const STATS = {
-  'en-US': 'Bundled videos', 'pt-BR': 'Vídeos incluídos', es: 'Videos incluidos',
+  'en-US': 'Bundled videos', 'pt-BR': 'Vídeos incluídos', es: 'Videos incluidos', vi: 'Video đi kèm',
 };
 
 /** Orange closing card with the library counters rolling into place. */
@@ -163,7 +163,7 @@ ${counter(COUNTS.scenes, 72, 300, t.Footer.scenes, 0)}${counter(COUNTS.requests,
   });
 }
 
-export const BANNERS = {
+const DRAW = {
   hero: text => hero(text.Home, text.Nav),
   marquee,
   install,
@@ -176,3 +176,6 @@ export const BANNERS = {
   motion,
   stats,
 };
+
+/** Every banner, drawn with the faces and metrics of the locale it is given. */
+export const BANNERS = Object.fromEntries(Object.entries(DRAW).map(([name, draw]) => [name, (text, locale) => typeset(locale, () => draw(text, locale))]));

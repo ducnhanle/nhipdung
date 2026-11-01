@@ -1,4 +1,4 @@
-import { Eyebrow, Highlight } from '@editonny/design-system';
+import { Eyebrow, Highlight } from '@nhipdung/design-system';
 import type { ReactNode } from 'react';
 import styles from './page.module.css';
 

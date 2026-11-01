@@ -1,8 +1,8 @@
 import type { Effects, Format } from './request/options';
 import type { RequestPhrases } from './request/phrases';
 
-/** Lowercase, accent-free text for search. */
-export const normalize = (value: unknown): string => String(value).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+/** Lowercase, accent-free text for search; Vietnamese đ, which has no decomposition, becomes d. */
+export const normalize = (value: unknown): string => String(value).normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[đĐ]/g, 'd').toLowerCase();
 
 /** True when every whitespace-separated term of `query` appears in `haystack`, ignoring case and accents. */
 export function matchesAll(haystack: string, query: string): boolean {

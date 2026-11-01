@@ -39,7 +39,7 @@ describe('LanguageSelect', () => {
   });
 
   it('ships the three supported languages', () => {
-    expect(LANGUAGES.map(language => language.code)).toEqual(['en-US', 'pt-BR', 'es']);
+    expect(LANGUAGES.map(language => language.code)).toEqual(['en-US', 'pt-BR', 'es', 'vi']);
   });
 });
 
@@ -56,7 +56,7 @@ describe('site pieces', () => {
   });
 
   it('CreatorChip links out with a new-tab hint', () => {
-    render(<CreatorChip name="Matheus Gomes" role="Creator" href="https://instagram.com/matheusgomes" newTabLabel="(new tab)" />);
+    render(<CreatorChip name="Matheus Gomes" role="Creator" href="https://github.com/soumatheusgomes" newTabLabel="(new tab)" />);
     expect(screen.getByRole('link')).toHaveAttribute('rel', 'noopener noreferrer');
     expect(screen.getByText('(new tab)')).toBeInTheDocument();
   });

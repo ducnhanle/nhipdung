@@ -1,9 +1,9 @@
 {
-  "name": "@editonny/web",
+  "name": "@nhipdung/web",
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Public editonny guide: request builder, scene catalog, examples, and installation.",
+  "description": "Public nhipdung guide: request builder, scene catalog, examples, and installation.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +12,7 @@
     "test:e2e": "next build && playwright test"
   },
   "dependencies": {
-    "@editonny/design-system": "*",
+    "@nhipdung/design-system": "*",
     "next": "16.4.2",
     "next-intl": "4.14.9",
     "react": "19.3.1",

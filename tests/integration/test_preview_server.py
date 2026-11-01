@@ -64,8 +64,8 @@ class PreviewServerTests(unittest.TestCase):
     def test_port_zero_advertises_the_bound_port(self):
         import json, subprocess, sys, tempfile, time, urllib.request
         from pathlib import Path
-        helper = Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers/preview_server.py'
-        with tempfile.TemporaryDirectory(prefix='editonny preview port ') as temp:
+        helper = Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers/preview_server.py'
+        with tempfile.TemporaryDirectory(prefix='nhipdung preview port ') as temp:
             edit = Path(temp) / 'edit'
             edit.mkdir()
             info_path = edit / 'preview_cache/server.json'

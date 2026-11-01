@@ -1,4 +1,4 @@
-import { Accordion, Eyebrow, Highlight, Icon } from '@editonny/design-system';
+import { Accordion, Eyebrow, Highlight, Icon } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
 import { Link } from '@/i18n/navigation';

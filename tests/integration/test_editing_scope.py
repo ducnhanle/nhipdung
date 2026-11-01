@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path[:0] = [str(ROOT / 'skills/editonny/engine/helpers'), str(ROOT / 'tests')]
+sys.path[:0] = [str(ROOT / 'skills/nhipdung/engine/helpers'), str(ROOT / 'tests')]
 from workflow_fixtures import config
 import project_contract
 
@@ -32,7 +32,7 @@ class EditingScopeTests(unittest.TestCase):
                     edl.write_text(json.dumps({'sources': {'s': str(source)}, 'contractHash': project_contract.settings_hash(c),
                         'ranges': [{'id': 'a', 'source': 's', 'start': 0, 'end': 3},
                                    {'id': 'b', 'source': 's', 'start': 5, 'end': 7}]}))
-                    command = [sys.executable, str(ROOT / 'skills/editonny/engine/helpers/render_cut.py'), str(edl)]
+                    command = [sys.executable, str(ROOT / 'skills/nhipdung/engine/helpers/render_cut.py'), str(edl)]
                     result = subprocess.run(command, capture_output=True, text=True)
                     self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
                     self.assertIn('protected', result.stderr)
@@ -56,7 +56,7 @@ class EditingScopeTests(unittest.TestCase):
                    'ranges': [{'id': 'a', 'source': 's', 'start': 0, 'end': 10}]}
             (project.parent / 'edit/edl.json').write_text(json.dumps(edl))
             def render(project):
-                result = subprocess.run([sys.executable, str(ROOT / 'skills/editonny/engine/helpers/render_cut.py'),
+                result = subprocess.run([sys.executable, str(ROOT / 'skills/nhipdung/engine/helpers/render_cut.py'),
                     str(project.parent / 'edit/edl.json'), '--no-jcut'], capture_output=True, text=True)
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             render(project)

@@ -8,13 +8,13 @@ import sys
 import tempfile
 import unittest
 
-HELPERS = Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers'
+HELPERS = Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers'
 
 
 @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'), 'FFmpeg is required')
 class CutPipelineTests(unittest.TestCase):
     def test_cut_maps_only_selected_words_and_detects_stale_edl(self):
-        with tempfile.TemporaryDirectory(prefix='editonny cut pipeline ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung cut pipeline ') as temporary:
             root = Path(temporary)
             edit = root / 'edit'
             (edit / 'transcripts').mkdir(parents=True)

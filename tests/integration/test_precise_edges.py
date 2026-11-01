@@ -5,7 +5,7 @@ import unittest
 
 import numpy as np
 
-HELPERS = Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers'
+HELPERS = Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers'
 sys.path.insert(0, str(HELPERS))
 
 

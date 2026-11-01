@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install one editonny copy and register links for the selected agents."""
+"""Install one nhipdung copy and register links for the selected agents."""
 from __future__ import annotations
 
 import argparse
@@ -13,8 +13,8 @@ import subprocess
 import sys
 import tempfile
 
-SOURCE = Path(__file__).resolve().parent / 'skills' / 'editonny'
-MARKER = '.editonny-install.json'
+SOURCE = Path(__file__).resolve().parent / 'skills' / 'nhipdung'
+MARKER = '.nhipdung-install.json'
 EXCLUDED = {'.venv', '.git', '__pycache__', 'node_modules', '.pytest_cache',
             '.ruff_cache', '.DS_Store', 'Thumbs.db', MARKER}
 
@@ -43,13 +43,13 @@ def fingerprint(source):
 
 def locations(home, target):
     home = Path(home).expanduser().absolute()
-    storage = home / '.local/share/editonny'
+    storage = home / '.local/share/nhipdung'
     links = []
     if target in ('codex', 'both'):
-        links.append(home / '.agents/skills/editonny')
+        links.append(home / '.agents/skills/nhipdung')
     if target in ('claude', 'both'):
         config = os.environ.get('CLAUDE_CONFIG_DIR') if home == Path.home() else None
-        links.append((Path(config).expanduser() if config else home / '.claude') / 'skills/editonny')
+        links.append((Path(config).expanduser() if config else home / '.claude') / 'skills/nhipdung')
     if target not in ('codex', 'claude', 'both'):
         raise ValueError('target must be codex, claude, or both')
     return storage, links
@@ -86,11 +86,11 @@ def install(source, home, target='both', sync=True, dry_run=False):
             previous = json.loads((storage / MARKER).read_text(encoding='utf-8'))
         except (OSError, ValueError):
             raise ValueError(f'The existing directory is not owned by the installer: {storage}') from None
-        if not isinstance(previous, dict) or previous.get('product') != 'editonny':
-            raise ValueError(f'The existing directory is not owned by editonny: {storage}')
+        if not isinstance(previous, dict) or previous.get('product') != 'nhipdung':
+            raise ValueError(f'The existing directory is not owned by nhipdung: {storage}')
     signature = fingerprint(source)
     changed = previous.get('sha256') != signature or fingerprint(storage) != signature
-    print(f'editonny → {storage}')
+    print(f'nhipdung → {storage}')
     for link in links:
         print(f'  registration → {link}')
     if dry_run:
@@ -105,7 +105,7 @@ def install(source, home, target='both', sync=True, dry_run=False):
     try:
         if changed:
             storage.parent.mkdir(parents=True, exist_ok=True)
-            stage = Path(tempfile.mkdtemp(prefix='.editonny-stage-', dir=storage.parent))
+            stage = Path(tempfile.mkdtemp(prefix='.nhipdung-stage-', dir=storage.parent))
             shutil.copytree(source, stage, dirs_exist_ok=True,
                             ignore=lambda _, names: [n for n in names if excluded(n)])
             # Preserve local settings separately from the distributed package.
@@ -113,10 +113,10 @@ def install(source, home, target='both', sync=True, dry_run=False):
                 old = storage / relative
                 if old.is_file():
                     shutil.copy2(old, stage / relative)
-            (stage / MARKER).write_text(json.dumps({'product': 'editonny', 'sha256': signature,
+            (stage / MARKER).write_text(json.dumps({'product': 'nhipdung', 'sha256': signature,
                 'version': (source / 'VERSION').read_text().strip()}, indent=2) + '\n', encoding='utf-8')
             if storage.exists():
-                backup_root = storage.parent / 'editonny-backups'
+                backup_root = storage.parent / 'nhipdung-backups'
                 backup_root.mkdir(exist_ok=True)
                 backup = backup_root / datetime.now().strftime('%Y%m%d-%H%M%S-%f')
                 storage.rename(backup)
@@ -146,7 +146,7 @@ def install(source, home, target='both', sync=True, dry_run=False):
     print('Installation ready.' if changed else 'Package is already up to date.')
     if not sync:
         print('Dependencies were not installed (--no-sync). Run again without this option before editing.')
-    print('Start a new conversation. Codex: $editonny. Claude Code: /editonny.')
+    print('Start a new conversation. Codex: $nhipdung. Claude Code: /nhipdung.')
     return storage
 
 

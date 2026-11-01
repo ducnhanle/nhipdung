@@ -6,7 +6,7 @@ import sys
 import tempfile
 import unittest
 
-HELPERS = Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers'
+HELPERS = Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers'
 sys.path[:0] = [str(HELPERS), str(Path(__file__).resolve().parents[1])]
 from common import output_fps_for, probe_video
 

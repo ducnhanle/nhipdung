@@ -108,10 +108,10 @@ const forms = (theme: Theme) => <>
   </Specimen>
   <Specimen theme={theme} name="ChoiceCard" description="Radio-style card: orange border, glow, and a popping check when selected; compact pills fill orange.">
     <Row label="Icon">
-      <State label="Default"><ChoiceCard icon="terminal" title="Codex" description="$editonny" /></State>
-      <State label="Hover"><Force value="hover"><ChoiceCard icon="terminal" title="Codex" description="$editonny" /></Force></State>
-      <State label="Focus"><Force value="focus"><ChoiceCard icon="sparkles" title="Claude Code" description="/editonny" /></Force></State>
-      <State label="Selected"><ChoiceCard icon="sparkles" title="Claude Code" description="/editonny" selected /></State>
+      <State label="Default"><ChoiceCard icon="terminal" title="Codex" description="$nhipdung" /></State>
+      <State label="Hover"><Force value="hover"><ChoiceCard icon="terminal" title="Codex" description="$nhipdung" /></Force></State>
+      <State label="Focus"><Force value="focus"><ChoiceCard icon="sparkles" title="Claude Code" description="/nhipdung" /></Force></State>
+      <State label="Selected"><ChoiceCard icon="sparkles" title="Claude Code" description="/nhipdung" selected /></State>
       <State label="Disabled"><ChoiceCard icon="cpu" title="Remote render" description="Requires authorization" disabled /></State>
     </Row>
     <Row label="Compact">

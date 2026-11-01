@@ -5,7 +5,7 @@ import sys
 import tempfile
 import unittest
 
-HELPERS = Path(__file__).resolve().parents[1] / 'skills/editonny/engine/helpers'
+HELPERS = Path(__file__).resolve().parents[1] / 'skills/nhipdung/engine/helpers'
 sys.path.insert(0, str(HELPERS))
 from workflow_fixtures import config, confirmation
 

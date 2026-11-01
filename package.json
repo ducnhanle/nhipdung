@@ -1,23 +1,23 @@
 {
-  "name": "editonny-dev",
+  "name": "nhipdung-dev",
   "private": true,
   "workspaces": [
     "design-system",
     "web"
   ],
   "scripts": {
-    "dev": "npm run dev -w @editonny/web",
-    "build": "npm run build -w @editonny/web",
+    "dev": "npm run dev -w @nhipdung/web",
+    "build": "npm run build -w @nhipdung/web",
     "icons": "node design-system/scripts/icons.mjs",
     "check:icons": "node design-system/scripts/icons.mjs --check",
     "readme:art": "node scripts/readme-art/build.mjs",
     "test": "python3 -m unittest discover -s tests -p 'test_*.py' && node --test tests/eslint-config.test.mjs tests/design-system.test.mjs tests/three-engine.test.mjs tests/preview-api.test.mjs tests/readme-art.test.mjs && vitest run",
-    "test:browser": "npm run test:e2e -w @editonny/web",
+    "test:browser": "npm run test:e2e -w @nhipdung/web",
     "lint": "eslint . --max-warnings 0",
     "lint:rules": "node eslint-rules/verify.mjs ./eslint-rules/index.cjs",
-    "typecheck": "tsc -p design-system && npm run typecheck -w @editonny/web",
+    "typecheck": "tsc -p design-system && npm run typecheck -w @nhipdung/web",
     "check": "npm run lint:rules && npm run lint && npm run typecheck && npm test && npm run check:icons",
-    "test:engine": "uv run --locked --directory skills/editonny/engine python -m unittest discover -s ../../../tests/integration -p 'test_*.py'",
+    "test:engine": "uv run --locked --directory skills/nhipdung/engine python -m unittest discover -s ../../../tests/integration -p 'test_*.py'",
     "test:preview": "node --test tests/preview-browser.test.mjs",
     "graph:check": "python3 scripts/project_graph.py check",
     "graph:update": "python3 scripts/project_graph.py update",
@@ -49,16 +49,22 @@
   },
   "license": "MIT",
   "author": {
-    "name": "Matheus Gomes",
-    "email": "eu@matheusgom.es",
-    "url": "https://instagram.com/matheusgomes"
+    "name": "ducnhanle",
+    "url": "https://github.com/ducnhanle"
   },
-  "homepage": "https://github.com/soumatheusgomes/editonny#readme",
+  "contributors": [
+    {
+      "name": "Matheus Gomes",
+      "email": "eu@matheusgom.es",
+      "url": "https://github.com/soumatheusgomes"
+    }
+  ],
+  "homepage": "https://github.com/ducnhanle/nhipdung#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/soumatheusgomes/editonny.git"
+    "url": "https://github.com/ducnhanle/nhipdung.git"
   },
   "bugs": {
-    "url": "https://github.com/soumatheusgomes/editonny/issues"
+    "url": "https://github.com/ducnhanle/nhipdung/issues"
   }
 }

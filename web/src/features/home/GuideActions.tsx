@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@editonny/design-system';
+import { Button } from '@nhipdung/design-system';
 import { useCopy } from '../feedback/use-copy';
 import { showInLibrary } from './library-events';
 

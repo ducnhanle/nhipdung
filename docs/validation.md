@@ -278,14 +278,140 @@ Checks on the final tree, after the five cycles:
 
 Limits: only the named scenes were rendered, on macOS Apple Silicon. The upgraded Python stack was not exercised on Linux or Intel macOS, and Faster Whisper was not run.
 
+## Vietnamese support and fork source (2026-11-01)
+
+Reviewed on 2026-11-01 in a Linux cloud container (Python 3.13.18 launcher, locked engine environment with Pillow 13.0.0/FreeType 2.14.3 and libraqm, FFmpeg on PATH, Node.js 22, Playwright 1.64.1 driving the container's pre-installed Chromium build 1243). The fork owner's Vietnamese change log is `docs/fork-log.vi.md`.
+
+**Fork source.** The skill's update check (`references/setup.md`), the install request in every locale and README, the guide's repository links, the package metadata, and the README install banner point at `ducnhanle/editonny`; author credits, the creator chip, and the Open Graph creator line keep `soumatheusgomes/editonny`. Upstream releases are never offered as updates, because installing one would replace the fork's changes.
+
+**Findings that motivated the engine changes, reproduced before the fix.** `sanitize_text` removed Vietnamese letters that Figtree, Caveat, and Permanent Marker lack (`Xin chào Việt Nam, cảm ơn các bạn đã xem` became `Xin chào Vit Nam, cm n các bn đã xem` in `text_bold`). Worse, a letter Figtree has no glyph for but that libraqm rebuilds from a base and marks was drawn wrong without any warning: `Nguyễn` rendered as `Nguyẽn`, dropping the circumflex. The scene subsets of Inter (latin, latin-ext) and Sora lack U+1EA0–1EF9, so Chromium drew those letters in a system font. `assemble_cut.HESITATION` listed accented Portuguese fillers (então, né, tá, aí, hã, éé) that never matched, because block tokens are accent-stripped first. `parse_money('500k')` and `parse_money('10mil')` returned `None`.
+
+**Changes.** `fonts.json` names extended-coverage `fallback` fonts (Plus Jakarta Sans for `text_bold`/`text_semibold`, Sedgwick Ave Display for `marker`, Sriracha for `hand`); `text_render.font_for_texts` switches a whole caption track, hook, call to action, disclaimer, or motion item to the fallback only when its letters have no glyph of their own in the original font (checked without shaping), so other languages keep their typefaces. Scenes and the project template declare same-family `unicode-range` companions: Google's Inter 4.001 Vietnamese subset (same build, identical vertical metrics and advances as the bundled subsets), Plus Jakarta Sans for the code points Sora lacks, and Sriracha for the ones Caveat lacks, each with the original weight descriptors. `widths.json` gained 412 Vietnamese entries measured, without shaping, in the font Chromium draws them with; existing entries are unchanged. Vietnamese hesitation tokens, line-end function words, Whisper credits over silence, and visual-suggestion function words were added; hesitation entries are now normalized like block tokens. `spoken_numbers` reads Vietnamese numerals by their exact spelling (distinct `vi_` tokens) with a positional grammar (`hai triệu rưỡi`, `một trăm linh năm`, `một triệu hai`, `500k`, `5 củ`, đồng/VND/₫/đô); `suggest_visuals` recognizes Vietnamese price, gain, period, unit, and percentage phrasing. The guide gained the `vi` locale (`/vi`, localized pathnames, messages, 54 examples, 145 scene translations, request phrases, language menu entry, Latin + Vietnamese font subsets, a Vietnamese Open Graph card) and its search folds đ to d.
+
+**Checks.** `npm run check` passed: 113 Python (6 new), 21 Node, and 337 Vitest tests (54 new locale cases), lint, both typechecks, 49 icons. `npm run build` passed. `npm run test:engine` passed 131 tests with 1 existing skip (31 new in `tests/integration/test_vietnamese_text.py`). Rendered evidence was inspected: PIL samples of `clean_caption`, `impact`, the `marker` hook, a call to action, and a disclaimer kept every Vietnamese letter; Chromium loaded every distinct scene `@font-face` rule with Vietnamese text in Inter 400/800, Sora, SoraV, Caveat, Montserrat, and Playfair Italic without system-font fallback.
+
+The browser suite ran against the pre-installed Chromium through a session-only config, because the repository's Playwright 1.64.1 expects browser build 1248, which the container lacks. The final run passed 206 tests with 30 existing skips. An earlier run failed `library.spec.ts:112` on the phone project (navigating away mid-search keeps `?q=`); that test also failed 6 of 6 repeats on the untouched baseline build in this container, so its timing is environmental here and not attributed to this change. The Vietnamese pages pass the quality audit (one h1, no horizontal overflow, no console errors, no serious axe violations) in both themes on desktop and phone, the locale tests (`vi-VN` and `vi` browsers land on `/vi`, localized pathnames, `hreflang`, Open Graph), and a check that every loaded face comes from the Vietnamese subsets.
+
+`python3 scripts/smoke_engine.py` stopped at `build.py prepare` because this container's proxy refuses `cdn.jsdelivr.net` (HTTP 403). The same script with GSAP 3.14.2 taken from the npm registry tarball (the file jsDelivr mirrors) passed lint, check, snapshots, and the draft render with HyperFrames 0.8.179. A Vietnamese variant rendered captions (`CẢM ƠN`), a counter label in Caveat with the Sriracha companion (`Tuyệt vời ông mặt trời`), and the `revenue-counter` scene with Vietnamese text in Inter (`DOANH THU HÀNG THÁNG`, `trong 30 ngày, mỗi ngày một video`, `+37 đơn hôm nay`); extracted frames were inspected. HyperFrames `check` reported `text_occluded` when that scene's `sales today` chip received the longer `đơn hàng hôm nay`: scene chips have fixed room, so translated labels must stay about as short as the originals.
+
+**Independent review.** A read-only Claude Code review subagent examined `49714f2..b92a6ed` with concrete inputs and reported one Critical, three Important, and eight Minor findings. Each was reproduced and fixed with a regression test in `tests/integration/test_vietnamese_text.py`:
+
+- **Crash.** `suggest_visuals` crashed (`KeyError: 'vi_trieu'`) on digits with a Vietnamese scale and unit ("2 triệu người theo dõi"). The count path now uses `spoken_numbers.ALL_MULTIPLIERS`.
+- **Portuguese caption extents.** Lower-case accented letters had joined `_REACH_ABOVE`, which shrank Portuguese caption extents by up to 35 px. Only capitals with marks above are added now; 125 Portuguese track and style extents match the baseline exactly.
+- **Accent-stripped lookalikes.** "2 đô thị" was read as $2, "đồng bào" as đồng, and "giỏ", "làn", and "Ba Lan" as giờ or lần. The fix has three parts: Vietnamese units must be said with their exact spelling, which is also the label shown; đồng and đô followed by a compound head (hồ, ý, bào, thị, vật…) are not money; and suggestion sentences are normalized as a whole, so the next word is seen.
+- **Decomposed input.** Decomposed (NFD) or partly composed input matched numerals inside other words ("bà" as ba). `normalize` now composes to NFC first, keeping its index map.
+- **Minor fixes.**
+  - ₫ makes a card switch to a font that draws it, with đ as the look-alike.
+  - 36 Caveat-companion widths were measured with shaping; they now come from the companion.
+  - Vietnamese function words that collide with Portuguese once accents are stripped were removed, so "Comenta ROI" works again.
+  - Fillers are compared as said, so Portuguese "Um" (one) and "há" (there is) are not cut, while "hã" and "ừm" are.
+  - A bare "4k" after one digit is not money.
+  - `captions.json` stores the font its cues were grouped with, so rendering uses the same one.
+  - The `/vi` font e2e check now follows every `--font-*-face` variable.
+  - A stale architecture line was corrected.
+
+Not changed: Next.js preloads fonts per layout, so `/vi` still preloads the Latin Figtree file and swaps in Plus Jakarta Sans without a preload. Sriracha, a single-weight companion declared `400 700`, gets no synthetic bold. Colloquial "hai lăm nghìn", "1tr2", and "chục triệu" are not read.
+
+Limits: `npm run test:preview` and `npm run test:scenes` need agent-browser, which this container lacks; they were not run. Windows, macOS, natural Vietnamese speech, Whisper accuracy on Vietnamese, every scene, and long renders were not exercised. The Vietnamese guide text was translated for this fork and has not had a native-speaker review. Visual-suggestion detectors other than prices, gains, counts, percentages, and progress (steps, checklists, strikeouts, comment calls to action, turns, offers, emphasis) still use Portuguese and English phrasing. Caption grouping counts space-separated words, which are syllables in Vietnamese, so the default of three words shows three syllables per caption.
+
+## Product rename to nhipdung (2026-11-01)
+
+The fork was renamed from editonny to **nhipdung** (Vietnamese "Nhịp Dựng"). The skill is now `/nhipdung` (`$nhipdung` in Codex, `/nhipdung:nhipdung` as a plugin) and lives in `skills/nhipdung/`. The rename also covers:
+
+- the launcher and CLI (`nhipdung.py`), the installation in `~/.local/share/nhipdung` with its `.nhipdung-install.json` marker and `nhipdung-backups`, and the default job folder `~/Downloads/nhipdung/`;
+- the `NHIPDUNG_*` environment variables, the `nhipdung-engine` and `@nhipdung/*` package names (lockfile entries renamed, no dependency changed: `uv sync --locked` and `npm ci` succeed unchanged), and the `nhipdung:*` browser-storage keys;
+- the wordmark and icons ("n").
+
+The GitHub repository was then renamed to `ducnhanle/nhipdung` (old `ducnhanle/editonny` URLs redirect), and every link now uses the new name. Credits to editonny and `soumatheusgomes/editonny`, the frozen `design-system/reference/` pages, the `design-system/assets/brand/og-image.png` export, and the dated sections above keep the original name. There is no compatibility layer for previous `editonny` installations, projects, or storage keys; they are separate from nhipdung. Evidence recorded under the old name applies to the renamed code only where the rename is the sole difference.
+
+Checks after the rename:
+
+- `npm ci --ignore-scripts` and `uv sync --locked` succeeded unchanged.
+- `npm run check` passed (113 Python, 21 Node, 337 Vitest, lint, typechecks, icons), and `npm run build` passed.
+- `npm run test:engine` passed 131 tests (1 skip); the only fixture change was the chunked loopback body that spells the name.
+- The browser suite passed 204 tests with 30 skips. `library.spec.ts:112` failed again on both projects; it failed 6 of 6 on the baseline in this container and 1 of 4 in a later repeat, so it remains environmental here.
+- `python3 nhipdung.py doctor`, `media status` (79/79), and `catalog` passed.
+- A temporary-home installation registered `~/.claude/skills/nhipdung` and `~/.agents/skills/nhipdung`, linked to `~/.local/share/nhipdung`, with `name: nhipdung` in SKILL.md.
+- The synthetic render smoke and the Vietnamese render, with GSAP preloaded as described above, passed with HyperFrames 0.8.179.
+
+## Vietnamese README (2026-11-01)
+
+`README.vi.md` translates `README.md`. It carries the guide's Vietnamese `Install.askRequest` verbatim, and the language line of every README links it. The plugin archive now includes it.
+
+`scripts/readme-art/` renders the eleven banners for `vi` with the faces of the guide's `/vi` pages:
+
+- Latin + Vietnamese subsets of Plus Jakarta Sans, Anton, Montserrat, Sriracha, and Sedgwick Ave Display, declared under the Figtree, Anton, Montserrat, Caveat, and Permanent Marker roles.
+- Text in the Figtree role is measured with the static Plus Jakarta Sans instances.
+- The hand and marker caption tiles are sized from the faces' measured advances on the Vietnamese caption sample: Sriracha 0.474 em (0.48 used; Caveat's 0.42 would overflow the tile) and Sedgwick Ave Display 0.442 em (0.45 used).
+- Tight display line steps are 10% wider, and uppercase ones 18% wider. In the first render the dot below "Bạn" touched the "i" of "Video" on the next line. At 10%, the hook of the Anton "Ẳ" still sat under the "U" of the line above and read as "CÂỤ".
+- Highlight boxes reach 0.92 em above and 0.27 em below the baseline, instead of 0.84–0.86 and 0.20 em. Stacked marks reach 0.87 em and dots below 0.24 em in Plus Jakarta Sans 800, and ink text outside a box vanishes on the dark card.
+- Titles of the Editor and Motion cards are fitted to the card width. The Vietnamese Editor title measured 524.5 px against 492 px at 32 px; it is drawn at 30 px. The other locales' titles fit at 32 px.
+
+Two fixes apply to every locale:
+
+- The hero's creator chip now sizes its monospace status line with the `.mono` tracking. Before, the status overflowed the pill's rounded end by about 8 px in English and 11 px in Vietnamese.
+- The install terminal's text uses the shared monospace stack, which includes Liberation Mono. Without it, Chromium on Linux drew the Vietnamese request in DejaVu Sans Mono, which lacks 15 precomposed letters such as ề and ố, so their marks sat beside the base letter.
+
+In the English, Portuguese, and Spanish banners, only the chip's rect width and the terminal's font list changed. Their other 27 banners are byte-identical to the previous generator's output.
+
+Checks:
+
+- `npm run check` passed: 113 Python, 22 Node, and 339 Vitest tests, plus lint, typechecks, and 49 icons.
+  - The README contract test now covers `vi`.
+  - A new Node test asserts that each locale's banners embed faces that draw its letters. A mutation that drew Vietnamese banners with the Latin faces failed it.
+  - The leftover-text check now ignores base64 payloads. "NaN" occurs by chance inside the Plus Jakarta Sans subset; a `NaN` placed in the markup is still caught.
+- `tests/test_package.py` failed before `README.vi.md` joined the plugin scope and passes after.
+- With fontTools 4.60.1, the Vietnamese faces cover every character of `web/messages/vi.json` and its uppercase except ⌘ ▶ ✓ ✦. Of these, the banners draw only ✦, in the hero's motion chip; it falls back to a system font in every locale. The Latin Figtree subset lacks 97 of those characters: 93 Vietnamese letters and the 4 symbols.
+- In Chromium (Playwright), the 11 Vietnamese banners were inspected in their resting state and inside `<img>`.
+  - Served with raw.githubusercontent.com's CSP (`default-src 'none'; style-src 'unsafe-inline'; sandbox`), they rendered pixel-identical to the unrestricted render.
+  - Removing their `@font-face` rules changed the pixels, so the embedded faces draw the text.
+
+Limits:
+
+- GitHub's live rendering, Safari, and Firefox were not checked.
+- Monospace text uses the viewer's system font, as in the other locales. A system without any listed monospace font that has precomposed Vietnamese letters can still place marks beside the letters.
+- Plus Jakarta Sans leaves a wider gap before a period than Figtree, as on the guide's `/vi` pages.
+- The guide's own `/vi` hero headline (`line-height: 0.92`) shows the collision the banner fixed: at 1440 px in Chromium the dot below "Bạn" touches the "i" of "Video". The guide was not changed in this step.
+- The translation was written and reviewed by agents, not by a professional translator.
+
+Independent review: a read-only Claude Code review (Opus) of commit `0c5930f` found 1 Important and 7 Minor issues. All were reproduced and fixed in the next commit:
+
+- **Important:** Vietnamese marks were clipped at the edges of highlight boxes.
+- **Minor:**
+  - The Vietnamese Editor card title overflowed.
+  - Two Vietnamese answer lines touched.
+  - The terminal font list lacked Liberation Mono.
+  - The face test checked only three of the five roles.
+  - `typeset` reset instead of restoring when nested, and the banner registry did not select a locale's faces by itself.
+  - Some doc statements were stale.
+  - Some README wording was unnatural.
+
+After the fixes:
+
+- The face test covers all five roles; swapping in the Latin Anton face makes it fail.
+- `BANNERS[name](text, locale)` selects the locale's faces on its own.
+- The 11 Vietnamese banners were inspected again in their resting state: the box, title, answer, caption, and terminal areas at 1× and 3×, and every heading box.
+
+## Original author's Instagram link removed (2026-11-01)
+
+At the fork owner's request, `instagram.com/matheusgomes` was removed from the four READMEs, the credit lines in `SKILL.md` and the engine and visuals READMEs, `package.json`, and the guide's author metadata and JSON-LD. The guide metadata, the JSON-LD, and the `package.json` contributor now link the author's GitHub profile (`github.com/soumatheusgomes`). Matheus Gomes's name, email, and upstream repository links, and the `LICENSE.md` copyright notice, are unchanged.
+
+Checks:
+
+- `npm run check` passed: 113 Python, 22 Node, and 339 Vitest tests, plus lint, typechecks, and icons.
+- `npm run build` passed. The built `/en-US` and `/vi` pages contain no Instagram link, and their JSON-LD author URL is the GitHub profile.
+- The browser suite passed 206 tests with 30 skips, including `library.spec.ts:112`.
+
+The GitHub repository's About website (still the Instagram URL), its description, and the "forked from" label are repository settings outside the code.
+
 ## Reproduce and invalidate
 
 ```sh
 npm ci --ignore-scripts
 npm run build
 npm run check
-python3 editonny.py doctor
-python3 editonny.py media status
+python3 nhipdung.py doctor
+python3 nhipdung.py media status
 npm run test:engine
 npm run test:browser
 npm run test:preview

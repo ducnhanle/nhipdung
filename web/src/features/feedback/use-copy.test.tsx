@@ -17,9 +17,9 @@ describe('useCopy', () => {
   it('writes to the clipboard and shows the success toast', async () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     setClipboard({ writeText });
-    render(<ToastProvider><CopyButton text="/editonny" /></ToastProvider>);
+    render(<ToastProvider><CopyButton text="/nhipdung" /></ToastProvider>);
     await act(async () => { await userEvent.click(screen.getByRole('button', { name: 'Copy' })); });
-    expect(writeText).toHaveBeenCalledWith('/editonny');
+    expect(writeText).toHaveBeenCalledWith('/nhipdung');
     expect(screen.getByRole('status')).toHaveTextContent('Copied.');
   });
 

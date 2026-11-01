@@ -10,18 +10,18 @@ import threading
 import time
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / 'skills/editonny/engine/helpers'))
+sys.path.insert(0, str(ROOT / 'skills/nhipdung/engine/helpers'))
 import preview_server as preview
 
 
 @contextmanager
 def running_preview(video=False):
-    with tempfile.TemporaryDirectory(prefix='editonny preview ') as temp:
+    with tempfile.TemporaryDirectory(prefix='nhipdung preview ') as temp:
         root = Path(temp)
         edit = root / 'edit with spaces'
         edit.mkdir()
-        previous = os.environ.get('EDITONNY_MUSIC_LIBRARY')
-        os.environ['EDITONNY_MUSIC_LIBRARY'] = str(root / 'library')
+        previous = os.environ.get('NHIPDUNG_MUSIC_LIBRARY')
+        os.environ['NHIPDUNG_MUSIC_LIBRARY'] = str(root / 'library')
         server = None
         try:
             clip = edit / 'cut.mp4'
@@ -55,9 +55,9 @@ def running_preview(video=False):
                 server.server_close()
                 thread.join(timeout=5)
             if previous is None:
-                os.environ.pop('EDITONNY_MUSIC_LIBRARY', None)
+                os.environ.pop('NHIPDUNG_MUSIC_LIBRARY', None)
             else:
-                os.environ['EDITONNY_MUSIC_LIBRARY'] = previous
+                os.environ['NHIPDUNG_MUSIC_LIBRARY'] = previous
 
 
 if __name__ == '__main__':

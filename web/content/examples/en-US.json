@@ -12,8 +12,8 @@
   "environment-test": {
     "title": "Test the setup with a short clip",
     "summary": "Check the tools before starting a long project.",
-    "when": "You just installed editonny or changed computers.",
-    "goal": "Check the editonny environment and use a short video of mine to test cutting, captions, audio, and a simple catalog scene. Report what worked and what needs preparation. Recognizing this request alone does not validate the installation",
+    "when": "You just installed nhipdung or changed computers.",
+    "goal": "Check the nhipdung environment and use a short video of mine to test cutting, captions, audio, and a simple catalog scene. Report what worked and what needs preparation. Recognizing this request alone does not validate the installation",
     "tips": [
       "Use a file without sensitive personal content.",
       "The test should produce a playable MP4."
@@ -243,7 +243,7 @@
     "title": "Explain your field with a panel",
     "summary": "Use a catalog scene to make an explanation concrete.",
     "when": "You explain a service, process, or concept in your field.",
-    "goal": "Search the editonny catalog for a scene that suits my field and the actual explanation. Present the selection with adapted text, keep the speaker visible when needed, and use only supplied information. If no specific scene exists, propose a simple diagram serving the same purpose",
+    "goal": "Search the nhipdung catalog for a scene that suits my field and the actual explanation. Present the selection with adapted text, keep the speaker visible when needed, and use only supplied information. If no specific scene exists, propose a simple diagram serving the same purpose",
     "tips": [
       "Specify the profession, topic, and audience.",
       "Replace all demonstration names and numbers in the scene."
@@ -273,7 +273,7 @@
     "title": "Explain a spatial relationship in 3D",
     "summary": "Use volume when depth and position improve understanding.",
     "when": "An explanation involves layers, fits, paths, or parts.",
-    "goal": "Evaluate an available editonny 3D scene for the spoken spatial relationship. Use simple geometry, readable labels, and movement that reveals what a flat view would hide. Start with a short test of the main movement and verify rendering support. If it is not feasible, propose a 2D diagram",
+    "goal": "Evaluate an available nhipdung 3D scene for the spoken spatial relationship. Use simple geometry, readable labels, and movement that reveals what a flat view would hide. Start with a short test of the main movement and verify rendering support. If it is not feasible, propose a 2D diagram",
     "tips": [
       "Explain which relationship needs depth.",
       "Scale is illustrative unless you supply measurements."
@@ -423,7 +423,7 @@
     "title": "A voice effect in one interval",
     "summary": "A brief change in tone to reinforce an intention.",
     "when": "A phrase calls for a radio, megaphone, robot, or another available treatment.",
-    "goal": "Within my specified interval, inspect available editonny voice effects and test the one matching my intent. Preserve words, synchronization, and the original voice outside that interval, with smooth boundaries. Show a sample to check intelligibility and strength; do not promise to imitate a person or exactly reproduce another tool",
+    "goal": "Within my specified interval, inspect available nhipdung voice effects and test the one matching my intent. Preserve words, synchronization, and the original voice outside that interval, with smooth boundaries. Show a sample to check intelligibility and strength; do not promise to imitate a person or exactly reproduce another tool",
     "tips": [
       "Specify start, end, and the intended mood.",
       "If the cut changes later, rebuild the effect from the updated audio."
@@ -433,7 +433,7 @@
     "title": "Generated media for a scene",
     "summary": "Evaluate a transformation and test its video integration.",
     "when": "The idea involves transforming an object, changing a background, or adding an element.",
-    "goal": "Inspect available editonny recipes and evaluate my visual transformation using tools actually present in this environment. Identify required media, limitations, third-party transmission, and costs before execution. Do not send media or spend credits without my specific authorization. Preserve the original and test a short interval before integrating the result, maintaining continuity and voice. Label the result as an effect or illustration rather than real evidence",
+    "goal": "Inspect available nhipdung recipes and evaluate my visual transformation using tools actually present in this environment. Identify required media, limitations, third-party transmission, and costs before execution. Do not send media or spend credits without my specific authorization. Preserve the original and test a short interval before integrating the result, maintaining continuity and voice. Label the result as an effect or illustration rather than real evidence",
     "tips": [
       "Describe what changes, where, and how it should enter the video.",
       "If a required tool is unavailable, propose supplied media or a simpler local composition."
@@ -513,7 +513,7 @@
     "title": "Review the video from your phone",
     "summary": "Short updates and a sample suited to a small screen.",
     "when": "You are on a phone with access to an environment capable of editing your files.",
-    "goal": "I am following from my phone. Check that this environment can access the attachment or specified folder and editonny tools. If not, explain what is missing without promising browser editing in the guide. Keep updates short, show the cut before finishing, and deliver a sample I can review here. Explain how to access and save the final MP4 in this environment",
+    "goal": "I am following from my phone. Check that this environment can access the attachment or specified folder and nhipdung tools. If not, explain what is missing without promising browser editing in the guide. Keep updates short, show the cut before finishing, and deliver a sample I can review here. Explain how to access and save the final MP4 in this environment",
     "tips": [
       "The guide builds requests; it does not receive or edit footage.",
       "Prefer the original file to a messaging-app compression."

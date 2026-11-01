@@ -1,5 +1,5 @@
 // README banners that replay the guide's lab, caption styles, framing, motion scenes, and the install request.
-import { C, esc, fill, heading, icon, measure, paragraph, svg, wrap } from './lib.mjs';
+import { advanceEm, C, capsStep, esc, fill, heading, icon, lineStep, measure, MONO, paragraph, svg, wrap } from './lib.mjs';
 
 const KINDS = ['word', 'pause', 'word', 'word', 'mistake', 'word', 'pause', 'word', 'mistake', 'word', 'word']; // as in LabStages.tsx
 
@@ -89,13 +89,13 @@ export function captions(t) {
     // `em` approximates the average advance per character, in ems, for faces without bundled TrueType metrics.
     { label: l.fontImpact, family: 'Anton,Impact,sans-serif', weight: 400, size: 31, upper: true, accent: C['sun-400'], em: 0.48 },
     { label: l.fontClean, family: 'Montserrat,sans-serif', weight: 900, size: 22, upper: true, accent: C['volt-400'], em: 0.72 },
-    { label: l.fontHand, family: 'Caveat,cursive', weight: 700, size: 38, upper: false, accent: C['sun-400'], em: 0.42 },
-    { label: l.fontMarker, family: "'Permanent Marker',cursive", weight: 400, size: 25, upper: false, accent: C['volt-400'], em: 0.58 },
+    { label: l.fontHand, family: 'Caveat,cursive', weight: 700, size: 38, upper: false, accent: C['sun-400'], em: advanceEm('caveat') },
+    { label: l.fontMarker, family: "'Permanent Marker',cursive", weight: 400, size: 25, upper: false, accent: C['volt-400'], em: advanceEm('marker') },
   ].map(style => ({ ...style, size: Math.min(style.size, Math.floor((tw - 32) / (longest * style.em))) }));
   const tiles = styles.map((style, i) => {
     const x = 64 + i * (tw + gap), cx = x + tw / 2;
     let index = 0;
-    const text = lines.map((line, row) => `<text x="${cx}" y="${top + th - 116 + row * style.size * 1.12}" text-anchor="middle" style="font-family:${style.family};font-weight:${style.weight};--a:${style.accent}" font-size="${style.size}">${line.map(word => `<tspan class="say" style="animation-delay:${(index++ * step).toFixed(2)}s">${esc(style.upper ? word.toUpperCase() : word)}</tspan>`).join(' ')}</text>`).join('');
+    const text = lines.map((line, row) => `<text x="${cx}" y="${top + th - 116 + row * style.size * (style.upper ? capsStep(1.12) : lineStep(1.12))}" text-anchor="middle" style="font-family:${style.family};font-weight:${style.weight};--a:${style.accent}" font-size="${style.size}">${line.map(word => `<tspan class="say" style="animation-delay:${(index++ * step).toFixed(2)}s">${esc(style.upper ? word.toUpperCase() : word)}</tspan>`).join(' ')}</text>`).join('');
     const lw = measure(style.label, { size: 12, weight: 700 }) + 24;
     return `<rect x="${x - 1}" y="${top - 1}" width="${tw + 2}" height="${th + 2}" rx="27" fill="${C['ink-700']}"/>${footage(`cap${i}`, x, top, tw, th, 26)}
 <rect x="${x + 16}" y="${top + 16}" width="${lw}" height="26" rx="13" fill="${C['ink-950']}" opacity=".8"/><text x="${x + 28}" y="${top + 33}" font-size="12" font-weight="700">${esc(style.label)}</text>${text}`;
@@ -159,7 +159,7 @@ export function motion(t) {
     const q = wrap([{ text: l.question }], w - 64, { size: 18, weight: 700 });
     const answer = wrap([{ text: l.answer }], w - 40, { size: 30, family: 'Anton' }).map(line => line.map(word => word.text).join(' '));
     return `<g class="pop"><rect x="${x + 18}" y="${y + 80}" width="${w - 36}" height="${q.length * 26 + 30}" rx="18" fill="${C['fog-50']}"/>${q.map((line, i) => `<text x="${x + 34}" y="${y + 112 + i * 26}" font-size="18" font-weight="700" class="ink">${esc(line.map(word => word.text).join(' '))}</text>`).join('')}</g>
-<g class="pop" style="animation-delay:.8s">${answer.map((line, i) => `<text x="${x + 20}" y="${y + 150 + q.length * 26 + 40 + i * 34}" class="k vo" font-size="30">${esc(line)}</text>`).join('')}</g>`;
+<g class="pop" style="animation-delay:.8s">${answer.map((line, i) => `<text x="${x + 20}" y="${y + 150 + q.length * 26 + 40 + i * capsStep(34)}" class="k vo" font-size="30">${esc(line)}</text>`).join('')}</g>`;
   };
   const picks = ['steps', 'beforeAfter', 'number', 'question'];
   const labels = picks.map((pick, i) => `<text x="${64 + i * (fw + gap)}" y="${top + fh + 36}" font-size="18" font-weight="800">${esc(l.picks[pick].label)}</text><text x="${64 + i * (fw + gap)}" y="${top + fh + 58}" class="mono faint" font-size="10.5">${esc(`${l.catalogScene.replace(/:$/, '')} 0${i + 1}`.toUpperCase())}</text>`).join('');
@@ -174,9 +174,10 @@ ${head.markup}${lead.markup}${frame(0, steps)}${frame(1, compare)}${frame(2, num
 }
 
 const AGENT = {
-  'en-US': ['Cloning github.com/soumatheusgomes/editonny into a temporary folder', 'Reading skills/editonny/SKILL.md and its complete setup procedure', 'Installing for Codex and Claude Code; your settings are preserved', 'Engine, renderer, transcription model, and local OCR ready', 'Diagnostics and synthetic sample passed. Restart your agent.'],
-  'pt-BR': ['Clonando github.com/soumatheusgomes/editonny em uma pasta temporária', 'Lendo skills/editonny/SKILL.md e o procedimento de setup completo', 'Instalando para Codex e Claude Code; suas configurações ficam preservadas', 'Engine, renderizador, modelo de transcrição e OCR local prontos', 'Diagnósticos e amostra sintética aprovados. Reinicie o agente.'],
-  es: ['Clonando github.com/soumatheusgomes/editonny en una carpeta temporal', 'Leyendo skills/editonny/SKILL.md y su preparación completa', 'Instalando para Codex y Claude Code; tu configuración se conserva', 'Motor, renderizador, modelo de transcripción y OCR local listos', 'Diagnósticos y muestra sintética aprobados. Reinicia el agente.'],
+  'en-US': ['Cloning github.com/ducnhanle/nhipdung into a temporary folder', 'Reading skills/nhipdung/SKILL.md and its complete setup procedure', 'Installing for Codex and Claude Code; your settings are preserved', 'Engine, renderer, transcription model, and local OCR ready', 'Diagnostics and synthetic sample passed. Restart your agent.'],
+  'pt-BR': ['Clonando github.com/ducnhanle/nhipdung em uma pasta temporária', 'Lendo skills/nhipdung/SKILL.md e o procedimento de setup completo', 'Instalando para Codex e Claude Code; suas configurações ficam preservadas', 'Engine, renderizador, modelo de transcrição e OCR local prontos', 'Diagnósticos e amostra sintética aprovados. Reinicie o agente.'],
+  es: ['Clonando github.com/ducnhanle/nhipdung en una carpeta temporal', 'Leyendo skills/nhipdung/SKILL.md y su preparación completa', 'Instalando para Codex y Claude Code; tu configuración se conserva', 'Motor, renderizador, modelo de transcripción y OCR local listos', 'Diagnósticos y muestra sintética aprobados. Reinicia el agente.'],
+  vi: ['Đang clone github.com/ducnhanle/nhipdung vào một thư mục tạm', 'Đang đọc skills/nhipdung/SKILL.md và toàn bộ quy trình thiết lập', 'Đang cài cho Codex và Claude Code; các cài đặt của bạn được giữ nguyên', 'Engine, trình render, mô hình chép lời và OCR cục bộ đã sẵn sàng', 'Chẩn đoán và đoạn mẫu tổng hợp đều đạt. Hãy khởi động lại agent.'],
 };
 
 /** Agent terminal receiving the canonical install request, then reporting each setup step. */
@@ -200,7 +201,7 @@ export function install(t, locale) {
   const loop = 14;
   return svg({
     width: 1280, height: top + height + 80, title: inst.askTitle, description: `${g.askLead} ${inst.askRequest}`,
-    css: `.code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:${C['fog-200']}}
+    css: `.code{font-family:${MONO};fill:${C['fog-200']}}
 @keyframes type{0%{transform:translateX(0)}${((0.3 / loop) * 100).toFixed(1)}%,96%{transform:translateX(var(--w))}100%{transform:translateX(0)}}.type{transform:translateX(var(--w));animation:type ${loop}s steps(24) infinite backwards}
 @keyframes say{0%{opacity:0;transform:translateY(8px)}3%,96%{opacity:1;transform:none}100%{opacity:0}}.say{animation:say ${loop}s cubic-bezier(.2,.7,.2,1) infinite backwards}
 @keyframes blink{50%{opacity:0}}.caret{animation:blink 1s steps(1) infinite}`,

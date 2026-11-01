@@ -9,13 +9,13 @@ import sys
 import tempfile
 import unittest
 
-HELPER = Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers/measure_reference.py'
+HELPER = Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers/measure_reference.py'
 
 
 class ReferenceTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'), 'FFmpeg is required')
     def test_reference_report_and_rules_preserve_source(self):
-        with tempfile.TemporaryDirectory(prefix='editonny reference ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung reference ') as temporary:
             root = Path(temporary)
             video, output = root / 'source.mp4', root / 'measurement'
             subprocess.run(['ffmpeg', '-v', 'error', '-f', 'lavfi', '-i',

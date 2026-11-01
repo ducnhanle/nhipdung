@@ -74,4 +74,4 @@ const tokens = {
   },
 };
 
-export default { meta: { name: 'editonny-design-system' }, rules: { tokens } };
+export default { meta: { name: 'nhipdung-design-system' }, rules: { tokens } };

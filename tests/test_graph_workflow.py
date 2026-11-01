@@ -11,7 +11,7 @@ import graph_runtime as graph
 
 class GraphWorkflowTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='editonny graph ')
+        self.temp = tempfile.TemporaryDirectory(prefix='nhipdung graph ')
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name).resolve()
         self.source = self.root / 'guide.md'

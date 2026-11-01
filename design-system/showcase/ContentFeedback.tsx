@@ -70,7 +70,7 @@ const content = (theme: Theme, image: string) => <>
   <Specimen theme={theme} name="CommandLine" description="Terminal command with volt prompt, blinking caret, typewriter option, and a copy button that flashes volt.">
     <Row label="States">
       <State label="Default"><CommandLine command="python3 install.py --target both" /></State>
-      <State label="Typing"><CommandLine command="python3 editonny.py doctor" typing /></State>
+      <State label="Typing"><CommandLine command="python3 nhipdung.py doctor" typing /></State>
       <State label="Copy hover"><Force value="hover" selector="button"><CommandLine command="npm run check" /></Force></State>
       <State label="Copied"><Force attribute="done" value="true" selector="button"><CommandLine command="npm run build" /></Force></State>
     </Row>

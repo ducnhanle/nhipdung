@@ -1,8 +1,9 @@
 import { expect, test } from '@playwright/test';
+import { REPOSITORY_URL } from '../src/lib/links';
 
 test('the English home presents the landing with the real catalog numbers', async ({ page }) => {
   await page.goto('/en');
-  await expect(page).toHaveTitle('editonny — AI video editing in Claude Code and Codex');
+  await expect(page).toHaveTitle('nhipdung — AI video editing in Claude Code and Codex');
   const heading = page.getByRole('heading', { level: 1 });
   await expect(heading).toContainText('You ask.');
   await expect(heading).toContainText('Your video gets');
@@ -15,7 +16,7 @@ test('the English home presents the landing with the real catalog numbers', asyn
 test('the repository calls to action open GitHub in a new tab', async ({ page }) => {
   await page.goto('/pt-br');
   const cta = page.getByRole('main').getByRole('link', { name: /^Acessar skill/ }).first();
-  await expect(cta).toHaveAttribute('href', 'https://github.com/soumatheusgomes/editonny');
+  await expect(cta).toHaveAttribute('href', REPOSITORY_URL);
   await expect(cta).toHaveAttribute('target', '_blank');
 });
 
@@ -59,7 +60,7 @@ test('the agent choice changes the copied request and is shared with the builder
   const library = page.locator('#library');
   await library.getByRole('radio', { name: 'Claude Code' }).click();
   await library.getByRole('button', { name: /A lesson with a clear opening/ }).click();
-  await expect(page.getByRole('dialog').locator('pre')).toHaveText(/^\/editonny\n/);
+  await expect(page.getByRole('dialog').locator('pre')).toHaveText(/^\/nhipdung\n/);
   await page.goto('/en/create');
   await expect(page.getByRole('radio', { name: /Claude Code/ })).toBeChecked();
 });
@@ -82,8 +83,8 @@ test('the install request is the canonical one and can be copied', async ({ page
   await page.getByRole('button', { name: 'Copy install request' }).click();
   await expect(page.getByText('Install request copied ✓')).toBeVisible();
   const copied = await page.evaluate(() => navigator.clipboard.readText());
-  expect(copied).toContain('https://github.com/soumatheusgomes/editonny');
-  expect(copied).toContain('Read skills/editonny/SKILL.md');
+  expect(copied).toContain(REPOSITORY_URL);
+  expect(copied).toContain('Read skills/nhipdung/SKILL.md');
   expect(copied).toContain('Ask before paid services or sending my media.');
 });
 

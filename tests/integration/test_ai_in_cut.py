@@ -7,13 +7,13 @@ import sys
 import tempfile
 import unittest
 
-RECIPE = Path(__file__).resolve().parents[2] / 'skills/editonny/visuals/recipes/common/ai_in_cut.py'
+RECIPE = Path(__file__).resolve().parents[2] / 'skills/nhipdung/visuals/recipes/common/ai_in_cut.py'
 
 
 @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'), 'FFmpeg is required')
 class AiInCutTests(unittest.TestCase):
     def setUp(self):
-        self.root = Path(tempfile.mkdtemp(prefix='editonny ai in cut '))
+        self.root = Path(tempfile.mkdtemp(prefix='nhipdung ai in cut '))
         self.addCleanup(shutil.rmtree, self.root)
         self.edit = self.root / 'edit'
         self.edit.mkdir()

@@ -12,23 +12,15 @@ export const messages = locale => JSON.parse(read(`web/messages/${locale}.json`,
 
 /** Catalog and library sizes, counted from their sources like the guide does. */
 export const COUNTS = {
-  scenes: JSON.parse(read('skills/editonny/visuals/catalog.json', 'utf8')).scenes.length,
+  scenes: JSON.parse(read('skills/nhipdung/visuals/catalog.json', 'utf8')).scenes.length,
   requests: Object.keys(JSON.parse(read('web/content/examples/en-US.json', 'utf8'))).length,
-  videos: JSON.parse(read('skills/editonny/visuals/media.json', 'utf8')).videos.length,
+  videos: JSON.parse(read('skills/nhipdung/visuals/media.json', 'utf8')).videos.length,
 };
 
 /** Replaces ICU-style `{name}` placeholders with COUNTS (the README art only uses simple arguments). */
 export const fill = text => text.replace(/\{(\w+)\}/g, (_, name) => String(COUNTS[name] ?? `{${name}}`));
 
 const face = (family, file, weight) => `@font-face{font-family:'${family}';src:url(data:font/woff2;base64,${read(`web/src/app/fonts/${file}`).toString('base64')}) format('woff2');font-weight:${weight}}`;
-/** Latin WOFF2 subsets served by the guide, embedded so GitHub renders the brand faces inside <img>. */
-export const FONTS = {
-  figtree: face('Figtree', 'figtree-latin.woff2', '300 900'),
-  anton: face('Anton', 'anton-latin.woff2', '400'),
-  montserrat: face('Montserrat', 'montserrat-latin.woff2', '100 900'),
-  caveat: face('Caveat', 'caveat-latin.woff2', '400 700'),
-  marker: face('Permanent Marker', 'permanent-marker-latin.woff2', '400'),
-};
 export const MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace";
 
 /** Advance-width reader for a static TrueType font (cmap format 4 + hmtx); kerning is ignored. */
@@ -62,14 +54,82 @@ function metrics(path) {
   return (text, size, spacing = 0) => [...text].reduce((sum, char) => sum + advance(glyph(char.codePointAt(0))) / unitsPerEm * size + spacing, 0) - (text ? spacing : 0);
 }
 
-const figtree800 = metrics('web/src/app/fonts/figtree-800-latin.ttf');
-const figtree600 = metrics('web/src/app/fonts/figtree-600-latin.ttf');
-const anton = metrics('skills/editonny/engine/assets/fonts/anton/Anton-Regular.ttf');
+/**
+ * Faces per font role as the guide loads them (web/src/app/fonts.ts): WOFF2 subsets embedded so GitHub renders the
+ * brand faces inside <img>, static instances that measure the Figtree role, and the average advance per character, in
+ * ems, of the caption faces without bundled static metrics. Vietnamese banners fill the same roles with Latin +
+ * Vietnamese subsets: Figtree, Caveat, and Permanent Marker draw no Vietnamese letters, so Plus Jakarta Sans,
+ * Sriracha, and Sedgwick Ave Display stand in under the role names, like the guide's --font-*-face variables.
+ */
+const TYPE = {
+  latin: {
+    fonts: {
+      figtree: face('Figtree', 'figtree-latin.woff2', '300 900'),
+      anton: face('Anton', 'anton-latin.woff2', '400'),
+      montserrat: face('Montserrat', 'montserrat-latin.woff2', '100 900'),
+      caveat: face('Caveat', 'caveat-latin.woff2', '400 700'),
+      marker: face('Permanent Marker', 'permanent-marker-latin.woff2', '400'),
+    },
+    bold: metrics('web/src/app/fonts/figtree-800-latin.ttf'),
+    regular: metrics('web/src/app/fonts/figtree-600-latin.ttf'),
+    em: { caveat: 0.42, marker: 0.58 },
+    leading: 1,
+    capsLeading: 1,
+    room: { above: 0, below: 0 },
+  },
+  vietnamese: {
+    fonts: {
+      figtree: face('Figtree', 'plus-jakarta-sans-latin-vietnamese.woff2', '200 800'),
+      anton: face('Anton', 'anton-latin-vietnamese.woff2', '400'),
+      montserrat: face('Montserrat', 'montserrat-latin-vietnamese.woff2', '100 900'),
+      caveat: face('Caveat', 'sriracha-latin-vietnamese.woff2', '400'),
+      marker: face('Permanent Marker', 'sedgwick-ave-display-latin-vietnamese.woff2', '400'),
+    },
+    bold: metrics('web/src/app/fonts/plus-jakarta-sans-800-latin-vietnamese.ttf'),
+    regular: metrics('web/src/app/fonts/plus-jakarta-sans-600-latin-vietnamese.ttf'),
+    em: { caveat: 0.48, marker: 0.45 },
+    // Marks above and below Vietnamese letters (ạ over the next line's i) collide at the tight display leadings.
+    leading: 1.1,
+    // Capitals stack two marks (Ẳ is 1.21 em tall in Anton): at 1.1 its hook sat under the previous line's U.
+    capsLeading: 1.18,
+    // Stacked marks reach 0.87 em above the baseline and dots below 0.24 em under it in Plus Jakarta Sans 800, past
+    // the highlight boxes drawn for Latin text (0.84-0.86 em up, 0.20 em down), where ink text on the dark card vanishes.
+    room: { above: 0.08, below: 0.07 },
+  },
+};
+let type = TYPE.latin;
+
+/** Runs `draw` with the faces and metrics of `locale`; the generator draws one banner at a time. */
+export function typeset(locale, draw) {
+  const previous = type;
+  type = locale === 'vi' ? TYPE.vietnamese : TYPE.latin;
+  try { return draw(); } finally { type = previous; }
+}
+
+/** Average advance per character, in ems, of the face drawing a caption role ('caveat' or 'marker'). */
+export const advanceEm = role => type.em[role];
+
+/** A tight display line step (in ems or pixels), widened where the script's marks need the room. */
+export const lineStep = step => step * type.leading;
+
+/** The same for uppercase display lines, where the script stacks marks on capitals. */
+export const capsStep = step => step * type.capsLeading;
+
+/**
+ * Highlight box behind text on `baseline`: `top` and `height` are the ems that fit Latin text, grown where the
+ * script's marks reach further, so ink text never spills onto the dark card.
+ */
+export const highlightBox = (baseline, size, top, height) => ({
+  y: baseline - size * (top + type.room.above),
+  height: size * (height + type.room.above + type.room.below),
+});
+
+const anton = metrics('skills/nhipdung/engine/assets/fonts/anton/Anton-Regular.ttf');
 /** Text width in pixels. Weights below 700 use the 600 instance, a slight overestimate for regular text. */
 export const measure = (text, { size, weight = 800, spacing = 0, family = 'Figtree' }) => {
   if (family === 'Anton') return anton(text, size, spacing);
   if (family === 'mono') return [...text].length * (size * 0.6 + spacing);
-  return (weight >= 700 ? figtree800 : figtree600)(text, size, spacing);
+  return (weight >= 700 ? type.bold : type.regular)(text, size, spacing);
 };
 
 /** Largest size (step 0.5) at which every line fits `width`. */
@@ -122,7 +182,7 @@ export const CREATOR = `data:image/jpeg;base64,${read('docs/assets/readme/creato
 export function svg({ width, height, title, description, fonts = ['figtree'], css = '', body }) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="t d">
 <title id="t">${esc(title)}</title><desc id="d">${esc(description)}</desc>
-<style>${fonts.map(name => FONTS[name]).join('')}
+<style>${fonts.map(name => type.fonts[name]).join('')}
 text{font-family:Figtree,system-ui,sans-serif;fill:${C['fog-50']}}
 .mono{font-family:${MONO};font-weight:600;letter-spacing:.16em}
 .k{font-family:Anton,Impact,sans-serif}
@@ -151,12 +211,13 @@ export function heading({ x, y, index, eyebrow, titleA, highlight, size = 64, wi
   const inline = !a || wa + 22 + wh + 28 <= width;
   const base = y + 48 + size * 0.86;
   const hx = inline && a ? x + wa + 22 : x;
-  const hy = inline ? base : base + size * 1.1;
+  const hy = inline ? base : base + size * lineStep(1.1);
+  const box = highlightBox(hy, size, 0.86, 1.06);
   const parts = [];
   if (index) parts.push(`<rect x="${x}" y="${y}" width="28" height="20" rx="5" class="or"/><text x="${x + 14}" y="${y + 14.5}" text-anchor="middle" class="mono ink" font-size="11" style="letter-spacing:0">${index}</text>`);
   parts.push(`<text x="${x + (index ? 40 : 0)}" y="${y + 15}" class="mono dim" font-size="12">${esc(eyebrow.toUpperCase())}</text>`);
   if (a) parts.push(`<text x="${x}" y="${base}" font-size="${size}" font-weight="800" letter-spacing="${tracking}em">${esc(a)}</text>`);
-  parts.push(`<rect x="${hx - 10}" y="${hy - size * 0.86}" width="${wh + 22}" height="${size * 1.06}" rx="${size * 0.14}" fill="${tone}" class="hl"/>`);
+  parts.push(`<rect x="${hx - 10}" y="${box.y}" width="${wh + 22}" height="${box.height}" rx="${size * 0.14}" fill="${tone}" class="hl"/>`);
   parts.push(`<text x="${hx + 1}" y="${hy}" font-size="${size}" font-weight="800" letter-spacing="${tracking}em" class="ink">${esc(highlight)}</text>`);
   return { markup: parts.join('\n'), bottom: hy + size * 0.3 };
 }

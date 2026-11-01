@@ -1,5 +1,5 @@
 'use client';
-import { Badge, Button, Card, Eyebrow, IconButton } from '@editonny/design-system';
+import { Badge, Button, Card, Eyebrow, IconButton } from '@nhipdung/design-system';
 import { useLocale, useTranslations } from 'next-intl';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import type { AppLocale } from '@/i18n/routing';

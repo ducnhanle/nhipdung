@@ -6,7 +6,7 @@ import unittest
 import tempfile
 from unittest.mock import patch
 
-HELPERS = Path(__file__).resolve().parents[1] / 'skills/editonny/engine/helpers'
+HELPERS = Path(__file__).resolve().parents[1] / 'skills/nhipdung/engine/helpers'
 sys.path.insert(0, str(HELPERS))
 
 

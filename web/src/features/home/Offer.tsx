@@ -1,5 +1,5 @@
-import { Button, Eyebrow, Highlight, Icon, Marquee } from '@editonny/design-system';
-import photo from '@editonny/design-system/assets/imagery/matheus-gomes.jpeg';
+import { Button, Eyebrow, Highlight, Icon, Marquee } from '@nhipdung/design-system';
+import photo from '@nhipdung/design-system/assets/imagery/matheus-gomes.jpeg';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { NewTabLink } from '@/components/shell/NewTabLink';
@@ -7,7 +7,7 @@ import { AUTHOR, REPOSITORY_URL } from '@/lib/links';
 import { Race } from './Race';
 import styles from './home.module.css';
 
-/** The editor-versus-Editonny comparison and the open-source offer: free, with everything included. */
+/** The editor-versus-Nhipdung comparison and the open-source offer: free, with everything included. */
 export function Offer({ scenes, requests }: { scenes: number; requests: number }) {
   const t = useTranslations('Home.offer');
   const common = useTranslations('Common');

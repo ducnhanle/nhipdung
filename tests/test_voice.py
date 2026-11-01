@@ -11,7 +11,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VOICE = ROOT / 'skills/editonny/visuals/voice.py'
+VOICE = ROOT / 'skills/nhipdung/visuals/voice.py'
 
 
 class VoiceTests(unittest.TestCase):
@@ -28,7 +28,7 @@ class VoiceTests(unittest.TestCase):
 
     @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'), 'FFmpeg is required')
     def test_project_rebuild_and_clear_preserve_unowned_media(self):
-        with tempfile.TemporaryDirectory(prefix='editonny voice project ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung voice project ') as temporary:
             root = Path(temporary)
             edit, project = root / 'edit', root / 'project'
             edit.mkdir()
@@ -76,7 +76,7 @@ class VoiceTests(unittest.TestCase):
 
     @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'), 'FFmpeg is required')
     def test_temporary_output_never_replaces_the_source(self):
-        with tempfile.TemporaryDirectory(prefix='editonny voice temp ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung voice temp ') as temporary:
             root = Path(temporary)
             source, output = root / 'clip.processing.mp4', root / 'clip.mp4'
             subprocess.run(['ffmpeg', '-v', 'error', '-f', 'lavfi', '-i',
@@ -93,7 +93,7 @@ class VoiceTests(unittest.TestCase):
 
     @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'), 'FFmpeg is required')
     def test_effect_preserves_original_frames_and_audio_timing(self):
-        with tempfile.TemporaryDirectory(prefix='editonny voice ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung voice ') as temporary:
             root = Path(temporary)
             source, output = root / 'source.mp4', root / 'output.mp4'
             subprocess.run(['ffmpeg', '-v', 'error', '-f', 'lavfi', '-i',

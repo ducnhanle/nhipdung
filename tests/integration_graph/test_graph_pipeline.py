@@ -14,7 +14,7 @@ from graph_runtime import PROVENANCE, digest, extraction_prompt, read_json, writ
 
 class GraphPipelineTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='editonny graph pipeline ')
+        self.temp = tempfile.TemporaryDirectory(prefix='nhipdung graph pipeline ')
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name).resolve()
         (self.root / 'one.md').write_text('One calls the shared editor.')

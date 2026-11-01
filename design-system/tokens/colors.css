@@ -1,5 +1,5 @@
 /*
- * editonny color tokens. DESIGN.md is the source of truth; keep both in sync.
+ * nhipdung color tokens. DESIGN.md is the source of truth; keep both in sync.
  * Primitives are theme-independent. Components use only the semantic layer,
  * which the dark (default) and light themes map to primitives below.
  */

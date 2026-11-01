@@ -9,7 +9,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path[:0] = [str(ROOT / 'skills/editonny/engine/helpers'), str(ROOT / 'tests')]
+sys.path[:0] = [str(ROOT / 'skills/nhipdung/engine/helpers'), str(ROOT / 'tests')]
 from common import content_hash
 from fidelity import verify_media
 from intake import inspect_sources, propose_settings
@@ -17,7 +17,7 @@ from workflow_fixtures import confirmation
 from workspace import create_workspace, publish_export, record_review, render_dependencies, seed_source
 
 
-@unittest.skipUnless(os.environ.get('EDITONNY_NATIVE_CONFORMANCE') == '1', 'Explicit pinned native render conformance job')
+@unittest.skipUnless(os.environ.get('NHIPDUNG_NATIVE_CONFORMANCE') == '1', 'Explicit pinned native render conformance job')
 class ManagedNativeTests(unittest.TestCase):
     def test_reviewed_sample_then_full_native_geometry_audio_and_delivery(self):
         (ROOT / '.work').mkdir(exist_ok=True)
@@ -35,9 +35,9 @@ class ManagedNativeTests(unittest.TestCase):
                 '-color_primaries', 'bt709', '-color_trc', 'bt709', '-colorspace', 'bt709', '-c:a', 'aac', source)
             original = content_hash(source)
             inspection = inspect_sources([source], False)
-            config = propose_settings(inspection, {'delivery': {'subtitleFormats': ['srt', 'vtt'], 'workspaceRoot': str(root / 'Downloads/editonny')}})['config']
+            config = propose_settings(inspection, {'delivery': {'subtitleFormats': ['srt', 'vtt'], 'workspaceRoot': str(root / 'Downloads/nhipdung')}})['config']
             config['corrections'] = {'Colore': 'Color'}
-            project = create_workspace(root / 'Downloads/editonny', 'Conformance', inspection, config, confirmation(config, inspection))
+            project = create_workspace(root / 'Downloads/nhipdung', 'Conformance', inspection, config, confirmation(config, inspection))
             cut = seed_source(project)
             edit = cut.parent
             (edit / 'transcripts/cut.json').write_text(json.dumps({'words': [
@@ -69,7 +69,7 @@ class ManagedNativeTests(unittest.TestCase):
                 run('ffmpeg', '-v', 'error', '-ss', at, '-i', candidate, '-frames:v', '1', root / f'frame-{at}.png')
             print(f'Managed native evidence: {root}', flush=True)
         finally:
-            if os.environ.get('EDITONNY_KEEP_EVIDENCE') != '1':
+            if os.environ.get('NHIPDUNG_KEEP_EVIDENCE') != '1':
                 shutil.rmtree(root)
 
 

@@ -22,7 +22,9 @@ test('README banners are self-contained, accessible, and honor reduced motion', 
     assert.match(content, /<title id="t">[^<]+<\/title><desc id="d">[^<]+<\/desc>/, path);
     assert.match(content, /@media \(prefers-reduced-motion:reduce\)\{\*\{animation:none!important\}\}/, path);
     assert.doesNotMatch(content, /<script|<foreignObject|href="(?!data:|#)|url\((?!data:|#)/, path);
-    assert.doesNotMatch(content, /undefined|NaN|\{[a-zA-Z]+\}/, path);
+    // Base64 font and image payloads can spell anything ("NaN" occurs in a Vietnamese subset); check the markup.
+    const markup = content.replace(/(data:[\w/+.-]+;base64,)[A-Za-z0-9+/=]+/g, '$1');
+    assert.doesNotMatch(markup, /undefined|NaN|\{[a-zA-Z]+\}/, path);
   }
 });
 
@@ -31,6 +33,19 @@ test('banners render each locale\'s guide text', () => {
     const messages = JSON.parse(readFileSync(new URL(`web/messages/${locale}.json`, root), 'utf8'));
     const hero = banners.find(item => item.path === `${OUT}/${locale}/hero.svg`).content;
     assert.ok(hero.includes(messages.Home.hero.line1.replace(/&/g, '&amp;')), `${locale} hero headline`);
+  }
+});
+
+test('banners embed faces that draw their locale\'s letters', () => {
+  const face = file => readFileSync(new URL(`web/src/app/fonts/${file}.woff2`, root)).toString('base64');
+  // Faces in role order: Figtree, Anton, Montserrat, Caveat, Permanent Marker.
+  const latin = ['figtree-latin', 'anton-latin', 'montserrat-latin', 'caveat-latin', 'permanent-marker-latin'].map(face);
+  const vietnamese = ['plus-jakarta-sans-latin-vietnamese', 'anton-latin-vietnamese', 'montserrat-latin-vietnamese', 'sriracha-latin-vietnamese', 'sedgwick-ave-display-latin-vietnamese'].map(face);
+  for (const { path, content } of banners) {
+    const [own, other] = path.startsWith(`${OUT}/vi/`) ? [vietnamese, latin] : [latin, vietnamese];
+    assert.ok(content.includes(own[0]), path);
+    if (path.endsWith('/captions.svg')) assert.ok(own.every(data => content.includes(data)), path);
+    assert.ok(other.every(data => !content.includes(data)), path);
   }
 });
 

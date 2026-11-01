@@ -10,7 +10,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const output = resolve(root, '.work');
 await mkdir(output, { recursive: true });
 const project = await mkdtemp(resolve(output, 'three project '));
-const session = `editonny-three-${process.pid}`;
+const session = `nhipdung-three-${process.pid}`;
 const exec = promisify(execFile);
 const browser = async (...args) => {
   const { stdout } = await exec('agent-browser', ['--session', session, '--json', ...args], { timeout: 30000 });
@@ -36,12 +36,12 @@ const server = createServer(async (req, res) => {
 });
 
 try {
-  const template = resolve(root, 'skills/editonny/engine/project-template');
+  const template = resolve(root, 'skills/nhipdung/engine/project-template');
   for (const part of ['assets/three', 'assets/fonts', 'compositions/scenes/3d']) {
     await cp(resolve(template, part), resolve(project, part), { recursive: true });
   }
   await writeFile(resolve(project, 'index.html'), `<!doctype html>
-<meta charset="utf-8"><title>Smoke 3D editonny</title>
+<meta charset="utf-8"><title>Smoke 3D nhipdung</title>
 <style>
 @font-face {font-family:Montserrat;src:url('/assets/fonts/Montserrat.ttf')}
 body {margin:0;background:#e7e9df} canvas {width:640px;height:640px}

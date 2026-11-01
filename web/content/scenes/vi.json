@@ -1,0 +1,612 @@
+{
+  "categories": {
+    "General": "Chung",
+    "Real estate": "Bất động sản",
+    "Health": "Sức khỏe",
+    "Nutrition": "Dinh dưỡng",
+    "Legal": "Pháp lý",
+    "Creators": "Nhà sáng tạo nội dung",
+    "Legal panels": "Bảng · Pháp lý",
+    "Creator panels": "Bảng · Nhà sáng tạo",
+    "Health panels": "Bảng · Sức khỏe",
+    "Nutrition panels": "Bảng · Dinh dưỡng",
+    "Real estate panels": "Bảng · Bất động sản",
+    "Transitions": "Chuyển cảnh",
+    "Pointers": "Dấu chỉ",
+    "Video effects": "Hiệu ứng video",
+    "Comedy": "Hài hước",
+    "Neon": "Neon",
+    "Scene objects": "Vật thể trong cảnh",
+    "Interfaces": "Giao diện",
+    "Proof cards": "Thẻ bằng chứng",
+    "Dental demonstrations": "Minh họa · Nha khoa",
+    "Fitness demonstrations": "Minh họa · Thể hình",
+    "Legal demonstrations": "Minh họa · Pháp lý",
+    "Nutrition demonstrations": "Minh họa · Dinh dưỡng",
+    "Architecture demonstrations": "Minh họa · Kiến trúc",
+    "Captions and titles": "Phụ đề và tiêu đề",
+    "Image entrances": "Ảnh xuất hiện"
+  },
+  "scenes": {
+    "revenue-counter": {
+      "name": "Bộ đếm doanh thu",
+      "whenToUse": "Khi lời nói nhắc đến doanh thu, lợi nhuận hoặc một kết quả về tiền."
+    },
+    "three-steps": {
+      "name": "Ba bước",
+      "whenToUse": "Khi lời nói tóm tắt một phương pháp gồm ba bước."
+    },
+    "before-after": {
+      "name": "Trước và sau",
+      "whenToUse": "Khi so sánh kết quả trước đây với kết quả mới bằng hai con số."
+    },
+    "call-to-action": {
+      "name": "Lời kêu gọi hành động",
+      "whenToUse": "Ở cuối video, khi kêu gọi người xem nhấn vào một nút."
+    },
+    "question-answer": {
+      "name": "Hỏi đáp",
+      "whenToUse": "Khi trả lời một câu hỏi thường gặp."
+    },
+    "step-by-step": {
+      "name": "Từng bước một",
+      "whenToUse": "Khi giải thích bốn bước theo thứ tự."
+    },
+    "numbered-list": {
+      "name": "Danh sách đánh số",
+      "whenToUse": "Khi liệt kê các lỗi sai, mẹo hoặc lý do."
+    },
+    "comparison": {
+      "name": "So sánh song song",
+      "whenToUse": "Khi so sánh hai lựa chọn đặt cạnh nhau."
+    },
+    "phone-tutorial": {
+      "name": "Hướng dẫn trên điện thoại",
+      "whenToUse": "Khi minh họa một chuỗi thao tác trong ứng dụng."
+    },
+    "phone-chat": {
+      "name": "Tin nhắn trên điện thoại",
+      "whenToUse": "Khi kể về một cuộc trò chuyện với khách hàng dẫn đến chốt đơn."
+    },
+    "laptop-dashboard": {
+      "name": "Bảng số liệu trên laptop",
+      "whenToUse": "Khi trình bày kết quả hằng tháng."
+    },
+    "notifications": {
+      "name": "Thông báo dồn dập",
+      "whenToUse": "Khi mô tả các đơn hàng lần lượt đổ về."
+    },
+    "mortgage-calculator": {
+      "name": "Tính khoản vay mua nhà",
+      "whenToUse": "Khi giải thích khoản trả góp ước tính của một khoản vay mua nhà."
+    },
+    "property-card": {
+      "name": "Thẻ bất động sản",
+      "whenToUse": "Khi giới thiệu một bất động sản kèm giá và kích thước."
+    },
+    "medical-warning-signs": {
+      "name": "Dấu hiệu cảnh báo sức khỏe",
+      "whenToUse": "Khi liệt kê các triệu chứng và những yếu tố có thể góp phần gây ra chúng. Hãy thay nội dung minh họa bằng thông tin lâm sàng đã được kiểm chứng."
+    },
+    "body-diagram": {
+      "name": "Sơ đồ cơ thể",
+      "whenToUse": "Khi chỉ ra các vùng trên cơ thể và những nguyên nhân có thể gây đau. Nội dung minh họa không thay thế cho tư vấn y khoa."
+    },
+    "balanced-plate": {
+      "name": "Đĩa ăn cân bằng",
+      "whenToUse": "Khi giải thích cách chia đĩa ăn theo các nhóm thực phẩm."
+    },
+    "food-swap": {
+      "name": "Thay thế thực phẩm",
+      "whenToUse": "Khi gợi ý thay một loại thực phẩm bằng một loại khác."
+    },
+    "legal-deadline": {
+      "name": "Thời hạn pháp lý",
+      "whenToUse": "Khi giải thích một thời hạn pháp lý đang được tính. Hãy xác minh khu vực pháp lý áp dụng và các tình tiết liên quan."
+    },
+    "legal-code": {
+      "name": "Trích dẫn điều luật",
+      "whenToUse": "Khi trích dẫn một quy định pháp luật. Hãy thay văn bản pháp lý minh họa bằng nguồn phù hợp đã được xác minh."
+    },
+    "follower-counter": {
+      "name": "Bộ đếm người theo dõi",
+      "whenToUse": "Khi ăn mừng hoặc nói về số người theo dõi."
+    },
+    "creator-comment": {
+      "name": "Trả lời bình luận",
+      "whenToUse": "Khi trả lời bình luận của một người xem."
+    },
+    "legal-article-panel": {
+      "name": "Điều luật trên văn bản",
+      "whenToUse": "Khi hiển thị một điều luật trên trang văn bản. Hãy xác minh khu vực pháp lý và quy định được trích dẫn."
+    },
+    "legal-deadline-panel": {
+      "name": "Thời hạn trên dòng thời gian",
+      "whenToUse": "Khi giải thích một thời hạn pháp lý trên dòng thời gian."
+    },
+    "refund-panel": {
+      "name": "Tổng tiền hoàn lại",
+      "whenToUse": "Khi cộng từng khoản để ra số tiền hoàn lại cho khách hàng."
+    },
+    "three-second-hook-panel": {
+      "name": "3 giây mở đầu",
+      "whenToUse": "Khi giải thích tầm quan trọng của ba giây đầu tiên."
+    },
+    "waveform-panel": {
+      "name": "Các làn sóng người xem",
+      "whenToUse": "Khi giải thích cách một video được thử nghiệm qua từng nhóm người xem nối tiếp nhau."
+    },
+    "engagement-panel": {
+      "name": "Ba tín hiệu tương tác",
+      "whenToUse": "Khi liệt kê các tín hiệu tương tác của người xem."
+    },
+    "heart-panel": {
+      "name": "Trái tim và nhịp đập",
+      "whenToUse": "Khi giới thiệu về nhịp tim và sức khỏe tim mạch."
+    },
+    "artery-panel": {
+      "name": "Động mạch thông và hẹp",
+      "whenToUse": "Khi giải thích áp lực máu trong một động mạch thông thoáng hoặc bị hẹp."
+    },
+    "health-chart-panel": {
+      "name": "Biểu đồ vùng nguy cơ",
+      "whenToUse": "Khi minh họa một vùng nguy cơ hoặc một tình trạng bệnh chưa được chẩn đoán. Hãy xác minh các số liệu lâm sàng trước khi sử dụng."
+    },
+    "drink-carton-panel": {
+      "name": "Đường trong nước đóng hộp",
+      "whenToUse": "Khi tiết lộ lượng đường trong một loại đồ uống đóng hộp."
+    },
+    "sugar-cubes-panel": {
+      "name": "Viên đường trong ly",
+      "whenToUse": "Khi quy đổi số gam đường thành số viên đường."
+    },
+    "nutrition-limit-panel": {
+      "name": "Giới hạn đường mỗi ngày",
+      "whenToUse": "Khi so sánh lượng đường với mức giới hạn mỗi ngày và gợi ý ăn trái cây nguyên quả. Hãy xác minh khuyến nghị mà bạn muốn đưa ra."
+    },
+    "building-panel": {
+      "name": "Tòa nhà mọc từng tầng",
+      "whenToUse": "Khi giới thiệu một dự án bất động sản. Tòa nhà mọc lên từng tầng trong khi số tầng tăng dần; đặt số tầng (floors) bằng 0 để ẩn con số."
+    },
+    "location-map-panel": {
+      "name": "Bản đồ vị trí",
+      "whenToUse": "Khi giải thích một vị trí và khoảng cách đi bộ. Phần đếm số có thể dừng đúng vào một từ trong lời nói hoặc một mốc thời gian đặt riêng cho bảng; tối đa hai địa điểm khác sẽ sáng lên khi được nhắc tên."
+    },
+    "floor-plan-panel": {
+      "name": "Mặt bằng chuyển sang 3D",
+      "whenToUse": "Khi giới thiệu không gian bên trong một bất động sản: bản vẽ mặt bằng dạng nét chuyển thành góc nhìn 3D, kèm diện tích và nhãn của bốn phòng."
+    },
+    "property-price-panel": {
+      "name": "Nhãn giá trên mặt bằng",
+      "whenToUse": "Khi giới thiệu giá của một bất động sản phía trên bản vẽ mặt bằng. Đặt giá bằng 0 để ẩn con số giá."
+    },
+    "transition-glow": {
+      "name": "Chuyển cảnh · Ánh sáng ấm",
+      "whenToUse": "Dùng cho chuyển cảnh thông thường: một vệt sáng ấm (light leak) bừng lên mạnh nhất ngay tại điểm cắt."
+    },
+    "transition-flash": {
+      "name": "Chuyển cảnh · Chớp sáng trắng",
+      "whenToUse": "Dùng cho cú cắt dứt khoát và mạnh mẽ: một chớp sáng trắng ngắn lóe lên mạnh nhất ngay tại điểm cắt."
+    },
+    "transition-film-burn": {
+      "name": "Chuyển cảnh · Cháy phim",
+      "whenToUse": "Dùng khi đổi chủ đề hoặc chuyển mốc thời gian: các mảng cháy phim quét ngang màn hình."
+    },
+    "transition-glitch": {
+      "name": "Chuyển cảnh · Nhiễu glitch",
+      "whenToUse": "Dùng cho chủ đề công nghệ, lỗi hoặc bước ngoặt bất ngờ: kênh màu bị tách rời, các dải hình bị xô lệch, đường quét bị xé và nhiễu sóng dồn dập nhất ngay tại điểm cắt."
+    },
+    "transition-tv": {
+      "name": "Chuyển cảnh · Tắt TV",
+      "whenToUse": "Dùng khi kết thúc một phần nội dung hoặc chốt một câu đùa: hình ảnh thu lại thành một đường kẻ rồi mở ra trở lại."
+    },
+    "transition-curtain": {
+      "name": "Chuyển cảnh · Rèm màu",
+      "whenToUse": "Dùng khi sang một mục hoặc chủ đề mới: một dải màu nhấn quét ngang màn hình."
+    },
+    "transition-zoom": {
+      "name": "Chuyển cảnh · Zoom tốc độ",
+      "whenToUse": "Để tiến lại gần một chi tiết quan trọng: các vệt tốc độ và hiệu ứng nhòe làm nổi bật điểm cắt."
+    },
+    "transition-blinds": {
+      "name": "Chuyển cảnh · Rèm lá sách",
+      "whenToUse": "Dùng khi đổi bối cảnh hoặc sang ngày khác: bảy dải lần lượt khép lại rồi mở ra."
+    },
+    "transition-iris": {
+      "name": "Chuyển cảnh · Vòng tròn khép mở",
+      "whenToUse": "Để khép lại một câu chuyện hoặc tập trung vào một chi tiết: một vòng tròn thu nhỏ vào giữa rồi mở ra lại."
+    },
+    "transition-fade": {
+      "name": "Chuyển cảnh · Mờ dần về đen",
+      "whenToUse": "Dùng cho một khoảng lặng đầy kịch tính hoặc khi thời gian trôi qua: hình ảnh chìm vào màu đen trong giây lát."
+    },
+    "pointer-down-arrow": {
+      "name": "Dấu chỉ · Mũi tên xuống",
+      "whenToUse": "Để chỉ vào một nút, con số, sản phẩm hoặc đường link."
+    },
+    "pointer-curved-arrow": {
+      "name": "Dấu chỉ · Mũi tên cong",
+      "whenToUse": "Để hướng sự chú ý vào một chi tiết bằng mũi tên cong vẽ tay."
+    },
+    "pointer-side-arrow": {
+      "name": "Dấu chỉ · Mũi tên ngang",
+      "whenToUse": "Để chỉ về phía chữ, nút bấm hoặc một thành phần gần đó trên màn hình."
+    },
+    "pointer-red-cross": {
+      "name": "Dấu chỉ · Dấu X đỏ",
+      "whenToUse": "Để loại bỏ một lựa chọn hoặc đánh dấu điều gì đó là sai."
+    },
+    "pointer-green-check": {
+      "name": "Dấu chỉ · Dấu tích xanh lá",
+      "whenToUse": "Để xác nhận, chấp thuận hoặc đánh dấu một mục là đã hoàn thành."
+    },
+    "pointer-circle": {
+      "name": "Dấu chỉ · Khoanh tròn",
+      "whenToUse": "Để khoanh tròn một con số, khuôn mặt, nút bấm hoặc chi tiết khác."
+    },
+    "pointer-underline": {
+      "name": "Dấu chỉ · Gạch chân",
+      "whenToUse": "Để gạch chân một từ, con số hoặc cụm từ quan trọng."
+    },
+    "pointer-box": {
+      "name": "Dấu chỉ · Đóng khung",
+      "whenToUse": "Để đóng khung một vùng, một chi tiết trong ảnh chụp màn hình, một nút bấm hoặc đồ vật."
+    },
+    "pointer-highlighter": {
+      "name": "Dấu chỉ · Bút dạ quang",
+      "whenToUse": "Để tô sáng một cụm chữ viết, một giá trị hoặc một dòng trong ảnh chụp màn hình."
+    },
+    "pointer-spotlight": {
+      "name": "Dấu chỉ · Đèn rọi",
+      "whenToUse": "Để làm nổi bật riêng một khuôn mặt, sản phẩm hoặc chi tiết trong ảnh chụp màn hình bằng cách làm tối phần xung quanh."
+    },
+    "pointer-banner": {
+      "name": "Dấu chỉ · Thanh che",
+      "whenToUse": "Để che một vùng như khuôn mặt, tên, con số hoặc chi tiết trong ảnh chụp màn hình."
+    },
+    "pointer-toggle": {
+      "name": "Dấu chỉ · Nút bật tắt",
+      "whenToUse": "Khi nhắc người xem bật hoặc tắt một tính năng hay chế độ."
+    },
+    "pointer-tap": {
+      "name": "Dấu chỉ · Chạm màn hình",
+      "whenToUse": "Khi nhắc người xem chạm hoặc nhấp vào một điểm cụ thể."
+    },
+    "pointer-number": {
+      "name": "Dấu chỉ · Đánh số",
+      "whenToUse": "Khi đánh số các bước hoặc các mục ngay trên video."
+    },
+    "pointer-rays": {
+      "name": "Dấu chỉ · Tia nhấn mạnh",
+      "whenToUse": "Để bao quanh một đồ vật, khuôn mặt hoặc con số quan trọng bằng những tia tỏa ra gây chú ý."
+    },
+    "pointer-question": {
+      "name": "Dấu chỉ · Dấu chấm hỏi",
+      "whenToUse": "Khi đặt câu hỏi hoặc thể hiện sự phân vân, với dấu chấm hỏi hiện gần đầu người nói."
+    },
+    "pointer-exclamation": {
+      "name": "Dấu chỉ · Dấu chấm than",
+      "whenToUse": "Khi cảnh báo về một lỗi, một rủi ro hoặc một điều quan trọng cần đề phòng."
+    },
+    "effect-vignette": {
+      "name": "Hiệu ứng · Vignette tối viền",
+      "whenToUse": "Để tạo không khí điện ảnh u tối hơn hoặc hướng sự chú ý vào khuôn mặt người nói."
+    },
+    "effect-blur": {
+      "name": "Hiệu ứng · Xóa phông",
+      "whenToUse": "Để làm mờ hậu cảnh mà vẫn giữ khuôn mặt sắc nét, giống chế độ chân dung."
+    },
+    "effect-glow": {
+      "name": "Hiệu ứng · Tỏa sáng mơ màng",
+      "whenToUse": "Dùng cho giấc mơ, ký ức, không khí sang trọng hoặc một khoảnh khắc đẹp: các vùng sáng được phủ thêm một quầng sáng dịu."
+    },
+    "effect-chromatic-blur": {
+      "name": "Hiệu ứng · Nhòe lệch màu",
+      "whenToUse": "Dùng để tạo cảm giác ống kính cũ, mơ màng hoặc chóng mặt: viền đỏ và xanh lam xuất hiện quanh các đường biên."
+    },
+    "effect-shake": {
+      "name": "Hiệu ứng · Rung máy quay",
+      "whenToUse": "Để nhấn mạnh một con số ấn tượng, một bước ngoặt, một bất ngờ hoặc một cú va chạm bằng hiệu ứng rung máy quay."
+    },
+    "effect-money-rain": {
+      "name": "Hiệu ứng · Mưa tiền",
+      "whenToUse": "Khi nói về doanh số, lợi nhuận, doanh thu hoặc tiền đổ về."
+    },
+    "effect-confetti": {
+      "name": "Hiệu ứng · Pháo giấy",
+      "whenToUse": "Để ăn mừng một cột mốc, một đơn hàng, một thành tích hoặc sinh nhật bằng pháo giấy."
+    },
+    "effect-cinema": {
+      "name": "Hiệu ứng · Khung hình điện ảnh",
+      "whenToUse": "Dùng cho đoạn kể chuyện, lúc tiết lộ điều gì đó hoặc khoảnh khắc hoành tráng, mang phong cách trailer phim."
+    },
+    "effect-noir": {
+      "name": "Hiệu ứng · Đen trắng điện ảnh",
+      "whenToUse": "Dùng cho cảnh nghiêm túc, ký ức, tình huống kịch tính hoặc bí mật, với tông màu đơn sắc."
+    },
+    "effect-tv-lines": {
+      "name": "Hiệu ứng · Sọc TV",
+      "whenToUse": "Dùng để gợi TV đèn hình (CRT) đời cũ, camera an ninh, đoạn phim tư liệu hoặc ký ức."
+    },
+    "effect-static": {
+      "name": "Hiệu ứng · Nhiễu sóng",
+      "whenToUse": "Dùng cho tín hiệu yếu, sóng bị nhiễu, ký ức chập chờn hoặc lúc hồi hộp."
+    },
+    "effect-vhs": {
+      "name": "Hiệu ứng · Băng VHS",
+      "whenToUse": "Dùng cho đoạn phim hoài niệm, video gia đình thập niên 1990 hoặc phong cách băng VHS tư liệu."
+    },
+    "effect-prism": {
+      "name": "Hiệu ứng · Lăng kính",
+      "whenToUse": "Dùng cho giấc mơ, cảm giác choáng váng, kinh ngạc hoặc bối rối: các bản sao của hình ảnh tách ra như qua lăng kính."
+    },
+    "stone-text": {
+      "name": "Hài hước · Chữ đá rơi",
+      "whenToUse": "Để tạo sức nặng thật sự cho một câu nói: những chữ cái bằng đá treo lơ lửng giây lát rồi rơi xuống làm vỡ sàn."
+    },
+    "cracked-screen": {
+      "name": "Hài hước · Màn hình nứt",
+      "whenToUse": "Dùng cho trò đùa đấm vào màn hình: kính nứt tại điểm đã chọn, hình ảnh rung lên và các vết nứt vẫn ở lại."
+    },
+    "stage-spotlight": {
+      "name": "Hài hước · Đèn sân khấu",
+      "whenToUse": "Dùng khi xin sự chú ý hoặc xin chút ánh sáng: căn phòng tối lại, đèn sân khấu rọi vào nhân vật trong khi các chùm sáng hai bên quét qua."
+    },
+    "concert-strobe": {
+      "name": "Hài hước · Đèn chớp concert",
+      "whenToUse": "Dùng cho trò đùa về concert hoặc hộp đêm: căn phòng tối lại, đèn chớp trắng nháy theo nhịp, các chùm sáng màu đan chéo nhau và khói bốc lên."
+    },
+    "explosion": {
+      "name": "Hài hước · Vụ nổ",
+      "whenToUse": "Dùng cho trò đùa về vụ nổ: lửa chân thực, khói đen và tia lửa bùng lên tại vị trí x/y, kèm chớp sáng trắng và một cú rung ngắn."
+    },
+    "fire": {
+      "name": "Hài hước · Bốc cháy",
+      "whenToUse": "Dùng cho trò đùa về sức nóng hoặc lửa: ngọn lửa chân thực bốc lên từ mép dưới và ánh lửa ấm chập chờn phủ lên video."
+    },
+    "smoke": {
+      "name": "Hài hước · Màn khói",
+      "whenToUse": "Dùng cho màn biến mất, sự cố bất ngờ hoặc một thay đổi được che giấu: khói xám bốc lên, phủ kín màn hình rồi tan dần."
+    },
+    "shattered-glass": {
+      "name": "Hài hước · Kính vỡ tung",
+      "whenToUse": "Dùng cho trò đùa vỡ màn hình: kính nứt tại vị trí x/y, các mảnh vỡ văng ra rồi rơi xuống, kèm chớp sáng và cú rung ngắn."
+    },
+    "neon-quote": {
+      "name": "Neon · Câu nói dạng khối",
+      "whenToUse": "Dùng cho một tiêu đề mạnh: các khối chữ xen kẽ độ đậm nhạt và từ khóa được đánh dấu sao phát sáng theo màu đèn ở góc."
+    },
+    "neon-good-bad": {
+      "name": "Neon · Tưởng tốt hóa xấu",
+      "whenToUse": "Để phản bác một lời khuyên tưởng chừng hay: tấm thẻ xanh lá bị một vệt sáng đánh trúng, vỡ ra, chuyển sang màu đỏ và hiện ra lời kết luận."
+    },
+    "glass-chart": {
+      "name": "Neon · Biểu đồ nền kính",
+      "whenToUse": "Khi một chỉ số tăng hoặc giảm: đường cong màu trắng được vẽ dần trong khi điểm đánh dấu và bộ đếm chạy đến giá trị cuối cùng."
+    },
+    "stuck-progress-bar": {
+      "name": "Neon · Thanh tiến trình bị kẹt",
+      "whenToUse": "Để thể hiện một việc mãi không xong: thanh tiến trình dừng lại khi gần hoàn tất, bị khóa và hiện ra một câu nói ấn tượng."
+    },
+    "attempt-counter": {
+      "name": "Neon · Thử đi thử lại",
+      "whenToUse": "Khi thành công đến sau nhiều lần thử: các lần thất bại bị đánh dấu X đỏ và gạch bỏ; lần thành công sáng lên màu xanh lá."
+    },
+    "glass-list": {
+      "name": "Neon · Danh sách nền kính",
+      "whenToUse": "Khi liệt kê những việc đã làm xong hoặc các lợi ích: các mục mờ lần lượt sáng lên kèm dấu tích xanh lá trên một tấm thẻ nền kính."
+    },
+    "object-card": {
+      "name": "Vật thể · Đồ vật 3D kèm thông số",
+      "whenToUse": "Khi giới thiệu một đồ vật kèm các số liệu: một vật thể 3D xoay tròn xuất hiện cùng thẻ thông tin 2×2. Đổi src của video thành một tệp vật thể đi kèm; trình render đọc trực tiếp tài nguyên đó trong HTML."
+    },
+    "house-construction": {
+      "name": "Vật thể · Nhà 3D xây từng bước",
+      "whenToUse": "Khi giải thích một công trình hoặc một quy trình theo từng giai đoạn: ngôi nhà 3D được lắp ghép dần trong khi nhãn các bước lần lượt sáng lên. Hoạt ảnh phát một lần ở tốc độ 1,2× và hoàn tất sau 2,4 giây; hãy dành ít nhất 3,5 giây để huy hiệu kịp xuất hiện sau khi hoàn tất."
+    },
+    "brazil-map": {
+      "name": "Vật thể · Bản đồ Brazil 3D",
+      "whenToUse": "Khi nói về phạm vi tiếp cận hoặc các địa điểm tại Brazil: một bản đồ đặt nghiêng làm sáng từng bang, theo vùng hoặc theo nhóm được chọn, trong khi bộ đếm chạy phía trên."
+    },
+    "solar-system": {
+      "name": "Vật thể · Hệ Mặt Trời 3D",
+      "whenToUse": "Khi giới thiệu vũ trụ, một ý tưởng trung tâm hoặc các mối quan hệ xoay quanh một tâm điểm: bốn hành tinh quay quanh Mặt Trời 3D, lần lượt đi qua phía sau và phía trước nó."
+    },
+    "video-gallery": {
+      "name": "Vật thể · Bộ sưu tập video 3D",
+      "whenToUse": "Khi giới thiệu các tác phẩm video: sáu thẻ dọc xòe ra hình rẻ quạt trong không gian 3D và một thẻ tiến lên phía trước. Thay các mảng màu chuyển (gradient) giữ chỗ bằng phần tử video đã tắt tiếng; đặt data-start, data-duration và src đúng. Có thể hiển thị thêm số lượt xem bên dưới."
+    },
+    "notes-interface": {
+      "name": "Giao diện · Ghi chú có checklist",
+      "whenToUse": "Khi liệt kê điều kiện, các bước hoặc việc cần làm: tiêu đề được gõ ra và từng mục lần lượt được đánh dấu tích."
+    },
+    "ai-chat-interface": {
+      "name": "Giao diện · Chat với AI",
+      "whenToUse": "Khi minh họa một yêu cầu gửi cho AI: yêu cầu được gõ ra, gửi đi, chờ xử lý rồi nhận về câu trả lời kèm một video hoàn chỉnh."
+    },
+    "search-interface": {
+      "name": "Giao diện · Thanh tìm kiếm",
+      "whenToUse": "Khi mời người xem tìm kiếm hoặc giới thiệu một sản phẩm: từ khóa được gõ vào và một kết quả hàng đầu hiện ra."
+    },
+    "camera-interface": {
+      "name": "Giao diện · Camera đang quay",
+      "whenToUse": "Khi nói về việc quay phim hoặc xuất hiện trước ống kính: video biến thành khung ngắm của máy quay và một câu nói hiện ra từng chữ."
+    },
+    "command-bar": {
+      "name": "Giao diện · Thanh lệnh",
+      "whenToUse": "Khi minh họa một câu lệnh cho máy tính hoặc AI: lệnh được gõ ra, phím Enter gửi lệnh đi và các giai đoạn lần lượt được đánh dấu tích."
+    },
+    "receipt": {
+      "name": "Bằng chứng · Hóa đơn",
+      "whenToUse": "Khi giải thích chi phí và thời gian đã bỏ ra: thẻ chi phí đếm tăng dần, trượt sang một bên và nhường chỗ cho thẻ thời gian."
+    },
+    "completed-checklist": {
+      "name": "Bằng chứng · Danh sách gạch bỏ",
+      "whenToUse": "Khi liệt kê những việc không còn cần làm nữa: từng mục hiện ra rồi bị gạch bỏ."
+    },
+    "crossed-out-quote": {
+      "name": "Bằng chứng · Báo giá bị gạch bỏ",
+      "whenToUse": "Khi so sánh một khoản chi phí định kỳ cũ với mức giá mới."
+    },
+    "progress-meter": {
+      "name": "Bằng chứng · Đồng hồ đo",
+      "whenToUse": "Khi mô tả chi phí, công sức hoặc rủi ro ở mức thấp hay cao: một đồng hồ đo chỉ ra mức độ."
+    },
+    "time-counter": {
+      "name": "Bằng chứng · Bộ đếm thời gian",
+      "whenToUse": "Khi cho biết một việc mất bao lâu: bộ đếm chạy đến mốc thời gian và đơn vị đã chọn."
+    },
+    "editing-behind-scenes": {
+      "name": "Bằng chứng · Hậu trường dựng video",
+      "whenToUse": "Khi cho thấy quá trình dựng đang diễn ra: giao diện phần mềm dựng hiển thị video, dạng sóng âm thanh, phụ đề, đầu phát đang chạy và các lần cắt liên tiếp."
+    },
+    "waveform-cuts": {
+      "name": "Bằng chứng · Cắt khoảng lặng",
+      "whenToUse": "Khi giải thích các khoảng lặng đã được cắt bỏ: những khoảng trống màu đỏ trên dạng sóng lần lượt biến mất, dạng sóng liền lại và thời lượng giảm xuống."
+    },
+    "dentist-brushing": {
+      "name": "Nha sĩ: chải răng đúng cách",
+      "whenToUse": "Khi chỉnh lại kỹ thuật chải răng: chải quá mạnh khiến răng bị tô đỏ, tiêu đề sai bị gạch bỏ và một bàn chải lông mềm nhẹ nhàng làm sạch chiếc răng được bảo vệ."
+    },
+    "muscle-recovery": {
+      "name": "Huấn luyện viên: phục hồi cơ",
+      "whenToUse": "Khi giải thích quá trình phục hồi cơ: tập luyện làm cơ co lại; sau đó giấc ngủ, protein và nghỉ ngơi truyền năng lượng vào để cơ phát triển."
+    },
+    "consumer-rights": {
+      "name": "Luật sư: quyền người tiêu dùng",
+      "whenToUse": "Khi giải thích những quyền được giữ lại và những quyền bị mất: các mục được giữ có dấu tích, còn các mục bị loại trừ bị gạch bỏ và trôi ra xa. Hãy xác minh khu vực pháp lý áp dụng và các tình tiết liên quan."
+    },
+    "nutrition-oranges": {
+      "name": "Dinh dưỡng: cam thành nước ép",
+      "whenToUse": "Khi so sánh trái cây nguyên quả với nước ép: những quả cam được vắt vào một chiếc ly, đường ở lại trong nước ép còn chất xơ bị loại ra ngoài, kèm nhãn chú thích."
+    },
+    "architect-room": {
+      "name": "Kiến trúc sư: phòng nhỏ",
+      "whenToUse": "Khi giải thích cách thiết kế một căn phòng nhỏ: ánh sáng từ cửa sổ phản chiếu qua gương, sau đó một tấm rèm từ sàn đến trần cho thấy chiều cao của phòng."
+    },
+    "year-hook": {
+      "name": "Mở đầu bằng mốc năm",
+      "whenToUse": "Dùng cho câu mở đầu (hook) bằng một năm hoặc một con số: các chữ số lớn lật trên một bảng biểu đồ tối màu và một nhãn bo tròn nhấn mạnh thông điệp."
+    },
+    "profession-cards": {
+      "name": "Thẻ nghề nghiệp xòe quạt",
+      "whenToUse": "Khi giới thiệu nhiều nghề nghiệp hoặc lĩnh vực ngách: các thẻ xếp chồng xòe ra hình rẻ quạt, mỗi thẻ mang biểu tượng của một nghề."
+    },
+    "comment-call-to-action": {
+      "name": "Kêu gọi bình luận",
+      "whenToUse": "Dùng cho lời kêu gọi hành động ở cuối video: ô bình luận xuất hiện, một từ khóa được gõ vào và ngón tay nhấn nút Gửi."
+    },
+    "text-karaoke": {
+      "name": "Phụ đề · Karaoke chữ vàng",
+      "whenToUse": "Dùng cho phụ đề video ngắn tiêu chuẩn: các chữ trắng vẫn hiển thị trong khi từ đang được nói chuyển sang màu vàng và nảy lên."
+    },
+    "text-pop": {
+      "name": "Phụ đề · Chữ bung ra",
+      "whenToUse": "Dùng cho câu mở đầu (hook) hoặc một bước ngoặt cần nhấn mạnh: một hoặc hai từ cỡ lớn bung ra đúng lúc được nói; từ cuối cùng được làm nổi bật."
+    },
+    "text-chromatic": {
+      "name": "Phụ đề · Chữ lệch màu",
+      "whenToUse": "Dùng cho phụ đề sôi động về công nghệ, AI hoặc dựng video, mang phong cách glitch lệch màu."
+    },
+    "text-rising-glow": {
+      "name": "Phụ đề · Chữ trồi lên phát sáng",
+      "whenToUse": "Dùng cho phụ đề của lời nói liền mạch: từ đang được nói trồi lên từ phía sau một đường kẻ với ánh sáng vàng, rồi chuyển sang trắng."
+    },
+    "text-red-word": {
+      "name": "Phụ đề · Chữ sáng màu đỏ",
+      "whenToUse": "Dùng cho lời cảnh báo, lời hứa hoặc một khẳng định mạnh mẽ: các chữ mờ chuyển sang đỏ khi được nói và vẫn sáng cho đến nhóm phụ đề tiếp theo."
+    },
+    "text-italic": {
+      "name": "Phụ đề · Chữ nghiêng",
+      "whenToUse": "Dùng cho nội dung thể thao, hành động, thử thách hoặc kết quả: phụ đề in nghiêng nhấn mạnh từ dài nhất trong mỗi nhóm."
+    },
+    "text-translucent-box": {
+      "name": "Phụ đề · Khung bán trong suốt",
+      "whenToUse": "Dùng cho video hướng dẫn hoặc hậu cảnh rối mắt: một khung bo tròn tối màu, bán trong suốt và kín đáo chứa cả câu, với từ đang được nói sáng hơn."
+    },
+    "text-glowing-outline": {
+      "name": "Phụ đề · Viền chữ phát sáng",
+      "whenToUse": "Dùng cho mẹo chia sẻ kiểu trò chuyện, thói quen hằng ngày hoặc cảnh hậu trường, với đường viền chữ phát sáng tinh tế."
+    },
+    "text-typewriter": {
+      "name": "Phụ đề · Máy đánh chữ",
+      "whenToUse": "Dùng cho câu lệnh, đoạn mã hoặc hướng dẫn về AI: các chữ cái được gõ dần vào một dải nền tối, kèm con trỏ khối di chuyển theo và nhấp nháy trong các khoảng lặng."
+    },
+    "text-bold-title": {
+      "name": "Tiêu đề · Chữ đen in đậm",
+      "whenToUse": "Dùng cho tiêu đề mở đầu: chữ đen ngắn hiện trên các dải màu, mỗi dòng một dải, ở gần phía trên."
+    },
+    "text-two-line-title": {
+      "name": "Tiêu đề · Hai dòng chữ",
+      "whenToUse": "Dùng cho câu mở đầu (hook) kinh điển của video ngắn: một dòng dẫn nhỏ màu trắng nằm trên dòng thứ hai cỡ lớn mang màu nhấn."
+    },
+    "text-impact": {
+      "name": "Tiêu đề · Chữ nhảy có dư ảnh",
+      "whenToUse": "Dùng cho con số, mức giá hoặc lời hứa cần nhấn mạnh: chữ nhảy lên, rõ nét dần và để lại một dư ảnh lớn bán trong suốt. Phần xuất hiện kéo dài 0,5 giây, sau đó giữ nguyên đến điểm cắt."
+    },
+    "text-spring": {
+      "name": "Tiêu đề · Chữ bật lò xo",
+      "whenToUse": "Dùng cho dòng chữ ngắn đầy năng lượng: chữ bật ra từ kích thước bằng 0, phình quá cỡ rồi ổn định lại. Sau đó giữ nguyên đến điểm cắt."
+    },
+    "text-doodle": {
+      "name": "Tiêu đề · Doodle vẽ tay",
+      "whenToUse": "Dùng cho dòng chữ cần giữ trên màn hình vài giây: từng chữ cái lần lượt xuất hiện và rung rinh như chữ trang trí vẽ tay, luân phiên qua bốn tư thế."
+    },
+    "text-twist": {
+      "name": "Tiêu đề · Chữ xoắn",
+      "whenToUse": "Dùng cho lời kêu gọi hành động kéo dài: các chữ cái dịch chuyển và đường viền của chúng xoắn quanh một đường cơ sở lượn sóng, bốn tư thế mỗi chu kỳ, nhanh và mạnh hơn Doodle."
+    },
+    "text-color-glitch": {
+      "name": "Tiêu đề · Glitch màu",
+      "whenToUse": "Dùng cho tiêu đề về công nghệ hoặc thông báo ra mắt: chữ xuất hiện với một cú giật lệch màu, giữ nguyên, rồi thoáng tách thành kênh đỏ và xanh lơ trên các dải bị xô lệch."
+    },
+    "text-spotlight-off": {
+      "name": "Tiêu đề · Đèn rọi tắt",
+      "whenToUse": "Dùng cho một màn kết thúc ấn tượng: chữ bừng sáng dưới ánh đèn rọi đang di chuyển; đèn rọi thu dần vào giữa rồi biến mất trong 0,3 giây."
+    },
+    "text-exhale": {
+      "name": "Tiêu đề · Chữ bốc hơi",
+      "whenToUse": "Dùng cho ưu đãi sắp hết hạn hoặc một hạn chót: chữ được gõ ra, giữ nguyên, rồi gợn sóng, dẹt lại, nhòe theo chiều ngang và bốc hơi trong phần thoát dài 0,5 giây."
+    },
+    "text-number-badge": {
+      "name": "Tiêu đề · Nhãn số thứ tự",
+      "whenToUse": "Dùng cho danh sách đánh số: một nhãn bo tròn ở phía trên hiển thị số và tên của mục hiện tại. Mỗi mục dùng một bản sao riêng, các bản sao liền kề nối tiếp nhau ngay tại ranh giới. Phụ đề của bản dựng vẫn hiển thị bên dưới; đừng ẩn chúng."
+    },
+    "entrance-drop-left": {
+      "name": "Xuất hiện · Rơi xuống, thoát trái",
+      "whenToUse": "Khi giới thiệu một hình ảnh, ảnh chụp màn hình hoặc clip một cách ấn tượng: thẻ rơi từ trên xuống, giữ nguyên, rồi thoát ra bên trái trong 0,3 giây cuối. Đặt tham số image là tên một tệp trong thư mục ảnh. Để dùng video, hãy thay phần tử ảnh bằng một phần tử video giữ nguyên ID và class, rồi thêm src, data-start=\"0\", data-duration, data-track-index=\"2\", muted và playsinline. Đặt thẻ dọc bên cạnh hoặc bên dưới khuôn mặt; thẻ 16:9 mặc định nằm phía trên khuôn mặt."
+    },
+    "entrance-drop-right": {
+      "name": "Xuất hiện · Rơi xuống, thoát phải",
+      "whenToUse": "Khi giới thiệu một hình ảnh, ảnh chụp màn hình hoặc clip một cách ấn tượng: thẻ rơi từ trên xuống, giữ nguyên, rồi thoát ra bên phải trong 0,3 giây cuối. Đặt tham số image là tên một tệp trong thư mục ảnh. Để dùng video, hãy thay phần tử ảnh bằng một phần tử video giữ nguyên ID và class, rồi thêm src, data-start=\"0\", data-duration, data-track-index=\"2\", muted và playsinline. Đặt thẻ dọc bên cạnh hoặc bên dưới khuôn mặt; thẻ 16:9 mặc định nằm phía trên khuôn mặt."
+    },
+    "entrance-drop-bottom-left": {
+      "name": "Xuất hiện · Trượt trái, rơi xuống",
+      "whenToUse": "Khi giới thiệu một hình ảnh hoặc kết quả: thẻ trượt vào từ bên phải, giữ nguyên, rồi rơi xuống dưới trong 0,3 giây cuối. Đặt tham số image là tên một tệp trong thư mục ảnh. Để dùng video, hãy thay phần tử ảnh bằng một phần tử video giữ nguyên ID và class, rồi thêm src, data-start=\"0\", data-duration, data-track-index=\"2\", muted và playsinline. Đặt thẻ dọc bên cạnh hoặc bên dưới khuôn mặt; thẻ 16:9 mặc định nằm phía trên khuôn mặt."
+    },
+    "entrance-drop-bottom-right": {
+      "name": "Xuất hiện · Trượt phải, rơi xuống",
+      "whenToUse": "Khi giới thiệu một hình ảnh hoặc kết quả: thẻ trượt vào từ bên trái, giữ nguyên, rồi rơi xuống dưới trong 0,3 giây cuối. Đặt tham số image là tên một tệp trong thư mục ảnh. Để dùng video, hãy thay phần tử ảnh bằng một phần tử video giữ nguyên ID và class, rồi thêm src, data-start=\"0\", data-duration, data-track-index=\"2\", muted và playsinline. Đặt thẻ dọc bên cạnh hoặc bên dưới khuôn mặt; thẻ 16:9 mặc định nằm phía trên khuôn mặt."
+    },
+    "entrance-zoom-one": {
+      "name": "Xuất hiện · Zoom 1 (thu từ cỡ lớn)",
+      "whenToUse": "Khi một hình ảnh cần xuất hiện thật mạnh mẽ: ảnh vào ở tỷ lệ 2×, thu nhỏ đột ngột kèm hiệu ứng mờ xuyên tâm, đứng yên, rồi phóng to nhanh ở cuối. Phần vào và phần ra mỗi phần mất khoảng 0,2 giây. Đặt tham số image là tên một tệp trong thư mục ảnh. Để dùng video, hãy thay phần tử ảnh bằng một phần tử video giữ nguyên ID và class, rồi thêm src, data-start=\"0\", data-duration, data-track-index=\"2\", muted và playsinline. Đặt thẻ dọc bên cạnh hoặc bên dưới khuôn mặt; thẻ 16:9 mặc định nằm phía trên khuôn mặt."
+    },
+    "entrance-zoom-two": {
+      "name": "Xuất hiện · Zoom 2 (mở từ trong ra)",
+      "whenToUse": "Khi một hình ảnh cần bung mở trên màn hình: ảnh bắt đầu ở tỷ lệ 0,5× trong một thẻ được bao quanh bởi các bản sao phản chiếu, bật nhanh lên kích thước đầy đủ kèm hiệu ứng mờ xuyên tâm, giữ nguyên, rồi thu nhỏ lại. Phần vào mất khoảng 0,2 giây; phần ra khoảng 0,15 giây. Đặt tham số image là tên một tệp trong thư mục ảnh. Để dùng video, hãy thay phần tử ảnh bằng một phần tử video giữ nguyên ID và class, rồi thêm src, data-start=\"0\", data-duration, data-track-index=\"2\", muted và playsinline. Đặt thẻ dọc bên cạnh hoặc bên dưới khuôn mặt; thẻ 16:9 mặc định nằm phía trên khuôn mặt."
+    },
+    "entrance-side-zoom": {
+      "name": "Xuất hiện · Zoom từ cạnh bên",
+      "whenToUse": "Khi một hình ảnh đi vào từ một bên rồi lùi ra xa: một cạnh phản chiếu đi kèm cú trượt nửa màn hình có hiệu ứng nhòe, sau đó ảnh thu nhỏ dần rồi thu nhanh hơn ở đoạn cuối, xuống còn khoảng 0,8×. Tham số side chọn hướng. Đặt tham số image là tên một tệp trong thư mục ảnh. Để dùng video, hãy thay phần tử ảnh bằng một phần tử video giữ nguyên ID và class, rồi thêm src, data-start=\"0\", data-duration, data-track-index=\"2\", muted và playsinline. Đặt thẻ dọc bên cạnh hoặc bên dưới khuôn mặt; thẻ 16:9 mặc định nằm phía trên khuôn mặt."
+    },
+    "entrance-click-open": {
+      "name": "Xuất hiện · Nhấp để mở",
+      "whenToUse": "Khi mở một bảng số liệu, đường link hoặc kết quả: một hình ảnh trồi lên ở tỷ lệ 44%, con trỏ nhấp vào và ảnh bung ra với cú rung đàn hồi cùng hiệu ứng nhòe ngắn. Ảnh giữ nguyên đến điểm cắt. Khi cảnh ngắn hơn 2,4 giây, phần xuất hiện dài 1,3 giây được nén lại để chiếm 55% thời lượng cảnh; thời điểm của âm thanh cũng phải nén theo. Đặt tham số image là tên một tệp trong thư mục ảnh. Để dùng video, hãy thay phần tử ảnh bằng một phần tử video giữ nguyên ID và class, rồi thêm src, data-start=\"0\", data-duration, data-track-index=\"2\", muted và playsinline. Đặt thẻ dọc bên cạnh hoặc bên dưới khuôn mặt; thẻ 16:9 mặc định nằm phía trên khuôn mặt."
+    },
+    "entrance-before-after-curtain": {
+      "name": "Xuất hiện · Rèm trước và sau",
+      "whenToUse": "Dùng làm bằng chứng trước/sau: video gốc phủ kín màn hình kèm nhãn ghi hình, sau đó một tấm rèm sáng có tay kéo quét ngang, lùi lại một chút rồi để lộ video đã dựng bên dưới. Cú quét bắt đầu sau 1 giây (sớm hơn nếu cảnh ngắn hơn 2,5 giây) và kéo dài khoảng 1,8 giây. Chọn đoạn video gốc khớp với nội dung lời nói; bỏ bộ lọc CSS của nó để giữ nguyên màu gốc. Đặt tham số image là tên một tệp trong thư mục ảnh. Để dùng video, hãy thay phần tử ảnh bằng một phần tử video giữ nguyên ID và class, rồi thêm src, data-start=\"0\", data-duration, data-track-index=\"2\", muted và playsinline. Đặt thẻ dọc bên cạnh hoặc bên dưới khuôn mặt; thẻ 16:9 mặc định nằm phía trên khuôn mặt."
+    }
+  }
+}

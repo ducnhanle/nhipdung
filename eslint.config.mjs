@@ -18,8 +18,8 @@ const rawFont = literal('/font-family\\s*:(?!\\s*[\'"]?(?:var\\(--font-|Figtree|
   'Font not provided by the design system. Use var(--font-*): Figtree, Anton, Montserrat, Caveat, Permanent Marker.');
 const componentInternals = {
   patterns: [{
-    group: ['@editonny/design-system/components/*', '**/design-system/components/*/**', '**/components/*/*.tsx', '**/components/lib'],
-    message: "Import design-system components from '@editonny/design-system', not component internals.",
+    group: ['@nhipdung/design-system/components/*', '**/design-system/components/*/**', '**/components/*/*.tsx', '**/components/lib'],
+    message: "Import design-system components from '@nhipdung/design-system', not component internals.",
   }],
 };
 const react = ['web/**/*.{ts,tsx}', 'design-system/**/*.{ts,tsx}'];
@@ -29,7 +29,7 @@ export default defineConfig([
     '**/node_modules/**', '**/.venv/**', '.work/**', '.superpowers/**',
     'dist/**', 'graphify-out/**', 'eslint-rules/**', '**/.next/**', 'web/next-env.d.ts',
     '**/playwright-report/**', '**/test-results/**',
-    'skills/editonny/engine/project-template/assets/three/**',
+    'skills/nhipdung/engine/project-template/assets/three/**',
     'design-system/reference/**', 'design-system/components/core/icon-data.ts',
   ]),
   {
@@ -47,8 +47,8 @@ export default defineConfig([
   },
   {
     files: [
-      'skills/editonny/engine/preview/**/*.{js,mjs}',
-      'skills/editonny/engine/project-template/compositions/scenes/3d/**/*.{js,mjs}',
+      'skills/nhipdung/engine/preview/**/*.{js,mjs}',
+      'skills/nhipdung/engine/project-template/compositions/scenes/3d/**/*.{js,mjs}',
     ],
     languageOptions: { globals: globals.browser },
   },

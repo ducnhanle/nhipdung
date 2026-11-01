@@ -9,7 +9,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-HELPERS = Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers'
+HELPERS = Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers'
 
 
 class QualityGateTests(unittest.TestCase):
@@ -40,7 +40,7 @@ class QualityGateTests(unittest.TestCase):
         spec.loader.exec_module(cls.module)
 
     def test_footage_exclusions_resolve_repeated_speech_anchors(self):
-        with tempfile.TemporaryDirectory(prefix='editonny quality anchors ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung quality anchors ') as temporary:
             root = Path(temporary)
             project, edit = root / 'project', root / 'edit'
             project.mkdir()
@@ -79,7 +79,7 @@ class QualityGateTests(unittest.TestCase):
         self.assertEqual(result['findings'][0]['reason'], 'touching the frame edge')
 
     def test_volume_adjustment_refuses_an_occupied_backup_without_writing(self):
-        with tempfile.TemporaryDirectory(prefix='editonny protected volume ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung protected volume ') as temporary:
             root = Path(temporary)
             video = root / 'final.mp4'
             backup = root / 'final_before_volume.mp4'
@@ -97,7 +97,7 @@ class QualityGateTests(unittest.TestCase):
 
     @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'), 'FFmpeg is required')
     def test_volume_adjustment_preserves_original_and_unrelated_temporary_file(self):
-        with tempfile.TemporaryDirectory(prefix='editonny normalize volume ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung normalize volume ') as temporary:
             root = Path(temporary)
             video = root / 'final.mp4'
             subprocess.run(['ffmpeg', '-v', 'error', '-f', 'lavfi', '-i',
@@ -116,7 +116,7 @@ class QualityGateTests(unittest.TestCase):
                              ['final.mp4', 'final_before_volume.mp4', 'final_new_volume.mp4'])
 
     def test_failed_volume_publication_keeps_the_current_original_recoverable(self):
-        with tempfile.TemporaryDirectory(prefix='editonny failed volume ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung failed volume ') as temporary:
             video = Path(temporary) / 'final.mp4'
             video.write_bytes(b'Current original')
             def encode(command, **_kwargs):

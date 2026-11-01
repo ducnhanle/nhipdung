@@ -12,7 +12,7 @@ from unittest.mock import patch
 import requests
 from PIL import Image
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers'))
 import elevenlabs_api as audio
 import fetch_images
 import gen_image
@@ -34,7 +34,7 @@ class HttpClientTests(unittest.TestCase):
         buffer = io.BytesIO()
         Image.new('RGB', (4, 3), 'green').save(buffer, 'PNG')
         self.png = buffer.getvalue()
-        self.temp = tempfile.TemporaryDirectory(prefix='editonny HTTP ')
+        self.temp = tempfile.TemporaryDirectory(prefix='nhipdung HTTP ')
         self.addCleanup(self.temp.cleanup)
         self.directory = Path(self.temp.name)
         self.item = {'url': 'https://example.invalid/photo', 'download_url': 'https://example.invalid/file'}
@@ -80,7 +80,7 @@ class HttpClientTests(unittest.TestCase):
                 self.send_response(200)
                 self.send_header('Transfer-Encoding', 'chunked')
                 self.end_headers()
-                self.wfile.write(b'4\r\nedit\r\n4\r\nonny\r\n0\r\n\r\n')
+                self.wfile.write(b'4\r\nnhip\r\n4\r\ndung\r\n0\r\n\r\n')
 
             def log_message(self, *_args):
                 pass
@@ -93,7 +93,7 @@ class HttpClientTests(unittest.TestCase):
                 client.trust_env = False
                 with client.get(f'http://127.0.0.1:{server.server_port}/', timeout=5) as result:
                     result.raise_for_status()
-                    self.assertEqual(result.content, b'editonny')
+                    self.assertEqual(result.content, b'nhipdung')
         finally:
             server.shutdown()
             server.server_close()

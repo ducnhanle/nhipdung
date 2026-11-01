@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { getPathname } from '@/i18n/navigation';
 import { routing, type AppLocale, type AppPathname } from '@/i18n/routing';
-import { AUTHOR, REPOSITORY_URL } from './links';
+import { AUTHOR, MAINTAINER, REPOSITORY_URL, UPSTREAM_URL } from './links';
 
-export { AUTHOR, REPOSITORY_URL };
+export { AUTHOR, MAINTAINER, REPOSITORY_URL, UPSTREAM_URL };
 
 const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 /** Canonical origin: NEXT_PUBLIC_SITE_URL, else the Vercel production domain, else local development. */
@@ -21,7 +21,7 @@ export const BRAND = {
 
 export type PageKey = 'home' | 'create' | 'catalog' | 'examples' | 'install';
 export const PAGE_PATHS: Record<PageKey, AppPathname> = { home: '/', create: '/create', catalog: '/catalog', examples: '/examples', install: '/install' };
-export const OG_LOCALES: Record<AppLocale, string> = { 'en-US': 'en_US', 'pt-BR': 'pt_BR', es: 'es_ES' };
+export const OG_LOCALES: Record<AppLocale, string> = { 'en-US': 'en_US', 'pt-BR': 'pt_BR', es: 'es_ES', vi: 'vi_VN' };
 
 /** Localized path of a page, with the locale prefix (for example `/pt-br/criar`). */
 export const localizedPath = (locale: AppLocale, page: PageKey) => getPathname({ locale, href: PAGE_PATHS[page] });
@@ -39,7 +39,7 @@ export async function pageMetadata(locale: AppLocale, page: PageKey): Promise<Me
     title,
     description,
     applicationName: t('siteName'),
-    authors: [{ name: AUTHOR.name, url: AUTHOR.instagram }],
+    authors: [{ name: MAINTAINER.name, url: MAINTAINER.github }, { name: AUTHOR.name, url: AUTHOR.github }],
     alternates: {
       canonical: url,
       languages: { ...Object.fromEntries(routing.locales.map(code => [code, localizedPath(code, page)])), 'x-default': PAGE_PATHS[page] },
@@ -58,16 +58,17 @@ export async function homeJsonLd(locale: AppLocale) {
   const t = await getTranslations({ locale, namespace: 'Metadata' });
   const absolute = (path: string) => new URL(path, SITE_URL).href;
   const url = absolute(localizedPath(locale, 'home'));
-  const author = { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.instagram };
+  const author = { '@type': 'Person', name: AUTHOR.name, url: AUTHOR.github };
+  const maintainer = { '@type': 'Person', name: MAINTAINER.name, url: MAINTAINER.github };
   const graph = {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'WebSite', '@id': `${url}#website`, url, name: t('siteName'), description: t('home.description'), inLanguage: locale, publisher: author },
+      { '@type': 'WebSite', '@id': `${url}#website`, url, name: t('siteName'), description: t('home.description'), inLanguage: locale, publisher: maintainer },
       {
         '@type': 'SoftwareApplication', '@id': `${url}#software`, name: t('siteName'), url, description: t('home.description'), inLanguage: locale,
         image: absolute(`/${locale}/opengraph-image`), applicationCategory: 'MultimediaApplication', applicationSubCategory: 'Video editing',
         operatingSystem: 'macOS', isAccessibleForFree: true, license: 'https://opensource.org/licenses/MIT', downloadUrl: REPOSITORY_URL,
-        softwareHelp: absolute(localizedPath(locale, 'install')), sameAs: [REPOSITORY_URL], author,
+        softwareHelp: absolute(localizedPath(locale, 'install')), sameAs: [REPOSITORY_URL], author, maintainer,
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       },
     ],

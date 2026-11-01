@@ -1,9 +1,9 @@
 {
-  "name": "@editonny/design-system",
+  "name": "@nhipdung/design-system",
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "React components, tokens, and showcase of the editonny design system.",
+  "description": "React components, tokens, and showcase of the nhipdung design system.",
   "sideEffects": ["*.css"],
   "exports": {
     ".": "./components/index.ts",

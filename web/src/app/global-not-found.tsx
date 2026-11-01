@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import '@editonny/design-system/styles.css';
+import '@nhipdung/design-system/styles.css';
 import { fontVariables } from './fonts';
 
-export const metadata: Metadata = { title: '404 — editonny', robots: { index: false } };
+export const metadata: Metadata = { title: '404 — nhipdung', robots: { index: false } };
 
 // Requests outside the locale routing (for example an unknown locale prefix) end here.
 export default function GlobalNotFound() {
@@ -13,7 +13,7 @@ export default function GlobalNotFound() {
         <main style={{ display: 'grid', placeItems: 'center', minHeight: '100vh', padding: 'var(--gutter)', textAlign: 'center' }}>
           <div>
             <h1 style={{ font: 'var(--text-heading)', marginBottom: 'var(--space-4)' }}>This page is not here.</h1>
-            <p><Link href="/">Go to the editonny home page</Link></p>
+            <p><Link href="/">Go to the nhipdung home page</Link></p>
           </div>
         </main>
       </body>

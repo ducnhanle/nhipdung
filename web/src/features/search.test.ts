@@ -12,6 +12,11 @@ describe('search', () => {
     expect(normalize('Café ÇÃO')).toBe('cafe cao');
   });
 
+  it('folds Vietnamese tone marks and đ so plain typing finds the scene', () => {
+    expect(normalize('Động mạch · Đặt hàng')).toBe('dong mach · dat hang');
+    expect(filterScenes([scene('a', 'Dấu chỉ · Mũi tên', 'Pointers')], 'dau chi mui ten', '')).toHaveLength(1);
+  });
+
   it('combines accent-insensitive terms with the category filter', () => {
     const scenes = [scene('a', 'Café comparison', 'Health', 'explain options'), scene('b', 'Café comparison', 'Other')];
     expect(filterScenes(scenes, 'cafe comparison', 'Health')).toHaveLength(1);

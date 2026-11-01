@@ -54,7 +54,7 @@ test('both themes define every semantic role and the web app loads the design-sy
   assert.ok(Object.keys(dark).length > 60);
   assert.deepEqual(Object.keys(dark).filter(name => !(name in light)), []);
   assert.match(await read('design-system/styles.css'), /@import "tokens\/colors\.css";[\s\S]*@import "components\/components\.css";/);
-  assert.match(await read('web/src/app/design-system/layout.tsx'), /import '@editonny\/design-system\/styles\.css';/);
+  assert.match(await read('web/src/app/design-system/layout.tsx'), /import '@nhipdung\/design-system\/styles\.css';/);
 });
 
 test('font shorthands and theme colors have distinct token names', async () => {

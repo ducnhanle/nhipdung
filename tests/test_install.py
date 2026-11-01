@@ -23,12 +23,12 @@ class InstallationTests(unittest.TestCase):
                          {'clip.MP4', 'object.webm', 'still.png'})
 
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='editonny test ')
+        self.temp = tempfile.TemporaryDirectory(prefix='nhipdung test ')
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name)
         self.source = self.base / 'source'
         self.source.mkdir()
-        (self.source / 'SKILL.md').write_text('---\nname: editonny\n---\n')
+        (self.source / 'SKILL.md').write_text('---\nname: nhipdung\n---\n')
         (self.source / 'VERSION').write_text('1.0.0\n')
         (self.source / 'engine').mkdir()
         (self.source / 'engine' / 'pyproject.toml').write_text('[project]\nname="test"\n')
@@ -42,8 +42,8 @@ class InstallationTests(unittest.TestCase):
 
     def test_single_copy_and_two_links_idempotent(self):
         dest = self.install()
-        self.assertEqual(dest, self.home / '.local/share/editonny')
-        for p in ['.agents/skills/editonny', '.claude/skills/editonny']:
+        self.assertEqual(dest, self.home / '.local/share/nhipdung')
+        for p in ['.agents/skills/nhipdung', '.claude/skills/nhipdung']:
             self.assertTrue((self.home / p).is_symlink())
             self.assertEqual((self.home / p).resolve(), dest.resolve())
         self.assertFalse((dest / '.env').exists())
@@ -55,7 +55,7 @@ class InstallationTests(unittest.TestCase):
     def test_target_claude_does_not_register_codex(self):
         self.install(target='claude')
         self.assertFalse((self.home / '.agents').exists())
-        self.assertTrue((self.home / '.claude/skills/editonny').is_symlink())
+        self.assertTrue((self.home / '.claude/skills/nhipdung').is_symlink())
 
     def test_dry_run_creates_nothing(self):
         self.install(dry_run=True)
@@ -64,7 +64,7 @@ class InstallationTests(unittest.TestCase):
     def test_foreign_link_or_directory_refused_before_copy(self):
         for kind in ['directory', 'symlink']:
             with self.subTest(kind=kind):
-                link = self.home / '.claude/skills/editonny'
+                link = self.home / '.claude/skills/nhipdung'
                 link.parent.mkdir(parents=True, exist_ok=True)
                 if kind == 'directory':
                     link.mkdir()
@@ -72,7 +72,7 @@ class InstallationTests(unittest.TestCase):
                     link.symlink_to(self.source, target_is_directory=True)
                 with self.assertRaisesRegex(ValueError, 'belong|unowned|existing'):
                     self.install()
-                self.assertFalse((self.home / '.local/share/editonny').exists())
+                self.assertFalse((self.home / '.local/share/nhipdung').exists())
                 if link.is_symlink():
                     link.unlink()
                 else:
@@ -85,7 +85,7 @@ class InstallationTests(unittest.TestCase):
         (self.source / 'VERSION').write_text('1.1.0\n')
         self.install()
         self.assertEqual((dest / 'engine/.env').read_text(), 'LOCAL=keep\n')
-        backups = list((self.home / '.local/share/editonny-backups').iterdir())
+        backups = list((self.home / '.local/share/nhipdung-backups').iterdir())
         self.assertEqual(len(backups), 1)
         self.assertEqual((backups[0] / 'engine/custom.txt').read_text(), 'personal file')
 
@@ -104,12 +104,12 @@ class InstallationTests(unittest.TestCase):
                 self.assertTrue(video.is_file())
                 self.assertEqual(video.read_bytes(), b'original')
                 self.assertEqual((dest / 'engine/.env').read_text(), 'LOCAL=keep\n')
-                backups = sorted((self.home / '.local/share/editonny-backups').iterdir())
+                backups = sorted((self.home / '.local/share/nhipdung-backups').iterdir())
                 self.assertEqual(len(backups), index)
                 if damage == 'corrupt':
                     self.assertEqual((backups[-1] / 'clip.webm').read_bytes(), b'personal edit')
         self.install()
-        self.assertEqual(len(list((self.home / '.local/share/editonny-backups').iterdir())), 2)
+        self.assertEqual(len(list((self.home / '.local/share/nhipdung-backups').iterdir())), 2)
 
     def test_failed_sync_restores_old_install(self):
         dest = self.install()
@@ -119,13 +119,13 @@ class InstallationTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'sync failed'):
                 installer.install(self.source, self.home, sync=True)
         self.assertEqual((dest / 'VERSION').read_text(), '1.0.0\n')
-        self.assertTrue((self.home / '.claude/skills/editonny').is_dir())
+        self.assertTrue((self.home / '.claude/skills/nhipdung').is_dir())
 
     def test_unregister_preserves_installation_and_secrets(self):
         dest = self.install()
         (dest / '.env').write_text('LOCAL=keep')
         installer.uninstall(self.home, target='both')
-        self.assertFalse((self.home / '.agents/skills/editonny').exists())
+        self.assertFalse((self.home / '.agents/skills/nhipdung').exists())
         self.assertTrue((dest / '.env').exists())
 
     def test_source_symlink_not_followed(self):

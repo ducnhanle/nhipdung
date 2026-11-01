@@ -1,4 +1,4 @@
-name: Verify editonny
+name: Verify nhipdung
 on: [push, pull_request]
 permissions:
   contents: read
@@ -51,4 +51,4 @@ jobs:
       - run: python -m pip install uv==0.13.0
       - run: npm run test:engine
       - run: python scripts/smoke_engine.py
-      - run: EDITONNY_NATIVE_CONFORMANCE=1 uv run --locked --directory skills/editonny/engine python -m unittest discover -s ../../../tests/integration -p test_managed_native.py
+      - run: NHIPDUNG_NATIVE_CONFORMANCE=1 uv run --locked --directory skills/nhipdung/engine python -m unittest discover -s ../../../tests/integration -p test_managed_native.py

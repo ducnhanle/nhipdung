@@ -1,0 +1,18 @@
+# nhipdung engine
+
+The local processing engine used by the [nhipdung skill](../SKILL.md). Start with the skill for editorial decisions and [WORKFLOW.md](WORKFLOW.md) for execution. This directory is `<ENGINE>` in commands.
+
+The engine provides local transcription, waveform timing, cut verification, captions, framing, audio processing, motion overlays, and the pinned HyperFrames project template. Its Python dependencies are declared in `pyproject.toml` and locked in `uv.lock`; do not upgrade them as part of an edit.
+
+```sh
+uv sync --directory '<ENGINE>'
+uv run --directory '<ENGINE>' python helpers/transcribe_batch.py '<VIDEOS>' --language auto
+```
+
+Keep originals unchanged. Store generated work in the project's `edit/` directory. A generated HyperFrames project uses `project.json`; the template README documents its commands. Run any helper with `--help` for its exact arguments.
+
+First-party code is MIT licensed; dependency and bundled resource licenses remain listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Author and contact
+
+This Vietnamese fork is maintained by **ducnhanle** ([GitHub](https://github.com/ducnhanle) · [repository](https://github.com/ducnhanle/nhipdung) · [issues](https://github.com/ducnhanle/nhipdung/issues)). nhipdung is based on **editonny**, created by **Matheus Gomes**: [Email: eu@matheusgom.es](mailto:eu@matheusgom.es) · [GitHub](https://github.com/soumatheusgomes/editonny).

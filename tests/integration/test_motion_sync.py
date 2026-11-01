@@ -12,7 +12,7 @@ import wave
 import numpy as np
 from PIL import Image
 
-HELPERS = Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers'
+HELPERS = Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers'
 
 
 @unittest.skipUnless(shutil.which('ffmpeg') and shutil.which('ffprobe'), 'FFmpeg required')

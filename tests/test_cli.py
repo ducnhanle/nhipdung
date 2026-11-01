@@ -10,7 +10,7 @@ import unittest
 from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
-CLI = ROOT / 'editonny.py'
+CLI = ROOT / 'nhipdung.py'
 
 
 class CLITests(unittest.TestCase):
@@ -51,12 +51,12 @@ class CLITests(unittest.TestCase):
                 self.assertNotIn('Traceback', result.stderr)
 
     def test_guide_runs_the_web_app_only_from_a_full_checkout_with_dependencies(self):
-        spec = importlib.util.spec_from_file_location('cli', ROOT / 'skills/editonny/scripts/editonny.py')
+        spec = importlib.util.spec_from_file_location('cli', ROOT / 'skills/nhipdung/scripts/nhipdung.py')
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            module.SKILL = root / 'skills/editonny'
+            module.SKILL = root / 'skills/nhipdung'
             with self.assertRaisesRegex(ValueError, 'standalone skill'):
                 module.guide(4321, False)
             (root / 'web').mkdir()
@@ -90,14 +90,14 @@ class CLITests(unittest.TestCase):
                     self.assertEqual(module.guide(4321, True), 1)
                 self.assertEqual(opened, ['http://localhost:55363'])
             command, kwargs = started[0]
-            self.assertEqual(command, ['/usr/bin/npm', 'run', 'dev', '-w', '@editonny/web', '--', '--hostname', 'localhost', '--port', '0'])
+            self.assertEqual(command, ['/usr/bin/npm', 'run', 'dev', '-w', '@nhipdung/web', '--', '--hostname', 'localhost', '--port', '0'])
             self.assertEqual(kwargs['cwd'], root)
 
     def test_doctor_json_has_real_checks(self):
         result = self.run_cli('doctor', '--json')
         self.assertIn(result.returncode, [0, 1])
         report = json.loads(result.stdout)
-        self.assertEqual(report['product'], 'editonny')
+        self.assertEqual(report['product'], 'nhipdung')
         self.assertTrue(any(c['name'] == 'ffmpeg' for c in report['checks']))
         self.assertTrue(all('ok' in c for c in report['checks']))
 

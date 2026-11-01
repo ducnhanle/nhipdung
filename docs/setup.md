@@ -6,14 +6,14 @@ Reviewed on 2026-10-19. This is the canonical development-tool reference; onboar
 
 ```sh
 npm ci --ignore-scripts
-uv sync --locked --directory skills/editonny/engine
+uv sync --locked --directory skills/nhipdung/engine
 npx playwright install chromium   # once, for npm run test:browser
 npm run build
 npm run check
-python3 editonny.py doctor
+python3 nhipdung.py doctor
 ```
 
-Developer Node requirement: `^22.13.0 || >=24.0.0`. The root `package.json` is an npm workspace with `design-system` (`@editonny/design-system`) and `web` (`@editonny/web`) sharing one lockfile; `npm ci --ignore-scripts` is enough because Next.js ships its compiler as platform packages. `npm run dev` serves the guide on port 3000, `npm run build` builds it, and `npm run test:browser` builds it and runs Playwright against `next start` on port 3100 (override with `E2E_PORT`). Stop leftover servers by port: Next.js renames its process to `next-server`. The Python engine range and exact selected dependencies are defined by its pyproject and lockfile. Keep HyperFrames pinned at 0.8.179 unless a separate tested upgrade is requested.
+Developer Node requirement: `^22.13.0 || >=24.0.0`. The root `package.json` is an npm workspace with `design-system` (`@nhipdung/design-system`) and `web` (`@nhipdung/web`) sharing one lockfile; `npm ci --ignore-scripts` is enough because Next.js ships its compiler as platform packages. `npm run dev` serves the guide on port 3000, `npm run build` builds it, and `npm run test:browser` builds it and runs Playwright against `next start` on port 3100 (override with `E2E_PORT`). Stop leftover servers by port: Next.js renames its process to `next-server`. The Python engine range and exact selected dependencies are defined by its pyproject and lockfile. Keep HyperFrames pinned at 0.8.179 unless a separate tested upgrade is requested.
 
 ESLint 10.13.0, @eslint/js 10.0.1, @eslint/css 2.0.0, globals 17.13.0, and esbuild 0.28.2 remain pinned. TypeScript is pinned at 6.0.3 rather than 7.x: typescript-eslint 8.71.2 (used by `eslint-config-next` 16.4.2) supports `typescript <6.1.0` and needs the TypeScript JavaScript API, which TypeScript 7 does not ship. Revisit when typescript-eslint supports TypeScript 7. `@eslint/css` parses CSS for the design-system adherence rule in `design-system/lint/`, ported from the Claude Design export's oxlint configuration and applied to design-system and web CSS. `npm run typecheck` (part of `npm run check`) checks `design-system/tsconfig.json` and runs `next typegen && tsc --noEmit` in `web/`.
 
@@ -21,7 +21,7 @@ The web app pins Next.js 16.4.2, React and React DOM 19.3.1, next-intl 4.14.9, b
 
 ### Deploy
 
-Vercel builds the guide with Root Directory `web`, installing the workspace from the repository root; the build reads `skills/editonny/visuals/catalog.json` and the engine's font files from outside `web/`, so keep Vercel's default of including files outside the root directory. Optional environment variable: `NEXT_PUBLIC_SITE_URL` (canonical origin for metadata, sitemap, and Open Graph images; defaults to the Vercel production domain). No secrets are required. Deploying is a publication step and needs the owner's authorization. The root CI runs canonical checks on Node 22.13.0 and 24. Browser and Python engine integration checks are separate and do not call an LLM. Local success does not imply remote CI ran.
+Vercel builds the guide with Root Directory `web`, installing the workspace from the repository root; the build reads `skills/nhipdung/visuals/catalog.json` and the engine's font files from outside `web/`, so keep Vercel's default of including files outside the root directory. Optional environment variable: `NEXT_PUBLIC_SITE_URL` (canonical origin for metadata, sitemap, and Open Graph images; defaults to the Vercel production domain). No secrets are required. Deploying is a publication step and needs the owner's authorization. The root CI runs canonical checks on Node 22.13.0 and 24. Browser and Python engine integration checks are separate and do not call an LLM. Local success does not imply remote CI ran.
 
 The `quality/max-lines` rule and self-check derive from the MIT-licensed [Vibe Coding Toolkit revision de66fe3](https://github.com/soumatheusgomes/vibe-coding-toolkit/tree/de66fe371a49f5a4d3b521759e5c401f390b6424). Keep `eslint-rules/LICENSE` and local adaptations. Review the source diff before updating; do not copy the whole toolkit or add unused logger/database rules.
 
@@ -29,9 +29,9 @@ The `quality/max-lines` rule and self-check derive from the MIT-licensed [Vibe C
 
 Read `AGENTS.md`, the relevant canonical docs, and current source. Use an ignored local plan under `docs/superpowers/` for temporary progress, with source/date/invalidation recorded for durable knowledge. On resumption, check Git, files, running processes, and fresh checks before trusting a handoff.
 
-Work directly in the requested checkout and preserve unrelated local changes. New English contracts do not support previous experimental project formats. First-party code is MIT licensed; third-party terms remain separate. English is primary; the Portuguese and Spanish READMEs are explicit documentation translations.
+Work directly in the requested checkout and preserve unrelated local changes. New English contracts do not support previous experimental project formats. First-party code is MIT licensed; third-party terms remain separate. English is primary; the Portuguese, Spanish, and Vietnamese READMEs are explicit documentation translations.
 
-Use installed Ponytail, Caveman, Superpowers, RTK, Context7, agent-browser (preview checks and ad-hoc inspection), Playwright (guide checks), and web-design-guidelines where relevant. They are development tools rather than package dependencies. Do not duplicate existing hooks or introduce new Git hooks. Native LLM work uses Codex, `gpt-6-astra`, and ChatGPT authentication only, with explicit model selection for delegation. No external LLM proxy, API key, or silent provider/model substitution is permitted.
+Use installed Ponytail, Caveman, Superpowers, RTK, Context7, agent-browser (preview checks and ad-hoc inspection), Playwright (guide checks), and web-design-guidelines where relevant. They are development tools rather than package dependencies. Do not duplicate existing hooks or introduce new Git hooks. LLM work runs in the developer's own native agent session, Claude Code or Codex, with that agent's subscription authentication and explicit model selection for delegation. No external LLM proxy, API key, or silent provider/model substitution is permitted. The local graph pipeline below keeps its native Codex (`gpt-6-astra`, ChatGPT authentication) provenance requirement, which `scripts/graph_runtime.py` enforces.
 
 Use one writer per file and read-only independent reviewers. The coordinator owns Git, lockfiles, integration, and verification. Scope assignments must name inputs, allowed paths, acceptance checks, and boundaries. Agent summaries require verification against actual files and checks.
 
@@ -64,7 +64,7 @@ Tool extras observed in the existing isolated setup include MCP 2.3.0, matplotli
 
 ## MCP and client configuration
 
-The local `editonny-graph` registration launches the isolated Graphify Python with `scripts/project_graph.py serve` over stdio. Local client configuration is ignored and excluded from distribution. Do not overwrite unrelated servers or permissions. A client restart may be required for discovery; a protocol test is distinct from an observed UI restart.
+The local `nhipdung-graph` registration launches the isolated Graphify Python with `scripts/project_graph.py serve` over stdio. Local client configuration is ignored and excluded from distribution. Do not overwrite unrelated servers or permissions. A client restart may be required for discovery; a protocol test is distinct from an observed UI restart.
 
 ```sh
 python3 scripts/check_graph_mcp.py

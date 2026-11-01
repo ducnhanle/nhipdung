@@ -1,4 +1,4 @@
-import { Eyebrow, Highlight, Icon } from '@editonny/design-system';
+import { Eyebrow, Highlight, Icon } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import { LibraryLink } from './LibraryLink';
 import styles from './home.module.css';

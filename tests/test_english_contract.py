@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class EnglishContractTests(unittest.TestCase):
     def test_catalog_exposes_english_fields_and_scene_ids(self):
         result = subprocess.run(
-            [sys.executable, str(ROOT / 'editonny.py'), 'catalog', '--json'],
+            [sys.executable, str(ROOT / 'nhipdung.py'), 'catalog', '--json'],
             capture_output=True, text=True, check=True,
         )
         scenes = json.loads(result.stdout)
@@ -22,13 +22,13 @@ class EnglishContractTests(unittest.TestCase):
         self.assertTrue(all(not scene['id'].startswith('mp_') for scene in scenes))
 
     def test_new_project_uses_english_options_and_writes_english_configuration(self):
-        with tempfile.TemporaryDirectory(prefix='editonny English project ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung English project ') as temporary:
             root = Path(temporary)
             edit = root / 'edit'
             edit.mkdir()
             project = root / 'new project'
             result = subprocess.run(
-                [sys.executable, str(ROOT / 'editonny.py'), 'new', str(project),
+                [sys.executable, str(ROOT / 'nhipdung.py'), 'new', str(project),
                  '--edit', str(edit), '--style', 'paper'],
                 capture_output=True, text=True,
             )

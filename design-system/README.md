@@ -1,6 +1,6 @@
-# editonny design system
+# nhipdung design system
 
-The component library, tokens, templates, and visual references for editonny. [`DESIGN.md`](../DESIGN.md) at the repository root is the visual contract and the source of truth for every token; this folder implements it. Imported on 2026-10-18 from a Claude Design export (v2 "living studio"; landing patterns from Claude Design project `3279deec-b3c4-4cfc-846e-d93fb88627d5`). Its pt-BR copy was rewritten in English, its tool files (bundle manifest, thumbnails, uploaded third-party mood references, and agent-skill wrapper) were not imported, and its oxlint adherence rules became the ESLint configuration described below. Changes to the tokens, components, or folder layout invalidate this map.
+The component library, tokens, templates, and visual references for nhipdung. [`DESIGN.md`](../DESIGN.md) at the repository root is the visual contract and the source of truth for every token; this folder implements it. Imported on 2026-10-18 from a Claude Design export (v2 "living studio"; landing patterns from Claude Design project `3279deec-b3c4-4cfc-846e-d93fb88627d5`). Its pt-BR copy was rewritten in English, its tool files (bundle manifest, thumbnails, uploaded third-party mood references, and agent-skill wrapper) were not imported, and its oxlint adherence rules became the ESLint configuration described below. Changes to the tokens, components, or folder layout invalidate this map.
 
 The showcase is the `/design-system` route of the web app (`npm run dev`, then open `http://localhost:3000/design-system`): all 38 components, their states, the edit-preview template, and the tokens in the dark studio and light paper themes.
 
@@ -8,7 +8,7 @@ The showcase is the `/design-system` route of the web app (`npm run dev`, then o
 
 | Path | Contents |
 |---|---|
-| `package.json` | Workspace package `@editonny/design-system`; exports `.` (components), `./styles.css`, `./showcase`, `./assets/*`, and `./lint` |
+| `package.json` | Workspace package `@nhipdung/design-system`; exports `.` (components), `./styles.css`, `./showcase`, `./assets/*`, and `./lint` |
 | `tokens/` | `colors.css` (primitives, dark and light semantic roles), `typography.css` (font tokens read `--font-*-face` variables from the app's font loader), `spacing.css` (spacing, radius, shadows, blur, layout), `motion.css` (easings, durations, `ed-*` keyframes, `.ed-grain`, `.ed-text-fire`), `base.css` |
 | `styles.css` | Entry point for a design-system page: tokens, document defaults, and every component sheet |
 | `components/` | `index.ts` (the only public import), `lib.ts` (internal helpers and the `BaseProps` type), `components.css`, and one folder per category with a `.tsx` file per component plus the category stylesheet and its tests |
@@ -29,20 +29,20 @@ Components by category:
 - `motion/`: Marquee, KineticText, Counter, Aurora, Reveal
 - `site/`: SiteHeader, LanguageSelect, CreatorChip, Highlight, Chip
 
-Fonts come from `skills/editonny/engine/assets/fonts/` (licenses in the engine's `THIRD_PARTY_NOTICES.md`); the web app serves Latin WOFF2 subsets of them from `web/src/app/fonts/` (loaded by `web/src/app/fonts.ts`; regenerate them after changing a source font, see `web/src/app/fonts/README.md`), and the localized Open Graph image (`web/src/app/[locale]/opengraph-image.tsx`, laid out after `assets/brand/og-image.png`) reads static TrueType instances from the same folder plus the engine's Anton. Other assets already in the skill are referenced, not copied: footage stills from `skills/editonny/visuals/assets/visuals/img/`, and 3D objects from `skills/editonny/visuals/library/3d-objects/png/`. Exported SVGs keep their embedded content credentials unchanged.
+Fonts come from `skills/nhipdung/engine/assets/fonts/` (licenses in the engine's `THIRD_PARTY_NOTICES.md`); the web app serves Latin WOFF2 subsets of them from `web/src/app/fonts/` (loaded by `web/src/app/fonts.ts`; regenerate them after changing a source font, see `web/src/app/fonts/README.md`), and the localized Open Graph image (`web/src/app/[locale]/opengraph-image.tsx`, laid out after `assets/brand/og-image.png`) reads static TrueType instances from the same folder plus the engine's Anton. Other assets already in the skill are referenced, not copied: footage stills from `skills/nhipdung/visuals/assets/visuals/img/`, and 3D objects from `skills/nhipdung/visuals/library/3d-objects/png/`. Exported SVGs keep their embedded content credentials unchanged.
 
 ## Using the library
 
 ```tsx
-import '@editonny/design-system/styles.css';
-import { Button, Card } from '@editonny/design-system';
+import '@nhipdung/design-system/styles.css';
+import { Button, Card } from '@nhipdung/design-system';
 
 export const Example = () => <Card padding="var(--space-6)"><Button iconRight="arrow-up-right">Create request</Button></Card>;
 ```
 
 Components are React 19 function components that take one typed props object. Set `data-theme="light"` on any container for the paper theme; dark is the default. Interactive states use native pseudo-classes; `data-force="hover|active|focus"` previews them, and containers over footage set `data-surface="media"`. Live components are controlled through props (`Timeline` `playhead`, `Transport` `playing`, `Dialog` `open`). Files that use hooks or browser APIs start with `'use client'`; the rest render on the server. Every animated component respects `prefers-reduced-motion`, and `Reveal` content stays visible without JavaScript. Router links plug in through `Button`'s `href` + `as` and `SiteHeader`'s `linkAs`. Visible copy is a prop with an English default so apps can localize it.
 
-The edit preview in `skills/editonny/engine/preview/` is part of the portable skill and keeps its own styles until a preview redesign is validated with its own browser checks.
+The edit preview in `skills/nhipdung/engine/preview/` is part of the portable skill and keeps its own styles until a preview redesign is validated with its own browser checks.
 
 ## Creating a component
 
@@ -53,7 +53,7 @@ The edit preview in `skills/editonny/engine/preview/` is part of the portable sk
 5. If it needs a new token, add it to `DESIGN.md` and the token CSS together.
 6. Run `npm run check`; run `npm run test:browser` when the showcase changes.
 
-`npm run check` enforces the rules: `design/tokens` rejects raw colors, font families, font sizes, spacing, and radii in design-system and web CSS (token files excepted); raw hex, px, and font literals are rejected in TypeScript; consumers must import from `@editonny/design-system`; and `npm run typecheck` rejects unknown props or variant values. `tests/design-system.test.mjs` keeps `DESIGN.md`, the token CSS, the public API, and the showcase in sync.
+`npm run check` enforces the rules: `design/tokens` rejects raw colors, font families, font sizes, spacing, and radii in design-system and web CSS (token files excepted); raw hex, px, and font literals are rejected in TypeScript; consumers must import from `@nhipdung/design-system`; and `npm run typecheck` rejects unknown props or variant values. `tests/design-system.test.mjs` keeps `DESIGN.md`, the token CSS, the public API, and the showcase in sync.
 
 ## Reference HTML
 

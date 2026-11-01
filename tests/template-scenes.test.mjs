@@ -6,11 +6,11 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 
-// Reuse a prepared project runtime with EDITONNY_GSAP to run without network access.
+// Reuse a prepared project runtime with NHIPDUNG_GSAP to run without network access.
 test('2D scene templates mount, animate, and seek without missing targets or duplicate IDs', async () => {
-  const root = fileURLToPath(new URL('../skills/editonny/engine/project-template/', import.meta.url));
+  const root = fileURLToPath(new URL('../skills/nhipdung/engine/project-template/', import.meta.url));
   let gsap;
-  if (process.env.EDITONNY_GSAP) gsap = await readFile(process.env.EDITONNY_GSAP);
+  if (process.env.NHIPDUNG_GSAP) gsap = await readFile(process.env.NHIPDUNG_GSAP);
   else {
     const build = await readFile(`${root}build.py`, 'utf8');
     const url = build.match(/^GSAP_URL = '([^']+)'/m)?.[1];
@@ -20,7 +20,7 @@ test('2D scene templates mount, animate, and seek without missing targets or dup
     gsap = Buffer.from(await response.arrayBuffer());
   }
   const scenes = await Promise.all((await readdir(`${root}compositions/scenes/2d`)).filter(f => f.endsWith('.html')).map(async file => ({ id: file.slice(0, -5), html: await readFile(`${root}compositions/scenes/2d/${file}`, 'utf8') })));
-  const propertyScenes = await Promise.all(['building-panel','floor-plan-panel','property-price-panel','location-map-panel'].map(async id => ({ id, html: await readFile(new URL(`../skills/editonny/visuals/scenes/${id}.html`, import.meta.url), 'utf8') })));
+  const propertyScenes = await Promise.all(['building-panel','floor-plan-panel','property-price-panel','location-map-panel'].map(async id => ({ id, html: await readFile(new URL(`../skills/nhipdung/visuals/scenes/${id}.html`, import.meta.url), 'utf8') })));
   const page = `<!doctype html><html lang="en"><head><script src="/gsap.js"></script></head><body><script>
   window.failures=[]; window.addEventListener('error',e=>failures.push(e.message));
   window.addEventListener('unhandledrejection',e=>failures.push(String(e.reason)));
@@ -58,7 +58,7 @@ test('2D scene templates mount, animate, and seek without missing targets or dup
     } catch { res.statusCode=500;res.end(); }
   });
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-  const session = `editonny-template-scenes-${process.pid}`, exec = promisify(execFile);
+  const session = `nhipdung-template-scenes-${process.pid}`, exec = promisify(execFile);
   const browser = async (...args) => {
     const { stdout } = await exec('agent-browser', ['--session', session, '--json', ...args], { timeout:30000,maxBuffer:2**20 });
     const result = JSON.parse(stdout);assert.equal(result.success,true,JSON.stringify(result.error));return result.data;
@@ -141,7 +141,7 @@ for c in apply.catalog().values():
         fit = lambda html: (apply.wait_for_frame if c['layout'] == 'frame' else apply.shorten)(apply.hold_exit(html, new, 20, d - .5), new, d, round(d * .9, 3))
         out.append({'id': new, 'copy': copy, 'hold': fit(copy)})
         if c['id'] == 'location-map-panel': out[-1]['late'] = fit(apply.set_parameter(copy, 'others', 'SCHOOL'))
-print(json.dumps(out))`],{cwd:fileURLToPath(new URL('../skills/editonny/visuals/',import.meta.url)),maxBuffer:2**27})).stdout);
+print(json.dumps(out))`],{cwd:fileURLToPath(new URL('../skills/nhipdung/visuals/',import.meta.url)),maxBuffer:2**27})).stdout);
     assert.ok(fixedCopies.length>=38,'fixed-layout scenes');
     for(const scene of fixedCopies){
       await evaluate(`window.mount(${JSON.stringify(scene.copy)})`);
@@ -159,17 +159,17 @@ print(json.dumps(out))`],{cwd:fileURLToPath(new URL('../skills/editonny/visuals/
       assert.ok((await ending(scene.hold,{end:10})).root<.01,`${scene.id}: exit restored when the scene moves earlier`);
       if(scene.late){const late=await ending(scene.late,{end:20,words:[{text:'SCHOOL',t:4.9,end:5.1}]});assert.ok(late.late.length&&late.late.every(o=>o>.99),`${scene.id}: late word entrance on the final frame`);}
     }
-    const recovery=await readFile(new URL('../skills/editonny/visuals/scenes/muscle-recovery.html',import.meta.url),'utf8');
+    const recovery=await readFile(new URL('../skills/nhipdung/visuals/scenes/muscle-recovery.html',import.meta.url),'utf8');
     await evaluate(`window.mount(${JSON.stringify(recovery)})`);
     assert.deepEqual(await evaluate(`[...document.querySelectorAll('svg [fill]')].map(e=>e.getAttribute('fill')).filter(fill=>!CSS.supports('fill',fill))`),[],'recovery icons use valid configured colors');
-    const attempts=await readFile(new URL('../skills/editonny/visuals/scenes/attempt-counter.html',import.meta.url),'utf8');
+    const attempts=await readFile(new URL('../skills/nhipdung/visuals/scenes/attempt-counter.html',import.meta.url),'utf8');
     for(const correct of [0,1,2,3]){
       await evaluate(`window.mount(${JSON.stringify(attempts)}.replace('correct: 3','correct: '+${correct}))`);
       const successful=await evaluate(`[...document.querySelectorAll('.attemptcounter-it')].flatMap((e,i)=>e.querySelectorAll('svg path').length===1?[i+1]:[])`);
       assert.deepEqual(successful,correct?[correct]:[],`attempt counter honors correct=${correct}`);
     }
     // Caption scenes show their demo phrase only standalone; an interval without speech gets no invented caption.
-    const sceneDir=new URL('../skills/editonny/visuals/scenes/',import.meta.url);
+    const sceneDir=new URL('../skills/nhipdung/visuals/scenes/',import.meta.url);
     const textScenes=(await Promise.all((await readdir(sceneDir)).filter(f=>f.startsWith('text-')).map(async f=>readFile(new URL(f,sceneDir),'utf8')))).filter(html=>html.includes('C.words')&&html.split('screens(').length>2);   // Caption scenes call screens().
     assert.ok(textScenes.length>=9,'caption scenes with a standalone demo');
     for(const html of textScenes){

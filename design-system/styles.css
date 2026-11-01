@@ -1,4 +1,4 @@
-/* Entry point for pages built with the editonny design system: tokens, document defaults, components.
+/* Entry point for pages built with the nhipdung design system: tokens, document defaults, components.
    Font files are loaded by the app (next/font) and exposed through the --font-*-face variables in tokens/typography.css. */
 @import "tokens/colors.css";
 @import "tokens/typography.css";

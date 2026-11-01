@@ -1,5 +1,5 @@
 'use client';
-import { Dialog, IconButton } from '@editonny/design-system';
+import { Dialog, IconButton } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import NextLink from 'next/link';
 import { useState } from 'react';

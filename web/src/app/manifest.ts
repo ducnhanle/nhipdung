@@ -3,8 +3,8 @@ import { BRAND } from '@/lib/site';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'editonny',
-    short_name: 'editonny',
+    name: 'nhipdung',
+    short_name: 'nhipdung',
     description: 'Local video editing through conversation: cuts, captions, sound, and motion with the AI you already use.',
     start_url: '/',
     display: 'standalone',

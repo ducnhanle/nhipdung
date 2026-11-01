@@ -312,7 +312,7 @@
 .raceHead > div:first-child span { font-family: var(--font-mono); font-size: var(--size-eyebrow); letter-spacing: 0.06em; color: var(--text-3); }
 .raceCount { display: flex; flex: none; align-items: baseline; gap: var(--space-2); }
 .raceCount b { min-width: 1.2ch; font-family: var(--font-kinetic); font-weight: var(--weight-regular); font-size: clamp(var(--size-h2), 6vw, var(--size-h1)); line-height: 0.82; text-align: right; font-variant-numeric: tabular-nums; }
-.raceRow[data-tone="editonny"] .raceCount b { color: var(--accent-2-text); }
+.raceRow[data-tone="nhipdung"] .raceCount b { color: var(--accent-2-text); }
 .raceCount span { font-family: var(--font-mono); font-size: var(--size-eyebrow); letter-spacing: 0.14em; color: var(--text-3); }
 .raceTrack { position: relative; height: 56px; overflow: hidden; background: var(--surface-raised); border-radius: var(--radius-md); }
 .raceFill { position: absolute; top: 0; bottom: 0; left: 0; width: var(--fill); background: var(--accent-2); border-radius: var(--radius-md); transition: width 120ms linear; }

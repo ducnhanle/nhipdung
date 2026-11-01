@@ -1,13 +1,12 @@
 {
-  "name": "editonny-local",
+  "name": "nhipdung-local",
   "owner": {
-    "name": "Matheus Gomes",
-    "email": "eu@matheusgom.es",
-    "url": "https://instagram.com/matheusgomes"
+    "name": "ducnhanle",
+    "url": "https://github.com/ducnhanle"
   },
   "plugins": [
     {
-      "name": "editonny",
+      "name": "nhipdung",
       "source": "./",
       "description": "Local video editing and visual scenes",
       "version": "1.1.0"

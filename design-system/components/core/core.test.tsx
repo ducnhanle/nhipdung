@@ -88,9 +88,9 @@ describe('small core components', () => {
     expect(screen.getByRole('button', { name: 'Light theme' })).toHaveAttribute('aria-pressed', 'false');
   });
 
-  it('Wordmark exposes the accessible name "editonny"', () => {
+  it('Wordmark exposes the accessible name "nhipdung"', () => {
     render(<Wordmark size={24} />);
-    expect(screen.getByRole('img', { name: 'editonny' })).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'nhipdung' })).toBeInTheDocument();
   });
 
   it('Badge, Eyebrow, and Kbd render their content', () => {

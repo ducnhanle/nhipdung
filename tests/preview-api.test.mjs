@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 test('saving renews the token once after a server restart', async t => {
-  const api = await import('../skills/editonny/engine/preview/api.mjs');
+  const api = await import('../skills/nhipdung/engine/preview/api.mjs');
   api.updateSession({ token: 'old', watcher: { alive: false } });
   const requests = [];
   t.mock.method(globalThis, 'fetch', async (url, options) => {
@@ -19,7 +19,7 @@ test('saving renews the token once after a server restart', async t => {
 });
 
 test('second 403 stops retrying and network failures report an error', async t => {
-  const api = await import('../skills/editonny/engine/preview/api.mjs');
+  const api = await import('../skills/nhipdung/engine/preview/api.mjs');
   api.updateSession({ token: 'old' });
   let posts = 0;
   t.mock.method(globalThis, 'fetch', async url => {

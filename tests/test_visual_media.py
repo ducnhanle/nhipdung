@@ -11,7 +11,7 @@ import unittest
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
-VISUALS = ROOT / 'skills/editonny/visuals'
+VISUALS = ROOT / 'skills/nhipdung/visuals'
 
 
 def media_module():
@@ -47,7 +47,7 @@ class VisualMediaTests(unittest.TestCase):
         environment = tempfile.TemporaryDirectory(prefix='media isolated home ')
         self.addCleanup(environment.cleanup)
         isolation = patch.dict(os.environ, HOME=environment.name,
-                               EDITONNY_MEDIA_DIR=str(Path(environment.name) / 'obsolete library'))
+                               NHIPDUNG_MEDIA_DIR=str(Path(environment.name) / 'obsolete library'))
         isolation.start()
         self.addCleanup(isolation.stop)
 
@@ -110,7 +110,7 @@ class VisualMediaTests(unittest.TestCase):
             script = bundle / 'media.py'
             script.write_bytes((VISUALS / 'media.py').read_bytes())
             result = subprocess.run([sys.executable, str(script), 'status', '--json'],
-                env=dict(os.environ, HOME=temp, EDITONNY_MEDIA_DIR=str(source)), capture_output=True, text=True)
+                env=dict(os.environ, HOME=temp, NHIPDUNG_MEDIA_DIR=str(source)), capture_output=True, text=True)
             self.assertEqual(result.returncode, 1, result.stderr)
             report = json.loads(result.stdout)
             self.assertEqual(report['available'], 0)
@@ -120,8 +120,8 @@ class VisualMediaTests(unittest.TestCase):
 
     def test_complete_skill_works_without_external_library_configuration(self):
         with tempfile.TemporaryDirectory() as temp:
-            result = subprocess.run([sys.executable, str(ROOT / 'editonny.py'), 'media', 'status', '--json'],
-                env=dict(os.environ, HOME=temp, EDITONNY_MEDIA_DIR=str(Path(temp) / 'obsolete')), capture_output=True, text=True)
+            result = subprocess.run([sys.executable, str(ROOT / 'nhipdung.py'), 'media', 'status', '--json'],
+                env=dict(os.environ, HOME=temp, NHIPDUNG_MEDIA_DIR=str(Path(temp) / 'obsolete')), capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             report = json.loads(result.stdout)
             self.assertEqual(Path(report['root']).resolve(), VISUALS.resolve())

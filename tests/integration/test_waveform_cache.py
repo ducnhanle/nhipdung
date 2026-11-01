@@ -7,7 +7,7 @@ import sys
 import tempfile
 import unittest
 
-HELPERS = Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers'
+HELPERS = Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers'
 sys.path.insert(0, str(HELPERS))
 
 
@@ -15,7 +15,7 @@ sys.path.insert(0, str(HELPERS))
 class WaveformCacheTests(unittest.TestCase):
     def test_a_remapped_source_never_reuses_another_take(self):
         from waveform_cut import envelope
-        with tempfile.TemporaryDirectory(prefix='editonny waveform ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung waveform ') as temporary:
             root = Path(temporary)
             loud, quiet = root / 'take_a.wav', root / 'take_b.wav'
             for path, volume in ((loud, 1.0), (quiet, 0.01)):

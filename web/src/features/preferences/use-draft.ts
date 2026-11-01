@@ -2,7 +2,7 @@
 import { DEFAULT_DRAFT, parseDraft, type RequestDraft } from '../request/draft';
 import { createStore, useStore } from './store';
 
-export const draftStore = createStore('editonny:draft', parseDraft, DEFAULT_DRAFT);
+export const draftStore = createStore('nhipdung:draft', parseDraft, DEFAULT_DRAFT);
 
 /** The visitor's saved brief, a patch updater, and a reset. */
 export function useDraft(): [RequestDraft, (patch: Partial<RequestDraft> | ((draft: RequestDraft) => RequestDraft)) => void, () => void] {

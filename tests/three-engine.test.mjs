@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import * as engine from '../skills/editonny/engine/project-template/compositions/scenes/3d/three-scene.js';
+import * as engine from '../skills/nhipdung/engine/project-template/compositions/scenes/3d/three-scene.js';
 
 test('facade exposes the complete scene API', () => {
   assert.deepEqual(Object.keys(engine).sort(), [
@@ -35,8 +35,8 @@ test('partial poses preserve omitted fields and orbit faces its target', () => {
 });
 
 test('time and camera modules share their facade functions', async () => {
-  const time = await import('../skills/editonny/engine/project-template/compositions/scenes/3d/engine/time.mjs');
-  const camera = await import('../skills/editonny/engine/project-template/compositions/scenes/3d/engine/camera.mjs');
+  const time = await import('../skills/nhipdung/engine/project-template/compositions/scenes/3d/engine/time.mjs');
+  const camera = await import('../skills/nhipdung/engine/project-template/compositions/scenes/3d/engine/camera.mjs');
   assert.equal(time.interval, engine.interval);
   assert.equal(camera.mixPose, engine.mixPose);
 });

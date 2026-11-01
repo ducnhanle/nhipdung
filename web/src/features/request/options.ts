@@ -14,4 +14,4 @@ export type Agent = (typeof AGENTS)[number];
 /** Aspect ratio shown on format pickers; the same in every language. */
 export const RATIOS: Record<Format, string> = { source: 'Original', vertical: '9:16', horizontal: '16:9', square: '1:1', portrait: '4:5' };
 /** How each agent invokes the skill. */
-export const ENTRIES: Record<Agent, string> = { codex: '$editonny', claude: '/editonny' };
+export const ENTRIES: Record<Agent, string> = { codex: '$nhipdung', claude: '/nhipdung' };
