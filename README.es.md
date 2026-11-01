@@ -15,8 +15,8 @@
 <p align="center">Skill de edición de video gratis y open source para <strong>Claude Code</strong> y <strong>Codex</strong>. Corta pausas y errores, pon subtítulos, trata el audio, reencuadra y convierte partes de tu habla en escenas de motion pidiéndolo en lenguaje natural. La transcripción y el render se ejecutan en tu computadora.</p>
 
 <p align="center">
-  <a href="https://github.com/ducnhanle/editonny/stargazers"><img src="https://img.shields.io/github/stars/ducnhanle/editonny?style=flat&amp;label=Stars&amp;color=ff4f12&amp;labelColor=17171b" alt="Estrellas en GitHub" /></a>
-  <a href="https://github.com/ducnhanle/editonny/actions/workflows/verify.yml"><img src="https://github.com/ducnhanle/editonny/actions/workflows/verify.yml/badge.svg?branch=main" alt="Verificación de GitHub Actions" /></a>
+  <a href="https://github.com/ducnhanle/nhipdung/stargazers"><img src="https://img.shields.io/github/stars/ducnhanle/nhipdung?style=flat&amp;label=Stars&amp;color=ff4f12&amp;labelColor=17171b" alt="Estrellas en GitHub" /></a>
+  <a href="https://github.com/ducnhanle/nhipdung/actions/workflows/verify.yml"><img src="https://github.com/ducnhanle/nhipdung/actions/workflows/verify.yml/badge.svg?branch=main" alt="Verificación de GitHub Actions" /></a>
   <a href="LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-d4ff3a?labelColor=17171b" alt="Licencia MIT para el código propio" /></a>
   <img src="https://img.shields.io/badge/Claude%20Code-skill-ff4f12?labelColor=17171b" alt="Funciona como skill de Claude Code" />
   <img src="https://img.shields.io/badge/Codex-skill-ff4f12?labelColor=17171b" alt="Funciona como skill de Codex" />
@@ -33,7 +33,7 @@
 No descargas nada a mano. Abre **Claude Code** o **Codex** en cualquier carpeta y pega este pedido. El mismo pedido instala nhipdung la primera vez y lo actualiza después: el agente clona la skill desde GitHub, sigue el procedimiento de preparación, verifica todo y pregunta antes de cualquier cosa fuera del pedido.
 
 ```text
-Instala o actualiza la skill nhipdung para Codex y Claude Code desde https://github.com/ducnhanle/editonny. Clona la versión más reciente en una carpeta temporal; yo no voy a descargar nada manualmente. Lee skills/nhipdung/SKILL.md y sigue su procedimiento de preparación completa. Si nhipdung ya está instalado, compara las versiones, resume qué cambia y actualízalo con su método de instalación actual: el instalador del repositorio para la instalación compartida (conserva mi configuración y guarda una copia de seguridad de la versión anterior) o el actualizador del host para un plugin gestionado. Prepara herramientas locales compatibles, el motor con dependencias fijadas, el renderizador y navegador en las versiones fijadas, el modelo predeterminado de transcripción, OCR local para comprobar subtítulos y los recursos incluidos antes de la primera edición. Comprueba todo con diagnósticos y una muestra sintética, informa pendientes, elimina el clon temporal y avísame cuándo reiniciar el agente. Pide autorización antes de servicios de pago o de enviar mis archivos.
+Instala o actualiza la skill nhipdung para Codex y Claude Code desde https://github.com/ducnhanle/nhipdung. Clona la versión más reciente en una carpeta temporal; yo no voy a descargar nada manualmente. Lee skills/nhipdung/SKILL.md y sigue su procedimiento de preparación completa. Si nhipdung ya está instalado, compara las versiones, resume qué cambia y actualízalo con su método de instalación actual: el instalador del repositorio para la instalación compartida (conserva mi configuración y guarda una copia de seguridad de la versión anterior) o el actualizador del host para un plugin gestionado. Prepara herramientas locales compatibles, el motor con dependencias fijadas, el renderizador y navegador en las versiones fijadas, el modelo predeterminado de transcripción, OCR local para comprobar subtítulos y los recursos incluidos antes de la primera edición. Comprueba todo con diagnósticos y una muestra sintética, informa pendientes, elimina el clon temporal y avísame cuándo reiniciar el agente. Pide autorización antes de servicios de pago o de enviar mis archivos.
 ```
 
 <p align="center"><img src="docs/assets/readme/es/install.svg" alt="Una terminal de agente recibe el pedido de instalación e informa la clonación del repositorio, la lectura de la preparación, la instalación en ambos agentes, la preparación del motor, renderizador, modelo y OCR y los diagnósticos aprobados." width="100%" /></p>
@@ -55,7 +55,7 @@ El agente prepara lo que falte e informa descargas pendientes o comprobaciones f
 <summary><strong>¿Prefieres la terminal?</strong></summary>
 
 ```sh
-git clone https://github.com/ducnhanle/editonny.git
+git clone https://github.com/ducnhanle/nhipdung.git
 cd nhipdung
 python3 install.py --target both
 python3 ~/.local/share/nhipdung/scripts/nhipdung.py doctor
@@ -194,14 +194,14 @@ Genera el ZIP del plugin, con SHA-256, en `dist/`. Contiene la documentación t�
 
 Si nhipdung te ayuda en tu próximo video, dale una estrella al proyecto. Sigue su evolución, informa un problema o sugiere una escena.
 
-<a href="https://www.star-history.com/?repos=ducnhanle%2Feditonny&amp;type=date">
+<a href="https://www.star-history.com/?repos=ducnhanle%2Fnhipdung&amp;type=date">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ducnhanle/editonny&amp;type=date&amp;theme=dark" />
-    <img src="https://api.star-history.com/chart?repos=ducnhanle/editonny&amp;type=date" alt="Historial de estrellas de ducnhanle/editonny" width="1000" loading="lazy" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ducnhanle/nhipdung&amp;type=date&amp;theme=dark" />
+    <img src="https://api.star-history.com/chart?repos=ducnhanle/nhipdung&amp;type=date" alt="Historial de estrellas de ducnhanle/nhipdung" width="1000" loading="lazy" />
   </picture>
 </a>
 
-[Dar una estrella](https://github.com/ducnhanle/editonny/stargazers) · [Informar un problema](https://github.com/ducnhanle/editonny/issues) · [Abrir el historial de estrellas](https://www.star-history.com/?repos=ducnhanle%2Feditonny&type=date)
+[Dar una estrella](https://github.com/ducnhanle/nhipdung/stargazers) · [Informar un problema](https://github.com/ducnhanle/nhipdung/issues) · [Abrir el historial de estrellas](https://www.star-history.com/?repos=ducnhanle%2Fnhipdung&type=date)
 
 El historial de estrellas en vivo lo proporciona [Star History](https://www.star-history.com/blog/how-to-use-github-star-history/) y depende de ese servicio. La insignia de arriba muestra el número real de estrellas en GitHub.
 
@@ -209,8 +209,8 @@ El historial de estrellas en vivo lo proporciona [Star History](https://www.star
 
 Este fork lo mantiene **ducnhanle**. Añade soporte para vietnamita e instala y actualiza desde su propio repositorio.
 
-- GitHub: [ducnhanle](https://github.com/ducnhanle) · [ducnhanle/editonny](https://github.com/ducnhanle/editonny)
-- Problemas con este fork: [issues](https://github.com/ducnhanle/editonny/issues)
+- GitHub: [ducnhanle](https://github.com/ducnhanle) · [ducnhanle/nhipdung](https://github.com/ducnhanle/nhipdung)
+- Problemas con este fork: [issues](https://github.com/ducnhanle/nhipdung/issues)
 - Registro de cambios (en vietnamita): [docs/fork-log.vi.md](docs/fork-log.vi.md)
 
 nhipdung se basa en **editonny**, creado por **Matheus Gomes**:

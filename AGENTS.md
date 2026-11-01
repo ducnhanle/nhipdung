@@ -1,6 +1,6 @@
 # Working on nhipdung
 
-Open-source local video editing through conversation. nhipdung ("Nhịp Dựng") is a fork of editonny by Matheus Gomes with Vietnamese support; keep the original author's credits and the upstream links (`soumatheusgomes/editonny`), and the repository URL `ducnhanle/editonny` until the GitHub repository itself is renamed. One portable skill owns the engine and visual library; the browser guide helps users build requests.
+Open-source local video editing through conversation. nhipdung ("Nhịp Dựng") is a fork of editonny by Matheus Gomes with Vietnamese support; keep the original author's credits and the upstream links (`soumatheusgomes/editonny`), The GitHub repository is `ducnhanle/nhipdung` (renamed from `ducnhanle/editonny`; old URLs redirect). One portable skill owns the engine and visual library; the browser guide helps users build requests.
 
 ## Map
 

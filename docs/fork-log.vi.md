@@ -1,6 +1,19 @@
 # Nhật ký thay đổi của fork nhipdung (tiếng Việt)
 
-Fork: [ducnhanle/editonny](https://github.com/ducnhanle/editonny), tách từ [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny) (tác giả gốc: Matheus Gomes, giấy phép MIT). Tệp này là ngoại lệ ngôn ngữ đã ghi trong `AGENTS.md`. Bằng chứng kiểm chứng chuẩn (tiếng Anh) nằm ở `docs/validation.md`, mục "Vietnamese support and fork source (2026-11-01)".
+Fork: [ducnhanle/nhipdung](https://github.com/ducnhanle/nhipdung) (trước đây là `ducnhanle/editonny`), tách từ [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny) (tác giả gốc: Matheus Gomes, giấy phép MIT). Tệp này là ngoại lệ ngôn ngữ đã ghi trong `AGENTS.md`. Bằng chứng kiểm chứng chuẩn (tiếng Anh) nằm ở `docs/validation.md`, mục "Vietnamese support and fork source (2026-11-01)".
+
+## 2026-11-01 · Repo GitHub đổi tên thành ducnhanle/nhipdung
+
+Bạn đã đổi tên repo trên GitHub. Tôi đã kiểm tra: repo hiện là `ducnhanle/nhipdung`, công khai.
+
+Mọi link giờ dùng tên mới:
+- yêu cầu cài đặt ở 4 ngôn ngữ và 3 README
+- nguồn kiểm tra cập nhật của skill
+- nút GitHub trên trang hướng dẫn
+- huy hiệu, lịch sử sao, lệnh `git clone`
+- `package.json`, banner cài đặt
+
+Link cũ `ducnhanle/editonny` vẫn được GitHub tự chuyển hướng. Các mục nhật ký bên dưới ghi tên cũ vì đó là trạng thái lúc ấy.
 
 ## 2026-11-01 · Đổi tên thành nhipdung (Nhịp Dựng)
 
@@ -176,7 +189,7 @@ Còn để lại (đã ghi trong `docs/validation.md`):
 ### Cách dùng bản fork
 
 ```sh
-git clone https://github.com/ducnhanle/editonny.git && cd editonny
+git clone https://github.com/ducnhanle/nhipdung.git && cd nhipdung
 python3 install.py --target claude   # hoặc --target both
 ```
 

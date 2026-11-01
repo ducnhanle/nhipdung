@@ -57,7 +57,7 @@ uv sync --locked --directory ~/.local/share/nhipdung/engine
 
 For a development checkout, use `skills/nhipdung/engine` and `python3 nhipdung.py doctor`. Developer setup belongs in [setup](setup.md); reproducible checks and observed limits in [validation](validation.md).
 
-Every skill invocation, including resumed jobs, runs a read-only local preflight and checks this fork's GitHub repository ([ducnhanle/editonny](https://github.com/ducnhanle/editonny)) for updates; upstream releases are never offered as updates because they would replace the fork's changes. Check capabilities and caches needed by the requested operation; basic doctor alone does not prove model/browser readiness. No render, download, repair, or installation update happens automatically as part of that preflight. A working local installation remains usable if the update check is unavailable or the user declines an update.
+Every skill invocation, including resumed jobs, runs a read-only local preflight and checks this fork's GitHub repository ([ducnhanle/nhipdung](https://github.com/ducnhanle/nhipdung)) for updates; upstream releases are never offered as updates because they would replace the fork's changes. Check capabilities and caches needed by the requested operation; basic doctor alone does not prove model/browser readiness. No render, download, repair, or installation update happens automatically as part of that preflight. A working local installation remains usable if the update check is unavailable or the user declines an update.
 
 ## Bundled media
 

@@ -322,7 +322,7 @@ The fork was renamed from editonny to **nhipdung** (Vietnamese "Nhịp Dựng").
 - the `NHIPDUNG_*` environment variables, the `nhipdung-engine` and `@nhipdung/*` package names (lockfile entries renamed, no dependency changed: `uv sync --locked` and `npm ci` succeed unchanged), and the `nhipdung:*` browser-storage keys;
 - the wordmark and icons ("n").
 
-The GitHub repository is still `ducnhanle/editonny`. Credits to editonny and `soumatheusgomes/editonny`, the frozen `design-system/reference/` pages, the `design-system/assets/brand/og-image.png` export, and the dated sections above keep the original name. There is no compatibility layer for previous `editonny` installations, projects, or storage keys; they are separate from nhipdung. Evidence recorded under the old name applies to the renamed code only where the rename is the sole difference.
+The GitHub repository was then renamed to `ducnhanle/nhipdung` (old `ducnhanle/editonny` URLs redirect), and every link now uses the new name. Credits to editonny and `soumatheusgomes/editonny`, the frozen `design-system/reference/` pages, the `design-system/assets/brand/og-image.png` export, and the dated sections above keep the original name. There is no compatibility layer for previous `editonny` installations, projects, or storage keys; they are separate from nhipdung. Evidence recorded under the old name applies to the renamed code only where the rename is the sole difference.
 
 Checks after the rename:
 
