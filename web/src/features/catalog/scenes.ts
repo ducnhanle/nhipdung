@@ -3,7 +3,7 @@ import es from '@content/scenes/es.json';
 import pt from '@content/scenes/pt-BR.json';
 import vi from '@content/scenes/vi.json';
 import type { AppLocale } from '@/i18n/routing';
-import catalog from '../../../../skills/editonny/visuals/catalog.json';
+import catalog from '../../../../skills/nhipdung/visuals/catalog.json';
 
 export type SceneLayout = 'overlay' | 'fullscreen' | 'frame';
 /** Public scene fields; `category` is the English key used for filtering, `categoryLabel` its localized label. */

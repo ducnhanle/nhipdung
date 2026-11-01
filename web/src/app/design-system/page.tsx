@@ -1,9 +1,9 @@
-import { Showcase } from '@editonny/design-system/showcase';
-import photo from '@editonny/design-system/assets/imagery/matheus-gomes.jpeg';
-import br from '@editonny/design-system/assets/flags/br.svg';
-import es from '@editonny/design-system/assets/flags/es.svg';
-import us from '@editonny/design-system/assets/flags/us.svg';
-import city from '../../../../skills/editonny/visuals/assets/visuals/img/city.jpg';
+import { Showcase } from '@nhipdung/design-system/showcase';
+import photo from '@nhipdung/design-system/assets/imagery/matheus-gomes.jpeg';
+import br from '@nhipdung/design-system/assets/flags/br.svg';
+import es from '@nhipdung/design-system/assets/flags/es.svg';
+import us from '@nhipdung/design-system/assets/flags/us.svg';
+import city from '../../../../skills/nhipdung/visuals/assets/visuals/img/city.jpg';
 
 const GUIDE = [
   { label: 'Home', href: '/en' },

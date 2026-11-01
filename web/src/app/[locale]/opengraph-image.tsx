@@ -8,7 +8,7 @@ import { AUTHOR, BRAND, UPSTREAM_URL } from '@/lib/site';
 
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-export const alt = 'editonny';
+export const alt = 'nhipdung';
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }));
@@ -26,7 +26,7 @@ const fonts = (locale: AppLocale) => [
     : [{ name: 'Figtree', data: asset('../fonts/figtree-800-latin.ttf'), weight: 800 as const, style: 'normal' as const },
       { name: 'Figtree', data: asset('../fonts/figtree-600-latin.ttf'), weight: 600 as const, style: 'normal' as const },
       { name: 'Mono', data: asset('../fonts/jetbrains-mono-700-latin.ttf'), weight: 700 as const, style: 'normal' as const }]),
-  { name: 'Anton', data: asset('../../../../skills/editonny/engine/assets/fonts/anton/Anton-Regular.ttf'), weight: 400 as const, style: 'normal' as const },
+  { name: 'Anton', data: asset('../../../../skills/nhipdung/engine/assets/fonts/anton/Anton-Regular.ttf'), weight: 400 as const, style: 'normal' as const },
 ];
 const photo = () => `data:image/jpeg;base64,${asset('../../../../design-system/assets/imagery/matheus-gomes.jpeg').toString('base64')}`;
 
@@ -64,7 +64,7 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ loc
         <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, fontSize: 34, fontWeight: 800, letterSpacing: -1 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 52, height: 52, borderRadius: 14, background: BRAND.orange500, color: BRAND.ink950, fontSize: 36, paddingBottom: 4 }}>e</div>
-            <div style={{ display: 'flex', alignItems: 'flex-end' }}>editonny<div style={{ width: 10, height: 10, marginBottom: 9, marginLeft: 3, borderRadius: 999, background: BRAND.volt400 }} /></div>
+            <div style={{ display: 'flex', alignItems: 'flex-end' }}>nhipdung<div style={{ width: 10, height: 10, marginBottom: 9, marginLeft: 3, borderRadius: 999, background: BRAND.volt400 }} /></div>
           </div>
           <div style={{ display: 'flex' }}>
             <div style={{ ...pill(BRAND.volt400, BRAND.ink950), fontFamily: 'Mono', fontSize: 19, letterSpacing: 2, textTransform: 'uppercase' }}>{`${t('hero.metaFree')} · ${t('hero.metaOpen')}`}</div>

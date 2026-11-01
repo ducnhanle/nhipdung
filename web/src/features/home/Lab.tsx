@@ -1,5 +1,5 @@
 'use client';
-import { Button, Eyebrow, Highlight, SegmentedControl } from '@editonny/design-system';
+import { Button, Eyebrow, Highlight, SegmentedControl } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
 import { NewTabLink } from '@/components/shell/NewTabLink';

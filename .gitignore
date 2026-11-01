@@ -30,7 +30,7 @@ htmlcov/
 *.egg-info/
 
 # Local installer receipts, logs, credentials, and distribution archives
-.editonny-install.json
+.nhipdung-install.json
 *.log
 *.pem
 *.key

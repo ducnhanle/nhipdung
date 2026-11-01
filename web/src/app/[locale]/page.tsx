@@ -1,4 +1,4 @@
-import { Marquee } from '@editonny/design-system';
+import { Marquee } from '@nhipdung/design-system';
 import { getTranslations } from 'next-intl/server';
 import { familyOf, PROFESSIONS_FAMILY } from '@/features/catalog/families';
 import { getSceneCategories, getScenes } from '@/features/catalog/scenes';

@@ -314,14 +314,34 @@ Not changed: Next.js preloads fonts per layout, so `/vi` still preloads the Lati
 
 Limits: `npm run test:preview` and `npm run test:scenes` need agent-browser, which this container lacks; they were not run. Windows, macOS, natural Vietnamese speech, Whisper accuracy on Vietnamese, every scene, and long renders were not exercised. The Vietnamese guide text was translated for this fork and has not had a native-speaker review. Visual-suggestion detectors other than prices, gains, counts, percentages, and progress (steps, checklists, strikeouts, comment calls to action, turns, offers, emphasis) still use Portuguese and English phrasing. Caption grouping counts space-separated words, which are syllables in Vietnamese, so the default of three words shows three syllables per caption.
 
+## Product rename to nhipdung (2026-11-01)
+
+The fork was renamed from editonny to **nhipdung** (Vietnamese "Nhịp Dựng"). The skill is now `/nhipdung` (`$nhipdung` in Codex, `/nhipdung:nhipdung` as a plugin) and lives in `skills/nhipdung/`. The rename also covers:
+
+- the launcher and CLI (`nhipdung.py`), the installation in `~/.local/share/nhipdung` with its `.nhipdung-install.json` marker and `nhipdung-backups`, and the default job folder `~/Downloads/nhipdung/`;
+- the `NHIPDUNG_*` environment variables, the `nhipdung-engine` and `@nhipdung/*` package names (lockfile entries renamed, no dependency changed: `uv sync --locked` and `npm ci` succeed unchanged), and the `nhipdung:*` browser-storage keys;
+- the wordmark and icons ("n").
+
+The GitHub repository is still `ducnhanle/editonny`. Credits to editonny and `soumatheusgomes/editonny`, the frozen `design-system/reference/` pages, the `design-system/assets/brand/og-image.png` export, and the dated sections above keep the original name. There is no compatibility layer for previous `editonny` installations, projects, or storage keys; they are separate from nhipdung. Evidence recorded under the old name applies to the renamed code only where the rename is the sole difference.
+
+Checks after the rename:
+
+- `npm ci --ignore-scripts` and `uv sync --locked` succeeded unchanged.
+- `npm run check` passed (113 Python, 21 Node, 337 Vitest, lint, typechecks, icons), and `npm run build` passed.
+- `npm run test:engine` passed 131 tests (1 skip); the only fixture change was the chunked loopback body that spells the name.
+- The browser suite passed 204 tests with 30 skips. `library.spec.ts:112` failed again on both projects; it failed 6 of 6 on the baseline in this container and 1 of 4 in a later repeat, so it remains environmental here.
+- `python3 nhipdung.py doctor`, `media status` (79/79), and `catalog` passed.
+- A temporary-home installation registered `~/.claude/skills/nhipdung` and `~/.agents/skills/nhipdung`, linked to `~/.local/share/nhipdung`, with `name: nhipdung` in SKILL.md.
+- The synthetic render smoke and the Vietnamese render, with GSAP preloaded as described above, passed with HyperFrames 0.8.179.
+
 ## Reproduce and invalidate
 
 ```sh
 npm ci --ignore-scripts
 npm run build
 npm run check
-python3 editonny.py doctor
-python3 editonny.py media status
+python3 nhipdung.py doctor
+python3 nhipdung.py media status
 npm run test:engine
 npm run test:browser
 npm run test:preview

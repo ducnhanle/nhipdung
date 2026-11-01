@@ -9,7 +9,7 @@ test('installation steps show literal commands that copy', async ({ page, contex
   await page.getByRole('button', { name: 'Copiar: python3 install.py --target both' }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Comando copiado.' })).toBeVisible();
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('python3 install.py --target both');
-  await expect(page.getByText('python3 ~/.local/share/editonny/scripts/editonny.py doctor')).toBeVisible();
+  await expect(page.getByText('python3 ~/.local/share/nhipdung/scripts/nhipdung.py doctor')).toBeVisible();
 });
 
 test('the installation request copies in the visitor language', async ({ page, context }) => {
@@ -17,7 +17,7 @@ test('the installation request copies in the visitor language', async ({ page, c
   await page.goto('/es/instalacion');
   await page.getByRole('button', { name: 'Copiar pedido de instalación' }).click();
   await expect(page.getByRole('status').filter({ hasText: 'Pedido de instalación copiado.' })).toBeVisible();
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(new RegExp(`^Instala o actualiza la skill editonny para Codex y Claude Code desde ${REPOSITORY_URL.replace(/[.]/g, '\\.')}\\. `));
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toMatch(new RegExp(`^Instala o actualiza la skill nhipdung para Codex y Claude Code desde ${REPOSITORY_URL.replace(/[.]/g, '\\.')}\\. `));
 });
 
 test('the FAQ opens one answer at a time', async ({ page }) => {
@@ -28,7 +28,7 @@ test('the FAQ opens one answer at a time', async ({ page }) => {
   await second.click();
   await expect(second).toHaveAttribute('aria-expanded', 'true');
   await expect(first).toHaveAttribute('aria-expanded', 'false');
-  await expect(page.getByText('The previous version moves to ~/.local/share/editonny-backups/')).toBeVisible();
+  await expect(page.getByText('The previous version moves to ~/.local/share/nhipdung-backups/')).toBeVisible();
 });
 
 test('the installation page covers one agent, removal, the Claude Code plugin, and restarting the agent', async ({ page }) => {

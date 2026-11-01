@@ -1,5 +1,5 @@
 'use client';
-import { Toast } from '@editonny/design-system';
+import { Toast } from '@nhipdung/design-system';
 import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './ToastProvider.module.css';

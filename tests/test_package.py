@@ -13,19 +13,19 @@ spec.loader.exec_module(package)
 
 class PackageTests(unittest.TestCase):
     def test_plugin_release_metadata_matches_the_portable_skill(self):
-        version = (ROOT / 'skills/editonny/VERSION').read_text().strip()
+        version = (ROOT / 'skills/nhipdung/VERSION').read_text().strip()
         for name in ('.codex-plugin/plugin.json', '.claude-plugin/plugin.json'):
             self.assertEqual(json.loads((ROOT / name).read_text())['version'], version, name)
         marketplace = json.loads((ROOT / '.claude-plugin/marketplace.json').read_text())
         self.assertEqual(marketplace['plugins'][0]['version'], version)
 
     def test_packages_reject_symlinked_source_roots(self):
-        with tempfile.TemporaryDirectory(prefix='editonny package roots ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung package roots ') as temporary:
             base = Path(temporary)
             root, outside = base / 'project', base / 'private'
             root.mkdir()
-            (outside / 'editonny').mkdir(parents=True)
-            (outside / 'editonny/VERSION').write_text('1.0.0')
+            (outside / 'nhipdung').mkdir(parents=True)
+            (outside / 'nhipdung/VERSION').write_text('1.0.0')
             (outside / 'private-notes.txt').write_text('Private content must stay outside the package')
             (root / 'skills').symlink_to(outside, target_is_directory=True)
             with self.assertRaisesRegex(ValueError, 'symlink'):
@@ -33,9 +33,9 @@ class PackageTests(unittest.TestCase):
             self.assertFalse(list((root / 'dist').glob('*.zip')))
 
     def test_plugin_rejects_symlinked_readme_art(self):
-        with tempfile.TemporaryDirectory(prefix='editonny readme package ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung readme package ') as temporary:
             root = Path(temporary) / 'project'
-            source = root / 'skills/editonny'
+            source = root / 'skills/nhipdung'
             source.mkdir(parents=True)
             (source / 'VERSION').write_text('1.0.0')
             outside = Path(temporary) / 'private'
@@ -49,10 +49,10 @@ class PackageTests(unittest.TestCase):
             self.assertFalse(list((root / 'dist').glob('*.zip')))
 
     def test_site_archives_are_no_longer_built(self):
-        with tempfile.TemporaryDirectory(prefix='editonny package kinds ') as temp:
+        with tempfile.TemporaryDirectory(prefix='nhipdung package kinds ') as temp:
             root = Path(temp)
-            (root / 'skills/editonny').mkdir(parents=True)
-            (root / 'skills/editonny/VERSION').write_text('1.0.0')
+            (root / 'skills/nhipdung').mkdir(parents=True)
+            (root / 'skills/nhipdung/VERSION').write_text('1.0.0')
             with self.assertRaisesRegex(ValueError, 'plugin'):
                 package.build(root, root / 'dist', 'site')
 
@@ -61,34 +61,34 @@ class PackageTests(unittest.TestCase):
                     'debug.log', 'venv/private.txt', '.venv/private.txt', '.pytest_cache/state',
                     '.ruff_cache/state', '__pycache__/module.pyc', 'module.pyo', '.DS_Store',
                     'node_modules/package/index.js', '.work/private.txt']
-        with tempfile.TemporaryDirectory(prefix='editonny package exclusions ') as temp:
+        with tempfile.TemporaryDirectory(prefix='nhipdung package exclusions ') as temp:
             root = Path(temp)
-            source = root / 'skills/editonny'
+            source = root / 'skills/nhipdung'
             source.mkdir(parents=True)
             (source / 'VERSION').write_text('1.0.0')
-            included = ['skills/editonny/SKILL.md', 'skills/editonny/engine/main.py', 'skills/editonny/.env.example',
+            included = ['skills/nhipdung/SKILL.md', 'skills/nhipdung/engine/main.py', 'skills/nhipdung/.env.example',
                         '.codex-plugin/plugin.json', '.claude-plugin/plugin.json',
                         '.agents/plugins/marketplace.json', 'docs/assets/readme/hero.svg']
             rejected = [f'{folder}/nested/{name}' for folder in
-                        ['skills/editonny', '.codex-plugin', '.claude-plugin', '.agents/plugins', 'docs/assets/readme']
+                        ['skills/nhipdung', '.codex-plugin', '.claude-plugin', '.agents/plugins', 'docs/assets/readme']
                         for name in excluded]
             for name in included + rejected:
                 path = root / name
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text('fixture')
             with zipfile.ZipFile(package.build(root, root / 'dist', 'plugin')) as archive:
-                self.assertEqual(set(archive.namelist()), {*included, 'skills/editonny/VERSION'})
+                self.assertEqual(set(archive.namelist()), {*included, 'skills/nhipdung/VERSION'})
 
     def test_plugin_package_contents_exclude_the_web_app_and_local_secrets(self):
-        with tempfile.TemporaryDirectory(prefix='editonny package ') as temp:
+        with tempfile.TemporaryDirectory(prefix='nhipdung package ') as temp:
             root = Path(temp)
             for name in ['web/package.json', 'web/src/app/[locale]/page.tsx', 'web/messages/en-US.json', 'web/.env', 'web/.next/server.js',
-                         'skills/editonny/SKILL.md', 'skills/editonny/VERSION',
-                         'skills/editonny/engine/.env', 'skills/editonny/engine/.venv/private',
-                         'skills/editonny/old-prompts.pdf', 'skills/editonny/clip.MP4',
-                         'skills/editonny/visuals/clip.webm', 'skills/editonny/visuals/still.png',
+                         'skills/nhipdung/SKILL.md', 'skills/nhipdung/VERSION',
+                         'skills/nhipdung/engine/.env', 'skills/nhipdung/engine/.venv/private',
+                         'skills/nhipdung/old-prompts.pdf', 'skills/nhipdung/clip.MP4',
+                         'skills/nhipdung/visuals/clip.webm', 'skills/nhipdung/visuals/still.png',
                          '.codex-plugin/plugin.json', '.claude-plugin/plugin.json',
-                         'install.py', 'editonny.py', 'README.md', 'README.pt-BR.md', 'README.es.md', 'LICENSE.md',
+                         'install.py', 'nhipdung.py', 'README.md', 'README.pt-BR.md', 'README.es.md', 'LICENSE.md',
                          'PRODUCT.md', 'DESIGN.md', 'design-system/README.md', 'docs/architecture.md', 'docs/design.md', 'docs/setup.md',
                          'docs/installation.md', 'docs/archive/private.pdf',
                          'docs/assets/readme/hero.svg', 'docs/assets/readme/captions.gif',
@@ -98,7 +98,7 @@ class PackageTests(unittest.TestCase):
                 p.write_text('1.0.0' if p.name == 'VERSION' else 'fixture')
             plugin = package.build(root, root / 'dist', 'plugin')
             with zipfile.ZipFile(plugin) as archive:
-                self.assertIn('skills/editonny/SKILL.md', archive.namelist())
+                self.assertIn('skills/nhipdung/SKILL.md', archive.namelist())
                 self.assertIn('install.py', archive.namelist())
                 self.assertIn('DESIGN.md', archive.namelist())
                 self.assertTrue(all(not p.startswith('design-system/') for p in archive.namelist()))
@@ -110,9 +110,9 @@ class PackageTests(unittest.TestCase):
                 self.assertIn('docs/assets/readme/captions.gif', archive.namelist())
                 self.assertNotIn('docs/assets/private.txt', archive.namelist())
                 self.assertTrue(all(not p.startswith('web/') for p in archive.namelist()))
-                self.assertIn('skills/editonny/visuals/still.png', archive.namelist())
-                self.assertIn('skills/editonny/clip.MP4', archive.namelist())
-                self.assertIn('skills/editonny/visuals/clip.webm', archive.namelist())
+                self.assertIn('skills/nhipdung/visuals/still.png', archive.namelist())
+                self.assertIn('skills/nhipdung/clip.MP4', archive.namelist())
+                self.assertIn('skills/nhipdung/visuals/clip.webm', archive.namelist())
                 self.assertTrue(all(not p.lower().endswith('.pdf') for p in archive.namelist()))
                 self.assertTrue(all('.env' not in p and '.venv' not in p and 'archive/' not in p for p in archive.namelist()))
 

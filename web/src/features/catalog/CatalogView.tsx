@@ -1,5 +1,5 @@
 'use client';
-import { Button, Dialog, SceneCard, type SceneCardLabels } from '@editonny/design-system';
+import { Button, Dialog, SceneCard, type SceneCardLabels } from '@nhipdung/design-system';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRef, type CSSProperties } from 'react';
 import { Link } from '@/i18n/navigation';

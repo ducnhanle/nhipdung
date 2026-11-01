@@ -1,5 +1,5 @@
 'use client';
-import { Accordion, Button, Card, CommandLine, Reveal, StepItem } from '@editonny/design-system';
+import { Accordion, Button, Card, CommandLine, Reveal, StepItem } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import { useRef } from 'react';
 import { Link } from '@/i18n/navigation';
@@ -8,7 +8,7 @@ import { useCopy } from '../feedback/use-copy';
 import styles from './install.module.css';
 
 const INSTALL = 'python3 install.py --target both';
-const DOCTOR = 'python3 ~/.local/share/editonny/scripts/editonny.py doctor';
+const DOCTOR = 'python3 ~/.local/share/nhipdung/scripts/nhipdung.py doctor';
 
 /** Numbered steps with literal commands, an "ask your AI" card, and the FAQ. */
 export function InstallView() {

@@ -1,5 +1,5 @@
 'use client';
-import { Badge, Chip, Icon, KineticCaption, useInterval, useInView, useReducedMotion, Waveform } from '@editonny/design-system';
+import { Badge, Chip, Icon, KineticCaption, useInterval, useInView, useReducedMotion, Waveform } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import { useRef, useState, type CSSProperties } from 'react';
 import { Footage } from './Footage';

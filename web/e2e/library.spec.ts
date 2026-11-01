@@ -63,7 +63,7 @@ test('copying from a scene dialog uses the saved agent', async ({ page, context 
   await page.getByRole('dialog').getByRole('button', { name: 'Copy request' }).click();
   await expect(page.getByRole('status')).toContainText('Request copied.');
   const clipboard = await page.evaluate(() => navigator.clipboard.readText());
-  expect(clipboard.startsWith('/editonny\n')).toBe(true);
+  expect(clipboard.startsWith('/nhipdung\n')).toBe(true);
   expect(clipboard).toContain('Catalog reference: Revenue counter (revenue-counter).');
 });
 
@@ -73,7 +73,7 @@ test('without clipboard access the scene dialog selects the request itself', asy
   await page.getByRole('dialog').getByRole('button', { name: 'Copy request' }).click();
   await expect(page.getByRole('alert').filter({ hasText: 'The text is selected' })).toBeVisible();
   const selected = await page.evaluate(() => getSelection()?.toString() ?? '');
-  expect(selected.startsWith('$editonny')).toBe(true);
+  expect(selected.startsWith('$nhipdung')).toBe(true);
   expect(selected).toContain('(revenue-counter)');
 });
 

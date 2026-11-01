@@ -8,7 +8,7 @@ import viExamples from '@content/examples/vi.json';
 import esScenes from '@content/scenes/es.json';
 import ptScenes from '@content/scenes/pt-BR.json';
 import viScenes from '@content/scenes/vi.json';
-import source from '../../../skills/editonny/visuals/catalog.json';
+import source from '../../../skills/nhipdung/visuals/catalog.json';
 import { getSceneCategories, getScenes } from './catalog/scenes';
 import { getExamples } from './examples/examples';
 import { EXAMPLE_CATEGORIES, EXAMPLES } from './examples/records';

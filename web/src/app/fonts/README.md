@@ -1,6 +1,6 @@
 # Web font subsets
 
-Latin WOFF2 subsets of the fonts bundled with the engine (`skills/editonny/engine/assets/fonts/`), made for the guide so pages download about 215 KB instead of about 1.5 MB of TrueType files. Variable weight axes are kept.
+Latin WOFF2 subsets of the fonts bundled with the engine (`skills/nhipdung/engine/assets/fonts/`), made for the guide so pages download about 215 KB instead of about 1.5 MB of TrueType files. Variable weight axes are kept.
 
 | File | Source | License |
 |---|---|---|
@@ -13,7 +13,7 @@ Latin WOFF2 subsets of the fonts bundled with the engine (`skills/editonny/engin
 These are modified versions (subset and converted); none of the OFL fonts declares a Reserved Font Name, and the Apache-licensed font's change is this subsetting. Regenerate after changing a source font (fonttools 4.60.1):
 
 ```sh
-uvx --from 'fonttools[woff]==4.60.1' pyftsubset skills/editonny/engine/assets/fonts/<dir>/<file>.ttf \
+uvx --from 'fonttools[woff]==4.60.1' pyftsubset skills/nhipdung/engine/assets/fonts/<dir>/<file>.ttf \
   --unicodes='U+0000-017F,U+0237,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2190-2193,U+2212,U+2215,U+FEFF,U+FFFD' \
   --layout-features='*' --flavor=woff2 --output-file=web/src/app/fonts/<name>-latin.woff2
 ```

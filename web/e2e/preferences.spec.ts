@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('a saved light theme is applied before the page renders', async ({ page }) => {
   await page.addInitScript(() => {
-    localStorage.setItem('editonny:theme', JSON.stringify('light'));
+    localStorage.setItem('nhipdung:theme', JSON.stringify('light'));
     document.addEventListener('DOMContentLoaded', () => { (window as unknown as { themeAtLoad: string }).themeAtLoad = document.documentElement.dataset.theme ?? ''; });
   });
   await page.goto('/pt-br/catalogo');
@@ -14,8 +14,8 @@ test('a corrupted saved brief loads the defaults without errors', async ({ page 
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   await page.addInitScript(() => {
-    localStorage.setItem('editonny:draft', '{bad');
-    localStorage.setItem('editonny:theme', '"purple"');
+    localStorage.setItem('nhipdung:draft', '{bad');
+    localStorage.setItem('nhipdung:theme', '"purple"');
   });
   await page.goto('/en/create');
   await expect(page.getByLabel('Generated editing request')).toContainText('[enter the video folder]');
@@ -50,7 +50,7 @@ test('a very long goal stays inside the layout on phones', async ({ page, isMobi
 
 test('hydration never flips a saved light theme back to dark', async ({ page }) => {
   await page.addInitScript(() => {
-    localStorage.setItem('editonny:theme', JSON.stringify('light'));
+    localStorage.setItem('nhipdung:theme', JSON.stringify('light'));
     const seen: string[] = [];
     (window as unknown as { themes: string[] }).themes = seen;
     new MutationObserver(() => seen.push(document.documentElement.dataset.theme ?? '')).observe(document, { attributes: true, subtree: true, attributeFilter: ['data-theme'] });

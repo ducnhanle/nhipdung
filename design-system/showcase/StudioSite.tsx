@@ -98,7 +98,7 @@ const site = (theme: Theme, assets: ShowcaseAssets) => {
     <Specimen theme={theme} name="CreatorChip" description="Glass pill with the creator photo in a spinning ring; once per page.">
       <Row label="Variants">
         <State label="With photo and link"><CreatorChip name="Matheus Gomes" role="Creator" status="Free · open source" photo={assets.photo} href="https://github.com/soumatheusgomes/editonny" /></State>
-        <State label="Initial fallback, no ring"><CreatorChip name="Editonny" role="Guide" ring={false} /></State>
+        <State label="Initial fallback, no ring"><CreatorChip name="Nhipdung" role="Guide" ring={false} /></State>
       </Row>
     </Specimen>
     <Specimen theme={theme} name="Highlight" description="Solid block behind the key phrase of a headline; one per headline.">

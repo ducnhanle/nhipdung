@@ -1,7 +1,7 @@
 ---
 version: alpha
-name: editonny
-description: Studio visual language for editonny's guide, edit preview, landing surfaces, and design-system showcase. Dark studio is the default theme; light paper is the alternative theme visitors can choose.
+name: nhipdung
+description: Studio visual language for nhipdung's guide, edit preview, landing surfaces, and design-system showcase. Dark studio is the default theme; light paper is the alternative theme visitors can choose.
 colors:
   ink-950: "#050506"
   ink-900: "#0b0b0d"
@@ -280,7 +280,7 @@ components:
     padding: 16px
 ---
 
-# editonny design system
+# nhipdung design system
 
 This file is the visual contract and the source of truth for tokens. The YAML front matter is normative; `design-system/tokens/*.css` implements it and `npm test` fails when a primitive color, radius, or spacing step drifts between the two. The component library, its map, and the reference pages live in [`design-system/`](design-system/README.md).
 
@@ -340,7 +340,7 @@ Radii come from `--radius-*`: tiles and fields 10–14 px, cards 24 px, hero blo
 
 ## Components
 
-All 38 components live in `design-system/components/` and are imported from the workspace package `@editonny/design-system` (entry point `design-system/components/index.ts`). Every interactive one supports default, hover, active, focus-visible, and disabled; the showcase also shows loading, error, empty, and selected where they apply.
+All 38 components live in `design-system/components/` and are imported from the workspace package `@nhipdung/design-system` (entry point `design-system/components/index.ts`). Every interactive one supports default, hover, active, focus-visible, and disabled; the showcase also shows loading, error, empty, and selected where they apply.
 
 - **Core:** Button (primary, volt, white, dark, glass, outline, ghost; sm/md/lg; loading), IconButton (tile, glass, accent, volt, ghost; pressed), Icon, Wordmark, Eyebrow, Badge (nine tones, mono, live), Kbd.
 - **Forms:** TextField (help, error, counter, multiline), Select, ChoiceCard (icon, media, compact; selected), Switch (row), SegmentedControl (glass or solid; awaiting dot).
@@ -377,7 +377,7 @@ Commands, code, and source text are English (see `AGENTS.md`); the guide's inter
 
 ## Implementation
 
-- Tokens: `design-system/tokens/` (`colors.css` holds primitives and both themes); apps import them through `@editonny/design-system/styles.css`.
+- Tokens: `design-system/tokens/` (`colors.css` holds primitives and both themes); apps import them through `@nhipdung/design-system/styles.css`.
 - Change a token in this front matter and in the token CSS together; `tests/design-system.test.mjs` checks primitives, radii, and spacing.
 - Fonts are the engine's bundled OFL/Apache files, loaded by the web app with `next/font` and exposed to the tokens as `--font-*-face`; footage stills and 3D objects are referenced from the skill rather than copied.
 - The showcase at `/design-system` (web app route) renders every component, state, and the preview template in both themes.

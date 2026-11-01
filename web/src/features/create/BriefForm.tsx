@@ -1,5 +1,5 @@
 'use client';
-import { ChoiceCard, Reveal, Select, TextField } from '@editonny/design-system';
+import { ChoiceCard, Reveal, Select, TextField } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import type { KeyboardEvent, ReactNode } from 'react';
 import type { RequestDraft } from '../request/draft';

@@ -1,5 +1,5 @@
-import { Aurora, Button, CreatorChip, Eyebrow, KineticText } from '@editonny/design-system';
-import photo from '@editonny/design-system/assets/imagery/matheus-gomes.jpeg';
+import { Aurora, Button, CreatorChip, Eyebrow, KineticText } from '@nhipdung/design-system';
+import photo from '@nhipdung/design-system/assets/imagery/matheus-gomes.jpeg';
 import { useTranslations } from 'next-intl';
 import { NewTabLink } from '@/components/shell/NewTabLink';
 import { AUTHOR, REPOSITORY_URL, UPSTREAM_URL } from '@/lib/links';

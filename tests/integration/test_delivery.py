@@ -7,7 +7,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path[:0] = [str(ROOT / 'skills/editonny/engine/helpers'), str(ROOT / 'tests')]
+sys.path[:0] = [str(ROOT / 'skills/nhipdung/engine/helpers'), str(ROOT / 'tests')]
 from media_fixtures import make_patches
 from intake import inspect_sources, propose_settings
 from workflow_fixtures import confirmation
@@ -64,7 +64,7 @@ class DeliveryTests(unittest.TestCase):
             previous = project.parents[2] / 'exports/previous.mp4'; previous.write_bytes(b'previous export')
             for destination in (second, previous):
                 before = content_hash(destination)
-                result = subprocess.run([sys.executable, str(ROOT / 'skills/editonny/engine/helpers/render_cut.py'),
+                result = subprocess.run([sys.executable, str(ROOT / 'skills/nhipdung/engine/helpers/render_cut.py'),
                     str(edl), '--no-jcut', '--output', str(destination)], capture_output=True, text=True)
                 self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
                 self.assertEqual(content_hash(destination), before)
@@ -265,7 +265,7 @@ class DeliveryTests(unittest.TestCase):
             edl.write_text(json.dumps({'sources': {'s': str(source)}, 'contractHash': settings_hash(load_contract(project)),
                 'ranges': [{'id': 'a', 'source': 's', 'start': 0, 'end': 1 / 24}]}))
             with revision_lock(project):
-                result = subprocess.run([sys.executable, str(ROOT / 'skills/editonny/engine/helpers/render_cut.py'),
+                result = subprocess.run([sys.executable, str(ROOT / 'skills/nhipdung/engine/helpers/render_cut.py'),
                     str(edl), '--no-jcut'], capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertFalse((edit / 'cut.mp4').exists())
@@ -283,7 +283,7 @@ class DeliveryTests(unittest.TestCase):
         return source, project
 
     def test_no_effect_delivers_unique_validated_files(self):
-        self.assertTrue((ROOT / 'skills/editonny/engine/helpers/fidelity.py').exists(), 'Fidelity gate is not implemented')
+        self.assertTrue((ROOT / 'skills/nhipdung/engine/helpers/fidelity.py').exists(), 'Fidelity gate is not implemented')
         from fidelity import verify_media
         with tempfile.TemporaryDirectory() as tmp:
             source, project = self.prepare(Path(tmp))
@@ -331,7 +331,7 @@ class DeliveryTests(unittest.TestCase):
             self.assertEqual(len(list((project.parent / 'edit/deliveries').iterdir())), 1)
 
     def test_gate_rejects_unrequested_brightness_change_with_identical_tags(self):
-        self.assertTrue((ROOT / 'skills/editonny/engine/helpers/fidelity.py').exists(), 'Fidelity gate is not implemented')
+        self.assertTrue((ROOT / 'skills/nhipdung/engine/helpers/fidelity.py').exists(), 'Fidelity gate is not implemented')
         from fidelity import verify_media
         with tempfile.TemporaryDirectory() as tmp:
             source, project = self.prepare(Path(tmp))

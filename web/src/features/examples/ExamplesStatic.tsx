@@ -1,4 +1,4 @@
-import { PromptCard } from '@editonny/design-system';
+import { PromptCard } from '@nhipdung/design-system';
 import type { CSSProperties } from 'react';
 import { Link } from '@/i18n/navigation';
 import styles from '../library/library.module.css';

@@ -12,9 +12,9 @@ export const messages = locale => JSON.parse(read(`web/messages/${locale}.json`,
 
 /** Catalog and library sizes, counted from their sources like the guide does. */
 export const COUNTS = {
-  scenes: JSON.parse(read('skills/editonny/visuals/catalog.json', 'utf8')).scenes.length,
+  scenes: JSON.parse(read('skills/nhipdung/visuals/catalog.json', 'utf8')).scenes.length,
   requests: Object.keys(JSON.parse(read('web/content/examples/en-US.json', 'utf8'))).length,
-  videos: JSON.parse(read('skills/editonny/visuals/media.json', 'utf8')).videos.length,
+  videos: JSON.parse(read('skills/nhipdung/visuals/media.json', 'utf8')).videos.length,
 };
 
 /** Replaces ICU-style `{name}` placeholders with COUNTS (the README art only uses simple arguments). */
@@ -64,7 +64,7 @@ function metrics(path) {
 
 const figtree800 = metrics('web/src/app/fonts/figtree-800-latin.ttf');
 const figtree600 = metrics('web/src/app/fonts/figtree-600-latin.ttf');
-const anton = metrics('skills/editonny/engine/assets/fonts/anton/Anton-Regular.ttf');
+const anton = metrics('skills/nhipdung/engine/assets/fonts/anton/Anton-Regular.ttf');
 /** Text width in pixels. Weights below 700 use the 600 instance, a slight overestimate for regular text. */
 export const measure = (text, { size, weight = 800, spacing = 0, family = 'Figtree' }) => {
   if (family === 'Anton') return anton(text, size, spacing);

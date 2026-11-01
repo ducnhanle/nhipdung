@@ -35,12 +35,12 @@ for (const [file, expected] of [
 
 test('preview preserves marks, trims, drafts, and approval confirmation', async () => {
   const root = fileURLToPath(new URL('../', import.meta.url));
-  const fixture = spawn('uv', ['run', '--locked', '--directory', `${root}skills/editonny/engine`,
+  const fixture = spawn('uv', ['run', '--locked', '--directory', `${root}skills/nhipdung/engine`,
     'python', `${root}tests/integration/preview_fixture.py`], { stdio: ['pipe', 'pipe', 'pipe'] });
   let errors = '';
   fixture.stderr.on('data', chunk => { errors += chunk; });
   const lines = createInterface({ input: fixture.stdout });
-  const session = `editonny-preview-${process.pid}`;
+  const session = `nhipdung-preview-${process.pid}`;
   const exec = promisify(execFile);
   const browser = async (...args) => {
     const { stdout } = await exec('agent-browser', ['--session', session, '--json', ...args], { timeout: 30000 });

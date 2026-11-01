@@ -10,7 +10,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-HELPER = Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers/sound_plan.py'
+HELPER = Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers/sound_plan.py'
 sys.path.insert(0, str(HELPER.parent))
 
 
@@ -38,7 +38,7 @@ class SoundPlanTests(unittest.TestCase):
         self.assertEqual({k for k in kinds if module.normal_value(k) not in module.TYPE_NAMES}, set())
 
     def test_project_plan_respects_tail_and_copies_woven_license(self):
-        with tempfile.TemporaryDirectory(prefix='editonny sound plan ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung sound plan ') as temporary:
             root = Path(temporary)
             edit, project = root / 'edit', root / 'project'
             edit.mkdir()
@@ -67,7 +67,7 @@ class SoundPlanTests(unittest.TestCase):
         spec = importlib.util.spec_from_file_location('sound_names_test', HELPER)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        with tempfile.TemporaryDirectory(prefix='editonny sound names ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung sound names ') as temporary:
             root = Path(temporary)
             (root / 'a').mkdir()
             (root / 'b').mkdir()
@@ -93,7 +93,7 @@ class SoundPlanTests(unittest.TestCase):
         spec = importlib.util.spec_from_file_location('sound_plan_processor', HELPER)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        with tempfile.TemporaryDirectory(prefix='editonny effects ') as temporary:
+        with tempfile.TemporaryDirectory(prefix='nhipdung effects ') as temporary:
             library = Path(temporary)
             (library / 'effect.wav').write_bytes(b'Fixture only; resolution does not decode audio')
             (library / 'effects.json').write_text(json.dumps({'effects': {'pop-001': {

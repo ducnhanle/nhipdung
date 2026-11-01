@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path[:0] = [str(ROOT / 'skills/editonny/engine/helpers'), str(ROOT / 'tests')]
+sys.path[:0] = [str(ROOT / 'skills/nhipdung/engine/helpers'), str(ROOT / 'tests')]
 from intake import inspect_sources, propose_settings
 from workflow_fixtures import confirmation
 from workspace import create_workspace

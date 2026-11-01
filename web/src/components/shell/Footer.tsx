@@ -1,5 +1,5 @@
-import { Icon, Wordmark } from '@editonny/design-system';
-import photo from '@editonny/design-system/assets/imagery/matheus-gomes.jpeg';
+import { Icon, Wordmark } from '@nhipdung/design-system';
+import photo from '@nhipdung/design-system/assets/imagery/matheus-gomes.jpeg';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import NextLink from 'next/link';

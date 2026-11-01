@@ -10,7 +10,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 EXCLUDED = {'.git', '.venv', 'venv', '.pytest_cache', '.ruff_cache', 'node_modules', '__pycache__', '.DS_Store', '.work',
-            '.editonny-install.json', 'archive'}
+            '.nhipdung-install.json', 'archive'}
 
 
 def allowed(path):
@@ -28,13 +28,13 @@ def reject_symlinks(path, root):
 
 def build(root, output, kind):
     root, output = Path(root), Path(output)
-    reject_symlinks(root / 'skills/editonny/VERSION', root)
-    version = (root / 'skills/editonny/VERSION').read_text().strip()
+    reject_symlinks(root / 'skills/nhipdung/VERSION', root)
+    version = (root / 'skills/nhipdung/VERSION').read_text().strip()
     if not re.fullmatch(r'\d+\.\d+\.\d+', version):
         raise ValueError('VERSION must use major.minor.patch format')
     if kind == 'plugin':
         base = root
-        paths = [root / p for p in ('install.py', 'editonny.py', 'README.md', 'README.pt-BR.md', 'README.es.md', 'LICENSE.md')]
+        paths = [root / p for p in ('install.py', 'nhipdung.py', 'README.md', 'README.pt-BR.md', 'README.es.md', 'LICENSE.md')]
         paths += [root / name for name in ('PRODUCT.md', 'DESIGN.md') if (root / name).exists()]
         for folder in ('skills', '.codex-plugin', '.claude-plugin', '.agents/plugins', 'docs/assets/readme'):
             reject_symlinks(root / folder, root)
@@ -52,7 +52,7 @@ def build(root, output, kind):
         if p.is_file():
             files.append((p, relative.as_posix()))
     output.mkdir(parents=True, exist_ok=True)
-    destination = output / f'editonny-{kind}-{version}.zip'
+    destination = output / f'nhipdung-{kind}-{version}.zip'
     temporary = destination.with_suffix('.zip.tmp')
     try:
         with zipfile.ZipFile(temporary, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:

@@ -3,5 +3,5 @@
 export const REPOSITORY_URL = 'https://github.com/ducnhanle/editonny';
 export const UPSTREAM_URL = 'https://github.com/soumatheusgomes/editonny';
 export const AUTHOR = { name: 'Matheus Gomes', instagram: 'https://instagram.com/matheusgomes', email: 'eu@matheusgom.es' };
-/** Who maintains this fork and its guide; AUTHOR stays credited as the creator of editonny. */
+/** Who maintains this fork and its guide; AUTHOR stays credited as the creator of nhipdung. */
 export const MAINTAINER = { name: 'ducnhanle', github: 'https://github.com/ducnhanle' };

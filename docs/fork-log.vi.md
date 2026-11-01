@@ -1,6 +1,31 @@
-# Nhật ký thay đổi của fork (tiếng Việt)
+# Nhật ký thay đổi của fork nhipdung (tiếng Việt)
 
 Fork: [ducnhanle/editonny](https://github.com/ducnhanle/editonny), tách từ [soumatheusgomes/editonny](https://github.com/soumatheusgomes/editonny) (tác giả gốc: Matheus Gomes, giấy phép MIT). Tệp này là ngoại lệ ngôn ngữ đã ghi trong `AGENTS.md`. Bằng chứng kiểm chứng chuẩn (tiếng Anh) nằm ở `docs/validation.md`, mục "Vietnamese support and fork source (2026-11-01)".
+
+## 2026-11-01 · Đổi tên thành nhipdung (Nhịp Dựng)
+
+Bạn để tôi chọn tên. Tôi chọn **nhipdung** ("Nhịp Dựng" — nhịp của bản dựng) vì 3 lý do:
+- khớp đúng lời hứa của sản phẩm "video có nhịp";
+- chưa có repo GitHub nào trùng tên, tên gói npm còn trống;
+- chỉ dùng chữ ASCII, nên gõ lệnh dễ và mọi font đều hiển thị được.
+
+| Trước | Sau |
+|---|---|
+| `/editonny`, `$editonny`, `/editonny:editonny` | `/nhipdung`, `$nhipdung`, `/nhipdung:nhipdung` |
+| `skills/editonny/`, `editonny.py`, `scripts/editonny.py` | `skills/nhipdung/`, `nhipdung.py`, `scripts/nhipdung.py` |
+| `~/.local/share/editonny`, `~/Downloads/editonny/` | `~/.local/share/nhipdung`, `~/Downloads/nhipdung/` |
+| Biến môi trường `EDITONNY_*`, gói `editonny-engine`, `@editonny/*` | `NHIPDUNG_*`, `nhipdung-engine`, `@nhipdung/*` (chỉ đổi tên, không đổi phiên bản thư viện nào) |
+| Logo và biểu tượng chữ "e" | Chữ "n" |
+| Tên trên trang hướng dẫn, README, banner, thẻ chia sẻ | nhipdung |
+
+Giữ nguyên có chủ đích:
+- Tên repo GitHub `ducnhanle/editonny`. Đổi tên repo là thao tác trên GitHub, bạn tự quyết. Sau khi đổi, báo tôi để cập nhật link; GitHub sẽ tự chuyển hướng link cũ.
+- Mọi chỗ ghi công "editonny của Matheus Gomes" và link repo gốc.
+- Các trang tham chiếu "đóng băng" trong `design-system/reference/`.
+- Ảnh mẫu `og-image.png` của bộ thiết kế.
+- Các mục lịch sử đã ghi ngày trong `docs/validation.md`.
+
+Không có lớp tương thích với bản cài editonny cũ: hai bản có thể cài song song mà không đụng nhau. Nếu bạn đã cài bản cũ, cài lại bằng `python3 install.py --target claude` từ bản fork mới rồi gọi `/nhipdung`.
 
 ## 2026-11-01 · Thông tin tác giả của fork
 

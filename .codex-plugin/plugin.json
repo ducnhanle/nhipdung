@@ -1,5 +1,5 @@
 {
-  "name": "editonny",
+  "name": "nhipdung",
   "version": "1.1.0",
   "description": "Local video editing, captions, audio, and visual scenes guided by conversation.",
   "author": {
@@ -8,7 +8,7 @@
   },
   "skills": "./skills/",
   "interface": {
-    "displayName": "editonny",
+    "displayName": "nhipdung",
     "shortDescription": "Your story. Your rhythm. One local editing workflow."
   },
   "license": "MIT"

@@ -9,7 +9,7 @@ afterEach(() => { vi.restoreAllMocks(); localStorage.clear(); });
 
 describe('Showcase theme switch', () => {
   it('switches theme even when the saved choice cannot be overwritten', async () => {
-    localStorage.setItem('editonny-ds-theme', 'dark');
+    localStorage.setItem('nhipdung-ds-theme', 'dark');
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => { throw new DOMException('full', 'QuotaExceededError'); });
     render(<Showcase image="city.jpg" photo="photo.jpg" flags={FLAGS} guide={[]} />);
     const [light] = screen.getAllByRole('radio', { name: 'Light' });

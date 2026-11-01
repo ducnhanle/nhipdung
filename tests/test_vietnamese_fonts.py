@@ -5,8 +5,8 @@ import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-ENGINE = ROOT / 'skills/editonny/engine'
-VISUALS = ROOT / 'skills/editonny/visuals'
+ENGINE = ROOT / 'skills/nhipdung/engine'
+VISUALS = ROOT / 'skills/nhipdung/visuals'
 TEMPLATE = ENGINE / 'project-template'
 VIETNAMESE = [chr(c) for c in range(0x1EA0, 0x1EFA)] + list('ăâđêôơưĂÂĐÊÔƠƯ')
 FACE = re.compile(r'@font-face\{font-family:"?([^";]+)"?;src:url\("([^"]+)"\)[^;]*;font-weight:([^;]+);font-display:block(?:;unicode-range:([^}]+))?\}')

@@ -1,9 +1,9 @@
 'use client';
-import { LanguageSelect, LANGUAGES } from '@editonny/design-system';
-import br from '@editonny/design-system/assets/flags/br.svg';
-import es from '@editonny/design-system/assets/flags/es.svg';
-import us from '@editonny/design-system/assets/flags/us.svg';
-import vn from '@editonny/design-system/assets/flags/vn.svg';
+import { LanguageSelect, LANGUAGES } from '@nhipdung/design-system';
+import br from '@nhipdung/design-system/assets/flags/br.svg';
+import es from '@nhipdung/design-system/assets/flags/es.svg';
+import us from '@nhipdung/design-system/assets/flags/us.svg';
+import vn from '@nhipdung/design-system/assets/flags/vn.svg';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter as useNextRouter } from 'next/navigation';
 import { getPathname, usePathname, useRouter } from '@/i18n/navigation';

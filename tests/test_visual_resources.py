@@ -9,7 +9,7 @@ from unittest.mock import patch
 from test_visual_media import fixture, media_module
 
 ROOT = Path(__file__).resolve().parents[1]
-VISUALS = ROOT / 'skills/editonny/visuals'
+VISUALS = ROOT / 'skills/nhipdung/visuals'
 
 
 def resources():

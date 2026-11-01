@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@editonny/design-system';
+import { Button } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { NewTabLink } from '@/components/shell/NewTabLink';

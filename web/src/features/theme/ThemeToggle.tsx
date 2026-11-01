@@ -1,5 +1,5 @@
 'use client';
-import { IconButton } from '@editonny/design-system';
+import { IconButton } from '@nhipdung/design-system';
 import { useEffect } from 'react';
 import { createStore, useStore } from '../preferences/store';
 import { parseTheme, THEME_KEY } from './theme';

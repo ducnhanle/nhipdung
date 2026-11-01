@@ -12,8 +12,8 @@
   "environment-test": {
     "title": "Prueba el entorno con un clip corto",
     "summary": "Revisa las herramientas antes de empezar un proyecto largo.",
-    "when": "Acabas de instalar editonny o cambiaste de computadora.",
-    "goal": "Revisa el entorno de editonny y usa un video corto mío para probar corte, subtítulos, audio y una escena simple del catálogo. Informa qué funcionó y qué necesita preparación. Reconocer este pedido no valida la instalación por sí solo",
+    "when": "Acabas de instalar nhipdung o cambiaste de computadora.",
+    "goal": "Revisa el entorno de nhipdung y usa un video corto mío para probar corte, subtítulos, audio y una escena simple del catálogo. Informa qué funcionó y qué necesita preparación. Reconocer este pedido no valida la instalación por sí solo",
     "tips": [
       "Usa un archivo sin contenido personal sensible.",
       "La prueba debe producir un MP4 reproducible."
@@ -243,7 +243,7 @@
     "title": "Explica tu área con un panel",
     "summary": "Usa una escena del catálogo para concretar una explicación.",
     "when": "Explicas un servicio, un proceso o un concepto de tu área.",
-    "goal": "Busca en el catálogo de editonny una escena adecuada a mi área y a la explicación real. Presenta la selección con texto adaptado, mantén visible a la persona cuando haga falta y usa solo la información proporcionada. Si no existe una escena específica, propone un diagrama simple con el mismo propósito",
+    "goal": "Busca en el catálogo de nhipdung una escena adecuada a mi área y a la explicación real. Presenta la selección con texto adaptado, mantén visible a la persona cuando haga falta y usa solo la información proporcionada. Si no existe una escena específica, propone un diagrama simple con el mismo propósito",
     "tips": [
       "Indica la profesión, el tema y el público.",
       "Reemplaza todos los nombres y números de demostración de la escena."
@@ -273,7 +273,7 @@
     "title": "Explica una relación espacial en 3D",
     "summary": "Usa volumen cuando la profundidad y la posición mejoran la comprensión.",
     "when": "Una explicación involucra capas, encajes, trayectorias o partes.",
-    "goal": "Evalúa una escena 3D disponible de editonny para la relación espacial mencionada. Usa geometría simple, etiquetas legibles y un movimiento que revele lo que una vista plana ocultaría. Empieza con una prueba corta del movimiento principal y verifica el soporte de renderizado. Si no es viable, propone un diagrama 2D",
+    "goal": "Evalúa una escena 3D disponible de nhipdung para la relación espacial mencionada. Usa geometría simple, etiquetas legibles y un movimiento que revele lo que una vista plana ocultaría. Empieza con una prueba corta del movimiento principal y verifica el soporte de renderizado. Si no es viable, propone un diagrama 2D",
     "tips": [
       "Explica qué relación necesita profundidad.",
       "La escala es ilustrativa salvo que proporciones medidas."
@@ -423,7 +423,7 @@
     "title": "Un efecto de voz en un intervalo",
     "summary": "Un cambio breve de tono para reforzar una intención.",
     "when": "Una frase pide un efecto de radio, megáfono, robot u otro disponible.",
-    "goal": "Dentro del intervalo que indico, revisa los efectos de voz disponibles en editonny y prueba el que corresponda a mi intención. Conserva las palabras, la sincronización y la voz original fuera de ese intervalo, con transiciones suaves. Muestra una muestra para revisar la inteligibilidad y la intensidad; no prometas imitar a una persona ni reproducir exactamente otra herramienta",
+    "goal": "Dentro del intervalo que indico, revisa los efectos de voz disponibles en nhipdung y prueba el que corresponda a mi intención. Conserva las palabras, la sincronización y la voz original fuera de ese intervalo, con transiciones suaves. Muestra una muestra para revisar la inteligibilidad y la intensidad; no prometas imitar a una persona ni reproducir exactamente otra herramienta",
     "tips": [
       "Indica el inicio, el final y el clima deseado.",
       "Si el corte cambia después, vuelve a armar el efecto con el audio actualizado."
@@ -433,7 +433,7 @@
     "title": "Contenido generado para una escena",
     "summary": "Evalúa una transformación y prueba su integración en el video.",
     "when": "La idea implica transformar un objeto, cambiar un fondo o agregar un elemento.",
-    "goal": "Revisa las recetas disponibles en editonny y evalúa mi transformación visual con las herramientas que realmente existan en este entorno. Identifica el material necesario, las limitaciones, el envío a terceros y los costos antes de ejecutar. No envíes material ni gastes créditos sin mi autorización específica. Conserva el original y prueba un intervalo corto antes de integrar el resultado, manteniendo la continuidad y la voz. Presenta el resultado como efecto o ilustración, no como prueba real",
+    "goal": "Revisa las recetas disponibles en nhipdung y evalúa mi transformación visual con las herramientas que realmente existan en este entorno. Identifica el material necesario, las limitaciones, el envío a terceros y los costos antes de ejecutar. No envíes material ni gastes créditos sin mi autorización específica. Conserva el original y prueba un intervalo corto antes de integrar el resultado, manteniendo la continuidad y la voz. Presenta el resultado como efecto o ilustración, no como prueba real",
     "tips": [
       "Describe qué cambia, dónde y cómo debe entrar en el video.",
       "Si falta una herramienta necesaria, propone material proporcionado o una composición local más simple."
@@ -513,7 +513,7 @@
     "title": "Revisa el video desde tu celular",
     "summary": "Avisos cortos y una muestra pensada para pantalla pequeña.",
     "when": "Estás en el celular con acceso a un entorno capaz de editar tus archivos.",
-    "goal": "Estoy siguiendo desde el celular. Verifica que este entorno pueda acceder al adjunto o a la carpeta indicada y a las herramientas de editonny. Si no, explica qué falta sin prometer edición en el navegador desde la guía. Mantén los avisos cortos, muestra el corte antes de terminar y entrega una muestra que pueda revisar aquí. Explica cómo acceder al MP4 final y guardarlo en este entorno",
+    "goal": "Estoy siguiendo desde el celular. Verifica que este entorno pueda acceder al adjunto o a la carpeta indicada y a las herramientas de nhipdung. Si no, explica qué falta sin prometer edición en el navegador desde la guía. Mantén los avisos cortos, muestra el corte antes de terminar y entrega una muestra que pueda revisar aquí. Explica cómo acceder al MP4 final y guardarlo en este entorno",
     "tips": [
       "La guía arma pedidos; no recibe ni edita material.",
       "Prefiere el archivo original a una versión comprimida por una app de mensajes."

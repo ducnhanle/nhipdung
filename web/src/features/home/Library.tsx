@@ -1,5 +1,5 @@
 'use client';
-import { Button, Chip, Eyebrow, Highlight, Icon, PromptCard, SceneCard, SegmentedControl } from '@editonny/design-system';
+import { Button, Chip, Eyebrow, Highlight, Icon, PromptCard, SceneCard, SegmentedControl } from '@nhipdung/design-system';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
 import { Link } from '@/i18n/navigation';
@@ -25,7 +25,7 @@ type LibraryProps = { examples: Example[]; scenes: Scene[]; categories: Filter[]
 
 /**
  * Ready-made requests and motion scenes in one searchable library. Other sections steer it with `showInLibrary`.
- * The agent choice is the visitor's saved brief, so copied requests start with `$editonny` or `/editonny`.
+ * The agent choice is the visitor's saved brief, so copied requests start with `$nhipdung` or `/nhipdung`.
  */
 export function Library({ examples, scenes, categories, families }: LibraryProps) {
   const t = useTranslations('Home.library');

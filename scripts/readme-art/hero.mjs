@@ -172,7 +172,7 @@ ${timeline(t, wx + 24, wy + 496, ww - 48)}
 <text x="${wx + 24}" y="${wy + wh + 30}" font-size="12" class="faint">${esc(t.bench.note)}</text>`;
   return svg({
     width: 1280, height: 780, css: stageCss(), fonts: ['figtree', 'anton'],
-    title: `editonny — ${t.hero.line1} ${t.hero.line2} ${t.hero.words.split('|')[0]}`,
+    title: `nhipdung — ${t.hero.line1} ${t.hero.line2} ${t.hero.words.split('|')[0]}`,
     description: `${t.hero.leadA}${t.hero.leadHighlight}${t.hero.leadB} ${t.bench.note}`,
     body,
   });

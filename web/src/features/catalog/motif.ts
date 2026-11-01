@@ -1,4 +1,4 @@
-import type { SceneMotif } from '@editonny/design-system';
+import type { SceneMotif } from '@nhipdung/design-system';
 
 // Schematic previews per catalog category; the real composition is rendered by the agent.
 const MOTIF: Record<string, SceneMotif> = {

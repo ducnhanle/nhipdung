@@ -1,5 +1,5 @@
 'use client';
-import { Button, Eyebrow, Highlight, Icon } from '@editonny/design-system';
+import { Button, Eyebrow, Highlight, Icon } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import { useState, type CSSProperties } from 'react';
 import styles from './home.module.css';

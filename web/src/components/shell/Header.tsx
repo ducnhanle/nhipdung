@@ -1,5 +1,5 @@
 'use client';
-import { Button, SiteHeader } from '@editonny/design-system';
+import { Button, SiteHeader } from '@nhipdung/design-system';
 import { useLocale, useTranslations } from 'next-intl';
 import NextLink from 'next/link';
 import type { ComponentProps } from 'react';

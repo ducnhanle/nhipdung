@@ -1,5 +1,5 @@
 'use client';
-import { Chip, KineticCaption, SegmentedControl, Switch, useReducedMotion, Waveform } from '@editonny/design-system';
+import { Chip, KineticCaption, SegmentedControl, Switch, useReducedMotion, Waveform } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import type { CSSProperties } from 'react';
 import { Footage } from './Footage';

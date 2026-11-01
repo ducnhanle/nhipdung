@@ -10,7 +10,7 @@ test('the brief builds the request live and survives a reload', async ({ page })
   await page.getByRole('radio', { name: /Claude Code/ }).click();
   await page.getByLabel('Pace').selectOption('dynamic');
   const text = preview(page);
-  await expect(text).toContainText('/editonny');
+  await expect(text).toContainText('/nhipdung');
   await expect(text).toContainText('Edit the videos in: /tmp/Raw videos café');
   await expect(text).toContainText('Goal: Explain a feature clearly.');
   await expect(text).toContainText('Format: 4:5 (portrait feed).');
@@ -68,7 +68,7 @@ test('copy puts the request on the clipboard', async ({ page, context, browserNa
   await expect(page.getByRole('status')).toContainText('Pedido copiado.');
   const clipboard = await page.evaluate(() => navigator.clipboard.readText());
   expect(clipboard).toBe(await page.getByLabel('Pedido de edición generado').textContent());
-  expect(clipboard.startsWith('$editonny\n\nEdita los videos en:')).toBe(true);
+  expect(clipboard.startsWith('$nhipdung\n\nEdita los videos en:')).toBe(true);
 });
 
 test('copy without clipboard access selects the text and explains how to copy', async ({ page }) => {
@@ -77,7 +77,7 @@ test('copy without clipboard access selects the text and explains how to copy', 
   await page.getByRole('button', { name: 'Copy request' }).first().click();
   // Next.js also renders a route announcer with role=alert.
   await expect(page.getByRole('alert').filter({ hasText: 'The text is selected' })).toBeVisible();
-  expect(await page.evaluate(() => getSelection()?.toString().startsWith('$editonny'))).toBe(true);
+  expect(await page.evaluate(() => getSelection()?.toString().startsWith('$nhipdung'))).toBe(true);
 });
 
 test('phones get a sticky copy bar until the request card is on screen', async ({ page, isMobile }) => {

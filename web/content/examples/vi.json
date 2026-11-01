@@ -12,8 +12,8 @@
   "environment-test": {
     "title": "Kiểm tra thiết lập bằng một đoạn video ngắn",
     "summary": "Kiểm tra các công cụ trước khi bắt đầu một dự án dài.",
-    "when": "Bạn vừa cài đặt editonny hoặc vừa đổi máy tính.",
-    "goal": "Hãy kiểm tra môi trường editonny và dùng một video ngắn của tôi để thử các khâu cắt, phụ đề, âm thanh và một cảnh đơn giản trong danh mục. Cho tôi biết phần nào đã hoạt động và phần nào cần chuẩn bị thêm. Chỉ riêng việc nhận ra yêu cầu này chưa đủ để xác nhận cài đặt đã thành công",
+    "when": "Bạn vừa cài đặt nhipdung hoặc vừa đổi máy tính.",
+    "goal": "Hãy kiểm tra môi trường nhipdung và dùng một video ngắn của tôi để thử các khâu cắt, phụ đề, âm thanh và một cảnh đơn giản trong danh mục. Cho tôi biết phần nào đã hoạt động và phần nào cần chuẩn bị thêm. Chỉ riêng việc nhận ra yêu cầu này chưa đủ để xác nhận cài đặt đã thành công",
     "tips": [
       "Dùng một tệp không chứa nội dung cá nhân nhạy cảm.",
       "Bài thử nên tạo ra một tệp MP4 phát được."
@@ -243,7 +243,7 @@
     "title": "Giải thích lĩnh vực của bạn bằng một bảng trực quan",
     "summary": "Dùng một cảnh trong danh mục để phần giải thích trở nên cụ thể.",
     "when": "Bạn giải thích một dịch vụ, quy trình hoặc khái niệm trong lĩnh vực của mình.",
-    "goal": "Hãy tìm trong danh mục của editonny một cảnh phù hợp với lĩnh vực của tôi và nội dung giải thích thực tế. Trình bày lựa chọn kèm phần chữ đã được điều chỉnh, giữ người nói hiển thị khi cần và chỉ dùng thông tin được cung cấp. Nếu không có cảnh chuyên biệt, hãy đề xuất một sơ đồ đơn giản phục vụ cùng mục đích",
+    "goal": "Hãy tìm trong danh mục của nhipdung một cảnh phù hợp với lĩnh vực của tôi và nội dung giải thích thực tế. Trình bày lựa chọn kèm phần chữ đã được điều chỉnh, giữ người nói hiển thị khi cần và chỉ dùng thông tin được cung cấp. Nếu không có cảnh chuyên biệt, hãy đề xuất một sơ đồ đơn giản phục vụ cùng mục đích",
     "tips": [
       "Nêu rõ nghề nghiệp, chủ đề và đối tượng người xem.",
       "Thay toàn bộ tên và số liệu mẫu trong cảnh."
@@ -273,7 +273,7 @@
     "title": "Giải thích quan hệ không gian bằng 3D",
     "summary": "Dùng hình khối khi chiều sâu và vị trí giúp người xem hiểu rõ hơn.",
     "when": "Phần giải thích liên quan đến các lớp, cách lắp ghép, đường đi hoặc bộ phận.",
-    "goal": "Hãy đánh giá một cảnh 3D có sẵn của editonny cho mối quan hệ không gian được nhắc đến trong lời nói. Dùng hình khối đơn giản, nhãn dễ đọc và chuyển động làm lộ ra những gì góc nhìn phẳng sẽ che khuất. Bắt đầu bằng một bản thử ngắn cho chuyển động chính và kiểm tra khả năng hỗ trợ render. Nếu không khả thi, hãy đề xuất một sơ đồ 2D",
+    "goal": "Hãy đánh giá một cảnh 3D có sẵn của nhipdung cho mối quan hệ không gian được nhắc đến trong lời nói. Dùng hình khối đơn giản, nhãn dễ đọc và chuyển động làm lộ ra những gì góc nhìn phẳng sẽ che khuất. Bắt đầu bằng một bản thử ngắn cho chuyển động chính và kiểm tra khả năng hỗ trợ render. Nếu không khả thi, hãy đề xuất một sơ đồ 2D",
     "tips": [
       "Giải thích mối quan hệ nào cần thể hiện chiều sâu.",
       "Tỷ lệ chỉ mang tính minh họa trừ khi bạn cung cấp số đo."
@@ -423,7 +423,7 @@
     "title": "Hiệu ứng giọng nói trong một đoạn",
     "summary": "Thay đổi chất giọng trong chốc lát để nhấn mạnh một chủ ý.",
     "when": "Một câu nói cần hiệu ứng radio, loa phóng thanh, robot hoặc một kiểu xử lý khác có sẵn.",
-    "goal": "Trong khoảng thời gian tôi chỉ định, hãy xem các hiệu ứng giọng nói có sẵn của editonny và thử hiệu ứng phù hợp với ý định của tôi. Giữ nguyên lời nói, độ đồng bộ và giọng gốc ở ngoài khoảng đó, với phần chuyển tiếp mượt mà ở hai đầu. Cho tôi nghe thử một đoạn mẫu để kiểm tra độ rõ lời và cường độ; đừng hứa sẽ bắt chước một người cụ thể hay tái tạo y hệt một công cụ khác",
+    "goal": "Trong khoảng thời gian tôi chỉ định, hãy xem các hiệu ứng giọng nói có sẵn của nhipdung và thử hiệu ứng phù hợp với ý định của tôi. Giữ nguyên lời nói, độ đồng bộ và giọng gốc ở ngoài khoảng đó, với phần chuyển tiếp mượt mà ở hai đầu. Cho tôi nghe thử một đoạn mẫu để kiểm tra độ rõ lời và cường độ; đừng hứa sẽ bắt chước một người cụ thể hay tái tạo y hệt một công cụ khác",
     "tips": [
       "Nêu rõ điểm bắt đầu, điểm kết thúc và sắc thái bạn muốn.",
       "Nếu bản cắt thay đổi sau này, hãy làm lại hiệu ứng từ âm thanh đã cập nhật."
@@ -433,7 +433,7 @@
     "title": "Tư liệu do AI tạo cho một cảnh",
     "summary": "Đánh giá một phép biến đổi và thử lồng ghép vào video.",
     "when": "Ý tưởng cần biến đổi một vật thể, thay phông nền hoặc thêm một yếu tố.",
-    "goal": "Hãy xem các công thức (recipe) có sẵn của editonny và đánh giá phép biến đổi hình ảnh tôi muốn bằng những công cụ thực sự có trong môi trường này. Trước khi thực hiện, hãy xác định tư liệu cần có, các hạn chế, việc gửi tư liệu cho bên thứ ba và chi phí. Không gửi tư liệu đi hoặc tiêu credit khi chưa có sự cho phép cụ thể của tôi. Giữ nguyên bản gốc và thử trên một đoạn ngắn trước khi lồng kết quả vào video, đảm bảo liền mạch và giữ nguyên giọng nói. Ghi rõ kết quả là hiệu ứng hoặc hình minh họa, không phải bằng chứng thật",
+    "goal": "Hãy xem các công thức (recipe) có sẵn của nhipdung và đánh giá phép biến đổi hình ảnh tôi muốn bằng những công cụ thực sự có trong môi trường này. Trước khi thực hiện, hãy xác định tư liệu cần có, các hạn chế, việc gửi tư liệu cho bên thứ ba và chi phí. Không gửi tư liệu đi hoặc tiêu credit khi chưa có sự cho phép cụ thể của tôi. Giữ nguyên bản gốc và thử trên một đoạn ngắn trước khi lồng kết quả vào video, đảm bảo liền mạch và giữ nguyên giọng nói. Ghi rõ kết quả là hiệu ứng hoặc hình minh họa, không phải bằng chứng thật",
     "tips": [
       "Mô tả điều gì thay đổi, ở đâu và nó nên xuất hiện trong video như thế nào.",
       "Nếu thiếu công cụ cần thiết, hãy đề xuất dùng tư liệu được cung cấp hoặc một bố cục đơn giản hơn dựng ngay trên máy."
@@ -513,7 +513,7 @@
     "title": "Xem lại video trên điện thoại",
     "summary": "Cập nhật ngắn gọn và đoạn mẫu phù hợp với màn hình nhỏ.",
     "when": "Bạn đang dùng điện thoại và có quyền truy cập vào một môi trường có thể chỉnh sửa tệp của bạn.",
-    "goal": "Tôi đang theo dõi trên điện thoại. Hãy kiểm tra xem môi trường này có truy cập được tệp đính kèm hoặc thư mục đã chỉ định, cùng các công cụ của editonny hay không. Nếu không, hãy giải thích những gì còn thiếu mà không hứa hẹn việc chỉnh sửa trên trình duyệt trong trang hướng dẫn. Giữ các cập nhật thật ngắn, cho tôi xem bản cắt trước khi hoàn thiện và gửi một đoạn mẫu tôi có thể xem lại ngay tại đây. Giải thích cách truy cập và lưu tệp MP4 hoàn chỉnh trong môi trường này",
+    "goal": "Tôi đang theo dõi trên điện thoại. Hãy kiểm tra xem môi trường này có truy cập được tệp đính kèm hoặc thư mục đã chỉ định, cùng các công cụ của nhipdung hay không. Nếu không, hãy giải thích những gì còn thiếu mà không hứa hẹn việc chỉnh sửa trên trình duyệt trong trang hướng dẫn. Giữ các cập nhật thật ngắn, cho tôi xem bản cắt trước khi hoàn thiện và gửi một đoạn mẫu tôi có thể xem lại ngay tại đây. Giải thích cách truy cập và lưu tệp MP4 hoàn chỉnh trong môi trường này",
     "tips": [
       "Trang hướng dẫn giúp soạn yêu cầu; trang này không nhận hay chỉnh sửa video gốc.",
       "Ưu tiên tệp gốc thay vì bản đã bị ứng dụng nhắn tin nén lại."

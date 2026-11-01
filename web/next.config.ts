@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   typedRoutes: true,
   poweredByHeader: false,
-  transpilePackages: ['@editonny/design-system'],
+  transpilePackages: ['@nhipdung/design-system'],
   turbopack: { root },
   outputFileTracingRoot: root,
   async headers() {

@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / 'skills/editonny/engine/helpers'))
+sys.path.insert(0, str(ROOT / 'skills/nhipdung/engine/helpers'))
 from common import probe_video
 from fidelity import delta_e_2000, measure_fidelity
 from media_fixtures import make_hdr_patches
@@ -29,7 +29,7 @@ class HdrFidelityTests(unittest.TestCase):
                 edl = edit / 'edl.json'
                 edl.write_text(json.dumps({'sources': {'s': str(source)}, 'ranges': [
                     {'id': 'a', 'source': 's', 'start': 0, 'end': 1}]}))
-                result = subprocess.run([sys.executable, str(ROOT / 'skills/editonny/engine/helpers/render_cut.py'), str(edl), '--no-jcut'], capture_output=True, text=True)
+                result = subprocess.run([sys.executable, str(ROOT / 'skills/nhipdung/engine/helpers/render_cut.py'), str(edl), '--no-jcut'], capture_output=True, text=True)
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
                 facts = probe_video(edit / 'cut.mp4')
                 self.assertEqual(facts['bit_depth'], depth)

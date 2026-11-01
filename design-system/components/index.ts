@@ -1,4 +1,4 @@
-// Public API of the editonny design system. Import components from here, not from their files.
+// Public API of the nhipdung design system. Import components from here, not from their files.
 export { useInterval, useInView, useReducedMotion } from './hooks';
 export type { BaseProps } from './lib';
 export { Icon, iconNames } from './core/Icon';

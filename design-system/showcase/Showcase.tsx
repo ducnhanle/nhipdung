@@ -12,7 +12,7 @@ import { Tokens } from './Tokens';
 const NAV = [['tokens', 'Tokens'], ['core', 'Core'], ['forms', 'Forms'], ['content', 'Content'], ['feedback', 'Feedback'], ['editor', 'Editor'], ['motion', 'Motion'], ['site', 'Site'], ['templates', 'Templates'], ['reference', 'Reference']];
 const SHOWS = ['both', 'dark', 'light'] as const;
 type Show = typeof SHOWS[number];
-const KEY = 'editonny-ds-theme';
+const KEY = 'nhipdung-ds-theme';
 
 const listeners = new Set<() => void>();
 const subscribe = (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; };
@@ -63,8 +63,8 @@ export function Showcase({ image, photo, flags, guide }: ShowcaseProps) {
         <nav className="sc-nav" aria-label="Library sections"><ul>{NAV.map(([id, label]) => <li key={id}><a href={`#${id}`}>{label}</a></li>)}</ul></nav>
         <main className="sc-main" id="sc-main" tabIndex={-1}>
           <div className="sc-intro">
-            <h1>editonny design system</h1>
-            <p>38 components, their states, composition templates, and tokens in the dark studio and light paper themes. Every value comes from DESIGN.md; pages import from @editonny/design-system.</p>
+            <h1>nhipdung design system</h1>
+            <p>38 components, their states, composition templates, and tokens in the dark studio and light paper themes. Every value comes from DESIGN.md; pages import from @nhipdung/design-system.</p>
           </div>
           <Tokens />
           <CoreSection />

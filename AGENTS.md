@@ -1,21 +1,21 @@
-# Working on editonny
+# Working on nhipdung
 
-Open-source local video editing through conversation. One portable skill owns the engine and visual library; the browser guide helps users build requests.
+Open-source local video editing through conversation. nhipdung ("Nhịp Dựng") is a fork of editonny by Matheus Gomes with Vietnamese support; keep the original author's credits and the upstream links (`soumatheusgomes/editonny`), and the repository URL `ducnhanle/editonny` until the GitHub repository itself is renamed. One portable skill owns the engine and visual library; the browser guide helps users build requests.
 
 ## Map
 
-- `skills/editonny/SKILL.md`: portable agent entry point. Do not create per-agent engine copies.
-- `skills/editonny/engine/`: locked Python/FFmpeg/Whisper engine, preview, references, and HyperFrames project template.
-- `skills/editonny/visuals/`: scenes, catalog, bundled media, recipes, and scene application.
-- `skills/editonny/visuals/media.json`: original-video manifest. `media status` verifies the bundled paths, sizes, and hashes; projects receive only clips they use.
+- `skills/nhipdung/SKILL.md`: portable agent entry point. Do not create per-agent engine copies.
+- `skills/nhipdung/engine/`: locked Python/FFmpeg/Whisper engine, preview, references, and HyperFrames project template.
+- `skills/nhipdung/visuals/`: scenes, catalog, bundled media, recipes, and scene application.
+- `skills/nhipdung/visuals/media.json`: original-video manifest. `media status` verifies the bundled paths, sizes, and hashes; projects receive only clips they use.
 - `install.py`: shared installation and agent registration through links.
-- `skills/editonny/scripts/editonny.py`: canonical CLI; root `editonny.py` is the launcher.
-- `web/`: the public guide, a Next.js 16 App Router app (workspace `@editonny/web`) deployed on Vercel with Root Directory `web`. `src/app/` holds routes, `src/features/` the domain code, `messages/` the interface text per locale, and `content/` the localized examples and scene translations.
+- `skills/nhipdung/scripts/nhipdung.py`: canonical CLI; root `nhipdung.py` is the launcher.
+- `web/`: the public guide, a Next.js 16 App Router app (workspace `@nhipdung/web`) deployed on Vercel with Root Directory `web`. `src/app/` holds routes, `src/features/` the domain code, `messages/` the interface text per locale, and `content/` the localized examples and scene translations.
 - `web/src/features/request/`: shared request builder, brief options, and the default editing-cleanup policy per locale (English is canonical).
-- `web/src/features/examples/records.ts`: canonical example list (ids, categories, presets); its text lives in `web/content/examples/<locale>.json`. Scene text comes from `skills/editonny/visuals/catalog.json`, translated in `web/content/scenes/<locale>.json`.
+- `web/src/features/examples/records.ts`: canonical example list (ids, categories, presets); its text lives in `web/content/examples/<locale>.json`. Scene text comes from `skills/nhipdung/visuals/catalog.json`, translated in `web/content/scenes/<locale>.json`.
 - `DESIGN.md`: visual contract and source of truth for design tokens (Google Labs DESIGN.md format).
 - `scripts/readme-art/`: generates the localized animated README banners in `docs/assets/readme/<locale>/` from `web/messages/` and `DESIGN.md` (`npm run readme:art`); `npm test` fails when they are stale. Each README carries the guide's install request (`Install.askRequest`) verbatim.
-- `design-system/`: React component library (workspace `@editonny/design-system`), tokens, preview templates, showcase (served at `/design-system` by the web app), lint plugin, and frozen reference HTML; map and component workflow in `design-system/README.md`.
+- `design-system/`: React component library (workspace `@nhipdung/design-system`), tokens, preview templates, showcase (served at `/design-system` by the web app), lint plugin, and frozen reference HTML; map and component workflow in `design-system/README.md`.
 - `PRODUCT.md`, `docs/architecture.md`, `docs/design.md`: scope, structure, and interface.
 - `docs/installation.md`, `docs/validation.md`, `docs/setup.md`: onboarding, quality evidence, and development tooling. Do not create competing sources.
 - `graphify-out/graph.json`: local code/document index; workflow and coverage in `docs/setup.md`.
@@ -31,7 +31,7 @@ All full edits default to removing unnecessary pauses, audible breaths, mistakes
 
 ## Design system
 
-`DESIGN.md` is the versioned visual contract and the source of truth for tokens; `design-system/tokens/` implements it and `npm test` fails when they drift. Read it before UI work. New components and UI come from `@editonny/design-system` (`design-system/components/index.ts`), created as described in `design-system/README.md`. Never hard-code colors, font families or sizes, spacing, or radii; use `var(--…)` tokens. The `design/tokens` lint rule, the raw-literal rules, and `npm run typecheck` enforce this. The web app imports `@editonny/design-system/styles.css`, defaults to the dark studio theme, and offers light paper through a saved preference. `design-system/reference/` holds frozen export pages for comparison only.
+`DESIGN.md` is the versioned visual contract and the source of truth for tokens; `design-system/tokens/` implements it and `npm test` fails when they drift. Read it before UI work. New components and UI come from `@nhipdung/design-system` (`design-system/components/index.ts`), created as described in `design-system/README.md`. Never hard-code colors, font families or sizes, spacing, or radii; use `var(--…)` tokens. The `design/tokens` lint rule, the raw-literal rules, and `npm run typecheck` enforce this. The web app imports `@nhipdung/design-system/styles.css`, defaults to the dark studio theme, and offers light paper through a saved preference. `design-system/reference/` holds frozen export pages for comparison only.
 
 ## Verify
 
@@ -39,7 +39,7 @@ All full edits default to removing unnecessary pauses, audible breaths, mistakes
 npm ci --ignore-scripts
 npm run build
 npm run check
-python3 editonny.py doctor
+python3 nhipdung.py doctor
 ```
 
 `npm run check` includes lint, both typechecks, the Python, Node, and Vitest suites, and the icon registry check. `npm run test:browser` builds the web app and runs the Playwright suite (desktop and phone projects, locale detection, flows, preferences, axe accessibility, overflow, and the showcase); it needs Playwright's Chromium once (`npx playwright install chromium`). Run it after guide or design-system changes. Engine/preview changes also need `npm run test:engine`, `npm run test:preview`, and `python3 scripts/smoke_engine.py` with sample inspection. The smoke needs FFmpeg, Node/npx, and network on first use. Guide-only changes do not need another video render.

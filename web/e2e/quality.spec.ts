@@ -12,7 +12,7 @@ for (const theme of ['dark', 'light'] as const) {
       const problems: string[] = [];
       page.on('pageerror', error => problems.push(`pageerror: ${error.message}`));
       page.on('console', message => { if (message.type() === 'error' || message.type() === 'warning') problems.push(`${message.type()}: ${message.text()}`); });
-      await page.addInitScript(value => localStorage.setItem('editonny:theme', JSON.stringify(value)), theme);
+      await page.addInitScript(value => localStorage.setItem('nhipdung:theme', JSON.stringify(value)), theme);
       await page.goto(path, { waitUntil: 'networkidle' });
       await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
       await expect(page.locator('h1')).toHaveCount(1);

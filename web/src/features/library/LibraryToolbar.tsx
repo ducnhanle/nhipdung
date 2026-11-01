@@ -1,5 +1,5 @@
 'use client';
-import { Badge, Select, TextField } from '@editonny/design-system';
+import { Badge, Select, TextField } from '@nhipdung/design-system';
 import { useTranslations } from 'next-intl';
 import styles from './library.module.css';
 

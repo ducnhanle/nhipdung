@@ -7,7 +7,7 @@ import sys
 import tempfile
 import unittest
 
-HELPERS = Path(__file__).resolve().parents[2] / 'skills/editonny/engine/helpers'
+HELPERS = Path(__file__).resolve().parents[2] / 'skills/nhipdung/engine/helpers'
 sys.path.insert(0, str(HELPERS))
 from common import probe_video
 from render_cut import build_vf

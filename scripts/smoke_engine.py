@@ -10,8 +10,8 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-ENGINE = ROOT / 'skills/editonny/engine'
-VISUALS = ROOT / 'skills/editonny/visuals'
+ENGINE = ROOT / 'skills/nhipdung/engine'
+VISUALS = ROOT / 'skills/nhipdung/visuals'
 
 
 def main():
@@ -41,7 +41,7 @@ def main():
         'duration': 3, 'width': 360, 'height': 640, 'fps': 24,
         'segments': [{'out_start': 0}]}))
     (edit / 'transcripts/cut.json').write_text(json.dumps({'words': [
-        {'text': 'Editonny', 'start': 0.2, 'end': 1.1},
+        {'text': 'Nhipdung', 'start': 0.2, 'end': 1.1},
         {'text': 'works', 'start': 1.2, 'end': 2.6}]}))
     project = output / 'project with spaces'
     run(sys.executable, ENGINE / 'project-template/build.py', 'new', project, '--edit', edit)

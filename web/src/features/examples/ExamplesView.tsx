@@ -1,5 +1,5 @@
 'use client';
-import { Button, Dialog, PromptCard } from '@editonny/design-system';
+import { Button, Dialog, PromptCard } from '@nhipdung/design-system';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRef, type CSSProperties } from 'react';
 import { Link } from '@/i18n/navigation';

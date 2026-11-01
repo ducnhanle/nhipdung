@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
-import '@editonny/design-system/styles.css';
+import '@nhipdung/design-system/styles.css';
 import { ToastProvider } from '@/features/feedback/ToastProvider';
 import { ThemeScript } from '@/features/theme/ThemeScript';
 import { SiteShell } from '@/components/shell/SiteShell';

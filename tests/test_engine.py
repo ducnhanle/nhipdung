@@ -14,8 +14,8 @@ from unittest import mock
 import warnings
 
 ROOT = Path(__file__).resolve().parents[1]
-ENGINE = ROOT / 'skills/editonny/engine'
-VISUALS = ROOT / 'skills/editonny/visuals'
+ENGINE = ROOT / 'skills/nhipdung/engine'
+VISUALS = ROOT / 'skills/nhipdung/visuals'
 
 
 class EngineTests(unittest.TestCase):
@@ -91,7 +91,7 @@ class EngineTests(unittest.TestCase):
             (bundle / 'scenes' / scene).write_bytes((VISUALS / 'scenes' / scene).read_bytes())
             result = subprocess.run([sys.executable, str(bundle / 'apply.py'),
                 '--project', str(project), '--use', 'object-card', '--start', '0'],
-                env=dict(os.environ, EDITONNY_MEDIA_DIR=str(root / 'absent')), capture_output=True, text=True)
+                env=dict(os.environ, NHIPDUNG_MEDIA_DIR=str(root / 'absent')), capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
             self.assertIn('media import', result.stderr)
             self.assertNotIn('Traceback', result.stderr)
@@ -99,7 +99,7 @@ class EngineTests(unittest.TestCase):
             self.assertEqual(list(project.iterdir()), [config])
 
     def test_scene_without_arguments_does_not_create_an_installation(self):
-        with tempfile.TemporaryDirectory(prefix='editonny motion entry ') as tmp:
+        with tempfile.TemporaryDirectory(prefix='nhipdung motion entry ') as tmp:
             home = Path(tmp)
             bundle = home / 'bundle'
             bundle.mkdir()
@@ -110,7 +110,7 @@ class EngineTests(unittest.TestCase):
                                     capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
             self.assertIn('--project', result.stderr)
-            self.assertFalse((home / '.local/share/editonny').exists())
+            self.assertFalse((home / '.local/share/nhipdung').exists())
 
     def test_scene_copy_names_preserve_edits_and_gaps(self):
         for option, name, prefix, suffix in (
@@ -146,7 +146,7 @@ class EngineTests(unittest.TestCase):
                 self.assertTrue((VISUALS / 'scenes' / (scene['id'] + '.html')).is_file())
 
     def test_scene_uses_its_bundle_in_an_isolated_home(self):
-        with tempfile.TemporaryDirectory(prefix='editonny engine ') as tmp:
+        with tempfile.TemporaryDirectory(prefix='nhipdung engine ') as tmp:
             home = Path(tmp)
             project = home / 'project with spaces'
             result = subprocess.run(
@@ -189,7 +189,7 @@ class EngineTests(unittest.TestCase):
         spec = importlib.util.spec_from_file_location('copy_build', ENGINE / 'project-template/build.py')
         build = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(build)
-        with tempfile.TemporaryDirectory(prefix='editonny copy ') as tmp:
+        with tempfile.TemporaryDirectory(prefix='nhipdung copy ') as tmp:
             src, dst = Path(tmp) / 'cut.mp4', Path(tmp) / 'assets/cut.mp4'
             src.write_bytes(b'cut')
             dst.parent.mkdir()
@@ -204,7 +204,7 @@ class EngineTests(unittest.TestCase):
         spec = importlib.util.spec_from_file_location('resize_build', ENGINE / 'project-template/build.py')
         build = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(build)
-        with tempfile.TemporaryDirectory(prefix='editonny resize ') as tmp, mock.patch.object(build, 'HERE', tmp):
+        with tempfile.TemporaryDirectory(prefix='nhipdung resize ') as tmp, mock.patch.object(build, 'HERE', tmp):
             for folder, color in (('before', 'red'), ('after', 'blue')):
                 Path(tmp, 'assets', folder).mkdir(parents=True)
                 subprocess.run(['ffmpeg', '-v', 'error', '-f', 'lavfi', '-i', f'color=c={color}:s=400x400',
@@ -220,7 +220,7 @@ class EngineTests(unittest.TestCase):
         spec = importlib.util.spec_from_file_location('audio_build', ENGINE / 'project-template/build.py')
         build = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(build)
-        with tempfile.TemporaryDirectory(prefix='editonny preserve ') as tmp:
+        with tempfile.TemporaryDirectory(prefix='nhipdung preserve ') as tmp:
             render, cut = Path(tmp, 'render.mp4'), Path(tmp, 'cut.mp4')
             # A 10 s cut rendered with a 2 s endHold: the render is 12 s long.
             for path, seconds in ((render, 12), (cut, 10)):
